@@ -1,0 +1,66 @@
+.btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 10px;
+  text-align: center;
+}
+.btn:hover {
+  opacity: 0.75;
+}
+.btn:disabled {
+  color: #ccc;
+  cursor: default;
+}
+.btn--follow {
+  composes: btn;
+  background: #7a9118;
+  display: block;
+  padding: 10px 60px;
+}
+.btn--follow svg {
+  margin-right: 10px;
+}
+.btn--refresh {
+  composes: btn;
+  background: #333;
+  display: block;
+  margin: auto;
+}
+.btn--refresh--loading {
+  animation: pulse 1s linear infinite alternate;
+}
+.btn--success {
+  composes: btn;
+  background: #7a9118;
+}
+.btn--success--loading {
+  composes: btn--success;
+  animation: pulse 1s linear infinite alternate;
+}
+.btn--auth-success {
+  composes: btn--success;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.btn--auth-link {
+  composes: btn;
+  border: 1px solid #d2691e;
+  color: #d2691e;
+  width: 100%;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}

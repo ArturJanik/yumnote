@@ -24,5 +24,19 @@ export const fetchArticlesFail = (error) => {
 export const fetchArticles = () => {
   return dispatch => {
     dispatch(fetchArticlesStart());
+    axios.get('/api/articles')
+    .then(response => {
+      console.log(response.data.articles)
+      dispatch(fetchArticlesSuccess(response.data.articles))
+    })
+    .catch(err => {
+      console.error('Fetch promotions error:', err.response.data.errors);
+      if(err.response.status === 500){
+        dispatch(fetchArticlesFail('Unable to load list. Please check your connection or try again later.'));
+      } else {
+        dispatch(fetchArticlesFail(err.response.data.errors));
+      }
+    })
   }
 }
+
