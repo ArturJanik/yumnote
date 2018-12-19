@@ -8,12 +8,14 @@ import {
 import Layout from './hoc/Layout/Layout';
 import NoMatch from './components/Error/NoMatch';
 import ArticleList from './containers/ArticleList/ArticleList';
+import Article from './containers/Article/Article';
 
 class App extends Component {
   render() {
     let routes = (
       <Switch>
         <Route path="/articles" exact component={ArticleList} />
+        <Route path="/articles/:articleId(\d+)" component={Article} />
         <Route path="/" exact component={ArticleList} />
         <Route component={NoMatch} />
       </Switch>

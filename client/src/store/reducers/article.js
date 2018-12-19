@@ -4,7 +4,8 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
   error: null,
   loading: false,
-  articles: []
+  articles: [],
+  article: null
 }
 
 const fetchArticlesStart = (state, action) => {
@@ -34,11 +35,34 @@ const fetchArticlesFail = (state, action) => {
   })
 }
 
+const fetchArticleStart = (state, action) => {
+  return updateObject(state, { article: null, error: null, loading: true })
+}
+
+const fetchArticleSuccess = (state, action) => {
+  return updateObject(state, {
+    article: action.article,
+    error: null, 
+    loading: false 
+  })
+}
+
+const fetchArticleFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ARTICLES_START: return fetchArticlesStart(state, action);
     case actionTypes.FETCH_ARTICLES_SUCCESS: return fetchArticlesSuccess(state, action);
     case actionTypes.FETCH_ARTICLES_FAIL: return fetchArticlesFail(state, action);
+
+    case actionTypes.FETCH_ARTICLE_START: return fetchArticleStart(state, action);
+    case actionTypes.FETCH_ARTICLE_SUCCESS: return fetchArticleSuccess(state, action);
+    case actionTypes.FETCH_ARTICLE_FAIL: return fetchArticleFail(state, action);
 
     default: return state;
   }

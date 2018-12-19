@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import styles from './ArticleList.css';
 import * as actions from '../../store/actions/index';
 
@@ -19,7 +20,7 @@ class ArticleList extends Component {
           <div key={article.id} className={styles['article']}>
             <h1 className={styles['article-title']}>{article.title}</h1>
             <p className={styles['article-description']}>{article.description}</p>
-            <a href="#" className={styles['article-link']}>Read more...</a>
+            <Link to={`/articles/${article.id}`}>Read more...</Link>
           </div>
         )
       })

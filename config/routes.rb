@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   scope '/api' do
-    resources :articles, only: [:index]
+    resources :articles, only: [:index, :show]
   end
 end

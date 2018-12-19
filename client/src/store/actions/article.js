@@ -40,3 +40,42 @@ export const fetchArticles = () => {
   }
 }
 
+export const fetchArticleStart = () => {
+  return {
+    type: actionTypes.FETCH_ARTICLE_START
+  }
+}
+
+export const fetchArticleSuccess = (article) => {
+  return {
+    type: actionTypes.FETCH_ARTICLE_SUCCESS,
+    article
+  }
+}
+
+export const fetchArticleFail = (error) => {
+  return {
+    type: actionTypes.FETCH_ARTICLE_FAIL,
+    error
+  }
+}
+
+export const fetchArticle = (id) => {
+  return dispatch => {
+    dispatch(fetchArticleStart());
+    axios.get('/api/articles/'+id)
+    .then(response => {
+      console.log(response.data.article)
+      dispatch(fetchArticleSuccess(response.data.article))
+    })
+    .catch(err => {
+      console.error('Fetch promotions error:', err.response.data.errors);
+      if(err.response.status === 500){
+        dispatch(fetchArticleFail('Unable to load article. Please check your connection or try again later.'));
+      } else {
+        dispatch(fetchArticleFail(err.response.data.errors));
+      }
+    })
+  }
+}
+
