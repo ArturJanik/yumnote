@@ -14,8 +14,14 @@ class ArticleList extends Component {
 
   renderArticles() {
     if(this.props.error === null && this.props.articles.length > 0){
-      return this.props.articles.map((article, index) => {
-        return <div key={index}>Article</div>
+      return this.props.articles.map(article => {
+        return(
+          <div key={article.id} className={styles['article']}>
+            <h1 className={styles['article-title']}>{article.title}</h1>
+            <p className={styles['article-description']}>{article.description}</p>
+            <a href="#" className={styles['article-link']}>Read more...</a>
+          </div>
+        )
       })
     } else {
       console.log('this.props.error: ',this.props.error)

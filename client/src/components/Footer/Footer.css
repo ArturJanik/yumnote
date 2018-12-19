@@ -2,7 +2,10 @@ footer {
   background: #fff;
 }
 .wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
   margin: 0 auto;
   max-width: 1280px;
-  padding: 20px;
+  padding: 20px 0;
 }
