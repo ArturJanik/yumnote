@@ -14,6 +14,19 @@ class ArticlesController < ApiController
     end
   end
 
+  def create
+    article = Article.new(article_params)
+    
+    if article.save
+      render json: {
+        message: 'ok',
+        article: article
+      }
+    else
+      render json: { errors: article.errors }, status: 400
+    end
+  end
+
   private
   def article_params
     params.require(:article).permit(:title, :description, :content, :start_date, :end_date, :status)
