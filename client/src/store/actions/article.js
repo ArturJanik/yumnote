@@ -30,7 +30,7 @@ export const fetchArticles = () => {
       dispatch(fetchArticlesSuccess(response.data.articles))
     })
     .catch(err => {
-      console.error('Fetch promotions error:', err.response.data.errors);
+      console.error('Fetch articles error:', err.response.data.errors);
       if(err.response.status === 500){
         dispatch(fetchArticlesFail('Unable to load list. Please check your connection or try again later.'));
       } else {
@@ -69,7 +69,7 @@ export const fetchArticle = (id) => {
       dispatch(fetchArticleSuccess(response.data.article))
     })
     .catch(err => {
-      console.error('Fetch promotions error:', err.response.data.errors);
+      console.error('Fetch article error:', err.response.data.errors);
       if(err.response.status === 500){
         dispatch(fetchArticleFail('Unable to load article. Please check your connection or try again later.'));
       } else {
@@ -79,3 +79,40 @@ export const fetchArticle = (id) => {
   }
 }
 
+export const addArticleStart = () => {
+  return {
+    type: actionTypes.ADD_ARTICLE_START
+  }
+}
+
+export const addArticleSuccess = () => {
+  return {
+    type: actionTypes.ADD_ARTICLE_SUCCESS
+  }
+}
+
+export const addArticleFail = (error) => {
+  return {
+    type: actionTypes.ADD_ARTICLE_FAIL,
+    error
+  }
+}
+
+export const addArticle = (formdata) => {
+  return dispatch => {
+    dispatch(addArticleStart());
+    axios.post('/api/articles', formdata)
+    .then(response => {
+      console.log(response)
+      dispatch(addArticleSuccess())
+    })
+    .catch(err => {
+      console.error('Create article error:', err.response.data.errors);
+      if(err.response.status === 500){
+        dispatch(addArticleFail('Unable to create new article. Please check your connection or try again later.'));
+      } else {
+        dispatch(addArticleFail(err.response.data.errors));
+      }
+    })
+  }
+}

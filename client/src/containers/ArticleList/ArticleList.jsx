@@ -47,6 +47,10 @@ class ArticleList extends Component {
             ? this.renderArticles()
             : <Spinner />
           }
+          {(!this.props.loading)
+            ? <Link to={`/articles/new`} className={styles['article-btn']}><Button btnType="success">Create new article</Button></Link>
+            : null
+          }
         </div>
       </section>
     )

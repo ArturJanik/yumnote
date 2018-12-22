@@ -8,6 +8,7 @@ const initialState = {
   article: null
 }
 
+
 const fetchArticlesStart = (state, action) => {
   return updateObject(state, {
     error: null,
@@ -35,8 +36,13 @@ const fetchArticlesFail = (state, action) => {
   })
 }
 
+
 const fetchArticleStart = (state, action) => {
-  return updateObject(state, { article: null, error: null, loading: true })
+  return updateObject(state, { 
+    article: null, 
+    error: null, 
+    loading: true 
+  })
 }
 
 const fetchArticleSuccess = (state, action) => {
@@ -54,6 +60,28 @@ const fetchArticleFail = (state, action) => {
   })
 }
 
+
+const addArticleStart = (state, action) => {
+  return updateObject(state, { 
+    error: null, 
+    loading: true 
+  })
+}
+
+const addArticleSuccess = (state, action) => {
+  return updateObject(state, {
+    error: null, 
+    loading: false 
+  })
+}
+
+const addArticleFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ARTICLES_START: return fetchArticlesStart(state, action);
@@ -63,6 +91,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_ARTICLE_START: return fetchArticleStart(state, action);
     case actionTypes.FETCH_ARTICLE_SUCCESS: return fetchArticleSuccess(state, action);
     case actionTypes.FETCH_ARTICLE_FAIL: return fetchArticleFail(state, action);
+
+    case actionTypes.ADD_ARTICLE_START: return addArticleStart(state, action);
+    case actionTypes.ADD_ARTICLE_SUCCESS: return addArticleSuccess(state, action);
+    case actionTypes.ADD_ARTICLE_FAIL: return addArticleFail(state, action);
 
     default: return state;
   }

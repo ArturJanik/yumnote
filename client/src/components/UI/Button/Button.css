@@ -43,6 +43,16 @@
   composes: btn--success;
   animation: pulse 1s linear infinite alternate;
 }
+.btn--save {
+  composes: btn;
+  background: #7a9118;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.btn--save--loading {
+  composes: btn--save;
+  animation: pulse 1s linear infinite alternate;
+}
 .btn--auth-success {
   composes: btn--success;
   margin-bottom: 20px;

@@ -18,7 +18,7 @@ class Article extends Component {
     return (
       <React.Fragment>
         <div className={styles['article-header']}>
-          <a href={article.link} target="_blank" className={styles['article-image']}><img src="" alt={article.title} /></a>
+          <a href={article.link} target="_blank" rel="noopener noreferrer" className={styles['article-image']}><img src="" alt={article.title} /></a>
           <h1>{article.title}</h1>
         </div>
         <div className={styles['article-content']} dangerouslySetInnerHTML={{__html: article.content}}></div>

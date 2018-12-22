@@ -10,9 +10,9 @@ const button = (props) => {
   
   return (
     <button
-    onClick={props.clicked}
-    className={styles['btn--' + btnType]}
-    disabled={props.disabled}
+      onClick={props.clicked}
+      className={styles['btn--' + btnType]}
+      disabled={props.disabled}
     >{props.children}</button>
   )
 };
