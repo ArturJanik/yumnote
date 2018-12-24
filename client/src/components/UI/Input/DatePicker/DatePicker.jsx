@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Pikaday from 'pikaday';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import '!style-loader!css-loader!pikaday/css/pikaday.css';
-import styles from './DatePicker.css';
+// import styles from './DatePicker.css';
 
 class DatePicker extends Component {
   state = {

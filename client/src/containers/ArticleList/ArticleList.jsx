@@ -27,7 +27,6 @@ class ArticleList extends Component {
         )
       })
     } else {
-      console.log('this.props.error: ',this.props.error)
       let button = <Button btnType="refresh" clicked={this.props.onFetchArticles}>Refresh</Button>
       if(this.props.loading) {
         button = <Button btnType="refresh loading">Refreshing...</Button>;
