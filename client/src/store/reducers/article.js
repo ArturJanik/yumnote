@@ -5,7 +5,8 @@ const initialState = {
   error: null,
   loading: false,
   articles: [],
-  article: null
+  article: null,
+  deleting: false
 }
 
 
@@ -104,6 +105,31 @@ const updateArticleFail = (state, action) => {
   })
 }
 
+
+const deleteArticleStart = (state, action) => {
+  return updateObject(state, { 
+    error: null, 
+    deleting: true 
+  })
+}
+
+const deleteArticleSuccess = (state, action) => {
+  const filteredArticles = state.articles.filter(article => article.id !== action.deletedId);
+    
+  return updateObject(state, {
+    error: null, 
+    deleting: false,
+    articles: filteredArticles
+  })
+}
+
+const deleteArticleFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    deleting: false
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ARTICLES_START: return fetchArticlesStart(state, action);
@@ -121,6 +147,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.UPDATE_ARTICLE_START: return updateArticleStart(state, action);
     case actionTypes.UPDATE_ARTICLE_SUCCESS: return updateArticleSuccess(state, action);
     case actionTypes.UPDATE_ARTICLE_FAIL: return updateArticleFail(state, action);
+
+    case actionTypes.DELETE_ARTICLE_START: return deleteArticleStart(state, action);
+    case actionTypes.DELETE_ARTICLE_SUCCESS: return deleteArticleSuccess(state, action);
+    case actionTypes.DELETE_ARTICLE_FAIL: return deleteArticleFail(state, action);
 
     default: return state;
   }

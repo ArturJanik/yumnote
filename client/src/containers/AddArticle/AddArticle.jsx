@@ -57,14 +57,14 @@ class AddArticle extends Component {
         valid: false,
         touched: false,
       },
-      status: {
+      visible: {
         elementType: 'checkbox',
         elementConfig: {
-          id: 'cb-status',
+          id: 'cb-visible',
           type: 'checkbox',
-          name: 'article[status]'
+          name: 'article[visible]'
         },
-        label: 'Status',
+        label: 'Visible',
         value: false,
         valid: true,
         touched: false

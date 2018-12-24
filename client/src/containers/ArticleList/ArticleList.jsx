@@ -22,6 +22,7 @@ class ArticleList extends Component {
             <p className={styles['article-description']}>{article.description}</p>
             <Link to={`/articles/${article.id}`}>Read more...</Link>
             <Link to={`/articles/${article.id}/edit`}>Edit...</Link>
+            <Button btnType="delete" disabled={this.props.deleting} clicked={() => this.props.onDeleteArticle(article.id)}>Delete</Button>
           </div>
         )
       })
@@ -62,13 +63,15 @@ const mapStateToProps = state => {
   return {
     articles: state.article.articles,
     loading: state.article.loading,
+    deleting: state.article.deleting,
     error: state.article.error,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchArticles: () => dispatch(actions.fetchArticles())
+    onFetchArticles: () => dispatch(actions.fetchArticles()),
+    onDeleteArticle: id => dispatch(actions.deleteArticle(id)),
   }
 }
 

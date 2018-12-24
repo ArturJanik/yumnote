@@ -59,12 +59,12 @@ class EditArticle extends Component {
         valid: false,
         touched: false,
       },
-      status: {
+      visible: {
         elementType: 'checkbox',
         elementConfig: {
-          id: 'cb-status',
+          id: 'cb-visible',
           type: 'checkbox',
-          name: 'article[status]'
+          name: 'article[visible]'
         },
         label: 'Visible',
         value: false,

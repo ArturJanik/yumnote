@@ -3,4 +3,5 @@ export {
   fetchArticle,
   addArticle,
   updateArticle,
+  deleteArticle,
 } from './article';
