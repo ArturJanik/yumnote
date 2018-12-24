@@ -40,6 +40,18 @@ class ArticlesController < ApiController
     end
   end
 
+  def destroy
+    article = Article.find(params['id'])
+    
+    if article
+      article.destroy
+      render json: {}, status: 200
+    else
+      errors = { errors: { details: { article: ['Not found']}}}
+      render json: errors, status: 404
+    end
+  end
+
   private
   def article_params
     params.require(:article).permit(:title, :description, :content, :start_date, :end_date, :status)
