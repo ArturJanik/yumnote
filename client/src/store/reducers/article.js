@@ -82,6 +82,28 @@ const addArticleFail = (state, action) => {
   })
 }
 
+
+const updateArticleStart = (state, action) => {
+  return updateObject(state, { 
+    error: null, 
+    loading: true 
+  })
+}
+
+const updateArticleSuccess = (state, action) => {
+  return updateObject(state, {
+    error: null, 
+    loading: false 
+  })
+}
+
+const updateArticleFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ARTICLES_START: return fetchArticlesStart(state, action);
@@ -95,6 +117,10 @@ const reducer = (state = initialState, action) => {
     case actionTypes.ADD_ARTICLE_START: return addArticleStart(state, action);
     case actionTypes.ADD_ARTICLE_SUCCESS: return addArticleSuccess(state, action);
     case actionTypes.ADD_ARTICLE_FAIL: return addArticleFail(state, action);
+
+    case actionTypes.UPDATE_ARTICLE_START: return updateArticleStart(state, action);
+    case actionTypes.UPDATE_ARTICLE_SUCCESS: return updateArticleSuccess(state, action);
+    case actionTypes.UPDATE_ARTICLE_FAIL: return updateArticleFail(state, action);
 
     default: return state;
   }

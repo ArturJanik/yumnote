@@ -27,6 +27,19 @@ class ArticlesController < ApiController
     end
   end
 
+  def update
+    article = Article.find(params['id'])
+
+    if article.update(article_params)
+      render json: {
+        message: 'ok',
+        article: article
+      }
+    else
+      render json: { errors: article.errors }, status: 400
+    end
+  end
+
   private
   def article_params
     params.require(:article).permit(:title, :description, :content, :start_date, :end_date, :status)

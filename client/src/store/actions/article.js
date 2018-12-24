@@ -116,3 +116,41 @@ export const addArticle = (formdata) => {
     })
   }
 }
+
+export const updateArticleStart = () => {
+  return {
+    type: actionTypes.UPDATE_ARTICLE_START
+  }
+}
+
+export const updateArticleSuccess = () => {
+  return {
+    type: actionTypes.UPDATE_ARTICLE_SUCCESS
+  }
+}
+
+export const updateArticleFail = (error) => {
+  return {
+    type: actionTypes.UPDATE_ARTICLE_FAIL,
+    error
+  }
+}
+
+export const updateArticle = (formdata, id) => {
+  return dispatch => {
+    dispatch(updateArticleStart());
+    axios.put('/api/articles/'+id, formdata)
+    .then(response => {
+      console.log(response)
+      dispatch(updateArticleSuccess())
+    })
+    .catch(err => {
+      console.error('Update article error:', err.response.data.errors);
+      if(err.response.status === 500){
+        dispatch(updateArticleFail('Unable to update article. Please check your connection or try again later.'));
+      } else {
+        dispatch(updateArticleFail(err.response.data.errors));
+      }
+    })
+  }
+}

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from './AddArticle.css';
+import styles from './EditArticle.css';
 import * as actions from '../../store/actions/index';
 
+import NoMatch from '../../components/Error/NoMatch';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import { updateObject } from '../../shared/utility';
 import { validateField, formIsValid } from '../../shared/form-validation';
 
-class AddArticle extends Component {
+class EditArticle extends Component {
 
   state = {
     fields: {
@@ -64,7 +66,7 @@ class AddArticle extends Component {
           type: 'checkbox',
           name: 'article[status]'
         },
-        label: 'Status',
+        label: 'Visible',
         value: false,
         valid: true,
         touched: false
@@ -89,7 +91,32 @@ class AddArticle extends Component {
         valid: true,
         touched: false
       },
+    },
+    articleLoaded: false
+  }
+
+  componentDidMount() {
+    const { articleId } = this.props.match.params;
+    this.props.onFetchArticle(articleId);
+  }
+
+  static getDerivedStateFromProps(props, state){
+    if(state.articleLoaded) return state;
+    if(!props.loading && props.article !== null){
+      let updatedFields = { ...state.fields };
+      for(let key in updatedFields){
+        updatedFields = {
+          ...updatedFields,
+          [key]: {
+            ...updatedFields[key],
+            value: props.article[key],
+            valid: true
+          }
+        }
+      }
+      return({fields: updatedFields, articleLoaded: true});
     }
+    return state;
   }
 
   inputChangedHandler = (event, fieldName, fieldType) => {
@@ -122,7 +149,7 @@ class AddArticle extends Component {
     event.preventDefault();
     if(!this.props.loading && formIsValid(this.state.fields)){
       let data = new FormData(event.target);
-      this.props.onAddArticle(data);
+      this.props.onUpdateArticle(data, this.props.article.id);
     } else if(!formIsValid(this.state.fields)) {
       let updatedFields = {};
       for(let field in this.state.fields){
@@ -170,7 +197,7 @@ class AddArticle extends Component {
     return errorMessage;
   }
 
-  render() {
+  renderForm = () => {
     const formElementsArray = [];
     for(let key in this.state.fields){
       formElementsArray.push({
@@ -195,6 +222,18 @@ class AddArticle extends Component {
       />
     });
 
+    return form;
+  }
+
+  render() {
+    let form = <Spinner />;
+    
+    if(!this.props.loading && this.props.article !== null){
+      form = this.renderForm();
+    } else if(this.props.error !== null) {
+      form = <NoMatch />
+    }
+
     let errorMessage = null;
     if(this.props.error) {
       console.log(this.props.error);
@@ -206,7 +245,7 @@ class AddArticle extends Component {
     return (
       <section className={styles['article-form']}>
         <div className={styles.wrapper}>
-          <h1>Create new article:</h1>
+          <h1>Edit article:</h1>
           <form
             onSubmit={this.submitHandler}>
             {form}
@@ -222,14 +261,16 @@ class AddArticle extends Component {
 const mapStateToProps = state => {
   return {
     error: state.article.error,
-    loading: state.article.loading
+    loading: state.article.loading,
+    article: state.article.article
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddArticle: formdata => dispatch(actions.addArticle(formdata)),
+    onFetchArticle: (id) => dispatch(actions.fetchArticle(id)),
+    onUpdateArticle: (formdata, id) => dispatch(actions.updateArticle(formdata, id)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddArticle);
+export default connect(mapStateToProps, mapDispatchToProps)(EditArticle);

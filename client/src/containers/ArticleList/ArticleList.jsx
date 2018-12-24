@@ -21,6 +21,7 @@ class ArticleList extends Component {
             <h1 className={styles['article-title']}>{article.title}</h1>
             <p className={styles['article-description']}>{article.description}</p>
             <Link to={`/articles/${article.id}`}>Read more...</Link>
+            <Link to={`/articles/${article.id}/edit`}>Edit...</Link>
           </div>
         )
       })
