@@ -5,8 +5,7 @@ const initialState = {
   error: null,
   loading: false,
   articles: [],
-  article: null,
-  deleting: false
+  article: null
 }
 
 
@@ -108,8 +107,7 @@ const updateArticleFail = (state, action) => {
 
 const deleteArticleStart = (state, action) => {
   return updateObject(state, { 
-    error: null, 
-    deleting: true 
+    error: null
   })
 }
 
@@ -117,16 +115,14 @@ const deleteArticleSuccess = (state, action) => {
   const filteredArticles = state.articles.filter(article => article.id !== action.deletedId);
     
   return updateObject(state, {
-    error: null, 
-    deleting: false,
+    error: null,
     articles: filteredArticles
   })
 }
 
 const deleteArticleFail = (state, action) => {
   return updateObject(state, {
-    error: action.error,
-    deleting: false
+    error: action.error
   })
 }
 

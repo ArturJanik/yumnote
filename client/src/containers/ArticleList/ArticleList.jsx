@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
+import ArticleListItem from './ArticleListItem/ArticleListItem';
 
 class ArticleList extends Component {
 
@@ -15,17 +16,7 @@ class ArticleList extends Component {
 
   renderArticles() {
     if(this.props.error === null && this.props.articles.length > 0){
-      return this.props.articles.map(article => {
-        return(
-          <div key={article.id} className={styles['article']}>
-            <h1 className={styles['article-title']}>{article.title}</h1>
-            <p className={styles['article-description']}>{article.description}</p>
-            <Link to={`/articles/${article.id}`}>Read more...</Link>
-            <Link to={`/articles/${article.id}/edit`}>Edit...</Link>
-            <Button btnType="delete" disabled={this.props.deleting} clicked={() => this.props.onDeleteArticle(article.id)}>Delete</Button>
-          </div>
-        )
-      })
+      return this.props.articles.map((article, index) => <ArticleListItem key={index} article={article} />)
     } else {
       let button = <Button btnType="refresh" clicked={this.props.onFetchArticles}>Refresh</Button>
       if(this.props.loading) {
@@ -49,7 +40,7 @@ class ArticleList extends Component {
             : <Spinner />
           }
           {(!this.props.loading)
-            ? <Link to={`/articles/new`} className={styles['article-btn']}><Button btnType="success">Create new article</Button></Link>
+            ? <Link to={`/articles/new`} className={styles['article-btn--create']}><Button btnType="success">Create new article</Button></Link>
             : null
           }
         </div>
@@ -62,7 +53,6 @@ const mapStateToProps = state => {
   return {
     articles: state.article.articles,
     loading: state.article.loading,
-    deleting: state.article.deleting,
     error: state.article.error,
   }
 }
@@ -70,7 +60,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchArticles: () => dispatch(actions.fetchArticles()),
-    onDeleteArticle: id => dispatch(actions.deleteArticle(id)),
   }
 }
 

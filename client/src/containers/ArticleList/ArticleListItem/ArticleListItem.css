@@ -1,0 +1,15 @@
+.article {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px; 
+  padding: 20px 0;
+}
+.article-title {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.article-link {
+  font-weight: 600;
+}
+.article-link:hover {
+  text-decoration: underline;
+}
