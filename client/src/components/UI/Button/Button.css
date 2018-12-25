@@ -68,7 +68,6 @@
   composes: btn;
   border: 1px solid #d2331e;
   color: #d2331e;
-  width: 100%;
 }
 
 @keyframes pulse {
