@@ -155,9 +155,10 @@ export const updateArticle = (formdata, id) => {
   }
 }
 
-export const deleteArticleStart = () => {
+export const deleteArticleStart = (articleId) => {
   return {
-    type: actionTypes.DELETE_ARTICLE_START
+    type: actionTypes.DELETE_ARTICLE_START,
+    articleId
   }
 }
 
@@ -168,16 +169,17 @@ export const deleteArticleSuccess = (deletedId) => {
   }
 }
 
-export const deleteArticleFail = (error) => {
+export const deleteArticleFail = (error, articleId) => {
   return {
     type: actionTypes.DELETE_ARTICLE_FAIL,
-    error
+    error,
+    articleId
   }
 }
 
 export const deleteArticle = (id) => {
   return dispatch => {
-    dispatch(deleteArticleStart());
+    dispatch(deleteArticleStart(id));
     axios.delete('/api/articles/'+id)
     .then(response => {
       console.log(response)
@@ -186,9 +188,9 @@ export const deleteArticle = (id) => {
     .catch(err => {
       console.error('Delete article error:', err.response.data.errors);
       if(err.response.status === 500){
-        dispatch(deleteArticleFail('Unable to delete article. Please check your connection or try again later.'));
+        dispatch(deleteArticleFail('Unable to delete article. Please check your connection or try again later.', id));
       } else {
-        dispatch(deleteArticleFail(err.response.data.errors));
+        dispatch(deleteArticleFail(err.response.data.errors, id));
       }
     })
   }

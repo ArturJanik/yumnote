@@ -19,7 +19,8 @@ const fetchArticlesStart = (state, action) => {
 const fetchArticlesSuccess = (state, action) => {
   const articles = action.articles.map(article => (
     {
-      ...article
+      ...article,
+      deleteInProgress: false
     }
   ));
   return updateObject(state, {
@@ -106,8 +107,11 @@ const updateArticleFail = (state, action) => {
 
 
 const deleteArticleStart = (state, action) => {
+  let updatedArticles = [ ...state.articles ].map(art => art.id === action.articleId ?
+    { ...art, deleteInProgress: true } : art);
   return updateObject(state, { 
-    error: null
+    error: null,
+    articles: updatedArticles
   })
 }
 
@@ -121,8 +125,11 @@ const deleteArticleSuccess = (state, action) => {
 }
 
 const deleteArticleFail = (state, action) => {
+  let updatedArticles = [ ...state.articles ].map(art => art.id === action.articleId ?
+    { ...art, deleteInProgress: false } : art);
   return updateObject(state, {
-    error: action.error
+    error: action.error,
+    articles: updatedArticles
   })
 }
 

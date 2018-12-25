@@ -27,7 +27,7 @@ class ArticleListItem extends Component {
   }
   
   render() {
-    const articleListItem = this.renderArticleListItem();
+    const articleListItem = this.props.article.deleteInProgress ? <Spinner /> : this.renderArticleListItem();
     return articleListItem;
   }
 }
