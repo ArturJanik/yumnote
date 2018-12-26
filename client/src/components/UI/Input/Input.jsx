@@ -3,6 +3,13 @@ import styles from './Input.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import countryCodes from './country-codes-en';
 
+import 'tinymce/tinymce';
+import 'tinymce/themes/modern/theme';
+import 'tinymce/plugins/image';
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/code';
+import { Editor } from '@tinymce/tinymce-react';
+
 import DatePicker from './DatePicker/DatePicker';
 import Select from 'react-select';
 
@@ -77,12 +84,32 @@ const input = (props) => {
         </select>
       );
       break;
+    case('tinymce'):
+      inputElement = <Editor
+        initialValue={props.value}
+        init={{
+          plugins: 'link image code',
+          toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+          skin_url: `${process.env.PUBLIC_URL}/TinyMce/skins/lightgray`,
+          setup: (editor) => {
+            editor.on('change', () => {
+              editor.save()
+            })
+          }
+        }}
+        textareaName={props.elementConfig.name}
+        onEditorChange={props.changed}
+      />;
+      break;
     case('datepicker'):
       inputElement = (
       <div className={styles.inputWrapper}>
         <DatePicker
           name={props.elementConfig.name}
-          className={inputClasses.join(' ')} onChange={props.changed} />
+          className={inputClasses.join(' ')} 
+          initialValue={props.value}
+          onChange={props.changed} 
+        />
         <span><FontAwesomeIcon icon="calendar-alt" /></span>
       </div>);
       break;

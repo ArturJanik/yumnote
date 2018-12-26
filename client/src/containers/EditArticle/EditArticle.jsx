@@ -46,7 +46,7 @@ class EditArticle extends Component {
         touched: false,
       },
       content: {
-        elementType: 'textarea',
+        elementType: 'tinymce',
         elementConfig: {
           placeholder: 'Article content',
           name: 'article[content]'
@@ -124,6 +124,9 @@ class EditArticle extends Component {
 
     // Adjusting value source if necessary (i.e. when value is returned by plugin)
     switch (fieldType) {
+      case 'tinymce':
+        value = event;
+        break;
       case 'checkbox':
         value = event.target.checked;
         break;
