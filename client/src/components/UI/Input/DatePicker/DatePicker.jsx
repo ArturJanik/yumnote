@@ -18,14 +18,20 @@ class DatePicker extends Component {
       minDate: new Date(),
       onSelect: () => {
         this.setState({value: picker.toString()})
+        console.log(this.state.value)
       },
       onOpen: () => {
         picker.setDate(null)
         this.setState({value: ''})
       }
     });
-    
-    if(this.props.initialValue !== null) picker.setDate(this.props.initialValue);
+
+    if(this.props.initialValue !== null) {
+      this.setState({value: this.props.initialValue})
+      picker.setDate(this.props.initialValue);
+    } else {
+      picker.setDate(new Date());
+    }
   }
   
   render() {
