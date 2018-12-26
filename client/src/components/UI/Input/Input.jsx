@@ -27,7 +27,7 @@ const input = (props) => {
     case('checkbox'):
       inputElement = <input 
           className={inputClasses.join(' ')} 
-          {...props.elementConfig} value={props.value}
+          {...props.elementConfig} checked={props.value}
           onChange={props.changed} />;
       break;
     case('textarea'):
