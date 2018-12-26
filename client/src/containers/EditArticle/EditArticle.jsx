@@ -230,20 +230,18 @@ class EditArticle extends Component {
 
   render() {
     let form = <Spinner />;
+    let errorMessage = null;
+    let button = null;
     
     if(!this.props.loading && this.props.article !== null){
       form = this.renderForm();
+      button = this.generateButton();
+      if(this.props.error) {
+        errorMessage = this.generateErrorMsg();
+      }
     } else if(this.props.error !== null) {
       form = <NoMatch />
     }
-
-    let errorMessage = null;
-    if(this.props.error) {
-      console.log(this.props.error);
-      errorMessage = this.generateErrorMsg();
-    }
-    
-    let button = this.generateButton();
 
     return (
       <section className={styles['article-form']}>
