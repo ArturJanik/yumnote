@@ -32,8 +32,7 @@ class ArticlesController < ApiController
 
     if article.update(article_params)
       render json: {
-        message: 'ok',
-        article: article
+        message: 'ok'
       }
     else
       render json: { errors: article.errors }, status: 400
