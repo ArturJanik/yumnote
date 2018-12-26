@@ -3,14 +3,8 @@ import styles from './Input.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import countryCodes from './country-codes-en';
 
-import 'tinymce/tinymce';
-import 'tinymce/themes/modern/theme';
-import 'tinymce/plugins/image';
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/code';
-import { Editor } from '@tinymce/tinymce-react';
-
 import DatePicker from './DatePicker/DatePicker';
+import TinyMce from './TinyMce/TinyMce';
 import Select from 'react-select';
 
 const input = (props) => {
@@ -85,22 +79,15 @@ const input = (props) => {
       );
       break;
     case('tinymce'):
-      inputElement = <Editor
-        initialValue={props.value}
-        init={{
-          plugins: 'link image code',
-          toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
-          skin_url: `${process.env.PUBLIC_URL}/TinyMce/skins/lightgray`,
-          setup: (editor) => {
-            editor.on('change', () => {
-              editor.save()
-            })
-          }
-        }}
-        textareaName={props.elementConfig.name}
-        onEditorChange={props.changed}
-      />;
-      break;
+      inputElement = (
+        <div className={styles.inputWrapper}>
+          <TinyMce 
+            value={props.value}
+            fieldName={props.elementConfig.name}
+            onChange={props.changed}
+          />
+        </div>);
+        break;
     case('datepicker'):
       inputElement = (
       <div className={styles.inputWrapper}>
