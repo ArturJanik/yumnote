@@ -54,6 +54,6 @@ class ArticlesController < ApiController
 
   private
   def article_params
-    params.require(:article).permit(:title, :description, :content, :start_date, :end_date, :status)
+    params.require(:article).permit(:title, :description, :content, :start_date, :end_date, :visible)
   end
 end
