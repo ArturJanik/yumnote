@@ -24,6 +24,8 @@ class DatePicker extends Component {
         this.setState({value: ''})
       }
     });
+    
+    if(this.props.initialValue !== null) picker.setDate(this.props.initialValue);
   }
   
   render() {
