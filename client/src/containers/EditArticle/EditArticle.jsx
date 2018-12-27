@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import styles from './EditArticle.css';
 import * as actions from '../../store/actions/index';
 
+import Form from '../../components/Form/Form';
 import NoMatch from '../../components/Error/NoMatch';
-import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { updateObject } from '../../shared/utility';
-import { validateField, formIsValid } from '../../shared/form-validation';
 
 class EditArticle extends Component {
 
@@ -17,12 +15,10 @@ class EditArticle extends Component {
       title: {
         elementType: 'input',
         elementConfig: {
-          type: 'text',
           placeholder: 'Article title',
           name: 'article[title]'
         },
         label: 'Article title',
-        value: '',
         validation: {
           required: true,
           minLength: 3
@@ -37,13 +33,12 @@ class EditArticle extends Component {
           name: 'article[description]'
         },
         label: 'Article description',
-        value: '',
         validation: {
           required: true,
           minLength: 10
         },
         valid: false,
-        touched: false,
+        touched: false
       },
       content: {
         elementType: 'tinymce',
@@ -52,12 +47,11 @@ class EditArticle extends Component {
           name: 'article[content]'
         },
         label: 'Article content',
-        value: '',
         validation: {
           required: true
         },
         valid: false,
-        touched: false,
+        touched: false
       },
       visible: {
         elementType: 'checkbox',
@@ -77,7 +71,6 @@ class EditArticle extends Component {
         elementConfig: {
           name: 'article[start_date]'
         },
-        value: '',
         valid: true,
         touched: false
       },
@@ -87,7 +80,6 @@ class EditArticle extends Component {
         elementConfig: {
           name: 'article[end_date]'
         },
-        value: '',
         valid: true,
         touched: false
       },
@@ -117,50 +109,6 @@ class EditArticle extends Component {
       return({fields: updatedFields, articleLoaded: true});
     }
     return state;
-  }
-
-  inputChangedHandler = (event, fieldName, fieldType) => {
-    let value = null;
-
-    // Adjusting value source if necessary (i.e. when value is returned by plugin)
-    switch (fieldType) {
-      case 'tinymce':
-        value = event;
-        break;
-      case 'checkbox':
-        value = event.target.checked;
-        break;
-      case 'countryselect':
-        value = event.value;
-        break;
-      default:
-        value = event.target.value;
-        break;
-    }
-    
-    const updatedFields = updateObject(this.state.fields,{
-      [fieldName]: updateObject(this.state.fields[fieldName], {
-        value: value,
-        valid: validateField(value, this.state.fields[fieldName].validation),
-        touched: true
-      })
-    });
-    this.setState({fields: updatedFields});
-  }
-  
-  submitHandler = (event) => {
-    event.preventDefault();
-    if(!this.props.loading && formIsValid(this.state.fields)){
-      let data = new FormData(event.target);
-      this.props.onUpdateArticle(data, this.props.article.id);
-    } else if(!formIsValid(this.state.fields)) {
-      let updatedFields = {};
-      for(let field in this.state.fields){
-        updatedFields[field] = updateObject(this.state.fields[field], { touched: true });
-      }
-      updatedFields = updateObject(this.state.fields, updatedFields);
-      this.setState({fields: updatedFields});
-    }
   }
 
   generateButton = () => {
@@ -200,45 +148,24 @@ class EditArticle extends Component {
     return errorMessage;
   }
 
-  renderForm = () => {
-    const formElementsArray = [];
-    for(let key in this.state.fields){
-      formElementsArray.push({
-        id: key,
-        config: this.state.fields[key]
-      });
-    }
-
-    let form = formElementsArray.map(formElement => {
-      return <Input 
-        key={formElement.id}
-        elementName={formElement.id}
-        elementType={formElement.config.elementType}
-        elementConfig={formElement.config.elementConfig}
-        value={formElement.config.value}
-        label={formElement.config.label}
-        invalid={!formElement.config.valid}
-        shouldValidate={formElement.config.validation}
-        customClasses={formElement.config.customClasses}
-        touched={formElement.config.touched}
-        changed={(event) => this.inputChangedHandler(event, formElement.id, formElement.config.elementType)}
-      />
-    });
-
-    return form;
-  }
-
   render() {
     let form = <Spinner />;
     let errorMessage = null;
     let button = null;
     
-    if(!this.props.loading && this.props.article !== null){
-      form = this.renderForm();
+    if(this.state.articleLoaded){
       button = this.generateButton();
       if(this.props.error) {
         errorMessage = this.generateErrorMsg();
       }
+      form = <Form 
+        fields={this.state.fields} 
+        entity={this.props.article} 
+        loading={this.props.loading} 
+        submitBtn={button}
+        errors={errorMessage}
+        submitHandler={this.props.onUpdateArticle} 
+      />;
     } else if(this.props.error !== null) {
       form = <NoMatch />
     }
@@ -247,12 +174,7 @@ class EditArticle extends Component {
       <section className={styles['article-form']}>
         <div className={styles.wrapper}>
           <h1>Edit article:</h1>
-          <form
-            onSubmit={this.submitHandler}>
-            {form}
-            {errorMessage}
-            {button}
-          </form>
+          {form}
         </div>
       </section>
     )
