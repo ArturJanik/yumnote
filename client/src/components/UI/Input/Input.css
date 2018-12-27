@@ -14,15 +14,15 @@ input[type="radio"] {
   width: 49%;
 }
 
+.inputWrapper {
+  margin-bottom: 10px;
+  position: relative;
+}
 .inputWrapper input {
   margin-bottom: 0;
 }
 .input.type_datepicker .inputWrapper input {
   cursor: pointer;
-}
- .inputWrapper {
-  margin-bottom: 10px;
-  position: relative;
 }
 .input.type_datepicker .inputWrapper span {
   align-items: center;
@@ -38,6 +38,12 @@ input[type="radio"] {
   top: 1px;
   width: 40px;
   z-index: 10;
+}
+
+.tinymceWrapper {
+  margin-bottom: 10px;
+  padding: 5px;
+  position: relative;
 }
 
 .input.type_checkbox label,

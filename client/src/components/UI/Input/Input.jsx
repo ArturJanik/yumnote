@@ -79,8 +79,10 @@ const input = (props) => {
       );
       break;
     case('tinymce'):
+      inputClasses.push(styles.tinymceWrapper);
+      let classes = inputClasses.join(' ');
       inputElement = (
-        <div className={styles.inputWrapper}>
+        <div className={classes}>
           <TinyMce 
             value={props.value}
             fieldName={props.elementConfig.name}

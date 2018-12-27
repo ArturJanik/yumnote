@@ -46,7 +46,11 @@ class Form extends Component {
     event.preventDefault();
     if(!this.props.loading && formIsValid(this.state.fields)){
       let data = new FormData(event.target);
-      this.props.submitHandler(data, this.props.entity.id);
+      if(this.props.formType === 'edit') {
+        this.props.submitHandler(data, this.props.entity.id);
+      } else {
+        this.props.submitHandler(data);
+      }
     } else if(!formIsValid(this.state.fields)) {
       let updatedFields = {};
       for(let field in this.state.fields){

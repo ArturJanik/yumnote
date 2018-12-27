@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 import styles from './AddArticle.css';
 import * as actions from '../../store/actions/index';
 
-import Input from '../../components/UI/Input/Input';
+import Form from '../../components/Form/Form';
 import Button from '../../components/UI/Button/Button';
-import { updateObject } from '../../shared/utility';
-import { validateField, formIsValid } from '../../shared/form-validation';
 
 class AddArticle extends Component {
 
@@ -15,12 +13,10 @@ class AddArticle extends Component {
       title: {
         elementType: 'input',
         elementConfig: {
-          type: 'text',
           placeholder: 'Article title',
           name: 'article[title]'
         },
         label: 'Article title',
-        value: '',
         validation: {
           required: true,
           minLength: 3
@@ -35,7 +31,6 @@ class AddArticle extends Component {
           name: 'article[description]'
         },
         label: 'Article description',
-        value: '',
         validation: {
           required: true,
           minLength: 10
@@ -50,7 +45,6 @@ class AddArticle extends Component {
           name: 'article[content]'
         },
         label: 'Article content',
-        value: '',
         validation: {
           required: true
         },
@@ -75,7 +69,6 @@ class AddArticle extends Component {
         elementConfig: {
           name: 'article[start_date]'
         },
-        value: '',
         valid: true,
         touched: false
       },
@@ -85,54 +78,9 @@ class AddArticle extends Component {
         elementConfig: {
           name: 'article[end_date]'
         },
-        value: '',
         valid: true,
         touched: false
       },
-    }
-  }
-
-  inputChangedHandler = (event, fieldName, fieldType) => {
-    let value = null;
-
-    // Adjusting value source if necessary (i.e. when value is returned by plugin)
-    switch (fieldType) {
-      case 'tinymce':
-        value = event;
-        break;
-      case 'checkbox':
-        value = event.target.checked;
-        break;
-      case 'countryselect':
-        value = event.value;
-        break;
-      default:
-        value = event.target.value;
-        break;
-    }
-    
-    const updatedFields = updateObject(this.state.fields,{
-      [fieldName]: updateObject(this.state.fields[fieldName], {
-        value: value,
-        valid: validateField(value, this.state.fields[fieldName].validation),
-        touched: true
-      })
-    });
-    this.setState({fields: updatedFields});
-  }
-  
-  submitHandler = (event) => {
-    event.preventDefault();
-    if(!this.props.loading && formIsValid(this.state.fields)){
-      let data = new FormData(event.target);
-      this.props.onAddArticle(data);
-    } else if(!formIsValid(this.state.fields)) {
-      let updatedFields = {};
-      for(let field in this.state.fields){
-        updatedFields[field] = updateObject(this.state.fields[field], { touched: true });
-      }
-      updatedFields = updateObject(this.state.fields, updatedFields);
-      this.setState({fields: updatedFields});
     }
   }
 
@@ -174,48 +122,26 @@ class AddArticle extends Component {
   }
 
   render() {
-    const formElementsArray = [];
-    for(let key in this.state.fields){
-      formElementsArray.push({
-        id: key,
-        config: this.state.fields[key]
-      });
-    }
-
-    let form = formElementsArray.map(formElement => {
-      return <Input 
-        key={formElement.id}
-        elementName={formElement.id}
-        elementType={formElement.config.elementType}
-        elementConfig={formElement.config.elementConfig}
-        value={formElement.config.value}
-        label={formElement.config.label}
-        invalid={!formElement.config.valid}
-        shouldValidate={formElement.config.validation}
-        customClasses={formElement.config.customClasses}
-        touched={formElement.config.touched}
-        changed={(event) => this.inputChangedHandler(event, formElement.id, formElement.config.elementType)}
-      />
-    });
-
+    let button = this.generateButton();
     let errorMessage = null;
     if(this.props.error) {
       console.log(this.props.error);
       errorMessage = this.generateErrorMsg();
     }
-    
-    let button = this.generateButton();
+
+    let form = <Form 
+      fields={this.state.fields}
+      loading={this.props.loading} 
+      submitBtn={button}
+      errors={errorMessage}
+      submitHandler={this.props.onAddArticle} 
+    />;
 
     return (
       <section className={styles['article-form']}>
         <div className={styles.wrapper}>
           <h1>Create new article:</h1>
-          <form
-            onSubmit={this.submitHandler}>
-            {form}
-            {errorMessage}
-            {button}
-          </form>
+          {form}
         </div>
       </section>
     )

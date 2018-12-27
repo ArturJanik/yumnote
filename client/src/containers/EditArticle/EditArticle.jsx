@@ -165,6 +165,7 @@ class EditArticle extends Component {
         submitBtn={button}
         errors={errorMessage}
         submitHandler={this.props.onUpdateArticle} 
+        formType="edit"
       />;
     } else if(this.props.error !== null) {
       form = <NoMatch />
