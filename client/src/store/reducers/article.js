@@ -133,6 +133,12 @@ const deleteArticleFail = (state, action) => {
   })
 }
 
+const clearArticleSuccess = (state, action) => {
+  return updateObject(state, {
+    article: null
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_ARTICLES_START: return fetchArticlesStart(state, action);
@@ -154,6 +160,8 @@ const reducer = (state = initialState, action) => {
     case actionTypes.DELETE_ARTICLE_START: return deleteArticleStart(state, action);
     case actionTypes.DELETE_ARTICLE_SUCCESS: return deleteArticleSuccess(state, action);
     case actionTypes.DELETE_ARTICLE_FAIL: return deleteArticleFail(state, action);
+
+    case actionTypes.CLEAR_ARTICLE_SUCCESS: return clearArticleSuccess(state, action);
 
     default: return state;
   }

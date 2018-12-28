@@ -92,6 +92,10 @@ class EditArticle extends Component {
     this.props.onFetchArticle(articleId);
   }
 
+  componentWillUnmount() {
+    this.props.onClearArticle();
+  }
+
   static getDerivedStateFromProps(props, state){
     if(state.articleLoaded) return state;
     if(!props.loading && props.article !== null){
@@ -194,6 +198,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onFetchArticle: (id) => dispatch(actions.fetchArticle(id)),
     onUpdateArticle: (formdata, id) => dispatch(actions.updateArticle(formdata, id)),
+    onClearArticle: (formdata, id) => dispatch(actions.clearArticle()),
   }
 }
 

@@ -195,3 +195,9 @@ export const deleteArticle = (id) => {
     })
   }
 }
+
+export const clearArticle = () => {
+  return {
+    type: actionTypes.CLEAR_ARTICLE_SUCCESS
+  }
+}
