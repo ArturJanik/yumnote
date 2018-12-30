@@ -7,6 +7,7 @@ import {
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons';
 
 import Layout from './hoc/Layout/Layout';
 import NoMatch from './components/Error/NoMatch';
@@ -17,6 +18,9 @@ import EditArticle from './containers/EditArticle/EditArticle';
 
 library.add( 
   faCalendarAlt,
+  faFacebook,
+  faTwitter,
+  faTumblr,
 );
 
 class App extends Component {
