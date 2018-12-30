@@ -19,8 +19,8 @@ class ArticleListItem extends Component {
       <div key={this.props.article.id} className={styles['article']}>
         <h1 className={styles['article-title']}>{this.props.article.title}</h1>
         <p className={styles['article-description']}>{this.props.article.description}</p>
-        <Link to={`/articles/${this.props.article.id}`} className={styles['article-link']}>Read more...</Link>
-        <Link to={`/articles/${this.props.article.id}/edit`} className={styles['article-link']}>Edit...</Link>
+        <Link to={`/articles/${this.props.article.id}`} className={styles['article-link']}><Button>Read more...</Button></Link>
+        <Link to={`/articles/${this.props.article.id}/edit`} className={styles['article-link']}><Button>Edit...</Button></Link>
         <Button btnType="delete" clicked={this.deleteArticle}>Delete</Button>
       </div>
     )

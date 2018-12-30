@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Button.css';
 
 const button = (props) => {
-  let btnType = props.btnType;
+  let btnType = props.btnType || 'regular';
 
-  if(props.btnType.split(' ').length > 1){
-    btnType = props.btnType.split(' ').join('--');
+  if(btnType.split(' ').length > 1){
+    btnType = btnType.split(' ').join('--');
   }
   
   return (
