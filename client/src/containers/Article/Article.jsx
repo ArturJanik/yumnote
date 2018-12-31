@@ -13,6 +13,10 @@ class Article extends Component {
     this.props.onFetchArticle(articleId);
   }
 
+  componentWillUnmount() {
+    this.props.onClearArticle();
+  }
+
   renderArticle() {
     const article = this.props.article;
     return (
@@ -56,7 +60,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchArticle: (id) => dispatch(actions.fetchArticle(id))
+    onFetchArticle: (id) => dispatch(actions.fetchArticle(id)),
+    onClearArticle: (formdata, id) => dispatch(actions.clearArticle()),
   }
 }
 
