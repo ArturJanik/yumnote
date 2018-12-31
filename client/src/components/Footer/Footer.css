@@ -2,7 +2,7 @@ footer {
   background: #fff;
 }
 .wrapper {
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;

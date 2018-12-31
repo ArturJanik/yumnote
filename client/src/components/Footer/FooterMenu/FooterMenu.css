@@ -1,4 +1,20 @@
-.menu-footer {
+.menu--footer {
   flex: 0 0 40%;
   max-width: 40%;
+}
+.menu--footer ul {
+  display: inline-block;
+}
+.menu-title {
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+.menu-item {
+  display: block;
+  font-size: 15px;
+}
+.menu-item:hover {
+  color: #7a9118;
+  text-decoration: underline;
 }
