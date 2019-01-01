@@ -89,11 +89,11 @@ class EditArticle extends Component {
 
   componentDidMount() {
     const { articleId } = this.props.match.params;
-    this.props.onFetchArticle(articleId);
+    this.props.onPageLoaded(articleId);
   }
 
   componentWillUnmount() {
-    this.props.onClearArticle();
+    this.props.onPageLeft();
   }
 
   static getDerivedStateFromProps(props, state){
@@ -196,9 +196,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchArticle: (id) => dispatch(actions.fetchArticle(id)),
+    onPageLoaded: (id) => dispatch(actions.fetchArticle(id)),
     onUpdateArticle: (formdata, id) => dispatch(actions.updateArticle(formdata, id)),
-    onClearArticle: (formdata, id) => dispatch(actions.clearArticle()),
+    onPageLeft: (formdata, id) => dispatch(actions.clearArticle()),
   }
 }
 

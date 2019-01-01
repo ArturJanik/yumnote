@@ -11,7 +11,7 @@ import ArticleListItem from './ArticleListItem/ArticleListItem';
 class ArticleList extends Component {
 
   componentDidMount() {
-    this.props.onFetchArticles();
+    this.props.onPageLoaded();
   }
 
   renderArticles() {
@@ -59,7 +59,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchArticles: () => dispatch(actions.fetchArticles()),
+    onPageLoaded: () => dispatch(actions.fetchArticles()),
   }
 }
 
