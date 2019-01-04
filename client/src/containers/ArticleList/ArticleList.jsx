@@ -18,7 +18,7 @@ class ArticleList extends Component {
     if(this.props.error === null && this.props.articles.length > 0){
       return this.props.articles.map((article, index) => <ArticleListItem key={index} article={article} />)
     } else {
-      let button = <Button btnType="refresh" clicked={this.props.onFetchArticles}>Refresh</Button>
+      let button = <Button btnType="refresh" clicked={this.props.onPageLoaded}>Refresh</Button>
       if(this.props.loading) {
         button = <Button btnType="refresh loading">Refreshing...</Button>;
       }
