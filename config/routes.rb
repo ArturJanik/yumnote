@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   scope '/api' do
-    resources :articles, only: [:index, :show, :create, :update, :destroy]
+    post '/login' => "sessions#create"
+    delete '/logout' => "sessions#destroy"
+    
+    resources :users, only: [:create,:show,:update,:destroy]
+    get '/profile' => "users#profile"
+
+    resources :articles, only: [:index,:show,:create,:update,:destroy]
   end
 end
