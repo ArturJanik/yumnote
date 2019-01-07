@@ -13,12 +13,12 @@ class UsersController < ApiController
   def profile
     user = User.find_by_username(params[:username])
     if user
-      user_promos = user.promos
+      user_articles = user.articles
       render json: {
         user: {
           username: user.username
         },
-        promos: user_promos
+        articles: user_articles
       }
     else
       render json: { errors: { details: user.errors } }, status: 404
