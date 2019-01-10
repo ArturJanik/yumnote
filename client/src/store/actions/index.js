@@ -6,3 +6,7 @@ export {
   deleteArticle,
   clearArticle,
 } from './article';
+export {
+  auth,
+  resetAuth
+} from './auth';
