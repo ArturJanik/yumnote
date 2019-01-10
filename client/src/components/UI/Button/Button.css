@@ -69,6 +69,19 @@
   color: #d2691e;
   width: 100%;
 }
+
+.btn--auth-logout {
+  composes: btn;
+  background: #b33802;
+  color: #fff;
+}
+.btn--auth-login {
+  composes: btn;
+  background: #333;
+  color: #fff;
+  margin-left: auto;
+}
+
 .btn--delete {
   composes: btn;
   border: 1px solid #d2331e;

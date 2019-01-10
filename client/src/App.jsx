@@ -11,6 +11,7 @@ import { faFacebook, faTwitter, faTumblr } from '@fortawesome/free-brands-svg-ic
 
 import Layout from './hoc/Layout/Layout';
 import NoMatch from './components/Error/NoMatch';
+import Auth from './containers/Auth/Auth';
 import ArticleList from './containers/ArticleList/ArticleList';
 import Article from './containers/Article/Article';
 import AddArticle from './containers/AddArticle/AddArticle';
@@ -27,6 +28,8 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
+        <Route path="/login" exact render={() => <Auth signUp={false} />} />
+        <Route path="/register" exact render={() => <Auth signUp={true} />} />
         <Route path="/articles" exact component={ArticleList} />
         <Route path="/articles/:articleId(\d+)" exact component={Article} />
         <Route path="/articles/:articleId(\d+)/edit" exact component={EditArticle} />

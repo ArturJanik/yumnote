@@ -44,14 +44,22 @@ class Form extends Component {
   
   submitHandler = (event) => {
     event.preventDefault();
-    if(!this.props.loading && formIsValid(this.state.fields)){
+
+    let fieldsToValidate = {};
+    for(let field in this.state.fields){
+      const fieldFormType = this.state.fields[field].formType;
+      if(fieldFormType !== undefined && fieldFormType !== this.props.formType) continue;
+      fieldsToValidate[field] = this.state.fields[field];
+    }
+    
+    if(!this.props.loading && formIsValid(fieldsToValidate)){
       let data = new FormData(event.target);
       if(this.props.formType === 'edit') {
         this.props.submitHandler(data, this.props.entity.id);
       } else {
         this.props.submitHandler(data);
       }
-    } else if(!formIsValid(this.state.fields)) {
+    } else if(!formIsValid(fieldsToValidate)) {
       let updatedFields = {};
       for(let field in this.state.fields){
         updatedFields[field] = updateObject(this.state.fields[field], { touched: true });
@@ -63,10 +71,13 @@ class Form extends Component {
 
   renderFormFields = () => {
     const formElementsArray = [];
-    for(let key in this.state.fields){
+    for(let field in this.state.fields){
+      const fieldFormType = this.state.fields[field].formType;
+      if(fieldFormType !== undefined && fieldFormType !== this.props.formType) continue;
+
       formElementsArray.push({
-        id: key,
-        config: this.state.fields[key]
+        id: field,
+        config: this.state.fields[field]
       });
     }
 
