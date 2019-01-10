@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './Header.css';
 
+import Button from '../UI/Button/Button';
 import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
 
@@ -20,6 +22,7 @@ class Header extends Component {
       <header>
         <div className={styles.wrapper}>
           <Logo />
+          <Button btnType='auth-login'><NavLink exact to="/login">Login/Signup</NavLink></Button>
           <Menu
             expand={this.state.expandMainMenu}
             clicked={this.mainMenuToggleHandler}
