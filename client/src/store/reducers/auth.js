@@ -6,6 +6,7 @@ const initialState = {
   error: null,
   loading: false,
   currentUser: null,
+  authCheckFinished: false,
 }
 
 const authStart = (state, action) => {
@@ -29,6 +30,10 @@ const authFail = (state, action) => {
   })
 }
 
+const setAuthCheckFinished = (state, action) => {
+  return updateObject(state, { authCheckFinished: true })
+}
+
 const authLogout = (state, action) => {
   return updateObject(state, { token: null, error: null, currentUser: null })
 }
@@ -44,6 +49,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_FAIL: return authFail(state, action);
     case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
     case actionTypes.AUTH_RESET: return authReset(state, action);
+    case actionTypes.SET_AUTH_CHECK_FINISHED: return setAuthCheckFinished(state, action);
     default: return state;
   }
 }

@@ -14,6 +14,7 @@ import Layout from './hoc/Layout/Layout';
 
 import NoMatch from './components/Error/NoMatch';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import Spinner from './components/UI/Spinner/Spinner';
 
 import Auth from './containers/Auth/Auth';
 
@@ -33,6 +34,11 @@ library.add(
 );
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.onTryAutoLogin();
+  }
+
   render() {
     let routes = (
       <Switch>
@@ -49,6 +55,10 @@ class App extends Component {
       </Switch>
     )
 
+    if(!this.props.authenticationCheckFinished) {
+      routes = <Spinner />;
+    }
+
     return (
       <React.Fragment>
         <Layout>
@@ -62,7 +72,14 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null,
+    authenticationCheckFinished: state.auth.authCheckFinished,
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(App));
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoLogin: () => dispatch(actions.authCheckState()),
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

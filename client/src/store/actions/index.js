@@ -10,4 +10,5 @@ export {
   auth,
   resetAuth,
   logout,
+  authCheckState,
 } from './auth';

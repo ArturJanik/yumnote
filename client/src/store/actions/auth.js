@@ -84,6 +84,34 @@ export const auth = (formdata, isSignup) => {
   }
 }
 
+export const authCheckFinished = () => {
+  return {
+    type: actionTypes.SET_AUTH_CHECK_FINISHED
+  }
+}
+
+export const authCheckState = () => {
+  return dispatch => {
+    const token = localStorage.getItem('token');
+    const expDate = localStorage.getItem('expirationDate');
+    const username = localStorage.getItem('currentUserName');
+    if(!token || !expDate || !username) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('expirationDate');
+      localStorage.removeItem('currentUserName');
+    } else {
+      const expirationDate = new Date(localStorage.getItem('expirationDate'));
+      if(expirationDate > new Date()){
+        dispatch(authSuccess(token, username));
+        dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime())));
+      } else {
+        dispatch(logout());
+      }
+    }
+    dispatch(authCheckFinished());
+  }
+}
+
 export const resetAuth = () => {
   return {
     type: actionTypes.AUTH_RESET
