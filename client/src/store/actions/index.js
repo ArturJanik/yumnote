@@ -8,5 +8,6 @@ export {
 } from './article';
 export {
   auth,
-  resetAuth
+  resetAuth,
+  logout,
 } from './auth';

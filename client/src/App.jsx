@@ -4,18 +4,26 @@ import {
   Switch, 
   withRouter
 } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons';
 
 import Layout from './hoc/Layout/Layout';
+
 import NoMatch from './components/Error/NoMatch';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+
 import Auth from './containers/Auth/Auth';
+
 import ArticleList from './containers/ArticleList/ArticleList';
 import Article from './containers/Article/Article';
 import AddArticle from './containers/AddArticle/AddArticle';
 import EditArticle from './containers/EditArticle/EditArticle';
+import Logout from './containers/Auth/Logout/Logout';
+
+import * as actions from './store/actions/index';
 
 library.add( 
   faCalendarAlt,
@@ -30,10 +38,12 @@ class App extends Component {
       <Switch>
         <Route path="/login" exact render={() => <Auth signUp={false} />} />
         <Route path="/register" exact render={() => <Auth signUp={true} />} />
+        <Route path="/logout" component={Logout} />
+
         <Route path="/articles" exact component={ArticleList} />
         <Route path="/articles/:articleId(\d+)" exact component={Article} />
-        <Route path="/articles/:articleId(\d+)/edit" exact component={EditArticle} />
-        <Route path="/articles/new" exact component={AddArticle} />
+        <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/articles/new" exact component={AddArticle} auth={this.props.isAuthenticated} />
         <Route path="/" exact component={ArticleList} />
         <Route component={NoMatch} />
       </Switch>
@@ -49,4 +59,10 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token !== null,
+  }
+}
+
+export default withRouter(connect(mapStateToProps, null)(App));
