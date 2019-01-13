@@ -117,3 +117,10 @@ export const resetAuth = () => {
     type: actionTypes.AUTH_RESET
   }
 }
+
+export const setAuthRedirectPath = (path) => {
+  return {
+    type: actionTypes.SET_AUTH_REDIRECT_PATH,
+    path
+  }
+}

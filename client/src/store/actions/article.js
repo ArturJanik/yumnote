@@ -30,7 +30,6 @@ export const fetchArticles = () => {
       dispatch(fetchArticlesSuccess(response.data.articles))
     })
     .catch(err => {
-      console.error('Fetch articles error:', err.response.data.errors);
       if(err.response.status === 500){
         dispatch(fetchArticlesFail('Unable to load list. Please check your connection or try again later.'));
       } else {
