@@ -5,7 +5,7 @@ import * as actions from '../../store/actions/index';
 
 class ProtectedRoute extends Component {
   componentDidMount () {
-    if(!this.props.auth) this.props.onSetAuthRedirectPath(this.props.path);
+    if(!this.props.auth) this.props.onSetAuthRedirectPath(this.props.location.pathname);
   }
 
   render() {
