@@ -26,4 +26,4 @@ Based on:
 
 ## Notes during development
 
-1. webpack-dev-server version from 3.1.11 to 3.1.13 prevents automatic reload during code changes
+1. (dependencies error) webpack-dev-server version from 3.1.11 to 3.1.13 prevents automatic reload during code changes
