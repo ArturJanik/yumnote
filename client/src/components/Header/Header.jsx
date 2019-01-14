@@ -22,7 +22,10 @@ class Header extends Component {
       <header>
         <div className={styles.wrapper}>
           <Logo />
-          <Button btnType='auth-login'><NavLink exact to="/login">Login/Signup</NavLink></Button>
+          { this.props.isAuth && this.props.currentUser !== null ? (
+            <Button btnType='auth-logout'><NavLink exact to="/logout">Logout</NavLink></Button>
+            ) : <Button btnType='auth-login'><NavLink exact to="/login">Login/Signup</NavLink></Button>
+          }
           <Menu
             expand={this.state.expandMainMenu}
             clicked={this.mainMenuToggleHandler}

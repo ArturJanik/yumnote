@@ -74,6 +74,7 @@
   composes: btn;
   background: #b33802;
   color: #fff;
+  margin-left: auto;
 }
 .btn--auth-login {
   composes: btn;
