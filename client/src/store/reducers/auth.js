@@ -36,7 +36,7 @@ const setAuthCheckFinished = (state, action) => {
 }
 
 const authLogout = (state, action) => {
-  return updateObject(state, { token: null, error: null, currentUser: null })
+  return updateObject(state, { token: null, error: null, currentUser: null, authRedirectPath: '/' })
 }
 
 const authReset = (state, action) => {
