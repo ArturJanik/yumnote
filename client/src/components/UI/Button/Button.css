@@ -58,10 +58,14 @@
   composes: btn--save;
   animation: pulse 1s linear infinite alternate;
 }
-.btn--auth-success {
+.btn--auth--success {
   composes: btn--success;
   margin-bottom: 20px;
   width: 100%;
+}
+.btn--auth--success--loading {
+  composes: btn--auth--success;
+  animation: pulse 1s linear infinite alternate;
 }
 .btn--auth-link {
   composes: btn;

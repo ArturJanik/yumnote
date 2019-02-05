@@ -82,9 +82,9 @@ class AuthForm extends Component {
   }
 
   generateButton = () => {
-    let button = <Button btnType="auth-success">{this.state.isSignup ? 'Register' : 'Login'}</Button>;
+    let button = <Button btnType="auth--success">{this.state.isSignup ? 'Register' : 'Login'}</Button>;
     if(this.props.loading) {
-      button = <Button btnType="auth-success loading">Connecting...</Button>;
+      button = <Button btnType="auth--success loading">Connecting...</Button>;
     }
     return button;
   }
