@@ -11,9 +11,10 @@ Based on:
 
 ## Installation (in progress)
 
+### Base setup
 1. Clone repo
 2. Run command: _bundle install_
-- optionally: _gem install nokogiri -- --use-system-libraries_ and then _bundle install_ if required
+- __optionally__: _gem install nokogiri -- --use-system-libraries_ and then _bundle install_ if required
 3. Go to client directory
 4. Run command: _npm install_
 5. Uncomment line __config.secret_key__ in __config/initializers/devise.rb__ file
@@ -21,8 +22,14 @@ Based on:
 7. Go back to base directory
 8. Run command: _EDITOR=VIM rails credentials:edit_
 9. Inside VIM: press ESC and enter :wq to save changes and exit
-10. Change __config/database.yml__ to your postgresql database settings/credentials
-11. Run command: _rake db:migrate_
+
+### Database
+10. You will need a postgresql db installed on your machine
+11. Change __config/database.yml__ to your postgresql database settings/credentials
+12. Run command: _rake db:migrate_
+
+### Run app
+13. Run command: _foreman start -p 3000_ to test app
 
 ## Notes during development
 
