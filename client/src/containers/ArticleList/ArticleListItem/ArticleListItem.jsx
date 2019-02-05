@@ -20,8 +20,14 @@ class ArticleListItem extends Component {
         <h1 className={styles['article-title']}>{this.props.article.title}</h1>
         <p className={styles['article-description']}>{this.props.article.description}</p>
         <Link to={`/articles/${this.props.article.id}`} className={styles['article-link']}><Button>Read more...</Button></Link>
-        <Link to={`/articles/${this.props.article.id}/edit`} className={styles['article-link']}><Button>Edit...</Button></Link>
-        <Button btnType="delete" clicked={this.deleteArticle}>Delete</Button>
+        { (this.props.currentUser !== null && this.props.token !== null) ?
+          (
+            <React.Fragment>
+              <Link to={`/articles/${this.props.article.id}/edit`} className={styles['article-link']}><Button>Edit...</Button></Link>
+              <Button btnType="delete" clicked={this.deleteArticle}>Delete</Button>
+            </React.Fragment>
+          ) : null
+        }
       </div>
     )
   }
@@ -32,10 +38,17 @@ class ArticleListItem extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.auth.currentUser,
+    token: state.auth.token,
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     onDeleteArticle: id => dispatch(actions.deleteArticle(id)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(ArticleListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleListItem);

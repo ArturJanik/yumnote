@@ -1,4 +1,6 @@
 class ArticlesController < ApiController
+  before_action :require_login, except: [:index, :show]
+  
   def index
     articles = Article.all
     render json: { articles: articles }

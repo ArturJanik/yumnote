@@ -14,10 +14,8 @@ class ArticleList extends Component {
     this.props.onPageLoaded();
   }
 
-  renderArticles() {
-    if(this.props.error === null && this.props.articles.length > 0){
-      return this.props.articles.map((article, index) => <ArticleListItem key={index} article={article} />)
-    } else {
+  renderError() {
+    if(this.props.articles.length === 0){
       let button = <Button btnType="refresh" clicked={this.props.onPageLoaded}>Refresh</Button>
       if(this.props.loading) {
         button = <Button btnType="refresh loading">Refreshing...</Button>;
@@ -29,6 +27,12 @@ class ArticleList extends Component {
         </div>
       )
     }
+  }
+
+  renderArticles() {
+    if(this.props.error !== null && this.props.articles.length === 0) return this.renderError();
+    
+    return this.props.articles.map((article, index) => <ArticleListItem key={index} article={article} />)
   }
   
   render() {
