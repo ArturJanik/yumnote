@@ -26,7 +26,6 @@ export const fetchArticles = () => {
     dispatch(fetchArticlesStart());
     axios.get('/api/articles')
     .then(response => {
-      console.log(response.data.articles)
       dispatch(fetchArticlesSuccess(response.data.articles))
     })
     .catch(err => {
@@ -64,7 +63,6 @@ export const fetchArticle = (id) => {
     dispatch(fetchArticleStart());
     axios.get('/api/articles/'+id)
     .then(response => {
-      console.log(response.data.article)
       dispatch(fetchArticleSuccess(response.data.article))
     })
     .catch(err => {
@@ -102,7 +100,6 @@ export const addArticle = (formdata) => {
     dispatch(addArticleStart());
     axios.post('/api/articles', formdata)
     .then(response => {
-      console.log(response)
       dispatch(addArticleSuccess())
     })
     .catch(err => {
@@ -140,7 +137,6 @@ export const updateArticle = (formdata, id) => {
     dispatch(updateArticleStart());
     axios.put('/api/articles/'+id, formdata)
     .then(response => {
-      console.log(response)
       dispatch(updateArticleSuccess());
     })
     .catch(err => {
@@ -181,7 +177,6 @@ export const deleteArticle = (id) => {
     dispatch(deleteArticleStart(id));
     axios.delete('/api/articles/'+id)
     .then(response => {
-      console.log(response)
       dispatch(deleteArticleSuccess(id));
     })
     .catch(err => {

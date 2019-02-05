@@ -20,7 +20,7 @@ class ArticleListItem extends Component {
         <h1 className={styles['article-title']}>{this.props.article.title}</h1>
         <p className={styles['article-description']}>{this.props.article.description}</p>
         <Link to={`/articles/${this.props.article.id}`} className={styles['article-link']}><Button>Read more...</Button></Link>
-        { (this.props.currentUser !== null && this.props.token !== null) ?
+        { (this.props.isAuthenticated) ?
           (
             <React.Fragment>
               <Link to={`/articles/${this.props.article.id}/edit`} className={styles['article-link']}><Button>Edit...</Button></Link>
@@ -40,8 +40,7 @@ class ArticleListItem extends Component {
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.auth.currentUser,
-    token: state.auth.token,
+    isAuthenticated: state.auth.token !== null,
   }
 }
 

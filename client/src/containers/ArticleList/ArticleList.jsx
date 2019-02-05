@@ -43,7 +43,7 @@ class ArticleList extends Component {
             ? this.renderArticles()
             : <Spinner />
           }
-          {(!this.props.loading)
+          {(!this.props.loading && this.props.isAuthenticated)
             ? <Link to={`/articles/new`} className={styles['article-btn--create']}><Button btnType="success">Create new article</Button></Link>
             : null
           }
@@ -58,6 +58,7 @@ const mapStateToProps = state => {
     articles: state.article.articles,
     loading: state.article.loading,
     error: state.article.error,
+    isAuthenticated: state.auth.token !== null,
   }
 }
 
