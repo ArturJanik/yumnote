@@ -1,15 +1,23 @@
-import * as actionTypes from './actionTypes';
+import {
+  AUTH_START,
+  AUTH_SUCCESS,
+  AUTH_FAIL,
+  AUTH_LOGOUT,
+  SET_AUTH_CHECK_FINISHED,
+  AUTH_RESET,
+  SET_AUTH_REDIRECT_PATH,
+} from './actionTypes';
 import axios from '../../shared/axios-global';
 
 export const authStart = () => {
   return {
-    type: actionTypes.AUTH_START
+    type: AUTH_START
   }
 }
 
 export const authSuccess = (idToken, username) => {
   return {
-    type: actionTypes.AUTH_SUCCESS,
+    type: AUTH_SUCCESS,
     idToken,
     username
   }
@@ -17,7 +25,7 @@ export const authSuccess = (idToken, username) => {
 
 export const authFail = (error) => {
   return {
-    type: actionTypes.AUTH_FAIL,
+    type: AUTH_FAIL,
     error
   }
 }
@@ -43,7 +51,7 @@ export const logout = () => {
     console.error('Logout error: ', err.response.data.errors);
   });
   return {
-    type: actionTypes.AUTH_LOGOUT
+    type: AUTH_LOGOUT
   }
 }
 
@@ -86,7 +94,7 @@ export const auth = (formdata, isSignup) => {
 
 export const authCheckFinished = () => {
   return {
-    type: actionTypes.SET_AUTH_CHECK_FINISHED
+    type: SET_AUTH_CHECK_FINISHED
   }
 }
 
@@ -114,13 +122,13 @@ export const authCheckState = () => {
 
 export const resetAuth = () => {
   return {
-    type: actionTypes.AUTH_RESET
+    type: AUTH_RESET
   }
 }
 
 export const setAuthRedirectPath = (path) => {
   return {
-    type: actionTypes.SET_AUTH_REDIRECT_PATH,
+    type: SET_AUTH_REDIRECT_PATH,
     path
   }
 }

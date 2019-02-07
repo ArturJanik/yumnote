@@ -1,4 +1,21 @@
-import * as actionTypes from '../actions/actionTypes';
+import {
+  FETCH_ARTICLES_START,
+  FETCH_ARTICLES_SUCCESS,
+  FETCH_ARTICLES_FAIL,
+  FETCH_ARTICLE_START,
+  FETCH_ARTICLE_SUCCESS,
+  FETCH_ARTICLE_FAIL,
+  ADD_ARTICLE_START,
+  ADD_ARTICLE_SUCCESS,
+  ADD_ARTICLE_FAIL,
+  UPDATE_ARTICLE_START,
+  UPDATE_ARTICLE_SUCCESS,
+  UPDATE_ARTICLE_FAIL,
+  DELETE_ARTICLE_START,
+  DELETE_ARTICLE_SUCCESS,
+  DELETE_ARTICLE_FAIL,
+  CLEAR_ARTICLE_SUCCESS
+} from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
 
 const initialState = {
@@ -141,27 +158,27 @@ const clearArticleSuccess = (state, action) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_ARTICLES_START: return fetchArticlesStart(state, action);
-    case actionTypes.FETCH_ARTICLES_SUCCESS: return fetchArticlesSuccess(state, action);
-    case actionTypes.FETCH_ARTICLES_FAIL: return fetchArticlesFail(state, action);
+    case FETCH_ARTICLES_START: return fetchArticlesStart(state, action);
+    case FETCH_ARTICLES_SUCCESS: return fetchArticlesSuccess(state, action);
+    case FETCH_ARTICLES_FAIL: return fetchArticlesFail(state, action);
 
-    case actionTypes.FETCH_ARTICLE_START: return fetchArticleStart(state, action);
-    case actionTypes.FETCH_ARTICLE_SUCCESS: return fetchArticleSuccess(state, action);
-    case actionTypes.FETCH_ARTICLE_FAIL: return fetchArticleFail(state, action);
+    case FETCH_ARTICLE_START: return fetchArticleStart(state, action);
+    case FETCH_ARTICLE_SUCCESS: return fetchArticleSuccess(state, action);
+    case FETCH_ARTICLE_FAIL: return fetchArticleFail(state, action);
 
-    case actionTypes.ADD_ARTICLE_START: return addArticleStart(state, action);
-    case actionTypes.ADD_ARTICLE_SUCCESS: return addArticleSuccess(state, action);
-    case actionTypes.ADD_ARTICLE_FAIL: return addArticleFail(state, action);
+    case ADD_ARTICLE_START: return addArticleStart(state, action);
+    case ADD_ARTICLE_SUCCESS: return addArticleSuccess(state, action);
+    case ADD_ARTICLE_FAIL: return addArticleFail(state, action);
 
-    case actionTypes.UPDATE_ARTICLE_START: return updateArticleStart(state, action);
-    case actionTypes.UPDATE_ARTICLE_SUCCESS: return updateArticleSuccess(state, action);
-    case actionTypes.UPDATE_ARTICLE_FAIL: return updateArticleFail(state, action);
+    case UPDATE_ARTICLE_START: return updateArticleStart(state, action);
+    case UPDATE_ARTICLE_SUCCESS: return updateArticleSuccess(state, action);
+    case UPDATE_ARTICLE_FAIL: return updateArticleFail(state, action);
 
-    case actionTypes.DELETE_ARTICLE_START: return deleteArticleStart(state, action);
-    case actionTypes.DELETE_ARTICLE_SUCCESS: return deleteArticleSuccess(state, action);
-    case actionTypes.DELETE_ARTICLE_FAIL: return deleteArticleFail(state, action);
+    case DELETE_ARTICLE_START: return deleteArticleStart(state, action);
+    case DELETE_ARTICLE_SUCCESS: return deleteArticleSuccess(state, action);
+    case DELETE_ARTICLE_FAIL: return deleteArticleFail(state, action);
 
-    case actionTypes.CLEAR_ARTICLE_SUCCESS: return clearArticleSuccess(state, action);
+    case CLEAR_ARTICLE_SUCCESS: return clearArticleSuccess(state, action);
 
     default: return state;
   }
