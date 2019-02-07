@@ -1,22 +1,40 @@
-import * as actionTypes from './actionTypes';
+import {
+  FETCH_ARTICLES_START,
+  FETCH_ARTICLES_SUCCESS,
+  FETCH_ARTICLES_FAIL,
+  FETCH_ARTICLE_START,
+  FETCH_ARTICLE_SUCCESS,
+  FETCH_ARTICLE_FAIL,
+  ADD_ARTICLE_START,
+  ADD_ARTICLE_SUCCESS,
+  ADD_ARTICLE_FAIL,
+  UPDATE_ARTICLE_START,
+  UPDATE_ARTICLE_SUCCESS,
+  UPDATE_ARTICLE_FAIL,
+  DELETE_ARTICLE_START,
+  DELETE_ARTICLE_SUCCESS,
+  DELETE_ARTICLE_FAIL,
+  CLEAR_ARTICLE_SUCCESS
+} from './actionTypes';
 import axios from '../../shared/axios-global';
+import history from '../../shared/history';
 
 export const fetchArticlesStart = () => {
   return {
-    type: actionTypes.FETCH_ARTICLES_START
+    type: FETCH_ARTICLES_START
   }
 }
 
 export const fetchArticlesSuccess = (articles) => {
   return {
-    type: actionTypes.FETCH_ARTICLES_SUCCESS,
+    type: FETCH_ARTICLES_SUCCESS,
     articles
   }
 }
 
 export const fetchArticlesFail = (error) => {
   return {
-    type: actionTypes.FETCH_ARTICLES_FAIL,
+    type: FETCH_ARTICLES_FAIL,
     error
   }
 }
@@ -40,20 +58,20 @@ export const fetchArticles = () => {
 
 export const fetchArticleStart = () => {
   return {
-    type: actionTypes.FETCH_ARTICLE_START
+    type: FETCH_ARTICLE_START
   }
 }
 
 export const fetchArticleSuccess = (article) => {
   return {
-    type: actionTypes.FETCH_ARTICLE_SUCCESS,
+    type: FETCH_ARTICLE_SUCCESS,
     article
   }
 }
 
 export const fetchArticleFail = (error) => {
   return {
-    type: actionTypes.FETCH_ARTICLE_FAIL,
+    type: FETCH_ARTICLE_FAIL,
     error
   }
 }
@@ -78,19 +96,19 @@ export const fetchArticle = (id) => {
 
 export const addArticleStart = () => {
   return {
-    type: actionTypes.ADD_ARTICLE_START
+    type: ADD_ARTICLE_START
   }
 }
 
 export const addArticleSuccess = () => {
   return {
-    type: actionTypes.ADD_ARTICLE_SUCCESS
+    type: ADD_ARTICLE_SUCCESS
   }
 }
 
 export const addArticleFail = (error) => {
   return {
-    type: actionTypes.ADD_ARTICLE_FAIL,
+    type: ADD_ARTICLE_FAIL,
     error
   }
 }
@@ -100,7 +118,8 @@ export const addArticle = (formdata) => {
     dispatch(addArticleStart());
     axios.post('/api/articles', formdata)
     .then(response => {
-      dispatch(addArticleSuccess())
+      dispatch(addArticleSuccess());
+      history.push('/');
     })
     .catch(err => {
       console.error('Create article error:', err.response.data.errors);
@@ -115,19 +134,19 @@ export const addArticle = (formdata) => {
 
 export const updateArticleStart = () => {
   return {
-    type: actionTypes.UPDATE_ARTICLE_START
+    type: UPDATE_ARTICLE_START
   }
 }
 
 export const updateArticleSuccess = () => {
   return {
-    type: actionTypes.UPDATE_ARTICLE_SUCCESS
+    type: UPDATE_ARTICLE_SUCCESS
   }
 }
 
 export const updateArticleFail = (error) => {
   return {
-    type: actionTypes.UPDATE_ARTICLE_FAIL,
+    type: UPDATE_ARTICLE_FAIL,
     error
   }
 }
@@ -138,6 +157,7 @@ export const updateArticle = (formdata, id) => {
     axios.put('/api/articles/'+id, formdata)
     .then(response => {
       dispatch(updateArticleSuccess());
+      history.push('/');
     })
     .catch(err => {
       console.error('Update article error:', err.response.data.errors);
@@ -152,21 +172,21 @@ export const updateArticle = (formdata, id) => {
 
 export const deleteArticleStart = (articleId) => {
   return {
-    type: actionTypes.DELETE_ARTICLE_START,
+    type: DELETE_ARTICLE_START,
     articleId
   }
 }
 
 export const deleteArticleSuccess = (deletedId) => {
   return {
-    type: actionTypes.DELETE_ARTICLE_SUCCESS,
+    type: DELETE_ARTICLE_SUCCESS,
     deletedId
   }
 }
 
 export const deleteArticleFail = (error, articleId) => {
   return {
-    type: actionTypes.DELETE_ARTICLE_FAIL,
+    type: DELETE_ARTICLE_FAIL,
     error,
     articleId
   }
@@ -192,6 +212,6 @@ export const deleteArticle = (id) => {
 
 export const clearArticle = () => {
   return {
-    type: actionTypes.CLEAR_ARTICLE_SUCCESS
+    type: CLEAR_ARTICLE_SUCCESS
   }
 }

@@ -6,7 +6,6 @@ const button = (props) => {
 
   if(btnType.split(' ').length > 1){
     btnType = btnType.split(' ').join('--');
-    console.log(btnType)
   }
   
   return (
