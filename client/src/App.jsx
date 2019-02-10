@@ -22,14 +22,11 @@ import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 import Spinner from './components/UI/Spinner/Spinner';
 
 import Home from './containers/Home/Home';
-
-// import Auth from './containers/Auth/Auth';
-
+import Logout from './containers/Home/Logout/Logout';
 import ProductList from './containers/ProductList/ProductList';
 // import Article from './containers/Article/Article';
 // import AddArticle from './containers/AddArticle/AddArticle';
 // import EditArticle from './containers/EditArticle/EditArticle';
-// import Logout from './containers/Auth/Logout/Logout';
 
 // Actions
 import * as actions from './store/actions/index';
@@ -56,6 +53,7 @@ class App extends Component {
         <Route path="/" exact render={() => this.props.isAuthenticated ? <ProductList /> : <Home signUp={true} /> } />
         <Route path="/login" exact render={() => <Home signUp={false} />} />
         <Route path="/register" exact render={() => <Home signUp={true} />} />
+        <ProtectedRoute path="/logout" exact component={Logout} auth={this.props.isAuthenticated} />
         {/* <Route path="/login" exact render={() => <Auth signUp={false} />} />
         <Route path="/register" exact render={() => <Auth signUp={true} />} />
         <Route path="/logout" component={Logout} />
