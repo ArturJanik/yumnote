@@ -70,7 +70,6 @@ export const auth = (formdata, isSignup) => {
 
     axios.post(url, formdata, headers)
     .then(response => {
-      console.log('Login successfull: ', response);
       const expirationDate = new Date(new Date().getTime() + 86400000);
       const token = response.data.token;
       const username = response.data.username;

@@ -44,6 +44,7 @@ class Form extends Component {
   
   submitHandler = (event) => {
     event.preventDefault();
+    if(this.props.loading) return;
 
     let fieldsToValidate = {};
     for(let field in this.state.fields){

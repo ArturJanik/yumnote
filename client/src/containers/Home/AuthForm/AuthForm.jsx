@@ -92,7 +92,6 @@ class AuthForm extends Component {
   generateErrorMsg = () => {
     let errorMessage = null;
     if(!this.props.error) return errorMessage;
-    console.log(this.props.error)
     if(this.props.error instanceof Object){
       let errorFields = Object.keys(this.props.error);
 
