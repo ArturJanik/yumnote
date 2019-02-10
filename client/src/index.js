@@ -2,21 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import { 
+  createStore, 
+  applyMiddleware, 
+  compose, 
+  combineReducers 
+} from 'redux';
 import thunk from 'redux-thunk';
 
+import './fonts.css';
 import './index.css';
 
 import App from './App';
+
 import authReducer from './store/reducers/auth';
-import articleReducer from './store/reducers/article';
+import productReducer from './store/reducers/product';
 
 import * as serviceWorker from './serviceWorker';
-
-import history from './shared/history';
+import history from './utilities/history';
 
 const rootReducer = combineReducers({
-  article: articleReducer,
+  product: productReducer,
   auth: authReducer,
 });
 

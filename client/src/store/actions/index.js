@@ -1,11 +1,11 @@
 export {
-  fetchArticles,
-  fetchArticle,
-  addArticle,
-  updateArticle,
-  deleteArticle,
-  clearArticle,
-} from './article';
+  fetchProducts,
+  fetchProduct,
+  addProduct,
+  updateProduct,
+  deleteProduct,
+  clearProduct,
+} from './product';
 export {
   auth,
   resetAuth,

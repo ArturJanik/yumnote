@@ -6,11 +6,7 @@
 }
 .social-icon {
   align-items: center;
-  background: #fff;
-  border: 2px solid #eee;
-  border-bottom: 2px solid #bbb;
-  border-radius: 5px;
-  color: #333;
+  color: #3d4143;
   display: flex;
   height: 30px;
   justify-content: center;
@@ -19,6 +15,5 @@
   width: 30px;
 }
 .social-icon:hover {
-  background: #333;
   color: #fff;
 }

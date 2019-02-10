@@ -7,7 +7,7 @@ import {
   AUTH_RESET,
   SET_AUTH_REDIRECT_PATH,
 } from '../actions/actionTypes';
-import { updateObject } from '../../shared/utility';
+import { updateObject } from '../../utilities/utility';
 
 const initialState = {
   token: null,

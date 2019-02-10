@@ -7,7 +7,7 @@ import {
   AUTH_RESET,
   SET_AUTH_REDIRECT_PATH,
 } from './actionTypes';
-import axios from '../../shared/axios-global';
+import axios from '../../utilities/axios-global';
 
 export const authStart = () => {
   return {

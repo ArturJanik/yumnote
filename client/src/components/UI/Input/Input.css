@@ -102,7 +102,6 @@ input[type="radio"] {
   border-color: #7a9118;
 }
 .inputElement:focus {
-  background-color: #eee;
   outline: none;
 }
 

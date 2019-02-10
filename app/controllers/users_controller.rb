@@ -6,7 +6,7 @@ class UsersController < ApiController
     if user.save
       render json: { token: user.auth_token, username: user.username }
     else
-      render json: { errors: { details: user.errors } }, status: 422
+      render json: { errors: user.errors }, status: 422
     end
   end
 
@@ -21,7 +21,7 @@ class UsersController < ApiController
         articles: user_articles
       }
     else
-      render json: { errors: { details: user.errors } }, status: 404
+      render json: { errors: user.errors }, status: 404
     end
   end
 

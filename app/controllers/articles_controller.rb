@@ -11,7 +11,7 @@ class ArticlesController < ApiController
     if article
       render json: { article: article }
     else
-      errors = { errors: { details: { articles: ['Not found']}}}
+      errors = { errors: { article: ['Not found']}}
       render json: errors, status: 404
     end
   end
@@ -48,7 +48,7 @@ class ArticlesController < ApiController
       article.destroy
       render json: {}, status: 200
     else
-      errors = { errors: { details: { article: ['Not found']}}}
+      errors = { errors: { article: ['Not found']}}
       render json: errors, status: 404
     end
   end

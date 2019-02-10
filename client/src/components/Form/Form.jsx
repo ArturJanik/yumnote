@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Input from '../UI/Input/Input';
-import { updateObject } from '../../shared/utility';
-import { validateField, formIsValid } from '../../shared/form-validation';
-
+import { updateObject } from '../../utilities/utility';
+import { validateField, formIsValid } from '../../utilities/form-validation';
+import './Form.css';
 
 class Form extends Component {
   state = {

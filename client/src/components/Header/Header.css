@@ -1,16 +1,16 @@
 header {
   background: #fff;
   box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
-  margin-bottom: 20px;
-  padding: 20px 0;
-  width: 100%;
+  position: relative;
+  z-index: 5;
 }
 .wrapper {
   align-items: center;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 1366px;
+  width: 100%;
 }
 .link--auth {
   margin-left: auto;

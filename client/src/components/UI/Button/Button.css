@@ -58,37 +58,37 @@
   composes: btn--save;
   animation: pulse 1s linear infinite alternate;
 }
-.btn--auth--success {
-  composes: btn--success;
-  margin-bottom: 20px;
+.btn--auth--submit {
+  composes: btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  border-bottom: 3px solid #3f4d00;
+  display: block;
+  font-size: 18px;
+  margin: 10px auto;
+  padding: 20px;
+  transition: background 0.3s ease;
   width: 100%;
 }
-.btn--auth--success--loading {
-  composes: btn--auth--success;
+.btn--auth--submit--loading {
+  composes: btn--auth--submit;
   animation: pulse 1s linear infinite alternate;
 }
 .btn--auth-link {
   composes: btn;
-  border: 1px solid #d2691e;
-  color: #d2691e;
+  background: #fff;
+  color: #3f4d00;
+  display: block;
+  font-size: 14px;
+  margin: 10px auto 0;
+  padding: 10px;
+  transition: background 0.3s ease;
   width: 100%;
-}
-
-.btn--auth-logout {
-  composes: btn;
-  background: #b33802;
-  color: #fff;
-}
-.btn--auth-login {
-  composes: btn;
-  background: #333;
-  color: #fff;
 }
 
 .btn--delete {
   composes: btn;
-  border: 1px solid #d2331e;
-  color: #d2331e;
+  /* border: 1px solid #d2331e; */
+  /* color: #d2331e; */
 }
 
 @keyframes pulse {

@@ -1,11 +1,19 @@
 footer {
-  background: #fff;
+  background: #11191B;
 }
 .wrapper {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
-  max-width: 1280px;
+  max-width: 1366px;
+  width: 100%;
+}
+.footer-top {
+  padding: 40px 0;
+}
+.footer-bottom {
+  background: #0D1215;
+  color: #3d4143;
   padding: 20px 0;
 }

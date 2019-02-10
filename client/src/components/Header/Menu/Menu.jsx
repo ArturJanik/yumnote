@@ -3,33 +3,34 @@ import { NavLink } from 'react-router-dom';
 import styles from './Menu.css';
 
 class Menu extends Component {
-  state = {
-    expand: false
+
+  showLoggedInMenu = () => {
+    return (
+      <React.Fragment>
+        <li className={styles['menu-item']}><NavLink exact to="/">My Products</NavLink></li>
+        <li className={styles['menu-item']}><NavLink exact to="/">My Profile</NavLink></li>
+        <li className={styles['menu-item']}> <NavLink exact to="/logout" className={styles["link--auth"]}>Logout</NavLink></li>
+      </React.Fragment>
+    )
   }
 
-  menuToggleHandler = () => {
-    this.setState((prevState) => {
-      return { expand: !prevState.expand }
-    })
-  }
-
-  menuHideHandler = () => {
-    this.setState({ expand: false })
+  showNotLoggedInMenu = () => {
+    return (
+      <React.Fragment>
+        <li className={styles['menu-item']}><NavLink exact to="/register" className={styles["link--auth"]}>Signup</NavLink></li>
+        <li className={styles['menu-item']}><NavLink exact to="/login" className={styles["link--auth"]}>Login</NavLink></li>
+      </React.Fragment>
+    )
   }
 
   render(){
+    const loggedIn = this.props.isAuth && this.props.currentUser !== null;
     return (
-      <div className={styles['menu--main']}>
-        <p onClick={this.menuToggleHandler}>MainMenu</p>
-        { this.state.expand ?
-        (<ul className={styles['menu-items']} onClick={this.menuHideHandler}>
-          <li className={styles['menu-item']}><NavLink exact to="/">Menu Item #1</NavLink></li>
-          <li className={styles['menu-item']}><NavLink exact to="/">Menu Item #2</NavLink></li>
-          <li className={styles['menu-item']}><NavLink exact to="/">Menu Item #3</NavLink></li>
-          <li className={styles['menu-item']}><NavLink exact to="/">Menu Item #4</NavLink></li>
-        </ul>) : null
-        }
-      </div>
+      <nav className={styles['menu--main']}>
+        <ul className={styles['menu-items']}>
+          { loggedIn ? this.showLoggedInMenu() : this.showNotLoggedInMenu() }
+        </ul>
+      </nav>
     )
   }
 }
