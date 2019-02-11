@@ -13,7 +13,7 @@ class CreateProducts < ActiveRecord::Migration[5.2]
       t.references :user, index: true, foreign_key: true, null: true, default: nil
       t.boolean :visible, default: true
 
-      t.timestamps, null: false
+      t.timestamps
     end
   end
 end
