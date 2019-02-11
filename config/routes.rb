@@ -6,9 +6,18 @@ Rails.application.routes.draw do
     post '/login' => "sessions#create"
     delete '/logout' => "sessions#destroy"
     
-    resources :users, only: [:create,:show,:update,:destroy]
-    get '/profile' => "users#profile"
+    resources :users, except: [:index,:destroy] do
+      # get 'foodnotes/today' => 'foodnotes#index'
+      # get 'foodnotes/yesterday' => 'foodnotes#yesterday'
+      # get 'foodnotes/:day' => 'foodnotes#show'
+      # get 'statistics' => 'users#statistics'
+      # resources :foodnotes, only: [:new,:create,:edit,:update,:destroy]
+    end
+    # get '/profile' => "users#profile"
 
-    resources :articles, only: [:index,:show,:create,:update,:destroy]
+    # resources :categories, only: [:show] do
+    #   resources :products
+    # end
+    resources :products, only: [:index,:show,:create,:update,:destroy]
   end
 end
