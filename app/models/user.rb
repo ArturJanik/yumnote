@@ -9,7 +9,7 @@ class User < ApplicationRecord
   validates_presence_of :password, :email, :username, on: :create
   has_secure_token :auth_token
   
-  has_many :articles
+  has_many :products
 
   def invalidate_token
     self.update_columns(auth_token: nil)
