@@ -6,6 +6,7 @@ import * as actions from '../../store/actions/index';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
+import CategoryList from './CategoryList/CategoryList';
 import ProductListItem from './ProductListItem/ProductListItem';
 
 class ProductList extends Component {
@@ -34,16 +35,24 @@ class ProductList extends Component {
     
     return this.props.products.map((product, index) => <ProductListItem key={index} product={product} />)
   }
+
+  renderProductList = () => {
+    return (
+      <React.Fragment>
+        <CategoryList />
+        <article className={styles['product-list']}>{this.renderProducts()}</article>
+      </React.Fragment>
+    )
+  }
   
   render() {
+    let productList = <Spinner />;
+    if(!this.props.loading) productList = this.renderProductList();
     return (
-      <section className={styles['product-list']}>
+      <section className={styles['product-section']}>
         <div className={styles.wrapper}>
-          {(!this.props.loading)
-            ? this.renderProducts()
-            : <Spinner />
-          }
-          {(!this.props.loading && this.props.isAuthenticated)
+          {productList}
+          {(!this.props.loading && false === true)
             ? <Link to={`/products/new`} className={styles['product-btn--create']}><Button btnType="success">Create new product</Button></Link>
             : null
           }
@@ -58,7 +67,6 @@ const mapStateToProps = state => {
     products: state.product.products,
     loading: state.product.loading,
     error: state.product.error,
-    isAuthenticated: state.auth.token !== null,
   }
 }
 
