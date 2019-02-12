@@ -37,8 +37,8 @@ class ProductList extends Component {
   
   render() {
     return (
-      <section>
-        <div className={styles['product-list']}>
+      <section className={styles['product-list']}>
+        <div className={styles.wrapper}>
           {(!this.props.loading)
             ? this.renderProducts()
             : <Spinner />
