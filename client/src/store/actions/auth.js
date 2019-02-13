@@ -102,7 +102,8 @@ export const authCheckState = () => {
     const token = localStorage.getItem('token');
     const expDate = localStorage.getItem('expirationDate');
     const username = localStorage.getItem('currentUserName');
-    if(!token || !expDate || !username) {
+
+    if(!token || !expDate || !username || username === 'undefined') {
       localStorage.removeItem('token');
       localStorage.removeItem('expirationDate');
       localStorage.removeItem('currentUserName');
