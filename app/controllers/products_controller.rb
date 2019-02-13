@@ -1,5 +1,5 @@
 class ProductsController < ApiController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login
   
   def index
     products = Product.all
