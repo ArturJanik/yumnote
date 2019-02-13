@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import styles from './ProductList.css';
+import styles from './ListContainer.css';
 import * as actions from '../../store/actions/index';
 
 import Spinner from '../../components/UI/Spinner/Spinner';
@@ -9,10 +9,11 @@ import Button from '../../components/UI/Button/Button';
 import CategoryList from './CategoryList/CategoryList';
 import ProductListItem from './ProductListItem/ProductListItem';
 
-class ProductList extends Component {
+class ListContainer extends Component {
 
   componentDidMount() {
-    this.props.onPageLoaded();
+    this.props.fetchProducts();
+    this.props.fetchCategories();
   }
 
   renderError() {
@@ -23,7 +24,7 @@ class ProductList extends Component {
       }
       return (
         <div className={styles['error-container']}>
-          <p className={styles['error-container__message']}>{this.props.error}</p>
+          <p className={styles['error-container__message']}>{this.props.productsError}</p>
           {button}
         </div>
       )
@@ -39,7 +40,7 @@ class ProductList extends Component {
   renderProductList = () => {
     return (
       <React.Fragment>
-        <CategoryList />
+        <CategoryList categories={this.props.categories} />
         <article className={styles['product-list']}>{this.renderProducts()}</article>
       </React.Fragment>
     )
@@ -47,12 +48,12 @@ class ProductList extends Component {
   
   render() {
     let productList = <Spinner />;
-    if(!this.props.loading) productList = this.renderProductList();
+    if(!this.props.productsLoading) productList = this.renderProductList();
     return (
       <section className={styles['product-section']}>
         <div className={styles.wrapper}>
           {productList}
-          {(!this.props.loading && false === true)
+          {(!this.props.productsLoading && false === true)
             ? <Link to={`/products/new`} className={styles['product-btn--create']}><Button btnType="success">Create new product</Button></Link>
             : null
           }
@@ -64,16 +65,20 @@ class ProductList extends Component {
 
 const mapStateToProps = state => {
   return {
+    categories: state.category.categories,
+    categoriesLoading: state.category.loading,
+    categoriesError: state.category.error,
     products: state.product.products,
-    loading: state.product.loading,
-    error: state.product.error,
+    productsLoading: state.product.loading,
+    productsError: state.product.error,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPageLoaded: () => dispatch(actions.fetchProducts()),
+    fetchProducts: () => dispatch(actions.fetchProducts()),
+    fetchCategories: () => dispatch(actions.fetchCategories()),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default connect(mapStateToProps, mapDispatchToProps)(ListContainer);

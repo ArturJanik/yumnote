@@ -23,7 +23,7 @@ import Spinner from './components/UI/Spinner/Spinner';
 
 import Home from './containers/Home/Home';
 import Logout from './containers/Home/Logout/Logout';
-import ProductList from './containers/ProductList/ProductList';
+import ListContainer from './containers/ListContainer/ListContainer';
 // import Article from './containers/Article/Article';
 // import AddArticle from './containers/AddArticle/AddArticle';
 // import EditArticle from './containers/EditArticle/EditArticle';
@@ -50,13 +50,13 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
-        <Route path="/" exact render={() => this.props.isAuthenticated ? <ProductList /> : <Home signUp={true} /> } />
+        <Route path="/" exact render={() => this.props.isAuthenticated ? <ListContainer listType="foodnotes" /> : <Home signUp={true} /> } />
         <Route path="/login" exact render={() => <Home signUp={false} />} />
         <Route path="/register" exact render={() => <Home signUp={true} />} />
         <ProtectedRoute path="/logout" exact component={Logout} auth={this.props.isAuthenticated} />
-        {/* <Route path="/login" exact render={() => <Auth signUp={false} />} />
-        <Route path="/register" exact render={() => <Auth signUp={true} />} />
-        <Route path="/logout" component={Logout} />
+        {/* 
+        <ProtectedRoute path="/today" exact render={() => <ListContainer listType="foodnotes" />} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/myproducts" exact render={() => <ListContainer listType="userProducts" />} auth={this.props.isAuthenticated} />
 
         <Route path="/articles" exact component={ArticleList} />
         <Route path="/articles/:articleId(\d+)" exact component={Article} />
@@ -83,7 +83,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null,
+    isAuthenticated: state.auth.token !== null && state.auth.currentUser !== null,
     authenticationCheckFinished: state.auth.authCheckFinished,
   }
 }

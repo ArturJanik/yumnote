@@ -3,13 +3,30 @@ import { Link } from 'react-router-dom';
 import styles from './CategoryList.css';
 
 class CategoryList extends Component {
-  renderSidemenu() {
-    return (
-      <ul>
+  renderFixedLinks() {
+    return(
+      <React.Fragment>
         <li className={styles['category-list-item--special']}><Link to={`/foodnotes/today`}>Today</Link></li>
         <li className={styles['category-list-item--special']}><Link to={`/myproducts`}>My Foods</Link></li>
         <li className={styles['category-list-item--special']}><Link to={`/latest`}>Lately Yummed</Link></li>
-        <li className={styles['category-list-item']}>
+      </React.Fragment>
+    )
+  }
+
+  renderDynamicLinks() {
+    if(this.props.categories.length > 0){
+      return this.props.categories.map((category, index) => (
+        <li key={index} className={styles['category-list-item']}><a href="#" className="subMenuRevealBtn">{category.name}</a></li>
+      ))
+    }
+  }
+
+  renderSidemenu = () => {
+    return (
+      <ul>
+        {this.renderFixedLinks()}
+        {this.renderDynamicLinks()}
+        {/* <li className={styles['category-list-item']}>
           <a href="#" className="subMenuRevealBtn">Dairy, Cheese &amp; Eggs</a>
           <ul className="subcategoriesContainer">
             <li className="subcategoryBtn">
@@ -31,7 +48,7 @@ class CategoryList extends Component {
         </li>
         <li className={styles['category-list-item']}>
           <a href="/categories/5">Meat, Poultry &amp; Fish</a>
-        </li>
+        </li> */}
       </ul>
     )
   }
