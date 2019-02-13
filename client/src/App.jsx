@@ -24,9 +24,8 @@ import Spinner from './components/UI/Spinner/Spinner';
 import Home from './containers/Home/Home';
 import Logout from './containers/Home/Logout/Logout';
 import ListContainer from './containers/ListContainer/ListContainer';
-// import Article from './containers/Article/Article';
-// import AddArticle from './containers/AddArticle/AddArticle';
-// import EditArticle from './containers/EditArticle/EditArticle';
+// import AddProduct from './containers/AddProduct/AddProduct';
+// import EditProduct from './containers/EditProduct/EditProduct';
 
 // Actions
 import * as actions from './store/actions/index';
@@ -50,24 +49,28 @@ class App extends Component {
   render() {
     let routes = (
       <Switch>
-        <Route path="/" exact render={() => this.props.isAuthenticated ? <ListContainer listType="foodnotes" /> : <Home signUp={true} /> } />
+        <Route path="/" exact 
+               render={() => this.props.isAuthenticated ? <ListContainer listType="foodnotes" /> : <Home signUp={true} /> } />
+
         <Route path="/login" exact render={() => <Home signUp={false} />} />
         <Route path="/register" exact render={() => <Home signUp={true} />} />
-        <ProtectedRoute path="/logout" exact component={Logout} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/logout" exact 
+                        component={Logout} 
+                        auth={this.props.isAuthenticated} />
         {/* 
-        <ProtectedRoute path="/today" exact render={() => <ListContainer listType="foodnotes" />} auth={this.props.isAuthenticated} />
-        <ProtectedRoute path="/myproducts" exact render={() => <ListContainer listType="userProducts" />} auth={this.props.isAuthenticated} />
-
-        <Route path="/articles" exact component={ArticleList} />
-        <Route path="/articles/:articleId(\d+)" exact component={Article} />
-        <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/foodnotes/today" exact render={() => <ListContainer listType="foodnotes" />} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/myproducts" exact render={() => <ListContainer listType="products" subType="currentuser" />} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/products/latest" exact render={() => <ListContainer listType="products" subType="latest" />} auth={this.props.isAuthenticated} />
+        <ProtectedRoute path="/categories/:categoryId(\d+)" exact render={() => <ListContainer listType="products" />} auth={this.props.isAuthenticated} />
+        */}
+        {/* <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} />
         <ProtectedRoute path="/articles/new" exact component={AddArticle} auth={this.props.isAuthenticated} />
         <Route path="/" exact component={ArticleList} /> */}
         <Route component={NoMatch} />
       </Switch>
     )
 
-    if(!this.props.authenticationCheckFinished) {
+    if(!this.props.authCheckFinished) {
       routes = <Spinner />;
     }
 
@@ -84,7 +87,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.token !== null && state.auth.currentUser !== null,
-    authenticationCheckFinished: state.auth.authCheckFinished,
+    authCheckFinished: state.auth.authCheckFinished,
   }
 }
 

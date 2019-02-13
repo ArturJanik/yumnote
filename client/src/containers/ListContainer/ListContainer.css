@@ -1,4 +1,4 @@
-.product-section {
+.list-container {
   background: #F1F2F4;
   display: flex;
   justify-content: center;
@@ -28,7 +28,4 @@
   margin-bottom: 10px;
   text-align: center;
   text-transform: capitalize;
-}
-.product-list {
-  flex: 0 1 100%;
 }
