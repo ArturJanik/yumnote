@@ -15,9 +15,10 @@ Rails.application.routes.draw do
     end
     # get '/profile' => "users#profile"
 
-    # resources :categories, only: [:show] do
+    # resources :categories, only: [:index] do
     #   resources :products
     # end
+    resources :categories, only: [:index]
     resources :products, only: [:index,:show,:create,:update,:destroy]
   end
 end
