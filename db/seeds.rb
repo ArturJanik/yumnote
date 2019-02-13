@@ -10,10 +10,10 @@ c1 = Category.create!(name: 'Dairy, Cheese & Eggs')
 
 puts "#{Category.count} categories created!"
 
-p1 = Product.create!(name: 'Milk 3.2%', kcal: 100, amount: 1, category: c1)
-p2 = Product.create!(name: 'Milk 2%', kcal: 100, amount: 1, category: c1)
-p3 = Product.create!(name: 'Milk 0.5%', kcal: 100, amount: 1, category: c1)
-p4 = Product.create!(name: 'Milk 0%', kcal: 100, amount: 1, category: c1)
-p5 = Product.create!(name: 'Not a damn milk', kcal: 100, amount: 1, category: c1, user: u1)
+p1 = Product.create!(name: 'Milk 3.2%', kcal: 100, carb: 10, fat: 10, prot: 10, amount: 1, unit: 'ml', category: c1)
+p2 = Product.create!(name: 'Milk 2%', kcal: 200, carb: 20, fat: 20, prot: 20, amount: 1, unit: 'g', category: c1)
+p3 = Product.create!(name: 'Milk 0.5%', kcal: 300, carb: 30, fat: 30, prot: 30, amount: 1, unit: 'g', category: c1)
+p4 = Product.create!(name: 'Milk 0%', kcal: 400, carb: 40, fat: 40, prot: 40, amount: 1, unit: 'ml', category: c1)
+p5 = Product.create!(name: 'Not a damn milk', kcal: 500, carb: 50, fat: 50, prot: 50, amount: 1, unit: 'pc', category: c1, user: u1)
 
 puts "#{Product.count} products created!"

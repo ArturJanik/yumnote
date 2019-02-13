@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_11_194460) do
+ActiveRecord::Schema.define(version: 2019_02_13_182604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2019_02_11_194460) do
     t.float "fat"
     t.float "prot"
     t.float "amount"
-    t.integer "unit"
+    t.string "unit", default: "0", null: false
     t.bigint "category_id"
     t.bigint "user_id"
     t.boolean "visible", default: true
