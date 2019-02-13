@@ -17,3 +17,10 @@ p4 = Product.create!(name: 'Milk 0%', kcal: 400, carb: 40, fat: 40, prot: 40, am
 p5 = Product.create!(name: 'Not a damn milk', kcal: 500, carb: 50, fat: 50, prot: 50, amount: 1, unit: 'pc', category: c1, user: u1)
 
 puts "#{Product.count} products created!"
+
+f1 = Foodnote.create!(product: p1, user: u1, amount: 11)
+f2 = Foodnote.create!(product: p2, user: u1, amount: 22)
+f3 = Foodnote.create!(product: p3, user: u1, amount: 33)
+f4 = Foodnote.create!(product: p2, user: u1, amount: 44)
+
+puts "#{Foodnote.count} foodnotes created!"
