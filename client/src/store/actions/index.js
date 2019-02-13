@@ -13,3 +13,6 @@ export {
   authCheckState,
   setAuthRedirectPath,
 } from './auth';
+export {
+  fetchCategories
+} from './category';

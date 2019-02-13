@@ -17,11 +17,13 @@ import App from './App';
 
 import authReducer from './store/reducers/auth';
 import productReducer from './store/reducers/product';
+import categoryReducer from './store/reducers/category';
 
 import * as serviceWorker from './serviceWorker';
 import history from './utilities/history';
 
 const rootReducer = combineReducers({
+  category: categoryReducer,
   product: productReducer,
   auth: authReducer,
 });
