@@ -55,6 +55,6 @@ class ProductsController < ApiController
 
   private
   def product_params
-    params.require(:product).permit(:title, :description, :content, :start_date, :end_date, :visible)
+    params.require(:product).permit(:name, :kcal, :carb, :fat, :prot, :amount, :unit, :visible, :category, :user)
   end
 end
