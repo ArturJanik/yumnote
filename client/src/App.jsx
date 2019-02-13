@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 
 // Icons
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCheckSquare } from '@fortawesome/free-regular-svg-icons';
+import { faCheckSquare, faPlusSquare } from '@fortawesome/free-regular-svg-icons';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faTwitter, faTumblr } from '@fortawesome/free-brands-svg-icons';
 
@@ -38,6 +38,7 @@ library.add(
   faFacebook,
   faTwitter,
   faTumblr,
+  faPlusSquare,
 );
 
 class App extends Component {

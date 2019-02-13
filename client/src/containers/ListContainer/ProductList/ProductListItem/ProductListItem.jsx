@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styles from './ProductListItem.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import * as actions from '../../../../store/actions/index';
 
 import Spinner from '../../../../components/UI/Spinner/Spinner';
-import Button from '../../../../components/UI/Button/Button';
 
 class ProductListItem extends Component {
+  state = {
+    amount: '1.0'
+  }
 
   renderProductListItem(product) {
     return (
@@ -32,8 +34,11 @@ class ProductListItem extends Component {
           </div>
         </div>
         <div className={styles.form}>
-          
-          <Button>+</Button>
+          <div className={styles['amount-input']}>
+            <input type="text" onChange={event => this.setState({amount: event.target.value})} placeholder="Amount" value={this.state.amount} />
+            <p className={styles['amount-unit']}>{product.unit}</p>
+          </div>
+          <div className={styles['amount-add']}><FontAwesomeIcon icon={['far', 'plus-square']} /></div>
         </div>
       </div>
     )
