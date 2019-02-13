@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       # get 'foodnotes/yesterday' => 'foodnotes#yesterday'
       # get 'foodnotes/:day' => 'foodnotes#show'
       # get 'statistics' => 'users#statistics'
-      # resources :foodnotes, only: [:new,:create,:edit,:update,:destroy]
+      resources :foodnotes, only: [:new,:create,:edit,:update,:destroy]
     end
     # get '/profile' => "users#profile"
 

@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   validates :name, length: { minimum: 2 }
   validates :kcal, numericality: { greater_than_or_equal_to: 0 }
   
+  has_many :foodnotes
   belongs_to :category
   belongs_to :user, optional: true
 end
