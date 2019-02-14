@@ -7,6 +7,9 @@ export {
   clearProduct,
 } from './product';
 export {
+  fetchFoodnotes,
+} from './foodnote';
+export {
   auth,
   resetAuth,
   logout,

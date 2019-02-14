@@ -11,6 +11,10 @@ class ProductListItem extends Component {
     amount: '1.0'
   }
 
+  submitFoodnote = () => {
+    console.log('Foodnote submitted.', 'Product id: ' + this.props.product.id, 'Date created: ' + new Date())
+  }
+
   renderProductListItem(product) {
     return (
       <div className={styles.product}>
@@ -38,7 +42,7 @@ class ProductListItem extends Component {
             <input type="text" onChange={event => this.setState({amount: event.target.value})} placeholder="Amount" value={this.state.amount} />
             <p className={styles['amount-unit']}>{product.unit}</p>
           </div>
-          <div className={styles['amount-add']}><FontAwesomeIcon icon={['far', 'plus-square']} /></div>
+          <div className={styles['amount-add']} onClick={this.submitFoodnote}><FontAwesomeIcon icon={['far', 'plus-square']} /></div>
         </div>
       </div>
     )
@@ -50,11 +54,12 @@ class ProductListItem extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-    
-//   }
-// }
+const mapStateToProps = state => {
+  return {
+    error: state.foodnote.error, // jesli nie uda sie utworzyc foodnote
+    loading: state.foodnote.loading // na czas tworzenia zeby nie mozna bylo kliknac drugi raz
+  }
+}
 
 // const mapDispatchToProps = dispatch => {
 //   return {
@@ -62,4 +67,4 @@ class ProductListItem extends Component {
 //   }
 // }
 
-export default connect(null, null)(ProductListItem);
+export default connect(mapStateToProps, null)(ProductListItem);

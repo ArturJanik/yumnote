@@ -4,7 +4,6 @@ import {
   FETCH_CATEGORIES_FAIL
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
-import history from '../../utilities/history';
 
 export const fetchCategoriesStart = () => {
   return {
