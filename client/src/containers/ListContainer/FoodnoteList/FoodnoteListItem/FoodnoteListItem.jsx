@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './FoodnoteListItem.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import * as actions from '../../../../store/actions/index';
 
-import Spinner from '../../../../components/UI/Spinner/Spinner';
+// import Spinner from '../../../../components/UI/Spinner/Spinner';
 
 class FoodnoteListItem extends Component {
 

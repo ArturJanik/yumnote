@@ -4,7 +4,7 @@ import styles from './Header.css';
 
 import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
-import MobileMenu from './MobileMenu/MobileMenu';
+// import MobileMenu from './MobileMenu/MobileMenu';
 
 class Header extends Component {
   state = {
