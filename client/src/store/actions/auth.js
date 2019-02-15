@@ -85,8 +85,6 @@ export const auth = (formdata, isSignup) => {
       console.log(err)
       if(err.response.status === 500){
         dispatch(authFail('Error: unable to reach server. Please try again later'));
-      } else if(err.response.status === 401){
-        dispatch(authFail('Error: session expired. Please login'));
       } else {
         dispatch(authFail(err.response.data.errors));
       }

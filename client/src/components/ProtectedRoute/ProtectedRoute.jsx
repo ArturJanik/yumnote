@@ -9,14 +9,13 @@ class ProtectedRoute extends Component {
   }
 
   render() {
-    const { component: Component, ...props } = this.props
-
+    const { component: Component, ...props } = this.props;
     return (
       <Route 
         {...props}
         render={props => (
           this.props.auth ?
-            <Component {...props} /> :
+            <Component {...this.props} /> :
             <Redirect to='/login' />
         )} 
       />

@@ -1,5 +1,3 @@
-////////////////////////////////////////////////////////////////////
-// Libs
 import React, { Component } from 'react';
 import { 
   Route, 
@@ -24,13 +22,9 @@ import Spinner from './components/UI/Spinner/Spinner';
 import Home from './containers/Home/Home';
 import Logout from './containers/Home/Logout/Logout';
 import ListContainer from './containers/ListContainer/ListContainer';
-// import AddProduct from './containers/AddProduct/AddProduct';
-// import EditProduct from './containers/EditProduct/EditProduct';
 
 // Actions
 import * as actions from './store/actions/index';
-//
-////////////////////////////////////////////////////////////////////
 
 library.add( 
   faCalendarAlt,
@@ -44,35 +38,37 @@ library.add(
 class App extends Component {
 
   componentDidMount() {
-    this.props.onTryAutoLogin();
+    this.props.tryAutoLogin();
   }
 
   render() {
-    let routes = (
-      <Switch>
-        <Route path="/" exact 
-               render={() => this.props.isAuthenticated ? <ListContainer listType="foodnotes" /> : <Home signUp={true} /> } />
+    let routes = <Spinner />;
 
-        <Route path="/login" exact render={() => <Home signUp={false} />} />
-        <Route path="/register" exact render={() => <Home signUp={true} />} />
-        <ProtectedRoute path="/logout" exact 
-                        component={Logout} 
-                        auth={this.props.isAuthenticated} />
-        {/* 
-        <ProtectedRoute path="/foodnotes/today" exact render={() => <ListContainer listType="foodnotes" />} auth={this.props.isAuthenticated} />
-        <ProtectedRoute path="/myproducts" exact render={() => <ListContainer listType="products" subType="currentuser" />} auth={this.props.isAuthenticated} />
-        <ProtectedRoute path="/products/latest" exact render={() => <ListContainer listType="products" subType="latest" />} auth={this.props.isAuthenticated} />
-        <ProtectedRoute path="/categories/:categoryId(\d+)" exact render={() => <ListContainer listType="products" />} auth={this.props.isAuthenticated} />
-        */}
-        {/* <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} />
-        <ProtectedRoute path="/articles/new" exact component={AddArticle} auth={this.props.isAuthenticated} />
-        <Route path="/" exact component={ArticleList} /> */}
-        <Route component={NoMatch} />
-      </Switch>
-    )
+    if(this.props.authCheckFinished) {
+      routes = (
+        <Switch>
+          <Route path="/" exact render={() => (
+            this.props.isAuthenticated ? (
+              <ListContainer listType="foodnotes" /> 
+            ) : (
+              <Home signUp={true} />
+            )
+          )}/>
+          <ProtectedRoute path="/foodnotes/today" exact component={ListContainer} listType="foodnotes" auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/myfoods" exact component={ListContainer} listType="products" subType="currentuser" auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/latest" exact component={ListContainer} listType="products" subType="latest" auth={this.props.isAuthenticated} />
+          {/* <ProtectedRoute path="/categories/:categoryId(\d+)" exact render={() => <ListContainer listType="products" />} auth={this.props.isAuthenticated} /> */}
 
-    if(!this.props.authCheckFinished) {
-      routes = <Spinner />;
+          {/* <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/articles/new" exact component={AddArticle} auth={this.props.isAuthenticated} />
+          <Route path="/" exact component={ArticleList} /> */}
+
+          <Route path="/login" exact render={() => <Home signUp={false} isAuthenticated={this.props.isAuthenticated} />} />
+          <Route path="/register" exact render={() => <Home signUp={true} isAuthenticated={this.props.isAuthenticated} />} />
+          <Route path="/logout" exact component={Logout} isAuthenticated={this.props.isAuthenticated} />
+          <Route component={NoMatch} />
+        </Switch>
+      )
     }
 
     return (
@@ -94,7 +90,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onTryAutoLogin: () => dispatch(actions.authCheckState()),
+    tryAutoLogin: () => dispatch(actions.authCheckState()),
   }
 }
 

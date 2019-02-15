@@ -38,15 +38,8 @@ class Home extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null,
     authRedirectPath: state.auth.authRedirectPath,
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/'))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));
+export default connect(mapStateToProps, null)(withRouter(Home));
