@@ -5,13 +5,13 @@ Rails.application.routes.draw do
   scope '/api' do
     post '/login' => "sessions#create"
     delete '/logout' => "sessions#destroy"
+
+    get '/foodnotes/today' => 'foodnotes#index'
+    # get '/foodnotes/yesterday' => 'foodnotes#yesterday'
+    # get '/foodnotes/:day' => 'foodnotes#show'
     
     resources :users, except: [:index,:destroy] do
-      # get 'foodnotes/today' => 'foodnotes#index'
-      # get 'foodnotes/yesterday' => 'foodnotes#yesterday'
-      # get 'foodnotes/:day' => 'foodnotes#show'
       # get 'statistics' => 'users#statistics'
-      resources :foodnotes, only: [:new,:create,:edit,:update,:destroy]
     end
     # get '/profile' => "users#profile"
 
