@@ -38,6 +38,7 @@
   margin: auto;
 }
 .btn--refresh--loading {
+  composes: btn--refresh;
   animation: pulse 1s linear infinite alternate;
 }
 .btn--success {

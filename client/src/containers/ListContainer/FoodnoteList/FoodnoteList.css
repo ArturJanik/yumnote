@@ -1,15 +1,77 @@
 .foodnote-list {
   flex: 0 1 100%;
 }
-.list-header {
+.list-title {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   width: 100%;
 }
+.list-header {
+  background: #fff;
+  border-bottom: 2px solid #ccc;
+  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 600;
+  margin-bottom: 5px;
+  padding: 10px;
+  width: 100%;
+}
+.c1 {
+  align-items: flex-end;
+  display: flex;
+  flex: 0 0 40%;
+  max-width: 40%;
+}
+.c2 {
+  display: flex;
+  flex: 0 0 50%;
+  flex-wrap: wrap;
+  max-width: 50%;
+}
+.c2 div {
+  flex: 0 0 17.5%;
+  max-width: 17.5%;
+}
+div.wide {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+.c3 {
+  align-items: flex-end;
+  display: flex;
+  flex: 0 0 10%;
+  max-width: 10%;
+}
 .list-body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+}
+
+.list-empty {
+  background: #fff;
+  border-bottom: 2px solid #ccc;
+  font-weight: 600;
+  margin-bottom: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.error-container {
+  background: rgb(252, 236, 236);
+  box-shadow: 0px 1px 3px 0px rgb(209, 144, 144);
+  border-radius: 3px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+.error-container__message {
+  font-weight: 600;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: capitalize;
 }

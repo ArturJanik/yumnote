@@ -9,20 +9,9 @@ import FoodnoteList from './FoodnoteList/FoodnoteList';
 
 class ListContainer extends Component {
 
-  // renderError() {
-  //   if(this.props.products.length === 0){
-  //     let button = <Button btnType="refresh" clicked={this.fetchData}>Refresh</Button>
-  //     if(this.props.productsLoading) {
-  //       button = <Button btnType="refresh loading">Refreshing...</Button>;
-  //     }
-  //     return (
-  //       <div className={styles['error-container']}>
-  //         <p className={styles['error-container__message']}>{this.props.productsError}</p>
-  //         {button}
-  //       </div>
-  //     )
-  //   }
-  // }
+  componentDidMount() {
+    this.props.fetchCategories();
+  }
 
   renderList() {
     let list = null;
