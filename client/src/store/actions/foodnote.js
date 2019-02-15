@@ -28,7 +28,7 @@ export const fetchFoodnotesFail = (error) => {
 export const fetchFoodnotes = () => {
   return dispatch => {
     dispatch(fetchFoodnotesStart());
-    axios.get('/api/foodnotes')
+    axios.get('/api/foodnotes/today')
     .then(response => {
       dispatch(fetchFoodnotesSuccess(response.data.foodnotes))
     })

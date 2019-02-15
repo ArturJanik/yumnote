@@ -7,6 +7,7 @@ import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import CategoryList from './CategoryList/CategoryList';
 import ProductList from './ProductList/ProductList';
+import FoodnoteList from './FoodnoteList/FoodnoteList';
 
 class ListContainer extends Component {
 
@@ -18,7 +19,7 @@ class ListContainer extends Component {
     if(this.props.listType === 'products') {
       this.props.fetchProducts();
     } else {
-      this.props.fetchProducts();
+      this.props.fetchFoodnotes();
     }
     this.props.fetchCategories();
   }
@@ -42,14 +43,20 @@ class ListContainer extends Component {
     let list = null;
     switch (this.props.subType) {
       case 'currentuser':
-
-        break;
-      case 'latest':
-      
-        break;
-      default:
         list = <ProductList 
           products={this.props.products} 
+          title="My foods"
+        />
+        break;
+      case 'latest':
+        list = <ProductList 
+          products={this.props.products} 
+          title="Lately yummed"
+        />
+        break;
+      default:
+        list = <FoodnoteList
+          foodnotes={this.props.foodnotes}
           title="Today"
         />
         break;
@@ -67,7 +74,7 @@ class ListContainer extends Component {
     let listContainer = <Spinner />;
     if(this.props.productsError !== null && this.props.products.length === 0){ 
       listContainer = this.renderError();
-    } else if(!this.props.productsLoading && !this.props.categoriesLoading) {
+    } else if(!this.props.productsLoading && !this.props.categoriesLoading && !this.props.foodnotesLoading) {
       listContainer = this.renderList();
     }
     return(
@@ -87,12 +94,15 @@ const mapStateToProps = state => {
     products: state.product.products,
     productsLoading: state.product.loading,
     productsError: state.product.error,
+    foodnotes: state.foodnote.foodnotes,
+    foodnotesLoading: state.foodnote.loading,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchProducts: () => dispatch(actions.fetchProducts()),
+    fetchFoodnotes: () => dispatch(actions.fetchFoodnotes()),
     fetchCategories: () => dispatch(actions.fetchCategories()),
   }
 }

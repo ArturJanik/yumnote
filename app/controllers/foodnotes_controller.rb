@@ -2,7 +2,7 @@ class FoodnotesController < ApiController
   before_action :require_login
   
   def index
-    foodnotes = Foodnote.all
+    foodnotes = current_user.foodnotes.from_today.with_products
     render json: { foodnotes: foodnotes }
   end
 

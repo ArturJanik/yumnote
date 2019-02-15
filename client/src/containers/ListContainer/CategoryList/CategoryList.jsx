@@ -7,7 +7,7 @@ class CategoryList extends Component {
     return(
       <React.Fragment>
         <li className={styles['category-list-item--special']}><Link to={`/foodnotes/today`}>Today</Link></li>
-        <li className={styles['category-list-item--special']}><Link to={`/myproducts`}>My Foods</Link></li>
+        <li className={styles['category-list-item--special']}><Link to={`/myfoods`}>My Foods</Link></li>
         <li className={styles['category-list-item--special']}><Link to={`/latest`}>Lately Yummed</Link></li>
       </React.Fragment>
     )
@@ -16,7 +16,7 @@ class CategoryList extends Component {
   renderDynamicLinks() {
     if(this.props.categories.length > 0){
       return this.props.categories.map((category, index) => (
-        <li key={index} className={styles['category-list-item']}><a href="#" className="subMenuRevealBtn">{category.name}</a></li>
+        <li key={index} className={styles['category-list-item']}><a className="subMenuRevealBtn">{category.name}</a></li>
       ))
     }
   }
