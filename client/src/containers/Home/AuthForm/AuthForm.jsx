@@ -113,7 +113,9 @@ class AuthForm extends Component {
       );
     } else {
       errorMessage = (
-        <p>{this.props.error}</p>
+        <div className={styles['error-container']}>
+          <p>{this.props.error}</p>
+        </div>
       );
     }
     return errorMessage;
