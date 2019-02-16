@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get '/foodnotes/today' => 'foodnotes#index'
     # get '/foodnotes/yesterday' => 'foodnotes#yesterday'
     # get '/foodnotes/:day' => 'foodnotes#show'
+    resources :foodnotes, only: [:create,:update,:destroy]
     
     resources :users, except: [:index,:destroy] do
       # get 'statistics' => 'users#statistics'

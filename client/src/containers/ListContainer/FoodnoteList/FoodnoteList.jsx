@@ -9,6 +9,15 @@ import FoodnoteListItem from './FoodnoteListItem/FoodnoteListItem';
 
 class FoodnoteList extends Component {
 
+  state = {
+    total: {
+      kcal: 0,
+      carb: 0,
+      fat: 0,
+      prot: 0
+    }
+  }
+
   componentDidMount() {
     this.props.fetchFoodnotes();
   }
@@ -66,10 +75,10 @@ class FoodnoteList extends Component {
           <div className={styles['list-header-column1']}>Food</div>
           <div className={styles['list-header-column2']}>
             <div className={styles.wide}>Totals</div>
-            <div>0.0</div>
-            <div>0.0</div>
-            <div>0.0</div>
-            <div>0.0</div>
+            <div className={styles.totals}>{this.state.total.kcal}</div>
+            <div className={styles.totals}>{this.state.total.carb}g</div>
+            <div className={styles.totals}>{this.state.total.fat}g</div>
+            <div className={styles.totals}>{this.state.total.prot}g</div>
             <div className={styles.wide}>Amount</div>
             <div>Kcal</div>
             <div>Carb</div>

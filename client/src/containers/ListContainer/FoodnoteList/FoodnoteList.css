@@ -34,10 +34,14 @@
 .list-header-column2 div {
   flex: 0 0 17.5%;
   max-width: 17.5%;
+  padding: 2px;
 }
 .list-header-column2 div.wide {
   flex: 0 0 30%;
   max-width: 30%;
+}
+.list-header-column2 div.totals {
+  border-bottom: 1px solid #eee;
 }
 .list-header-column3 {
   align-items: flex-end;

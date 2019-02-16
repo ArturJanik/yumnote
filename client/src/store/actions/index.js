@@ -8,6 +8,7 @@ export {
 } from './product';
 export {
   fetchFoodnotes,
+  updateFoodnote,
 } from './foodnote';
 export {
   auth,

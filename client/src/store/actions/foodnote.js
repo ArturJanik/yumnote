@@ -1,24 +1,27 @@
 import {
   FETCH_FOODNOTES_START,
   FETCH_FOODNOTES_SUCCESS,
-  FETCH_FOODNOTES_FAIL
+  FETCH_FOODNOTES_FAIL,
+  UPDATE_FOODNOTE_START,
+  UPDATE_FOODNOTE_SUCCESS,
+  UPDATE_FOODNOTE_FAIL,
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
-export const fetchFoodnotesStart = () => {
+const fetchFoodnotesStart = () => {
   return {
     type: FETCH_FOODNOTES_START
   }
 }
 
-export const fetchFoodnotesSuccess = (foodnotes) => {
+const fetchFoodnotesSuccess = (foodnotes) => {
   return {
     type: FETCH_FOODNOTES_SUCCESS,
     foodnotes
   }
 }
 
-export const fetchFoodnotesFail = (error) => {
+const fetchFoodnotesFail = (error) => {
   return {
     type: FETCH_FOODNOTES_FAIL,
     error
@@ -39,5 +42,38 @@ export const fetchFoodnotes = () => {
         dispatch(fetchFoodnotesFail(err.response.data.errors));
       }
     })
+  }
+}
+
+const updateFoodnoteStart = () => {
+  return {
+    type: UPDATE_FOODNOTE_START
+  }
+}
+
+const updateFoodnoteSuccess = () => {
+  return {
+    type: UPDATE_FOODNOTE_SUCCESS
+  }
+}
+
+const updateFoodnoteFail = (error) => {
+  return {
+    type: UPDATE_FOODNOTE_FAIL,
+    error
+  }
+}
+
+export const updateFoodnote = (id, amount) => {
+  return dispatch => {
+    dispatch(updateFoodnoteStart());
+    axios.put('/api/foodnotes/'+id, {amount})
+    .then(response => {
+      dispatch(updateFoodnoteSuccess());
+    })
+    .catch(err => {
+      console.error('Update foodnote error:', err.response.data.errors);
+      dispatch(updateFoodnoteFail(err.response.data.errors));
+    });
   }
 }

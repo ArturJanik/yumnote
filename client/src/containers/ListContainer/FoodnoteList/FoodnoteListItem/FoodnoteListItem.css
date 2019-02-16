@@ -5,7 +5,7 @@
   display: flex;
   flex: 0 0 100%;
   max-width: 100%;
-  padding: 10px;
+  padding: 2px 10px;
 }
 .foodnote:hover {
   border-bottom: 1px solid #a3c220;
@@ -17,6 +17,7 @@
   max-width: 40%;
 }
 .foodnote-product-data {
+  align-items: center;
   display: flex;
   flex: 0 0 50%;
   max-width: 50%;
@@ -26,8 +27,20 @@
   max-width: 17.5%;
 }
 .foodnote-product-data div.wide {
+  align-items: center;
+  display: flex;
   flex: 0 0 30%;
   max-width: 30%;
+}
+.foodnote-product-data div.wide input {
+  flex: 0 0 50%;
+  max-width: 50%;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 18px;
+  padding: 10px;
+  width: 80px;
 }
 .foodnote-product-action {
   align-items: center;
