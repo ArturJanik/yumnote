@@ -26,6 +26,7 @@ class CategoryList extends Component {
       <ul>
         {this.renderFixedLinks()}
         {this.renderDynamicLinks()}
+        <li key='aaddfdfs' className={styles['category-list-item']}><Link to={`/myfoods`}>aaaa</Link></li>
         {/* <li className={styles['category-list-item']}>
           <a href="#" className="subMenuRevealBtn">Dairy, Cheese &amp; Eggs</a>
           <ul className="subcategoriesContainer">

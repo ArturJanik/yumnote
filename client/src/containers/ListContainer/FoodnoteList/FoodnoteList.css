@@ -19,27 +19,27 @@
   padding: 10px;
   width: 100%;
 }
-.c1 {
+.list-header-column1 {
   align-items: flex-end;
   display: flex;
   flex: 0 0 40%;
   max-width: 40%;
 }
-.c2 {
+.list-header-column2 {
   display: flex;
   flex: 0 0 50%;
   flex-wrap: wrap;
   max-width: 50%;
 }
-.c2 div {
+.list-header-column2 div {
   flex: 0 0 17.5%;
   max-width: 17.5%;
 }
-div.wide {
+.list-header-column2 div.wide {
   flex: 0 0 30%;
   max-width: 30%;
 }
-.c3 {
+.list-header-column3 {
   align-items: flex-end;
   display: flex;
   flex: 0 0 10%;

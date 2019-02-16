@@ -11,13 +11,21 @@ class FoodnoteListItem extends Component {
   renderFoodnoteListItem(foodnote) {
     return (
       <div className={styles.foodnote}>
-        Foodnote
+        <div className={styles['foodnote-product-name']}>{foodnote.product.name}</div>
+        <div className={styles['foodnote-product-data']}>
+          <div className={styles.wide}><input type="text" /></div>
+          <div>0.0</div>
+          <div>0.0</div>
+          <div>0.0</div>
+          <div>0.0</div>
+        </div>
+        <div className={styles['foodnote-product-actions']}>Action</div>
       </div>
     )
   }
   
   render() {
-    return this.renderFoodnoteListItem();
+    return this.renderFoodnoteListItem(this.props.foodnote);
   }
 }
 

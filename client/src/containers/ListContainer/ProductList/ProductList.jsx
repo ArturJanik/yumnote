@@ -14,7 +14,7 @@ class ProductList extends Component {
   }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={this.fetchProducts}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={this.props.fetchProducts}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {

@@ -30,7 +30,7 @@ export const fetchFoodnotes = () => {
     dispatch(fetchFoodnotesStart());
     axios.get('/api/foodnotes/today')
     .then(response => {
-      dispatch(fetchFoodnotesSuccess(response.data.foodnotes))
+      dispatch(fetchFoodnotesSuccess(response.data))
     })
     .catch(err => {
       if(err.response.status === 500){

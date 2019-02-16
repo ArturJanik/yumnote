@@ -14,7 +14,7 @@ class FoodnoteList extends Component {
   }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={this.fetchFoodnotes}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={this.props.fetchFoodnotes}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {
@@ -63,8 +63,8 @@ class FoodnoteList extends Component {
           <h1>{this.props.title}</h1>
         </div>
         <div className={styles['list-header']}>
-          <div className={styles.c1}>Food</div>
-          <div className={styles.c2}>
+          <div className={styles['list-header-column1']}>Food</div>
+          <div className={styles['list-header-column2']}>
             <div className={styles.wide}>Totals</div>
             <div>0.0</div>
             <div>0.0</div>
@@ -76,7 +76,7 @@ class FoodnoteList extends Component {
             <div>Fat</div>
             <div>Prot</div>
           </div>
-          <div className={styles.c3}>Action</div>
+          <div className={styles['list-header-column3']}>Action</div>
         </div>
         <div className={styles['list-body']}>
           {list}

@@ -5,7 +5,6 @@ import styles from './Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import AuthForm from './AuthForm/AuthForm';
-import * as actions from '../../store/actions/index';
 
 class Home extends Component {
 

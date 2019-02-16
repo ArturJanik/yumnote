@@ -13,7 +13,7 @@ class Foodnote < ApplicationRecord
   scope :from_today, -> { where('foodnotes.created_at BETWEEN ? AND ?', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)}
   # scope :from_yesterday, -> { where('foodnotes.created_at BETWEEN ? AND ?', Time.zone.yesterday.beginning_of_day, Time.zone.yesterday.end_of_day)}
   # scope :from_day, ->(date) { where('foodnotes.created_at BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)}
-  scope :with_products, -> { joins(:product) }
+  scope :with_products, -> { includes(:product) }
 
   #  Podczas przypisywania wartości do zmiennej amount trzeba sprawdzić czy wartość jest przesyłana z przecinkiem czy kropką i ją ujednolicić
     def amount=(val)

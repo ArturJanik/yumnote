@@ -2,8 +2,8 @@ class FoodnotesController < ApiController
   before_action :require_login
   
   def index
-    foodnotes = current_user.foodnotes.from_today.with_products
-    render json: { foodnotes: foodnotes }
+    foodnotes = current_user.foodnotes.from_today.select([:id, :product_id, :amount]).with_products
+    render json: foodnotes, each_serializer: FoodnoteSerializer 
   end
 
   # def show
