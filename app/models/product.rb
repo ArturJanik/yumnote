@@ -6,6 +6,10 @@ class Product < ApplicationRecord
 
   validates :name, length: { minimum: 2 }
   validates :kcal, numericality: { greater_than_or_equal_to: 0 }
+  validates :carb, numericality: { greater_than_or_equal_to: 0 }
+  validates :fat, numericality: { greater_than_or_equal_to: 0 }
+  validates :prot, numericality: { greater_than_or_equal_to: 0 }
+  validates :amount, numericality: { greater_than_or_equal_to: 1 }
   
   has_many :foodnotes
   belongs_to :category
