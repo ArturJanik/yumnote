@@ -9,6 +9,7 @@ export {
 export {
   fetchFoodnotes,
   updateFoodnote,
+  deleteFoodnote
 } from './foodnote';
 export {
   auth,

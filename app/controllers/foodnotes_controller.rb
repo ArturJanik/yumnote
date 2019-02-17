@@ -46,17 +46,21 @@ class FoodnotesController < ApiController
     end
   end
 
-  # def destroy
-  #   foodnote = Foodnote.find(params['id'])
-    
-  #   if foodnote
-  #     foodnote.destroy
-  #     render json: {}, status: 200
-  #   else
-  #     errors = { errors: { foodnote: ['Not found']}}
-  #     render json: errors, status: 404
-  #   end
-  # end
+  def destroy
+    foodnote = Foodnote.find(params['id'])
+
+    if current_user.id != foodnote.user_id
+      render json: { errors: 'User not permited to update this foodnote' }, status: 400
+    else
+      if foodnote
+        foodnote.destroy
+        render json: {}, status: 200
+      else
+        errors = { errors: { foodnote: ['Not found']}}
+        render json: errors, status: 404
+      end
+    end
+  end
 
   private
   def foodnote_params

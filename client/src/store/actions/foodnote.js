@@ -5,6 +5,9 @@ import {
   UPDATE_FOODNOTE_START,
   UPDATE_FOODNOTE_SUCCESS,
   UPDATE_FOODNOTE_FAIL,
+  DELETE_FOODNOTE_START,
+  DELETE_FOODNOTE_SUCCESS,
+  DELETE_FOODNOTE_FAIL
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
@@ -45,6 +48,7 @@ export const fetchFoodnotes = () => {
   }
 }
 
+
 const updateFoodnoteStart = (id) => {
   return {
     type: UPDATE_FOODNOTE_START,
@@ -78,5 +82,46 @@ export const updateFoodnote = (id, amount) => {
       console.error('Update foodnote error:', err.response.data.errors);
       dispatch(updateFoodnoteFail(err.response.data.errors));
     });
+  }
+}
+
+
+export const deleteFoodnoteStart = (foodnoteId) => {
+  return {
+    type: DELETE_FOODNOTE_START,
+    foodnoteId
+  }
+}
+
+export const deleteFoodnoteSuccess = (deletedId) => {
+  return {
+    type: DELETE_FOODNOTE_SUCCESS,
+    deletedId
+  }
+}
+
+export const deleteFoodnoteFail = (error, foodnoteId) => {
+  return {
+    type: DELETE_FOODNOTE_FAIL,
+    error,
+    foodnoteId
+  }
+}
+
+export const deleteFoodnote = (id) => {
+  return dispatch => {
+    dispatch(deleteFoodnoteStart(id));
+    axios.delete('/api/foodnotes/'+id)
+    .then(response => {
+      dispatch(deleteFoodnoteSuccess(id));
+    })
+    .catch(err => {
+      console.error('Delete foodnote error:', err);
+      if(err.response.status === 500){
+        dispatch(deleteFoodnoteFail('Unable to delete foodnote. Please check your connection or try again later.', id));
+      } else {
+        dispatch(deleteFoodnoteFail(err.response.data.errors, id));
+      }
+    })
   }
 }
