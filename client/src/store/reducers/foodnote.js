@@ -23,8 +23,14 @@ const fetchFoodnotesStart = (state, action) => {
 }
 
 const fetchFoodnotesSuccess = (state, action) => {
+  const foodnotes = action.foodnotes.map(note => (
+    {
+      ...note,
+      updateInProgress: false
+    }
+  ));
   return updateObject(state, {
-    foodnotes: action.foodnotes,
+    foodnotes,
     error: null,
     loading: false
   })
@@ -39,16 +45,21 @@ const fetchFoodnotesFail = (state, action) => {
 
 
 const updateFoodnoteStart = (state, action) => {
+  const updatedFoodnotes = [ ...state.foodnotes ].map(note => note.id === action.id ?
+    { ...note, updateInProgress: true } : note);
   return updateObject(state, {
     error: null,
-    loading: true
+    foodnotes: updatedFoodnotes
   })
 }
 
 const updateFoodnoteSuccess = (state, action) => {
+  const updatedFoodnotes = [ ...state.foodnotes ].map(note => note.id === action.id ?
+    { ...note, amount: action.amount, updateInProgress: false } : note);
   return updateObject(state, {
     error: null,
-    loading: false
+    loading: false,
+    foodnotes: updatedFoodnotes
   })
 }
 

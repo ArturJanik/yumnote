@@ -48,7 +48,7 @@ export const logout = () => {
     axios.defaults.headers['token'] = localStorage.getItem('token');
   })
   .catch(err => {
-    console.error('Logout error: ', err.response.data.errors);
+    console.error('Logout error: ', err);
   });
   return {
     type: AUTH_LOGOUT

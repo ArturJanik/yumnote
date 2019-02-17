@@ -45,15 +45,18 @@ export const fetchFoodnotes = () => {
   }
 }
 
-const updateFoodnoteStart = () => {
+const updateFoodnoteStart = (id) => {
   return {
-    type: UPDATE_FOODNOTE_START
+    type: UPDATE_FOODNOTE_START,
+    id,
   }
 }
 
-const updateFoodnoteSuccess = () => {
+const updateFoodnoteSuccess = (id, amount) => {
   return {
-    type: UPDATE_FOODNOTE_SUCCESS
+    type: UPDATE_FOODNOTE_SUCCESS,
+    id,
+    amount
   }
 }
 
@@ -66,10 +69,10 @@ const updateFoodnoteFail = (error) => {
 
 export const updateFoodnote = (id, amount) => {
   return dispatch => {
-    dispatch(updateFoodnoteStart());
+    dispatch(updateFoodnoteStart(id));
     axios.put('/api/foodnotes/'+id, {amount})
     .then(response => {
-      dispatch(updateFoodnoteSuccess());
+      dispatch(updateFoodnoteSuccess(id, amount));
     })
     .catch(err => {
       console.error('Update foodnote error:', err.response.data.errors);

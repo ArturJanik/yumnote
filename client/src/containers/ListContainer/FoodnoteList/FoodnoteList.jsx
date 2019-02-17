@@ -47,7 +47,7 @@ class FoodnoteList extends Component {
   renderEmpty() {
     return (
       <div className={styles['list-empty']}>
-        No foodnotes yet :(<br />Start adding them by selecting one of categories on the right side :)
+        No foodnotes yet :(<br />Start adding them by selecting one of categories on the right side.
       </div>
     );
   }

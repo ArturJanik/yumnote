@@ -19,7 +19,7 @@ class FoodnoteListItem extends Component {
     this.setState({amount: event.target.value})
   }
 
-  onAmountInputBlue = (event) => {
+  onAmountInputBlur = (event) => {
     this.props.updateFoodnote(this.props.foodnote.id, event.target.value);
   }
 
@@ -29,7 +29,12 @@ class FoodnoteListItem extends Component {
         <div className={styles['foodnote-product-name']}>{foodnote.product.name}</div>
         <div className={styles['foodnote-product-data']}>
           <div className={styles.wide}>
-            <input type="text" value={this.state.amount} onChange={this.onAmountChange} onBlur={this.onAmountInputBlue} />
+            <input type="text" 
+              value={this.state.amount} 
+              onChange={this.onAmountChange} 
+              onBlur={this.onAmountInputBlur} 
+              disabled={foodnote.updateInProgress} 
+            />
             <span>{foodnote.product.unit}</span>
           </div>
           <div>{foodnote.product.kcal * this.state.amount}</div>
