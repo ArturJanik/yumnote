@@ -2,6 +2,9 @@ import {
   FETCH_FOODNOTES_START,
   FETCH_FOODNOTES_SUCCESS,
   FETCH_FOODNOTES_FAIL,
+  ADD_FOODNOTE_START,
+  ADD_FOODNOTE_SUCCESS,
+  ADD_FOODNOTE_FAIL,
   UPDATE_FOODNOTE_START,
   UPDATE_FOODNOTE_SUCCESS,
   UPDATE_FOODNOTE_FAIL,
@@ -44,6 +47,25 @@ const fetchFoodnotesFail = (state, action) => {
   return updateObject(state, {
     error: action.error,
     loading: false
+  })
+}
+
+
+const addFoodnoteStart = (state, action) => {
+  return updateObject(state, { 
+    error: null
+  })
+}
+
+const addFoodnoteSuccess = (state, action) => {
+  return updateObject(state, {
+    error: null
+  })
+}
+
+const addFoodnoteFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error
   })
 }
 
@@ -108,6 +130,10 @@ const reducer = (state = initialState, action) => {
     case FETCH_FOODNOTES_START: return fetchFoodnotesStart(state, action);
     case FETCH_FOODNOTES_SUCCESS: return fetchFoodnotesSuccess(state, action);
     case FETCH_FOODNOTES_FAIL: return fetchFoodnotesFail(state, action);
+
+    case ADD_FOODNOTE_START: return addFoodnoteStart(state, action);
+    case ADD_FOODNOTE_SUCCESS: return addFoodnoteSuccess(state, action);
+    case ADD_FOODNOTE_FAIL: return addFoodnoteFail(state, action);
 
     case UPDATE_FOODNOTE_START: return updateFoodnoteStart(state, action);
     case UPDATE_FOODNOTE_SUCCESS: return updateFoodnoteSuccess(state, action);

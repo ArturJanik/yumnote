@@ -2,6 +2,9 @@ import {
   FETCH_FOODNOTES_START,
   FETCH_FOODNOTES_SUCCESS,
   FETCH_FOODNOTES_FAIL,
+  ADD_FOODNOTE_START,
+  ADD_FOODNOTE_SUCCESS,
+  ADD_FOODNOTE_FAIL,
   UPDATE_FOODNOTE_START,
   UPDATE_FOODNOTE_SUCCESS,
   UPDATE_FOODNOTE_FAIL,
@@ -43,6 +46,44 @@ export const fetchFoodnotes = () => {
         dispatch(fetchFoodnotesFail('Unable to load list. Please check your connection or try again later.'));
       } else {
         dispatch(fetchFoodnotesFail(err.response.data.errors));
+      }
+    })
+  }
+}
+
+
+const addFoodnoteStart = () => {
+  return {
+    type: ADD_FOODNOTE_START
+  }
+}
+
+const addFoodnoteSuccess = () => {
+  return {
+    type: ADD_FOODNOTE_SUCCESS
+  }
+}
+
+const addFoodnoteFail = (error) => {
+  return {
+    type: ADD_FOODNOTE_FAIL,
+    error
+  }
+}
+
+export const addFoodnote = (data) => {
+  return dispatch => {
+    dispatch(addFoodnoteStart());
+    axios.post('/api/foodnotes', data)
+    .then(response => {
+      dispatch(addFoodnoteSuccess());
+    })
+    .catch(err => {
+      console.error('Create foodnote error:', err);
+      if(err.response.status === 500){
+        dispatch(addFoodnoteFail('Unable to create new foodnote. Please check your connection or try again later.'));
+      } else {
+        dispatch(addFoodnoteFail(err.response.data.errors));
       }
     })
   }

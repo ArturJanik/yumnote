@@ -6,29 +6,24 @@ class FoodnotesController < ApiController
     render json: foodnotes, each_serializer: FoodnoteSerializer 
   end
 
-  # def show
-  #   foodnote = Foodnote.find_by id: params[:id]
-  #   if foodnote
-  #     render json: { foodnote: foodnote }
-  #   else
-  #     errors = { errors: { foodnote: ['Not found']}}
-  #     render json: errors, status: 404
-  #   end
-  # end
-
-  # def create
-  #   foodnote = Foodnote.new(foodnote_params)
-  #   foodnote.user = current_user
+  def create
+    foodnote = Foodnote.new(foodnote_params)
+    foodnote.user = current_user
+    puts 'Product id:'
+    puts params['product_id']
+    puts 'Amount:'
+    puts params['amount']
+    foodnote.product = Product.find(params['product_id'])
     
-  #   if promo.save
-  #     render json: {
-  #       message: 'ok',
-  #       foodnote: foodnote
-  #     }
-  #   else
-  #     render json: { errors: foodnote.errors }, status: 400
-  #   end
-  # end
+    if foodnote.save
+      render json: {
+        message: 'ok',
+        foodnote: foodnote
+      }
+    else
+      render json: { errors: foodnote.errors }, status: 400
+    end
+  end
 
   def update
     foodnote = Foodnote.find(params['id'])
@@ -64,6 +59,6 @@ class FoodnotesController < ApiController
 
   private
   def foodnote_params
-    params.require(:foodnote).permit(:amount, :created_at, :product, :user)
+    params.require(:foodnote).permit(:amount, :created_at, :product, :user, :product_id)
   end
 end

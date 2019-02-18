@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './ProductListItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import * as actions from '../../../../store/actions/index';
-
-import Spinner from '../../../../components/UI/Spinner/Spinner';
+import * as actions from '../../../../store/actions/index';
 
 class ProductListItem extends Component {
   state = {
@@ -12,6 +10,11 @@ class ProductListItem extends Component {
   }
 
   submitFoodnote = () => {
+    const data = {
+      product_id: this.props.product.id,
+      amount: this.state.amount
+    }
+    this.props.addFoodnote(data);
     console.log('Foodnote submitted.', 'Product id: ' + this.props.product.id, 'Date created: ' + new Date())
   }
 
@@ -49,22 +52,21 @@ class ProductListItem extends Component {
   }
   
   render() {
-    const productListItem = this.props.product.deleteInProgress ? <Spinner /> : this.renderProductListItem(this.props.product);
-    return productListItem;
+    return this.renderProductListItem(this.props.product);
   }
 }
 
 const mapStateToProps = state => {
   return {
-    error: state.foodnote.error, // jesli nie uda sie utworzyc foodnote
-    loading: state.foodnote.loading // na czas tworzenia zeby nie mozna bylo kliknac drugi raz
+    // error: state.foodnote.error, // jesli nie uda sie utworzyc foodnote
+    // loading: state.foodnote.loading // na czas tworzenia zeby nie mozna bylo kliknac drugi raz
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-    
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    addFoodnote: (data) => dispatch(actions.addFoodnote(data)),
+  }
+}
 
-export default connect(mapStateToProps, null)(ProductListItem);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListItem);
