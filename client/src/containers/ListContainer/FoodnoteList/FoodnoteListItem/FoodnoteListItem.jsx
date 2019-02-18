@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './FoodnoteListItem.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../../../store/actions/index';
 
-import MiniSpinner from '../../../../components/UI/MiniSpinner/MiniSpinner';
-import Actions from './Actions/Actions';
+import FoodnoteActions from './FoodnoteActions/FoodnoteActions';
 import FoodnoteData from './FoodnoteData/FoodnoteData';
 
 class FoodnoteListItem extends Component {
@@ -32,7 +30,7 @@ class FoodnoteListItem extends Component {
       <div className={styles.foodnote}>
         <div className={styles['foodnote-product-name']}>{foodnote.product.name}</div>
         <FoodnoteData foodnote={foodnote} amount={this.state.amount} onChange={this.onAmountChange} onBlur={this.onAmountInputBlur} />
-        <Actions deleteInProgress={foodnote.deleteInProgress} onDeleteClicked={() => this.props.deleteFoodnote(foodnote.id)} />
+        <FoodnoteActions deleteInProgress={foodnote.deleteInProgress} onDeleteClicked={() => this.props.deleteFoodnote(foodnote.id)} />
       </div>
     )
   }

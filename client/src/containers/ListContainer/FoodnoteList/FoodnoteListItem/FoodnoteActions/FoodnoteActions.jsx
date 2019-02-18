@@ -1,10 +1,10 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import styles from './Actions.css';
+import styles from './FoodnoteActions.css';
 
 import MiniSpinner from '../../../../../components/UI/MiniSpinner/MiniSpinner';
 
-const actions = (props) => {
+const foodnoteActions = (props) => {
   return (
     <div className={styles['foodnote-product-actions']}>
       {props.deleteInProgress ? (
@@ -21,4 +21,4 @@ const actions = (props) => {
   )
 }
 
-export default actions;
+export default foodnoteActions;

@@ -9,7 +9,16 @@ import AddButton from './AddButton/AddButton';
 
 class ProductListItem extends Component {
   state = {
-    amount: '1.0'
+    amount: '1.0',
+    creationCompleted: false
+  }
+
+  componentDidUpdate() {
+    if(!this.props.createInProgress && !(this.props.createdForProduct === this.props.product.id)){
+      this.setState({ creationCompleted: true });
+    } else {
+      this.setState({ creationCompleted: false });
+    }
   }
 
   submitFoodnote = () => {
@@ -40,7 +49,7 @@ class ProductListItem extends Component {
     return (
       <div className={styles.form}>
         <AmountInput inProgress={creationInProgress} onChange={this.onAmountChange} amount={this.state.amount} unit={product.unit} />
-        <AddButton inProgress={creationInProgress} clicked={this.submitFoodnote} />
+        <AddButton inProgress={creationInProgress} clicked={this.submitFoodnote} created={this.state.creationCompleted} />
       </div>
     )
   }
