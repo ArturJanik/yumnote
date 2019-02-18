@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styles from './ProductListItem.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../../../store/actions/index';
 
-import MiniSpinner from '../../../../components/UI/MiniSpinner/MiniSpinner';
 import SingleMacro from './SingleMacro/SingleMacro';
 import AmountInput from './AmountInput/AmountInput';
 import AddButton from './AddButton/AddButton';

@@ -1,0 +1,20 @@
+.foodnote-product-actions {
+  align-items: center;
+  display: flex;
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+.action-delete {
+  color: #b33802;
+  cursor: pointer;
+  font-weight: 600;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.action-delete svg {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.action-delete:hover {
+  color: #333;
+}

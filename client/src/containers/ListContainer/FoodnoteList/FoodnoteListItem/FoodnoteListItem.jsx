@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import styles from './FoodnoteListItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../../../store/actions/index';
+
 import MiniSpinner from '../../../../components/UI/MiniSpinner/MiniSpinner';
+import Actions from './Actions/Actions';
+import FoodnoteData from './FoodnoteData/FoodnoteData';
 
 class FoodnoteListItem extends Component {
   state = {
@@ -22,44 +25,16 @@ class FoodnoteListItem extends Component {
     if(String(this.props.foodnote.amount) !== String(event.target.value))
       this.props.updateFoodnote(this.props.foodnote.id, event.target.value);
   }
-
-  renderFoodnoteListItem(foodnote) {
+  
+  render() {
+    const foodnote = this.props.foodnote;
     return (
       <div className={styles.foodnote}>
         <div className={styles['foodnote-product-name']}>{foodnote.product.name}</div>
-        <div className={styles['foodnote-product-data']}>
-          <div className={styles.wide}>
-            <input type="text" 
-              value={this.state.amount} 
-              onChange={this.onAmountChange} 
-              onBlur={this.onAmountInputBlur} 
-              disabled={foodnote.updateInProgress || foodnote.deleteInProgress} 
-            />
-            <span>{foodnote.product.unit}</span>
-          </div>
-          <div>{foodnote.product.kcal * this.state.amount}</div>
-          <div>{foodnote.product.carb * this.state.amount}</div>
-          <div>{foodnote.product.fat * this.state.amount}</div>
-          <div>{foodnote.product.prot * this.state.amount}</div>
-        </div>
-        <div className={styles['foodnote-product-actions']}>
-          {foodnote.deleteInProgress ? (
-            <div className={styles['action-delete']}>
-              <MiniSpinner />deleting...
-            </div>
-          ) : (
-            <div className={styles['action-delete']} onClick={() => this.props.deleteFoodnote(foodnote.id)}>
-              <FontAwesomeIcon icon="trash" />delete
-            </div>
-          )
-          }
-        </div>
+        <FoodnoteData foodnote={foodnote} amount={this.state.amount} onChange={this.onAmountChange} onBlur={this.onAmountInputBlur} />
+        <Actions deleteInProgress={foodnote.deleteInProgress} onDeleteClicked={() => this.props.deleteFoodnote(foodnote.id)} />
       </div>
     )
-  }
-  
-  render() {
-    return this.renderFoodnoteListItem(this.props.foodnote);
   }
 }
 
