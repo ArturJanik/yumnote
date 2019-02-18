@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import styles from './FoodnoteListItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../../../store/actions/index';
-
-// import Spinner from '../../../../components/UI/Spinner/Spinner';
+import MiniSpinner from '../../../../components/UI/MiniSpinner/MiniSpinner';
 
 class FoodnoteListItem extends Component {
   state = {
@@ -20,7 +19,8 @@ class FoodnoteListItem extends Component {
   }
 
   onAmountInputBlur = (event) => {
-    this.props.updateFoodnote(this.props.foodnote.id, event.target.value);
+    if(String(this.props.foodnote.amount) !== String(event.target.value))
+      this.props.updateFoodnote(this.props.foodnote.id, event.target.value);
   }
 
   renderFoodnoteListItem(foodnote) {
@@ -33,7 +33,7 @@ class FoodnoteListItem extends Component {
               value={this.state.amount} 
               onChange={this.onAmountChange} 
               onBlur={this.onAmountInputBlur} 
-              disabled={foodnote.updateInProgress} 
+              disabled={foodnote.updateInProgress || foodnote.deleteInProgress} 
             />
             <span>{foodnote.product.unit}</span>
           </div>
@@ -45,7 +45,7 @@ class FoodnoteListItem extends Component {
         <div className={styles['foodnote-product-actions']}>
           {foodnote.deleteInProgress ? (
             <div className={styles['action-delete']}>
-              <FontAwesomeIcon icon="spinner" />deleting...
+              <MiniSpinner />deleting...
             </div>
           ) : (
             <div className={styles['action-delete']} onClick={() => this.props.deleteFoodnote(foodnote.id)}>
@@ -62,13 +62,6 @@ class FoodnoteListItem extends Component {
     return this.renderFoodnoteListItem(this.props.foodnote);
   }
 }
-
-// const mapStateToProps = state => {
-//   return {
-//     error: state.foodnote.error, // jesli nie uda sie utworzyc foodnote
-//     loading: state.foodnote.loading // na czas tworzenia zeby nie mozna bylo kliknac drugi raz
-//   }
-// }
 
 const mapDispatchToProps = dispatch => {
   return {

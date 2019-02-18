@@ -1,0 +1,8 @@
+.macro {
+  border: 1px solid #eee;
+  text-align: center;
+  width: 25%;
+}
+.macro-header {
+  font-weight: 600;
+}

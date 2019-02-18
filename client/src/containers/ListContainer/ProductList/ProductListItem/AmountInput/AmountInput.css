@@ -1,0 +1,18 @@
+.amount-input {
+  align-items: center;
+  display: flex;
+  flex: 0 0 120px;
+  max-width: 120px;
+}
+.amount-input input {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-size: 18px;
+  padding: 10px;
+  width: 80px;
+}
+.amount-unit {
+  flex: 0 0 40px;
+  max-width: 40px;
+  padding-left: 5px;
+}

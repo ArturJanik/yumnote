@@ -17,7 +17,9 @@ import { updateObject } from '../../utilities/utility';
 const initialState = {
   error: null,
   loading: false,
-  foodnotes: []
+  foodnotes: [],
+  createInProgress: false,
+  createdForProduct: null
 }
 
 
@@ -53,19 +55,25 @@ const fetchFoodnotesFail = (state, action) => {
 
 const addFoodnoteStart = (state, action) => {
   return updateObject(state, { 
-    error: null
+    error: null,
+    createInProgress: true,
+    createdForProduct: action.productId
   })
 }
 
 const addFoodnoteSuccess = (state, action) => {
   return updateObject(state, {
-    error: null
+    error: null,
+    createInProgress: false,
+    createdForProduct: null
   })
 }
 
 const addFoodnoteFail = (state, action) => {
   return updateObject(state, {
-    error: action.error
+    error: action.error,
+    creationInProgress: false,
+    createdForProduct: null
   })
 }
 

@@ -4,6 +4,11 @@ import styles from './ProductListItem.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import * as actions from '../../../../store/actions/index';
 
+import MiniSpinner from '../../../../components/UI/MiniSpinner/MiniSpinner';
+import SingleMacro from './SingleMacro/SingleMacro';
+import AmountInput from './AmountInput/AmountInput';
+import AddButton from './AddButton/AddButton';
+
 class ProductListItem extends Component {
   state = {
     amount: '1.0'
@@ -15,51 +20,49 @@ class ProductListItem extends Component {
       amount: this.state.amount
     }
     this.props.addFoodnote(data);
-    console.log('Foodnote submitted.', 'Product id: ' + this.props.product.id, 'Date created: ' + new Date())
   }
 
-  renderProductListItem(product) {
+  onAmountChange = (event) => {
+    this.setState({amount: event.target.value})
+  }
+
+  generateMacros = (product) => {
     return (
-      <div className={styles.product}>
-        <p className={styles.name}>{product.name}</p>
-        <div className={styles['macros-container']}>
-          <div className={styles.macro}>
-            <p className={styles['macro-header']}>Kcal:</p>
-            <p className={styles['macro-value']}>{product.kcal}</p>
-          </div>
-          <div className={styles.macro}>
-            <p className={styles['macros-header']}>Carb:</p>
-            <p className={styles['macros-value']}>{product.carb}</p>
-          </div>
-          <div className={styles.macro}>
-            <p className={styles['macros-header']}>Fat:</p>
-            <p className={styles['macros-value']}>{product.fat}</p>
-          </div>
-          <div className={styles.macro}>
-            <p className={styles['macros-header']}>Prot:</p>
-            <p className={styles['macros-value']}>{product.prot}</p>
-          </div>
-        </div>
-        <div className={styles.form}>
-          <div className={styles['amount-input']}>
-            <input type="text" onChange={event => this.setState({amount: event.target.value})} placeholder="Amount" value={this.state.amount} />
-            <p className={styles['amount-unit']}>{product.unit}</p>
-          </div>
-          <div className={styles['amount-add']} onClick={this.submitFoodnote}><FontAwesomeIcon icon={['far', 'plus-square']} /></div>
-        </div>
+      <div className={styles['macros-container']}>
+        <SingleMacro name="Kcal" val={product.kcal} amount={this.state.amount} />
+        <SingleMacro name="Carb" val={product.carb} amount={this.state.amount} />
+        <SingleMacro name="Fat" val={product.fat} amount={this.state.amount} />
+        <SingleMacro name="Prot" val={product.prot} amount={this.state.amount} />
+      </div>
+    )
+  }
+
+  generateForm = (product) => {
+    const creationInProgress = this.props.createInProgress && (this.props.createdForProduct === product.id);
+    return (
+      <div className={styles.form}>
+        <AmountInput inProgress={creationInProgress} onChange={this.onAmountChange} amount={this.state.amount} unit={product.unit} />
+        <AddButton inProgress={creationInProgress} clicked={this.submitFoodnote} />
       </div>
     )
   }
   
   render() {
-    return this.renderProductListItem(this.props.product);
+    const product = this.props.product;
+    return (
+      <div className={styles.product}>
+        <p className={styles.name}>{product.name}</p>
+        {this.generateMacros(product)}
+        {this.generateForm(product)}
+      </div>
+    )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    // error: state.foodnote.error, // jesli nie uda sie utworzyc foodnote
-    // loading: state.foodnote.loading // na czas tworzenia zeby nie mozna bylo kliknac drugi raz
+    createInProgress: state.foodnote.createInProgress,
+    createdForProduct: state.foodnote.createdForProduct
   }
 }
 

@@ -24,14 +24,6 @@
   flex: 0 0 250px;
   max-width: 250px;
 }
-.macro {
-  border: 1px solid #eee;
-  text-align: center;
-  width: 25%;
-}
-.macro-header {
-  font-weight: 600;
-}
 
 .form {
   display: flex;
@@ -39,45 +31,4 @@
   height: 50px;
   margin-left: 75px;
   max-width: 100%;
-}
-.amount-input {
-  align-items: center;
-  display: flex;
-  flex: 0 0 120px;
-  max-width: 120px;
-}
-.amount-input input {
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  font-size: 18px;
-  padding: 10px;
-  width: 80px;
-}
-.amount-unit {
-  flex: 0 0 40px;
-  max-width: 40px;
-  padding-left: 5px;
-}
-.amount-add {
-  background: #a3c220;
-  color: #fff;
-  cursor: pointer;
-  display: flex;
-  height: 50px;
-  justify-content: center;
-  line-height: 50px;
-  position: relative;
-  text-align: center;
-  transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
-  transform-style: preserve-3d;
-  transform-origin: 50% 50% 0;
-  transform: rotateX(0deg);
-  width: 100%;
-}
-.amount-add:hover {
-  background: #516110;
-}
-.amount-add svg {
-  height: 50px;
-  width: 20px !important;
 }
