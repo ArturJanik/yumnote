@@ -20,16 +20,14 @@ class DatePicker extends Component {
       maxDate: new Date(),
       onSelect: () => {
         const date = moment(picker.toString(), 'DD/MM/YYYY').format("YYYYMMDD");
-        this.props.onDateSelected(date)
-        // this.props.history.push(`/foodnotes/${date}`);
-        // this.setState({ otherDaySelected: true });
+        this.props.onDateSelected(date);
       }
     });
   }
 
   render(){
     return (
-      <div {...this.props} ref={this.datePickerRef}>{this.props.children}</div>
+      <div className={this.props.className} ref={this.datePickerRef}>{this.props.children}</div>
     )
   }
 }
