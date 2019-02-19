@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Pikaday from 'pikaday';
-// eslint-disable-next-line import/no-webpack-loader-syntax
-import '!style-loader!css-loader!pikaday/css/pikaday.css';
-import * as moment from 'moment';
 
 import styles from './FoodnoteList.css';
 import * as actions from '../../../store/actions/index';
@@ -12,6 +8,7 @@ import * as actions from '../../../store/actions/index';
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import FoodnoteListItem from './FoodnoteListItem/FoodnoteListItem';
+import DatePicker from '../DatePicker/DatePicker';
 
 class FoodnoteList extends Component {
   state = {
@@ -23,12 +20,9 @@ class FoodnoteList extends Component {
     },
     otherDaySelected: false
   }
-  
-  datePickerTrigger = React.createRef();
 
   componentDidMount() {
     this.setState({otherDaySelected: (this.props.day !== undefined && this.props.day !== 'yesterday')});
-    this.initializeDatePicker();
     this.props.fetchFoodnotes(this.props.day);
   }
 
@@ -37,19 +31,6 @@ class FoodnoteList extends Component {
       if(this.props.day === undefined || this.props.day === 'yesterday') this.setState({otherDaySelected: false});
       this.props.fetchFoodnotes(this.props.day);
     }
-  }
-
-  initializeDatePicker = () => {
-    this.picker = new Pikaday({
-      field: this.datePickerTrigger.current,
-      format: 'DD/MM/YYYY',
-      maxDate: new Date(),
-      onSelect: () => {
-        const date = moment(this.picker.toString(), 'DD/MM/YYYY').format("YYYYMMDD");
-        this.props.history.push(`/foodnotes/${date}`);
-        this.setState({ otherDaySelected: true });
-      }
-    });
   }
   
   renderError() {
@@ -107,6 +88,11 @@ class FoodnoteList extends Component {
     return this.props.foodnotes.map((foodnote, index) => <FoodnoteListItem key={foodnote.id} foodnote={foodnote} />)
   }
 
+  dateSelected = (date) => {
+    this.props.history.push(`/foodnotes/${date}`);
+    this.setState({ otherDaySelected: true });
+  }
+
   render(){
     let list = <Spinner />;
     if(this.props.error !== null) {
@@ -124,7 +110,7 @@ class FoodnoteList extends Component {
           <div className={styles['foodnote-day']}>
             <NavLink to="/foodnotes/today" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Today</NavLink>
             <NavLink to="/foodnotes/yesterday" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Yesterday</NavLink>
-            <div className={this.state.otherDaySelected ? styles['day-btn--active'] : styles['day-btn']} ref={this.datePickerTrigger}>Other</div>
+            <DatePicker className={this.state.otherDaySelected ? styles['day-btn--active'] : styles['day-btn']} onDateSelected={this.dateSelected}>Other</DatePicker>
           </div>
         </div>
         {this.renderListHeader()}
