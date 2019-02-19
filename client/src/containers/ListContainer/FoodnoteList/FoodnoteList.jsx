@@ -27,7 +27,7 @@ class FoodnoteList extends Component {
   datePickerTrigger = React.createRef();
 
   componentDidMount() {
-    if(this.props.day === undefined || this.props.day === 'yesterday') this.setState({otherDaySelected: false});
+    this.setState({otherDaySelected: (this.props.day !== undefined && this.props.day !== 'yesterday')});
     this.initializeDatePicker();
     this.props.fetchFoodnotes(this.props.day);
   }
