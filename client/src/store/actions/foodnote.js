@@ -37,14 +37,16 @@ const fetchFoodnotesFail = (error) => {
 export const fetchFoodnotes = (day) => {
   let url = '/api/foodnotes/today';
   switch (day) {
+    case undefined:
+      break;
     case 'yesterday':
       url = '/api/foodnotes/yesterday'
       break;
-  
     default:
+      url = `/api/foodnotes/${day}`
       break;
   }
-  console.log(day)
+  
   return dispatch => {
     dispatch(fetchFoodnotesStart());
     axios.get(url)

@@ -11,13 +11,15 @@ class FoodnotesController < ApiController
     render json: foodnotes, each_serializer: FoodnoteSerializer
   end
 
+  def show
+    date = Date.parse(params[:day])
+    foodnotes = current_user.foodnotes.from_day(date).select([:id, :product_id, :amount]).with_products
+    render json: foodnotes, each_serializer: FoodnoteSerializer
+  end
+
   def create
     foodnote = Foodnote.new(foodnote_params)
     foodnote.user = current_user
-    puts 'Product id:'
-    puts params['product_id']
-    puts 'Amount:'
-    puts params['amount']
     foodnote.product = Product.find(params['product_id'])
     
     if foodnote.save

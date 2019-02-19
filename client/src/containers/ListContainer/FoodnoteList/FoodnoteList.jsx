@@ -20,18 +20,21 @@ class FoodnoteList extends Component {
       carb: 0,
       fat: 0,
       prot: 0
-    }
+    },
+    otherDaySelected: false
   }
   
   datePickerTrigger = React.createRef();
 
   componentDidMount() {
+    if(this.props.day === undefined || this.props.day === 'yesterday') this.setState({otherDaySelected: false});
     this.initializeDatePicker();
     this.props.fetchFoodnotes(this.props.day);
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.day !== prevProps.day) {
+      if(this.props.day === undefined || this.props.day === 'yesterday') this.setState({otherDaySelected: false});
       this.props.fetchFoodnotes(this.props.day);
     }
   }
@@ -44,12 +47,13 @@ class FoodnoteList extends Component {
       onSelect: () => {
         const date = moment(this.picker.toString(), 'DD/MM/YYYY').format("YYYYMMDD");
         this.props.history.push(`/foodnotes/${date}`);
+        this.setState({ otherDaySelected: true });
       }
     });
   }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={this.props.fetchFoodnotes}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={() => this.props.fetchFoodnotes(this.props.day)}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {
@@ -120,8 +124,7 @@ class FoodnoteList extends Component {
           <div className={styles['foodnote-day']}>
             <NavLink to="/foodnotes/today" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Today</NavLink>
             <NavLink to="/foodnotes/yesterday" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Yesterday</NavLink>
-            <div className={styles['day-btn']} ref={this.datePickerTrigger}>Other</div>
-            <NavLink to="/foodnotes/20190218" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Other</NavLink>
+            <div className={this.state.otherDaySelected ? styles['day-btn--active'] : styles['day-btn']} ref={this.datePickerTrigger}>Other</div>
           </div>
         </div>
         {this.renderListHeader()}

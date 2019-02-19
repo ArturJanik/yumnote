@@ -40,7 +40,7 @@ class ListContainer extends Component {
         const title = moment(day, 'YYYYMMDD').format("DD MMM YYYY");
         list = <FoodnoteList 
           title={title}
-          day="yesterday"
+          day={day}
         />
         break;
       default:
