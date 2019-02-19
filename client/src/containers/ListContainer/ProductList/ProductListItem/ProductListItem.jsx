@@ -13,15 +13,21 @@ class ProductListItem extends Component {
     creationCompleted: false
   }
 
-  componentDidUpdate() {
-    if(!this.props.createInProgress && !(this.props.createdForProduct === this.props.product.id)){
+  componentDidUpdate(prevProps) {
+    if(prevProps.createdForProduct === this.props.product.id){
       this.setState({ creationCompleted: true });
-    } else {
-      this.setState({ creationCompleted: false });
+      this.timer = setTimeout(() => {
+        this.setState({ creationCompleted: false });
+      }, 1000);
     }
   }
 
+  componentWillUnmount() {
+    if(this.timer) clearTimeout(this.timer);
+  }
+
   submitFoodnote = () => {
+    this.setState({ creationCompleted: false });
     const data = {
       product_id: this.props.product.id,
       amount: this.state.amount

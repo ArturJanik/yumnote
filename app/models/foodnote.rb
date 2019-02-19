@@ -9,7 +9,7 @@ class Foodnote < ApplicationRecord
   
   # scope :created_between, lambda {|start_date, end_date| where("created_at >= ? AND created_at <= ?", start_date, end_date )}
   scope :from_today, -> { where('foodnotes.created_at BETWEEN ? AND ?', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)}
-  # scope :from_yesterday, -> { where('foodnotes.created_at BETWEEN ? AND ?', Time.zone.yesterday.beginning_of_day, Time.zone.yesterday.end_of_day)}
+  scope :from_yesterday, -> { where('foodnotes.created_at BETWEEN ? AND ?', Time.zone.yesterday.beginning_of_day, Time.zone.yesterday.end_of_day)}
   # scope :from_day, ->(date) { where('foodnotes.created_at BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)}
   scope :with_products, -> { includes(:product) }
 

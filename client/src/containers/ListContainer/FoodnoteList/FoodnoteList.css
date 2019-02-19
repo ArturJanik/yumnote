@@ -1,6 +1,31 @@
 .foodnote-list {
   flex: 0 1 100%;
 }
+.foodnote-day {
+  display: flex;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.day-btn {
+  background: #fff;
+  border: 1px solid #eee;
+  display: block;
+  padding: 10px;
+}
+.day-btn:hover {
+  border: 1px solid #ccc;
+  color: #7a9118;
+  cursor: pointer;
+}
+.day-btn--active {
+  composes: day-btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  color: #fff;
+}
+.day-btn--active:hover {
+  color: #fff;
+}
 .list-title {
   align-items: center;
   display: flex;
@@ -11,7 +36,7 @@
 .list-header {
   background: #fff;
   border-bottom: 2px solid #ccc;
-  box-shadow: 0px 0px 5px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 5px -1px rgba(0,0,0,.2);
   display: flex;
   flex-wrap: wrap;
   font-weight: 600;

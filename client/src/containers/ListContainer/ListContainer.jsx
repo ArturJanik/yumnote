@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as moment from 'moment';
+// import 'moment/locale/pl';
+
 import styles from './ListContainer.css';
 import * as actions from '../../store/actions/index';
 
@@ -13,7 +16,7 @@ class ListContainer extends Component {
     this.props.fetchCategories();
   }
 
-  renderList() {
+  renderList = () => {
     let list = null;
     switch (this.props.subType) {
       case 'currentuser':
@@ -24,6 +27,20 @@ class ListContainer extends Component {
       case 'latest':
         list = <ProductList 
           title="Lately yummed"
+        />
+        break;
+      case 'yesterday':
+        list = <FoodnoteList 
+          title="Yesterday"
+          day="yesterday"
+        />
+        break;
+      case 'otherday':
+        const { day } = this.props.computedMatch.params;
+        const title = moment(day, 'YYYYMMDD').format("DD MMM YYYY");
+        list = <FoodnoteList 
+          title={title}
+          day="yesterday"
         />
         break;
       default:

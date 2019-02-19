@@ -3,7 +3,12 @@ class FoodnotesController < ApiController
   
   def index
     foodnotes = current_user.foodnotes.from_today.select([:id, :product_id, :amount]).with_products
-    render json: foodnotes, each_serializer: FoodnoteSerializer 
+    render json: foodnotes, each_serializer: FoodnoteSerializer
+  end
+  
+  def yesterday
+    foodnotes = current_user.foodnotes.from_yesterday.select([:id, :product_id, :amount]).with_products
+    render json: foodnotes, each_serializer: FoodnoteSerializer
   end
 
   def create

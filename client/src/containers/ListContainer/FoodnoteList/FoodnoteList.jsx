@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Pikaday from 'pikaday';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import '!style-loader!css-loader!pikaday/css/pikaday.css';
+import * as moment from 'moment';
+
 import styles from './FoodnoteList.css';
 import * as actions from '../../../store/actions/index';
 
@@ -8,7 +14,6 @@ import Spinner from '../../../components/UI/Spinner/Spinner';
 import FoodnoteListItem from './FoodnoteListItem/FoodnoteListItem';
 
 class FoodnoteList extends Component {
-
   state = {
     total: {
       kcal: 0,
@@ -17,9 +22,30 @@ class FoodnoteList extends Component {
       prot: 0
     }
   }
+  
+  datePickerTrigger = React.createRef();
 
   componentDidMount() {
-    this.props.fetchFoodnotes();
+    this.initializeDatePicker();
+    this.props.fetchFoodnotes(this.props.day);
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.day !== prevProps.day) {
+      this.props.fetchFoodnotes(this.props.day);
+    }
+  }
+
+  initializeDatePicker = () => {
+    this.picker = new Pikaday({
+      field: this.datePickerTrigger.current,
+      format: 'DD/MM/YYYY',
+      maxDate: new Date(),
+      onSelect: () => {
+        const date = moment(this.picker.toString(), 'DD/MM/YYYY').format("YYYYMMDD");
+        this.props.history.push(`/foodnotes/${date}`);
+      }
+    });
   }
   
   renderError() {
@@ -52,6 +78,27 @@ class FoodnoteList extends Component {
     );
   }
 
+  renderListHeader() {
+    return (
+      <div className={styles['list-header']}>
+        <div className={styles['list-header-column1']}>Food</div>
+        <div className={styles['list-header-column2']}>
+          <div className={styles.wide}>Totals</div>
+          <div className={styles.totals}>{this.state.total.kcal}</div>
+          <div className={styles.totals}>{this.state.total.carb}g</div>
+          <div className={styles.totals}>{this.state.total.fat}g</div>
+          <div className={styles.totals}>{this.state.total.prot}g</div>
+          <div className={styles.wide}>Amount</div>
+          <div>Kcal</div>
+          <div>Carb</div>
+          <div>Fat</div>
+          <div>Prot</div>
+        </div>
+        <div className={styles['list-header-column3']}>Action</div>
+      </div>
+    )
+  }
+
   renderFoodnotes() {
     return this.props.foodnotes.map((foodnote, index) => <FoodnoteListItem key={foodnote.id} foodnote={foodnote} />)
   }
@@ -70,23 +117,14 @@ class FoodnoteList extends Component {
       <article className={styles['foodnote-list']}>
         <div className={styles['list-title']}>
           <h1>{this.props.title}</h1>
-        </div>
-        <div className={styles['list-header']}>
-          <div className={styles['list-header-column1']}>Food</div>
-          <div className={styles['list-header-column2']}>
-            <div className={styles.wide}>Totals</div>
-            <div className={styles.totals}>{this.state.total.kcal}</div>
-            <div className={styles.totals}>{this.state.total.carb}g</div>
-            <div className={styles.totals}>{this.state.total.fat}g</div>
-            <div className={styles.totals}>{this.state.total.prot}g</div>
-            <div className={styles.wide}>Amount</div>
-            <div>Kcal</div>
-            <div>Carb</div>
-            <div>Fat</div>
-            <div>Prot</div>
+          <div className={styles['foodnote-day']}>
+            <NavLink to="/foodnotes/today" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Today</NavLink>
+            <NavLink to="/foodnotes/yesterday" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Yesterday</NavLink>
+            <div className={styles['day-btn']} ref={this.datePickerTrigger}>Other</div>
+            <NavLink to="/foodnotes/20190218" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Other</NavLink>
           </div>
-          <div className={styles['list-header-column3']}>Action</div>
         </div>
+        {this.renderListHeader()}
         <div className={styles['list-body']}>
           {list}
         </div>
@@ -105,8 +143,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchFoodnotes: () => dispatch(actions.fetchFoodnotes()),
+    fetchFoodnotes: (day) => dispatch(actions.fetchFoodnotes(day)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoodnoteList);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(FoodnoteList));
