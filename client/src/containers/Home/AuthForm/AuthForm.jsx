@@ -140,7 +140,7 @@ class AuthForm extends Component {
       <React.Fragment>
         <p className={styles['auth-form-title']}>{this.state.isSignup ? 'Signup' : 'Login'}</p>
         {form}
-        {authModeBtn}
+        {!this.props.loading ? authModeBtn : null}
       </React.Fragment>
     )
   }

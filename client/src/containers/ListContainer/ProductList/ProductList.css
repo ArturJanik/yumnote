@@ -1,6 +1,31 @@
 .product-list {
   flex: 0 1 100%;
 }
+.product-day {
+  display: flex;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.day-btn {
+  background: #fff;
+  border: 1px solid #eee;
+  display: block;
+  padding: 10px;
+}
+.day-btn:hover {
+  border: 1px solid #ccc;
+  color: #7a9118;
+  cursor: pointer;
+}
+.day-btn--active {
+  composes: day-btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  color: #fff;
+}
+.day-btn--active:hover {
+  color: #fff;
+}
 .list-header {
   align-items: center;
   display: flex;

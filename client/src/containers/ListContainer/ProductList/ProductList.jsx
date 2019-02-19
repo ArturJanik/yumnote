@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import * as moment from 'moment';
+
 import styles from './ProductList.css';
 import * as actions from '../../../store/actions/index';
 
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import ProductListItem from './ProductListItem/ProductListItem';
+import DatePicker from '../DatePicker/DatePicker';
 
 class ProductList extends Component {
+  state = {
+    otherDaySelected: false,
+    day: moment().format("YYYYMMDD")
+  }
+
+  today = moment().format("YYYYMMDD");
+  yesterday = moment().subtract(1, 'day').format("YYYYMMDD");
 
   componentDidMount() {
     this.props.fetchProducts();
@@ -44,7 +54,14 @@ class ProductList extends Component {
   }
 
   renderProducts() {
-    return this.props.products.map((product, index) => <ProductListItem key={product.id} product={product} />)
+    return this.props.products.map((product, index) => <ProductListItem key={product.id} product={product} day={this.state.day} />)
+  }
+
+  setDay = (day) => {
+    this.setState({ 
+      otherDaySelected: (day !== this.today && day !== this.yesterday),
+      day
+    });
   }
 
   render(){
@@ -61,6 +78,11 @@ class ProductList extends Component {
       <article className={styles['product-list']}>
         <div className={styles['list-header']}>
           <h1>{this.props.title}</h1>
+          <div className={styles['product-day']}>
+            <div className={this.state.day === this.today ? styles['day-btn--active'] : styles['day-btn']} onClick={() => this.setDay(this.today)}>Today</div>
+            <div className={this.state.day === this.yesterday ? styles['day-btn--active'] : styles['day-btn']} onClick={() => this.setDay(this.yesterday)}>Yesterday</div>
+            <DatePicker className={this.state.otherDaySelected ? styles['day-btn--active'] : styles['day-btn']} onDateSelected={this.setDay}>Other</DatePicker>
+          </div>
         </div>
         <div className={styles['list-body']}>
           {list}
