@@ -21,3 +21,17 @@
   height: 50px;
   width: 20px !important;
 }
+.amount-add--finished {
+  composes: amount-add;
+  background: #fff;
+  -webkit-transform: rotateX(90deg) translateZ(25px);
+  transform: rotateX(90deg) translateZ(25px);
+}
+.amount-add-success {
+  color: #a3c220;
+  position: absolute;
+  -webkit-transform: rotateX(270deg);
+  transform: rotateX(270deg);
+  -webkit-transform-origin: top center;
+  transform-origin: top center;
+}
