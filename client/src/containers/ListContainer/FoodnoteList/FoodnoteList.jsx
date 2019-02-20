@@ -93,6 +93,10 @@ class FoodnoteList extends Component {
     this.setState({ otherDaySelected: true });
   }
 
+  isTodayActive = (match, location) => {
+    return (match || location.pathname === '/')
+  }
+
   render(){
     let list = <Spinner />;
     if(this.props.error !== null) {
@@ -108,7 +112,7 @@ class FoodnoteList extends Component {
         <div className={styles['list-title']}>
           <h1>{this.props.title}</h1>
           <div className={styles['foodnote-day']}>
-            <NavLink to="/foodnotes/today" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Today</NavLink>
+            <NavLink to="/foodnotes/today" className={styles['day-btn']} activeClassName={styles['day-btn--active']} isActive={this.isTodayActive}>Today</NavLink>
             <NavLink to="/foodnotes/yesterday" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Yesterday</NavLink>
             <DatePicker className={this.state.otherDaySelected ? styles['day-btn--active'] : styles['day-btn']} onDateSelected={this.dateSelected}>Other</DatePicker>
           </div>
