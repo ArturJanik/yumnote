@@ -33,11 +33,11 @@ class ListContainer extends Component {
           />
           break;
         default:
-          const { categoryId } = this.props.match.params;
+          const { id } = this.props.location.state;
           list = <ProductList 
             title={this.props.location.state.category || null}
             type="category_foods"
-            categoryId={categoryId}
+            categoryId={id}
           />
           break;
       }

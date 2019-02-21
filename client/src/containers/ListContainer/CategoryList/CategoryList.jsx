@@ -17,8 +17,8 @@ class CategoryList extends Component {
     if(this.props.categories.length > 0){
       return this.props.categories.map((category, index) => (
         <li key={index} className={styles['category-list-item']}><Link to={{
-          pathname: `/category/${category.id}`,
-          state: { category: category.name }
+          pathname: `/category/${category.slug}`,
+          state: { category: category.name, id: category.id }
         }}>{category.name}</Link></li>
       ))
     }
