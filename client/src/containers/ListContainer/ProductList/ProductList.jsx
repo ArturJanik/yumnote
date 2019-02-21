@@ -45,7 +45,7 @@ class ProductList extends Component {
   }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={this.fetchProducts}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={() => { this.fetchProducts(); this.props.fetchCategories()}}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {
@@ -126,6 +126,7 @@ const mapDispatchToProps = dispatch => {
     fetchCategoryProducts: (categoryId) => dispatch(actions.fetchCategoryProducts(categoryId)),
     fetchCurrentUserProducts: () => dispatch(actions.fetchCurrentUserProducts()),
     fetchLatestProducts: () => dispatch(actions.fetchLatestProducts()),
+    fetchCategories: () => dispatch(actions.fetchCategories()),
   }
 }
 

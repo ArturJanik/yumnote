@@ -18,51 +18,54 @@ class ListContainer extends Component {
 
   renderList = () => {
     let list = null;
+    let opts = null;
     if(this.props.listType === 'products') {
       switch (this.props.subType) {
         case 'currentuser':
-          list = <ProductList 
-            title="My foods"
-            type="user_foods"
-          />
+          opts = { 
+            title: "My foods",
+            type: "user_foods"
+          }
           break;
         case 'latest':
-          list = <ProductList 
-            title="Lately yummed"
-            type="latest_foods"
-          />
+          opts = { 
+            title: "Lately yummed",
+            type: "latest_foods"
+          }
           break;
         default:
           const { id } = this.props.location.state;
-          list = <ProductList 
-            title={this.props.location.state.category || null}
-            type="category_foods"
-            categoryId={id}
-          />
+          opts = { 
+            title: this.props.location.state.category || null,
+            type: "category_foods",
+            categoryId: id
+          }
           break;
       }
+      list = <ProductList {...opts} />
     } else {
       switch (this.props.subType) {
         case 'yesterday':
-          list = <FoodnoteList 
-            title="Yesterday"
-            day="yesterday"
-          />
+          opts = { 
+            title: "Yesterday",
+            day: "yesterday"
+          }
           break;
         case 'otherday':
           const { day } = this.props.computedMatch.params;
           const title = moment(day, 'YYYYMMDD').format("DD MMM YYYY");
-          list = <FoodnoteList 
-            title={title}
-            day={day}
-          />
+          opts = { 
+            title,
+            day
+          }
           break;
         default:
-          list = <FoodnoteList 
-            title="Today"
-          />
+          opts = { 
+            title: "Today"
+          }
           break;
       }
+      list = <FoodnoteList {...opts} />
     }
 
     return (

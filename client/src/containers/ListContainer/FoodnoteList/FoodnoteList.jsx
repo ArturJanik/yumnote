@@ -34,7 +34,7 @@ class FoodnoteList extends Component {
   }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={() => this.props.fetchFoodnotes(this.props.day)}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={() => { this.fetchFoodnotes(this.props.day); this.props.fetchCategories()}}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {
@@ -137,6 +137,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchFoodnotes: (day) => dispatch(actions.fetchFoodnotes(day)),
+    fetchCategories: () => dispatch(actions.fetchCategories()),
   }
 }
 
