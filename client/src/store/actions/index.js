@@ -1,5 +1,7 @@
 export {
-  fetchProducts,
+  fetchCategoryProducts,
+  fetchCurrentUserProducts,
+  fetchLatestProducts,
   fetchProduct,
   addProduct,
   updateProduct,

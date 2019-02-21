@@ -62,7 +62,7 @@ class App extends Component {
           <ProtectedRoute path="/foodnotes/:day(\d+)" exact component={ListContainer} listType="foodnotes" subType="otherday" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/myfoods" exact component={ListContainer} listType="products" subType="currentuser" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/latest" exact component={ListContainer} listType="products" subType="latest" auth={this.props.isAuthenticated} />
-          {/* <ProtectedRoute path="/categories/:categoryId(\d+)" exact render={() => <ListContainer listType="products" />} auth={this.props.isAuthenticated} /> */}
+          <ProtectedRoute path="/category/:categoryId(\d+)" exact component={ListContainer} listType="products" auth={this.props.isAuthenticated} />
 
           {/* <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/articles/new" exact component={AddArticle} auth={this.props.isAuthenticated} />

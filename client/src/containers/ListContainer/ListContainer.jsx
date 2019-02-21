@@ -18,36 +18,51 @@ class ListContainer extends Component {
 
   renderList = () => {
     let list = null;
-    switch (this.props.subType) {
-      case 'currentuser':
-        list = <ProductList 
-          title="My foods"
-        />
-        break;
-      case 'latest':
-        list = <ProductList 
-          title="Lately yummed"
-        />
-        break;
-      case 'yesterday':
-        list = <FoodnoteList 
-          title="Yesterday"
-          day="yesterday"
-        />
-        break;
-      case 'otherday':
-        const { day } = this.props.computedMatch.params;
-        const title = moment(day, 'YYYYMMDD').format("DD MMM YYYY");
-        list = <FoodnoteList 
-          title={title}
-          day={day}
-        />
-        break;
-      default:
-        list = <FoodnoteList 
-          title="Today"
-        />
-        break;
+    if(this.props.listType === 'products') {
+      switch (this.props.subType) {
+        case 'currentuser':
+          list = <ProductList 
+            title="My foods"
+            type="user_foods"
+          />
+          break;
+        case 'latest':
+          list = <ProductList 
+            title="Lately yummed"
+            type="latest_foods"
+          />
+          break;
+        default:
+          const { categoryId } = this.props.match.params;
+          list = <ProductList 
+            title={this.props.location.state.category || null}
+            type="category_foods"
+            categoryId={categoryId}
+          />
+          break;
+      }
+    } else {
+      switch (this.props.subType) {
+        case 'yesterday':
+          list = <FoodnoteList 
+            title="Yesterday"
+            day="yesterday"
+          />
+          break;
+        case 'otherday':
+          const { day } = this.props.computedMatch.params;
+          const title = moment(day, 'YYYYMMDD').format("DD MMM YYYY");
+          list = <FoodnoteList 
+            title={title}
+            day={day}
+          />
+          break;
+        default:
+          list = <FoodnoteList 
+            title="Today"
+          />
+          break;
+      }
     }
 
     return (

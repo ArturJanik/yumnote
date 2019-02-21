@@ -15,7 +15,7 @@ class ProtectedRoute extends Component {
         {...props}
         render={props => (
           this.props.auth ?
-            <Component {...this.props} /> :
+            <Component {...this.props} {...props} /> :
             <Redirect to='/login' />
         )} 
       />

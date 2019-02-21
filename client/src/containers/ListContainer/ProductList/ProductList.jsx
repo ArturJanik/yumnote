@@ -20,11 +20,32 @@ class ProductList extends Component {
   yesterday = moment().subtract(1, 'day').format("YYYYMMDD");
 
   componentDidMount() {
-    this.props.fetchProducts();
+    this.fetchProducts();
+  }
+
+  componentDidUpdate(prevProps) {
+    if(this.props.type !== prevProps.type || this.props.categoryId !== prevProps.categoryId){
+      this.fetchProducts();
+    }
+  }
+
+  fetchProducts = () => {
+    switch (this.props.type) {
+      case 'user_foods':
+        this.props.fetchCurrentUserProducts();
+        break;
+      case 'category_foods':
+        this.props.fetchCategoryProducts(this.props.categoryId);
+        break;
+      case 'latest_foods':
+      default:
+        this.props.fetchLatestProducts();
+        break;
+    }
   }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={this.props.fetchProducts}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={this.fetchProducts}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {
@@ -102,7 +123,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchProducts: () => dispatch(actions.fetchProducts()),
+    fetchCategoryProducts: (categoryId) => dispatch(actions.fetchCategoryProducts(categoryId)),
+    fetchCurrentUserProducts: () => dispatch(actions.fetchCurrentUserProducts()),
+    fetchLatestProducts: () => dispatch(actions.fetchLatestProducts()),
   }
 }
 

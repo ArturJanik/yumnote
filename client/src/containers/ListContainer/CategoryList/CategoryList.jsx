@@ -16,7 +16,10 @@ class CategoryList extends Component {
   renderDynamicLinks() {
     if(this.props.categories.length > 0){
       return this.props.categories.map((category, index) => (
-        <li key={index} className={styles['category-list-item']}><a className="subMenuRevealBtn">{category.name}</a></li>
+        <li key={index} className={styles['category-list-item']}><Link to={{
+          pathname: `/category/${category.id}`,
+          state: { category: category.name }
+        }}>{category.name}</Link></li>
       ))
     }
   }
@@ -26,7 +29,6 @@ class CategoryList extends Component {
       <ul>
         {this.renderFixedLinks()}
         {this.renderDynamicLinks()}
-        <li key='aaddfdfs' className={styles['category-list-item']}><Link to={`/myfoods`}>aaaa</Link></li>
         {/* <li className={styles['category-list-item']}>
           <a href="#" className="subMenuRevealBtn">Dairy, Cheese &amp; Eggs</a>
           <ul className="subcategoriesContainer">
