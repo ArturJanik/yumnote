@@ -19,15 +19,45 @@ const initialState = {
   loading: false,
   foodnotes: [],
   createInProgress: false,
-  createdForProduct: null
+  createdForProduct: null,
+  totals: {
+    kcal: 0,
+    carb: 0,
+    fat: 0,
+    prot: 0
+  }
 }
 
 
 const fetchFoodnotesStart = (state, action) => {
   return updateObject(state, {
     error: null,
-    loading: true
+    loading: true,
+    totals: {
+      kcal: 0,
+      carb: 0,
+      fat: 0,
+      prot: 0
+    }
   })
+}
+
+const calculateTotals = (foodnotes) => {
+  let totals = {
+    kcal: 0,
+    carb: 0,
+    fat: 0,
+    prot: 0
+  }
+
+  foodnotes.forEach(note => {
+    totals.kcal += note.amount * note.product.kcal
+    totals.carb += note.amount * note.product.carb
+    totals.fat += note.amount * note.product.fat
+    totals.prot += note.amount * note.product.prot
+  });
+
+  return totals;
 }
 
 const fetchFoodnotesSuccess = (state, action) => {
@@ -38,10 +68,14 @@ const fetchFoodnotesSuccess = (state, action) => {
       deleteInProgress: false
     }
   ));
+
+  const totals = calculateTotals(foodnotes);
+
   return updateObject(state, {
     foodnotes,
     error: null,
-    loading: false
+    loading: false,
+    totals
   })
 }
 
@@ -90,10 +124,14 @@ const updateFoodnoteStart = (state, action) => {
 const updateFoodnoteSuccess = (state, action) => {
   const updatedFoodnotes = [ ...state.foodnotes ].map(note => note.id === action.id ?
     { ...note, amount: action.amount, updateInProgress: false } : note);
+
+  const totals = calculateTotals(updatedFoodnotes);
+
   return updateObject(state, {
     error: null,
     loading: false,
-    foodnotes: updatedFoodnotes
+    foodnotes: updatedFoodnotes,
+    totals
   })
 }
 
@@ -116,10 +154,13 @@ const deleteFoodnoteStart = (state, action) => {
 
 const deleteFoodnoteSuccess = (state, action) => {
   const filteredFoodnotes = state.foodnotes.filter(foodnote => foodnote.id !== action.deletedId);
+
+  const totals = calculateTotals(filteredFoodnotes);
     
   return updateObject(state, {
     error: null,
-    foodnotes: filteredFoodnotes
+    foodnotes: filteredFoodnotes,
+    totals
   })
 }
 

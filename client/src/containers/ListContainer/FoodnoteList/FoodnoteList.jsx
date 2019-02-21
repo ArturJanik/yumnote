@@ -12,12 +12,6 @@ import DatePicker from '../DatePicker/DatePicker';
 
 class FoodnoteList extends Component {
   state = {
-    total: {
-      kcal: 0,
-      carb: 0,
-      fat: 0,
-      prot: 0
-    },
     otherDaySelected: false
   }
 
@@ -69,10 +63,10 @@ class FoodnoteList extends Component {
         <div className={styles['list-header-column1']}>Food</div>
         <div className={styles['list-header-column2']}>
           <div className={styles.wide}>Totals</div>
-          <div className={styles.totals}>{this.state.total.kcal}</div>
-          <div className={styles.totals}>{this.state.total.carb}g</div>
-          <div className={styles.totals}>{this.state.total.fat}g</div>
-          <div className={styles.totals}>{this.state.total.prot}g</div>
+          <div className={styles.totals}>{this.props.totals.kcal}</div>
+          <div className={styles.totals}>{this.props.totals.carb}g</div>
+          <div className={styles.totals}>{this.props.totals.fat}g</div>
+          <div className={styles.totals}>{this.props.totals.prot}g</div>
           <div className={styles.wide}>Amount</div>
           <div>Kcal</div>
           <div>Carb</div>
@@ -129,6 +123,7 @@ class FoodnoteList extends Component {
 const mapStateToProps = state => {
   return {
     foodnotes: state.foodnote.foodnotes,
+    totals: state.foodnote.totals,
     loading: state.foodnote.loading,
     error: state.foodnote.error,
   }
