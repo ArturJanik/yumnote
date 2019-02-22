@@ -11,22 +11,17 @@ class UsersController < ApiController
   end
 
   def profile
-    user = User.find_by_username(params[:username])
-    if user
-      user_products = user.products
-      render json: {
-        user: {
-          username: user.username
-        },
-        products: user_products
-      }
-    else
-      render json: { errors: user.errors }, status: 404
-    end
+    user = {
+      username: current_user.username,
+      email: current_user.email,
+      time_zone: current_user.time_zone,
+    }
+
+    render json: { user: user }
   end
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :time_zone)
   end
 end

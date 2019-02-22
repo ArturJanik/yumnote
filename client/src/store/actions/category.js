@@ -5,20 +5,20 @@ import {
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
-export const fetchCategoriesStart = () => {
+const fetchCategoriesStart = () => {
   return {
     type: FETCH_CATEGORIES_START
   }
 }
 
-export const fetchCategoriesSuccess = (categories) => {
+const fetchCategoriesSuccess = (categories) => {
   return {
     type: FETCH_CATEGORIES_SUCCESS,
     categories
   }
 }
 
-export const fetchCategoriesFail = (error) => {
+const fetchCategoriesFail = (error) => {
   return {
     type: FETCH_CATEGORIES_FAIL,
     error

@@ -14,7 +14,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 6 }, allow_nil: true
   has_secure_token :auth_token
   validates :time_zone, inclusion: { in: ActiveSupport::TimeZone.all.map(&:name) }
-
+  
   def invalidate_token
     self.update_columns(auth_token: nil)
   end

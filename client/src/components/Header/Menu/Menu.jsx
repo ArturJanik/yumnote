@@ -7,8 +7,8 @@ class Menu extends Component {
   showLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu-item']}><NavLink exact to="/">My Products</NavLink></li>
-        <li className={styles['menu-item']}><NavLink exact to="/">My Profile</NavLink></li>
+        <li className={styles['menu-item']}><NavLink exact to="/products">Products</NavLink></li>
+        <li className={styles['menu-item']}><NavLink exact to="/profile">My Profile</NavLink></li>
         <li className={styles['menu-item']}> <NavLink exact to="/logout" className={styles["link--auth"]}>Logout</NavLink></li>
       </React.Fragment>
     )

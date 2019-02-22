@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     # resources :users, except: [:index,:destroy] do
       # get 'statistics' => 'users#statistics'
     # end
-    # get '/profile' => "users#profile"
+    get '/profile' => "users#profile"
 
     get '/foodnotes/today' => 'foodnotes#index'
     get '/foodnotes/yesterday' => 'foodnotes#yesterday'

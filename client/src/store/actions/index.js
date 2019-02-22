@@ -24,3 +24,6 @@ export {
 export {
   fetchCategories
 } from './category';
+export {
+  fetchProfile
+} from './user';

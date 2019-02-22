@@ -9,13 +9,13 @@ import {
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
-export const authStart = () => {
+const authStart = () => {
   return {
     type: AUTH_START
   }
 }
 
-export const authSuccess = (idToken, username) => {
+const authSuccess = (idToken, username) => {
   return {
     type: AUTH_SUCCESS,
     idToken,
@@ -23,7 +23,7 @@ export const authSuccess = (idToken, username) => {
   }
 }
 
-export const authFail = (error) => {
+const authFail = (error) => {
   return {
     type: AUTH_FAIL,
     error
@@ -92,7 +92,7 @@ export const auth = (formdata, isSignup) => {
   }
 }
 
-export const authCheckFinished = () => {
+const authCheckFinished = () => {
   return {
     type: SET_AUTH_CHECK_FINISHED
   }
