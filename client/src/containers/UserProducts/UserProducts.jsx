@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styles from './UserProducts.css';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import UserProductsItem from './UserProductsItem/UserProductsItem';
 
 class UserProducts extends Component {
   
@@ -30,18 +31,9 @@ class UserProducts extends Component {
               <p className={styles.c20}>Visible</p>
               <p className={styles.c30}>Actions</p>
             </li>
-            { this.props.loading ? <Spinner /> : (
-              this.props.products.map(product => {
-                return (
-                  <li className={styles['list-item']} key={product.id}>
-                    <p className={styles.c20}>{product.id}</p>
-                    <p className={styles.c30}>{product.name}</p>
-                    <p className={styles.c20}>{this.generateStatus(product.visible, product.id)}</p>
-                    <p className={styles.c30}>Actions</p>
-                  </li>
-                )
-              })
-            )}
+            { this.props.loading ? <Spinner /> : 
+              this.props.products.map(product => <UserProductsItem product={product} key={product.id} />)
+            }
           </ul>
         </div>
       </section>
@@ -60,7 +52,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCurrentUserProducts: () => dispatch(actions.fetchCurrentUserProducts()),
-    toggleProductVisibility: (id) => dispatch(actions.toggleProductVisibility(id)),
   }
 }
 

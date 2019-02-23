@@ -17,10 +17,6 @@
 .product-list {
   
 }
-.list-item {
-  border-bottom: 1px solid #eee;
-  display: flex;
-}
 .list-header {
   background: #fff;
   border-bottom: 1px solid #ccc;
@@ -37,19 +33,4 @@
 .c30 {
   flex: 0 0 30%;
   max-width: 30%;
-}
-
-.visible {
-  color: #7a9118;
-  cursor: pointer;
-  font-weight: 600;
-}
-.hidden {
-  color: #b33802;
-  cursor: pointer;
-  font-weight: 600;
-}
-.visible:hover,
-.hidden:hover {
-  text-decoration: underline;
 }
