@@ -70,7 +70,7 @@ class ListContainer extends Component {
 
     return (
       <React.Fragment>
-        <CategoryList categories={this.props.categories} />
+        <CategoryList categories={this.props.categories} loading={this.props.categoriesLoading} />
         {list}
       </React.Fragment>
     )

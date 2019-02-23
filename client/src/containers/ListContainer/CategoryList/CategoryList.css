@@ -12,8 +12,10 @@
 }
 .category-list-item:hover {
   box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
-.category-list-item:hover > a {
+.category-list-item:hover > a,
+.category-list-item:hover > div {
   color: #7a9118;
 }
 .category-list-item--special {
@@ -24,7 +26,8 @@
 .category-list-item--special:hover {
   background: #3f4d00;
 }
-.category-list-item a {
+.category-list-item a,
+.sub-category-reveal-btn {
   align-items: center;
   color: #11191b;
   display: flex;
@@ -47,4 +50,17 @@
   font-size: 14px;
   letter-spacing: -.5px;
   padding: 15px 10px;
+}
+
+.sub-category-list {
+  display: flex;
+  flex-wrap: wrap;
+  /* height: 0; */
+}
+.sub-category-btn {
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.3);
+  flex: 0 0 100%;
+  max-width: 100%;
 }

@@ -8,7 +8,7 @@ class Category < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3, maximum: 50 }, uniqueness: true
   validates :slug, uniqueness: true
 
-  scope :all_with_basic_data, -> { where(active: true).select("categories.id, categories.name, categories.slug").order(name: :desc) }
+  scope :all_with_basic_data, -> { where(active: true).select("categories.id, categories.name, categories.slug, categories.parent_id").order(parent_id: :desc, name: :asc) }
 
   private
   def generate_slug

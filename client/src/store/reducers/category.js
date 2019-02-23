@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   FETCH_CATEGORIES_START,
   FETCH_CATEGORIES_SUCCESS,
@@ -20,8 +21,17 @@ const fetchCategoriesStart = (state, action) => {
 }
 
 const fetchCategoriesSuccess = (state, action) => {
+  const categories = _.partition(action.categories, (cat) => cat.parent_id === null);
+  const parentIds = _.uniq(categories[1].map((cat) => cat.parent_id ));
+  const updatedCategories = action.categories.map(cat => (
+    {
+      ...cat,
+      hasSubmenu: parentIds.indexOf(cat.id) !== -1
+    }
+  ));
+
   return updateObject(state, {
-    categories: action.categories,
+    categories: updatedCategories,
     error: null,
     loading: false
   })
