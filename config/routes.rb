@@ -22,5 +22,7 @@ Rails.application.routes.draw do
     end
     get '/products/currentuser' => 'products#userproducts'
     get '/products/latest' => 'products#latest'
+
+    get '/documents/:slug', to: 'documents#show'
   end
 end

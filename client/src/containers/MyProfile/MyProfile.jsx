@@ -7,6 +7,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import NoMatch from '../../components/Error/NoMatch';
 
 class MyProfile extends Component {
+  
   componentDidMount() {
     this.props.fetchProfile();
   }
@@ -27,16 +28,14 @@ class MyProfile extends Component {
     if(!this.props.loading && this.props.profile !== null){
       profile = this.renderProfile();
     } else if(this.props.error !== null) {
-      profile = <NoMatch />
+      return <NoMatch />;
     }
     
-    const error = (this.props.error) ? this.props.error : null;
     return(
       <section className={styles['profile-container']}>
         <div className={styles.wrapper}>
         <h1>Profile</h1>
         <div className={styles.profile}>
-          {error}
           {profile}
         </div>
         </div>

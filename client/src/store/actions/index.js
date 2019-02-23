@@ -27,3 +27,7 @@ export {
 export {
   fetchProfile
 } from './user';
+export {
+  fetchDocument,
+  clearDocument,
+} from './document';

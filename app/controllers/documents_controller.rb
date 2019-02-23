@@ -2,7 +2,7 @@ class DocumentsController < ApiController
   before_action :require_login
 
   def show
-    document = Document.find(params[:id])
+    document = Document.find_by slug: params[:slug]
     if document
       render json: { document: document }
     else
