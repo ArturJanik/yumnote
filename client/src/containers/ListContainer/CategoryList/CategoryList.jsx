@@ -3,30 +3,9 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import styles from './CategoryList.css';
 
+import CategoryWithSubmenu from './CategoryWithSubmenu/CategoryWithSubmenu';
+
 class CategoryList extends Component {
-  
-  generateSubmenuFor = (category, subCategories) => {
-    return (
-      <ul className={styles['sub-category-list']}>
-        <li className={styles['sub-category-btn']}><Link to={{
-          pathname: `/category/${category.slug}`,
-          state: { category: category.name, id: category.id}
-        }}>{category.name}</Link></li>
-        { 
-          subCategories.map(subcat => {
-            return (
-              (category.id === subcat.parent_id) ? (
-                <li className={styles['sub-category-btn']} key={subcat.id}><Link to={{
-                  pathname: `/category/${subcat.slug}`,
-                  state: { category: subcat.name, id: subcat.id}
-                }}>{subcat.name}</Link></li>
-              ) : null
-            )
-          })
-        }
-      </ul>
-    )
-  }
 
   renderSidemenu = ({categories}) => {
     categories = _.partition(categories, (cat) => cat.parent_id === null);
@@ -36,12 +15,7 @@ class CategoryList extends Component {
     
     return mainCategories.map((category) => (
       <li key={category.id} className={styles['category-list-item']}>
-        { category.hasSubmenu ? (
-          <React.Fragment>
-            <div className={styles['sub-category-reveal-btn']}>{category.name}</div>
-            {this.generateSubmenuFor(category, subCategories)}
-          </React.Fragment>
-        ) : (
+        { category.hasSubmenu ? <CategoryWithSubmenu category={category} subCategories={subCategories} /> : (
           <Link to={{
             pathname: `/category/${category.slug}`,
             state: { category: category.name, id: category.id }

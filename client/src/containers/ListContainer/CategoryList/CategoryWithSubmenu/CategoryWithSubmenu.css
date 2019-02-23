@@ -1,0 +1,31 @@
+.sub-category-reveal-btn {
+  align-items: center;
+  color: #11191b;
+  display: flex;
+  font-weight: 800;
+  font-size: 15px;
+  height: 100%;
+  justify-content: flex-end;
+  letter-spacing: -1px;
+  padding: 20px 15px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.sub-category-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.sub-category-btn {
+  background: #f6f6f6;
+  border: 1px solid #ddd;
+  box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.3);
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.sub-category-btn:hover {
+  background: #fff;
+}
+.sub-category-btn:hover a {
+  color: #7a9118;
+}
