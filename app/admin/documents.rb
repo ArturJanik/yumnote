@@ -6,7 +6,7 @@ ActiveAdmin.register Document do
     f.inputs do
       f.input :title
       f.input :short_content, as: :text, input_html: { rows: 5, cols: 10 }
-      f.input :content, as: :text, input_html: { rows: 20, cols: 10 }
+      f.input :content, as: :text, input_html: { class: "tinymce", :size => "80x40" }
       f.input :visible, as: :boolean
     end
     f.actions
