@@ -26,6 +26,10 @@ class FoodnoteList extends Component {
       this.props.fetchFoodnotes(this.props.day);
     }
   }
+
+  componentWillUnmount() {
+    this.props.onListLeft();
+  }
   
   renderError() {
     let button = <Button btnType="refresh" clicked={() => { this.props.fetchFoodnotes(this.props.day); this.props.fetchCategories()}}>Refresh</Button>;
@@ -133,6 +137,7 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchFoodnotes: (day) => dispatch(actions.fetchFoodnotes(day)),
     fetchCategories: () => dispatch(actions.fetchCategories()),
+    onListLeft: () => dispatch(actions.clearFoodnoteTotals()),
   }
 }
 

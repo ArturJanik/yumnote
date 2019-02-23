@@ -12,7 +12,8 @@ export {
   fetchFoodnotes,
   addFoodnote,
   updateFoodnote,
-  deleteFoodnote
+  deleteFoodnote,
+  clearFoodnoteTotals
 } from './foodnote';
 export {
   auth,

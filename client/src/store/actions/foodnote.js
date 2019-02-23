@@ -10,7 +10,8 @@ import {
   UPDATE_FOODNOTE_FAIL,
   DELETE_FOODNOTE_START,
   DELETE_FOODNOTE_SUCCESS,
-  DELETE_FOODNOTE_FAIL
+  DELETE_FOODNOTE_FAIL,
+  CLEAR_FOODNOTE_TOTALS
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
@@ -140,21 +141,21 @@ export const updateFoodnote = (id, amount) => {
 }
 
 
-export const deleteFoodnoteStart = (foodnoteId) => {
+const deleteFoodnoteStart = (foodnoteId) => {
   return {
     type: DELETE_FOODNOTE_START,
     foodnoteId
   }
 }
 
-export const deleteFoodnoteSuccess = (deletedId) => {
+const deleteFoodnoteSuccess = (deletedId) => {
   return {
     type: DELETE_FOODNOTE_SUCCESS,
     deletedId
   }
 }
 
-export const deleteFoodnoteFail = (error, foodnoteId) => {
+const deleteFoodnoteFail = (error, foodnoteId) => {
   return {
     type: DELETE_FOODNOTE_FAIL,
     error,
@@ -177,5 +178,12 @@ export const deleteFoodnote = (id) => {
         dispatch(deleteFoodnoteFail(err.response.data.errors, id));
       }
     })
+  }
+}
+
+
+export const clearFoodnoteTotals = () => {
+  return {
+    type: CLEAR_FOODNOTE_TOTALS
   }
 }
