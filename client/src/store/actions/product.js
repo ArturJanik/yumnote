@@ -14,7 +14,10 @@ import {
   DELETE_PRODUCT_START,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
-  CLEAR_PRODUCT_SUCCESS
+  CLEAR_PRODUCT_SUCCESS,
+  TOGGLE_PRODUCT_VISIBILITY_START,
+  TOGGLE_PRODUCT_VISIBILITY_SUCCESS,
+  TOGGLE_PRODUCT_VISIBILITY_FAIL
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 import history from '../../utilities/history';
@@ -235,5 +238,43 @@ export const deleteProduct = (id) => {
 export const clearProduct = () => {
   return {
     type: CLEAR_PRODUCT_SUCCESS
+  }
+}
+
+const toggleVisibilityStart = () => {
+  return {
+    type: TOGGLE_PRODUCT_VISIBILITY_START
+  }
+}
+
+const toggleVisibilitySuccess = (id) => {
+  return {
+    type: TOGGLE_PRODUCT_VISIBILITY_SUCCESS,
+    id
+  }
+}
+
+const toggleVisibilityFail = (error) => {
+  return {
+    type: TOGGLE_PRODUCT_VISIBILITY_FAIL,
+    error
+  }
+}
+
+export const toggleProductVisibility = (id) => {
+  return dispatch => {
+    dispatch(toggleVisibilityStart());
+    axios.patch(`/api/products/${id}/toggle_visibility`)
+    .then(response => {
+      dispatch(toggleVisibilitySuccess(id));
+    })
+    .catch(err => {
+      console.error('Toggle product visibility error:', err.response.data.errors);
+      if(err.response.status === 500){
+        dispatch(toggleVisibilityFail('Unable to proceed. Please check your connection or try again later.'));
+      } else {
+        dispatch(toggleVisibilityFail(err.response.data.errors));
+      }
+    })
   }
 }

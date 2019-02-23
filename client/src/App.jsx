@@ -24,6 +24,7 @@ import Logout from './containers/Home/Logout/Logout';
 import ListContainer from './containers/ListContainer/ListContainer';
 import MyProfile from './containers/MyProfile/MyProfile';
 import Document from './containers/Document/Document';
+import UserProducts from './containers/UserProducts/UserProducts';
 
 // Actions
 import * as actions from './store/actions/index';
@@ -66,12 +67,13 @@ class App extends Component {
           <ProtectedRoute path="/latest" exact component={ListContainer} listType="products" subType="latest" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/category/:categorySlug" exact component={ListContainer} listType="products" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/profile" exact component={MyProfile} auth={this.props.isAuthenticated} />
-          <Route path="/doc/:documentSlug" exact component={Document} />
+          <ProtectedRoute path="/products" exact component={UserProducts} auth={this.props.isAuthenticated} />
 
           {/* <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/articles/new" exact component={AddArticle} auth={this.props.isAuthenticated} />
-          <Route path="/" exact component={ArticleList} /> */}
+        <Route path="/" exact component={ArticleList} /> */}
 
+          <Route path="/doc/:documentSlug" exact component={Document} />
           <Route path="/login" exact render={() => <Home signUp={false} isAuthenticated={this.props.isAuthenticated} />} />
           <Route path="/register" exact render={() => <Home signUp={true} isAuthenticated={this.props.isAuthenticated} />} />
           <Route path="/logout" exact component={Logout} isAuthenticated={this.props.isAuthenticated} />

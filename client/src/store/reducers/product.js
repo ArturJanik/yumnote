@@ -14,7 +14,10 @@ import {
   DELETE_PRODUCT_START,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
-  CLEAR_PRODUCT_SUCCESS
+  CLEAR_PRODUCT_SUCCESS,
+  TOGGLE_PRODUCT_VISIBILITY_START,
+  TOGGLE_PRODUCT_VISIBILITY_SUCCESS,
+  TOGGLE_PRODUCT_VISIBILITY_FAIL
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
 
@@ -156,6 +159,27 @@ const clearProductSuccess = (state, action) => {
   })
 }
 
+const toggleProductVisibilityStart = (state, action) => {
+  return updateObject(state, {
+    error: null
+  })
+}
+
+const toggleProductVisibilitySuccess = (state, action) => {
+  let updatedProducts = [ ...state.products ].map(art => art.id === action.id ?
+    { ...art, visible: !art.visible } : art);
+  return updateObject(state, {
+    error: null,
+    products: updatedProducts
+  })
+}
+
+const toggleProductVisibilityFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error
+  })
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS_START: return fetchProductsStart(state, action);
@@ -179,6 +203,10 @@ const reducer = (state = initialState, action) => {
     case DELETE_PRODUCT_FAIL: return deleteProductFail(state, action);
 
     case CLEAR_PRODUCT_SUCCESS: return clearProductSuccess(state, action);
+    
+    case TOGGLE_PRODUCT_VISIBILITY_START: return toggleProductVisibilityStart(state, action);
+    case TOGGLE_PRODUCT_VISIBILITY_SUCCESS: return toggleProductVisibilitySuccess(state, action);
+    case TOGGLE_PRODUCT_VISIBILITY_FAIL: return toggleProductVisibilityFail(state, action);
 
     default: return state;
   }

@@ -72,6 +72,19 @@ class ProductsController < ApiController
   #   end
   # end
 
+  def toggle_visibility
+    product = Product.find(params['id'])
+    product.visible = !product.visible
+
+    if product.save
+      render json: {
+        message: 'ok'
+      }
+    else
+      render json: { errors: product.errors }, status: 400
+    end
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :kcal, :carb, :fat, :prot, :amount, :unit, :visible, :category, :user)

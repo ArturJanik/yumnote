@@ -7,6 +7,7 @@ export {
   updateProduct,
   deleteProduct,
   clearProduct,
+  toggleProductVisibility,
 } from './product';
 export {
   fetchFoodnotes,

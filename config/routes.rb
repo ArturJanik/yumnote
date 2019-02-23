@@ -20,6 +20,11 @@ Rails.application.routes.draw do
     resources :categories, only: [:index] do
       resources :products, only: [:index]
     end
+    
+    resources :products, only: [:toggle_visibility] do
+      patch :toggle_visibility, on: :member
+    end
+
     get '/products/currentuser' => 'products#userproducts'
     get '/products/latest' => 'products#latest'
 
