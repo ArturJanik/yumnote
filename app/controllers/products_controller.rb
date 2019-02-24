@@ -2,7 +2,7 @@ class ProductsController < ApiController
   before_action :require_login
   
   def index
-    products = Category.find(params[:category_id]).products
+    products = Category.find(params[:category_id]).products.where(user: current_user).or(Category.find(params[:category_id]).products.public_products)
     if products
       render json: { products: products }
     else
@@ -60,28 +60,46 @@ class ProductsController < ApiController
   #   end
   # end
 
-  # def destroy
-  #   product = Product.find(params['id'])
-    
-  #   if product
-  #     product.destroy
-  #     render json: {}, status: 200
-  #   else
-  #     errors = { errors: { product: ['Not found']}}
-  #     render json: errors, status: 404
-  #   end
-  # end
+  def destroy
+    product = Product.find(params['id'])
+
+    if product
+      if current_user.id != product.user_id
+        render json: { errors: 'User not permited to modify this product' }, status: 400
+      else
+        product.user = nil
+        if product.save
+          render json: {}, status: 200
+        else
+          render json: { errors: product.errors }, status: 400
+        end
+      end
+    else
+      errors = { errors: { product: ['Not found']}}
+      render json: errors, status: 404
+    end
+  end
 
   def toggle_visibility
     product = Product.find(params['id'])
-    product.visible = !product.visible
 
-    if product.save
-      render json: {
-        message: 'ok'
-      }
+    if product
+      if current_user.id != product.user_id
+        render json: { errors: 'User not permited to modify this product' }, status: 400
+      else
+        product.visible = !product.visible
+    
+        if product.save
+          render json: {
+            message: 'ok'
+          }
+        else
+          render json: { errors: product.errors }, status: 400
+        end
+      end
     else
-      render json: { errors: product.errors }, status: 400
+      errors = { errors: { product: ['Not found']}}
+      render json: errors, status: 404
     end
   end
 

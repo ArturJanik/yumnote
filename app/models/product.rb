@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  before_create :validate_privacy
   before_save :convert_values
 
   validates :name, :kcal, :category_id, presence: true
@@ -17,6 +18,8 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :user, optional: true
 
+  scope :public_products, -> { where(private: false) }
+
   private
   def convert_values
     divider = self.amount
@@ -34,5 +37,9 @@ class Product < ApplicationRecord
       unique = !(Product.where('user = nil && name = ?', self.name))
     end
     unique
+  end
+
+  def validate_privacy
+    self.private = self.user_id.present?
   end
 end
