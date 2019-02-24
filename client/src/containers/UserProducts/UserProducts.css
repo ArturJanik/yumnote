@@ -38,3 +38,17 @@
   flex: 0 0 30%;
   max-width: 30%;
 }
+
+.search-field {
+  background: #eee;
+  border: 0px;
+  border-bottom: 3px solid #ccc;
+  border-radius: 3px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  transition: all 0.3s ease;
+}
+.search-field:focus {
+  background: #fafafa;
+  border-bottom: 3px solid #3f4d00;
+}

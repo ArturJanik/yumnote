@@ -9,6 +9,10 @@ import Button from '../../components/UI/Button/Button';
 import UserProductsItem from './UserProductsItem/UserProductsItem';
 
 class UserProducts extends Component {
+
+  state = {
+    searchQuery: null
+  }
   
   componentDidMount() {
     this.props.fetchCurrentUserProducts();
@@ -21,13 +25,24 @@ class UserProducts extends Component {
     )
   }
 
+  filterProducts = (query) => {
+    this.setState({searchQuery: query})
+  }
+
   render(){
     return (
       <section className={styles['list-container']}>
         <div className={styles.wrapper}>
           <div className={styles.heading}>
             <h1>Your products</h1>
-            <Link to="/products/new"><Button btnType="product--create">Create product</Button></Link>
+            <div style={{'display': 'flex'}}>
+              <input type="text" 
+                placeholder="Filter results..." 
+                className={styles['search-field']} 
+                onChange={(event) => this.setState({searchQuery: event.target.value})} 
+              />
+              <Link to="/products/new"><Button btnType="product--create">Create product</Button></Link>
+            </div>
           </div>
           <ul className={styles['product-list']}>
             <li className={styles['list-header']}>
@@ -37,7 +52,11 @@ class UserProducts extends Component {
               <p className={styles.c30}>Actions</p>
             </li>
             { this.props.loading ? <Spinner /> : 
-              this.props.products.map(product => <UserProductsItem product={product} key={product.id} />)
+              this.props.products.map(product => {
+                if(!this.state.searchQuery || (product.name.toLowerCase()).indexOf(this.state.searchQuery) !== -1){
+                  return <UserProductsItem product={product} key={product.id} />;
+                } else { return null }
+              })
             }
           </ul>
         </div>
