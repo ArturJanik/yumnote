@@ -21,12 +21,11 @@ Rails.application.routes.draw do
       resources :products, only: [:index]
     end
     
-    resources :products, except: [:show] do
-      patch :toggle_visibility, on: :member
-    end
-
     get '/products/currentuser' => 'products#userproducts'
     get '/products/latest' => 'products#latest'
+    resources :products do
+      patch :toggle_visibility, on: :member
+    end
 
     get '/documents/:slug', to: 'documents#show'
 

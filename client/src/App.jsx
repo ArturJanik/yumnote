@@ -26,6 +26,7 @@ import MyProfile from './containers/MyProfile/MyProfile';
 import Document from './containers/Document/Document';
 import UserProducts from './containers/UserProducts/UserProducts';
 import AddProduct from './containers/AddProduct/AddProduct';
+import EditProduct from './containers/EditProduct/EditProduct';
 
 // Actions
 import * as actions from './store/actions/index';
@@ -70,8 +71,7 @@ class App extends Component {
           <ProtectedRoute path="/profile" exact component={MyProfile} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products" exact component={UserProducts} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/new" exact component={AddProduct} auth={this.props.isAuthenticated} />
-
-          {/* <ProtectedRoute path="/articles/:articleId(\d+)/edit" exact component={EditArticle} auth={this.props.isAuthenticated} /> */}
+          <ProtectedRoute path="/products/:productId(\d+)/edit" exact component={EditProduct} auth={this.props.isAuthenticated} />
 
           <Route path="/doc/:documentSlug" exact component={Document} />
           <Route path="/login" exact render={() => <Home signUp={false} isAuthenticated={this.props.isAuthenticated} />} />

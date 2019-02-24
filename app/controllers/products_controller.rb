@@ -25,15 +25,20 @@ class ProductsController < ApiController
     render json: { products: products }
   end
 
-  # def show
-  #   product = Product.find_by id: params[:id]
-  #   if product
-  #     render json: { product: product }
-  #   else
-  #     errors = { errors: { product: ['Not found']}}
-  #     render json: errors, status: 404
-  #   end
-  # end
+  def show
+    product = Product.form_data_only.find(params['id'])
+
+    if product
+      if current_user.id != product.user_id
+        render json: { errors: 'User not permited to modify this product' }, status: 400
+      else
+        render json: { product: product }
+      end
+    else
+      errors = { errors: { product: ['Not found']}}
+      render json: errors, status: 404
+    end
+  end
 
   def create
     product = current_user.products.new(product_params)
@@ -48,17 +53,17 @@ class ProductsController < ApiController
     end
   end
 
-  # def update
-  #   product = Product.find(params['id'])
+  def update
+    product = current_user.products.find(params['id'])
 
-  #   if product.update(product_params)
-  #     render json: {
-  #       message: 'ok'
-  #     }
-  #   else
-  #     render json: { errors: product.errors }, status: 400
-  #   end
-  # end
+    if product.update(product_params)
+      render json: {
+        message: 'ok'
+      }
+    else
+      render json: { errors: product.errors }, status: 400
+    end
+  end
 
   def destroy
     product = Product.find(params['id'])

@@ -19,6 +19,7 @@ class Product < ApplicationRecord
   belongs_to :user, optional: true
 
   scope :public_products, -> { where(private: false) }
+  scope :form_data_only, -> { select("id, name, kcal, carb, fat, prot, amount, unit, category_id, user_id") }
 
   private
   def convert_values

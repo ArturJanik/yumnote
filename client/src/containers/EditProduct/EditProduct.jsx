@@ -1,34 +1,51 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from './AddProduct.css';
+import styles from './EditProduct.css';
 import * as actions from '../../store/actions/index';
 
 import Form from '../../components/Form/Form';
+import NoMatch from '../../components/Error/NoMatch';
 import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
-class AddProduct extends Component {
+class EditProduct extends Component {
+  state = {
+    productLoaded: false,
+    categoriesLoaded: false
+  }
 
   componentDidMount() {
-    this.props.fetchCategories()
+    const { productId } = this.props.match.params;
+    this.props.onPageLoaded(productId);
+  }
+
+  componentDidUpdate(prevProps){
+    if(prevProps.product !== this.props.product){
+      this.setState({productLoaded: true});
+    }
+    if(prevProps.categories !== this.props.categories){
+      this.setState({categoriesLoaded: true});
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.onPageLeft();
   }
 
   generateFields = () => {
     const categoriesOptions = this.props.categories.map(cat => ({
       value: cat.id, displayValue: cat.name
     }))
-    return {
+
+    let fields = {
       name: {
         elementType: 'input',
-        elementConfig: {
-          placeholder: 'Product name',
-          name: 'product[name]'
+        elementConfig: { 
+          placeholder: 'Product name', 
+          name: 'product[name]' 
         },
         label: 'Product name',
-        validation: {
-          required: true,
-          minLength: 3
-        },
+        validation: { required: true, minLength: 3 },
         valid: false,
         touched: false
       },
@@ -57,10 +74,7 @@ class AddProduct extends Component {
           name: 'product[amount]'
         },
         label: 'Amount (units)',
-        validation: {
-          required: true,
-          isNumeric: true
-        },
+        validation: { required: true, isNumeric: true },
         valid: false,
         touched: false
       },
@@ -71,10 +85,7 @@ class AddProduct extends Component {
           name: 'product[kcal]'
         },
         label: 'Calories',
-        validation: {
-          required: true,
-          isNumeric: true
-        },
+        validation: { required: true, isNumeric: true },
         valid: false,
         touched: false
       },
@@ -85,10 +96,7 @@ class AddProduct extends Component {
           name: 'product[carb]'
         },
         label: 'Carbohydrates (g)',
-        validation: {
-          required: true,
-          isNumeric: true
-        },
+        validation: { required: true, isNumeric: true },
         valid: false,
         touched: false
       },
@@ -99,10 +107,7 @@ class AddProduct extends Component {
           name: 'product[fat]'
         },
         label: 'Fats (g)',
-        validation: {
-          required: true,
-          isNumeric: true
-        },
+        validation: { required: true, isNumeric: true },
         valid: false,
         touched: false
       },
@@ -113,10 +118,7 @@ class AddProduct extends Component {
           name: 'product[prot]'
         },
         label: 'Proteins (g)',
-        validation: {
-          required: true,
-          isNumeric: true
-        },
+        validation: { required: true, isNumeric: true },
         valid: false,
         touched: false
       },
@@ -127,18 +129,29 @@ class AddProduct extends Component {
           name: 'product[category_id]',
           options: categoriesOptions
         },
-        validation: {
-          required: true,
-        },
+        validation: { required: true, },
         label: 'Category',
         valid: true,
         touched: false
       }
     }
+
+    for(let key in fields){
+      fields = {
+        ...fields,
+        [key]: {
+          ...fields[key],
+          value: this.props.product[key],
+          valid: true
+        }
+      }
+    }
+
+    return fields;
   }
 
   generateButton = () => {
-    let button = <Button btnType="save">Save product</Button>;
+    let button = <Button btnType="save">Save changes</Button>;
     if(this.props.loading) {
       button = <Button btnType="save loading">Saving...</Button>;
     }
@@ -177,25 +190,32 @@ class AddProduct extends Component {
   }
 
   render() {
-    let button = this.generateButton();
+    let form = <Spinner />;
     let errorMessage = null;
-    if(this.props.error) {
-      console.log(this.props.error);
-      errorMessage = this.generateErrorMsg();
-    }
+    let button = null;
 
-    let form = (this.props.categoriesLoading && this.props.categories.length === 0) ? <Spinner /> : <Form 
-      fields={this.generateFields()}
-      loading={this.props.loading} 
-      submitBtn={button}
-      errors={errorMessage}
-      submitHandler={this.props.onAddProduct} 
-    />;
+    if(this.state.productLoaded && this.state.categoriesLoaded){
+      button = this.generateButton();
+      if(this.props.error) {
+        errorMessage = this.generateErrorMsg();
+      } 
+      form = <Form 
+        fields={this.generateFields()}
+        entity={this.props.product} 
+        loading={this.props.loading} 
+        submitBtn={button}
+        errors={errorMessage}
+        submitHandler={this.props.onUpdateProduct} 
+        formType="edit"
+      />;
+    } else if(this.props.error !== null) {
+      form = <NoMatch />
+    }
 
     return (
       <section className={styles['product-form']}>
         <div className={styles.wrapper}>
-          <h1>Create new product:</h1>
+          <h1>Edit product:</h1>
           {form}
         </div>
       </section>
@@ -207,6 +227,7 @@ const mapStateToProps = state => {
   return {
     error: state.product.error,
     loading: state.product.loading,
+    product: state.product.product,
     categories: state.category.categories,
     categoriesLoading: state.category.loading,
   }
@@ -214,9 +235,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAddProduct: formdata => dispatch(actions.addProduct(formdata)),
-    fetchCategories: () => dispatch(actions.fetchCategories(true)),
+    onPageLoaded: (id) => {
+      dispatch(actions.fetchProduct(id));
+      dispatch(actions.fetchCategories(true));
+    },
+    onUpdateProduct: (formdata, id) => dispatch(actions.updateProduct(formdata, id)),
+    onPageLeft: (formdata, id) => dispatch(actions.clearProduct()),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddProduct);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProduct);

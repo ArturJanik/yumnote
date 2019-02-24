@@ -144,7 +144,7 @@ export const addProduct = (formdata) => {
     axios.post('/api/products', formdata)
     .then(response => {
       dispatch(addProductSuccess());
-      history.push('/');
+      history.push('/products');
     })
     .catch(err => {
       console.error('Create product error:', err.response.data.errors);
@@ -182,7 +182,7 @@ export const updateProduct = (formdata, id) => {
     axios.put('/api/products/'+id, formdata)
     .then(response => {
       dispatch(updateProductSuccess());
-      history.push('/');
+      history.push('/products');
     })
     .catch(err => {
       console.error('Update product error:', err.response.data.errors);
