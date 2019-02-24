@@ -23,3 +23,13 @@
   justify-content: space-between;
   padding: 10px;
 }
+
+.error-container {
+  border-left: 2px solid #a80f0f;
+  padding-left: 10px;
+}
+.error-subject {
+  color: #a80f0f;
+  font-weight: 600;
+  text-transform: capitalize;
+}

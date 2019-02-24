@@ -35,18 +35,18 @@ class ProductsController < ApiController
   #   end
   # end
 
-  # def create
-  #   product = Product.new(product_params)
+  def create
+    product = current_user.products.new(product_params)
     
-  #   if product.save
-  #     render json: {
-  #       message: 'ok',
-  #       product: product
-  #     }
-  #   else
-  #     render json: { errors: product.errors }, status: 400
-  #   end
-  # end
+    if product.save
+      render json: {
+        message: 'ok',
+        product: product
+      }
+    else
+      render json: { errors: product.errors }, status: 400
+    end
+  end
 
   # def update
   #   product = Product.find(params['id'])
@@ -105,6 +105,6 @@ class ProductsController < ApiController
 
   private
   def product_params
-    params.require(:product).permit(:name, :kcal, :carb, :fat, :prot, :amount, :unit, :visible, :category, :user)
+    params.require(:product).permit(:name, :kcal, :carb, :fat, :prot, :amount, :unit, :visible, :category_id, :user_id)
   end
 end

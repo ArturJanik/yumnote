@@ -48,11 +48,15 @@ class Form extends Component {
 
     let fieldsToValidate = {};
     for(let field in this.state.fields){
+      if(this.state.fields[field].validation === undefined) continue;
+      
       const fieldFormType = this.state.fields[field].formType;
       if(fieldFormType !== undefined && fieldFormType !== this.props.formType) continue;
+
       fieldsToValidate[field] = this.state.fields[field];
     }
     
+    console.log(fieldsToValidate)
     if(!this.props.loading && formIsValid(fieldsToValidate)){
       let data = new FormData(event.target);
       if(this.props.formType === 'edit') {

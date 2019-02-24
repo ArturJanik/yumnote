@@ -46,7 +46,7 @@ class AddProduct extends Component {
             { value: 'oz', displayValue: 'oz'},
             { value: 'ml', displayValue: 'ml'},
             { value: 'floz', displayValue: 'floz'},
-            { value: 'pc', displayValue: 'pc'},
+            { value: 'pcs', displayValue: 'pcs'},
           ]
         },
         label: 'Units',
@@ -128,8 +128,11 @@ class AddProduct extends Component {
       category: {
         elementType: 'select',
         elementConfig: {
-          name: 'product[category]',
+          name: 'product[category_id]',
           options: categoriesOptions
+        },
+        validation: {
+          required: true,
         },
         label: 'Category',
         valid: true,
@@ -152,12 +155,12 @@ class AddProduct extends Component {
       let errorFields = Object.keys(this.props.error);
 
       errorMessage = (
-        <div className={styles.errorContainer}>
+        <div className={styles['error-container']}>
           { errorFields.map((field, index) => {
             let errorMsgs = this.props.error[field].map((err, key) => <li key={key}>- {err}</li>);
             return (
               <React.Fragment key={index}>
-                <p className={styles.errorSubject}>{field}</p>
+                <p className={styles['error-subject']}>{field}</p>
                 <ul>
                   {errorMsgs}
                 </ul>

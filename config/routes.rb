@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index]
     end
     
-    resources :products, only: [:toggle_visibility, :destroy] do
+    resources :products, except: [:show] do
       patch :toggle_visibility, on: :member
     end
 
