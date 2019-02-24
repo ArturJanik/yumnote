@@ -25,10 +25,12 @@ const fetchCategoriesFail = (error) => {
   }
 }
 
-export const fetchCategories = () => {
+export const fetchCategories = (selectable) => {
+  let url = '/api/categories';
+  if(selectable) url = '/api/categories/selectable';
   return dispatch => {
     dispatch(fetchCategoriesStart());
-    axios.get('/api/categories')
+    axios.get(url)
     .then(response => {
       dispatch(fetchCategoriesSuccess(response.data.categories))
     })

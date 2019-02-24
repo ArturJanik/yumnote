@@ -29,5 +29,7 @@ Rails.application.routes.draw do
     get '/products/latest' => 'products#latest'
 
     get '/documents/:slug', to: 'documents#show'
+
+    get '/categories/selectable', to: 'categories#selectable'
   end
 end

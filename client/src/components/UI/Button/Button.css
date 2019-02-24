@@ -92,6 +92,13 @@
   /* color: #d2331e; */
 }
 
+.btn--product--create {
+  composes: btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  border-bottom: 3px solid #3f4d00;
+  padding: 10px 20px;
+}
+
 @keyframes pulse {
   from {
     opacity: 1;

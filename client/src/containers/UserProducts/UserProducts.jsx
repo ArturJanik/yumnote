@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import styles from './UserProducts.css';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Button from '../../components/UI/Button/Button';
 import UserProductsItem from './UserProductsItem/UserProductsItem';
 
 class UserProducts extends Component {
@@ -23,7 +25,10 @@ class UserProducts extends Component {
     return (
       <section className={styles['list-container']}>
         <div className={styles.wrapper}>
-          <h1>Your products</h1>
+          <div className={styles.heading}>
+            <h1>Your products</h1>
+            <Link to="/products/new"><Button btnType="product--create">Create product</Button></Link>
+          </div>
           <ul className={styles['product-list']}>
             <li className={styles['list-header']}>
               <p className={styles.c20}>Id</p>

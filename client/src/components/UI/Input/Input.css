@@ -109,3 +109,11 @@ input[type="radio"] {
   background: #f5d3ce;
   border: 1px solid #fda072;
 }
+
+.spacing {
+  background: #eee;
+  height: 1px;
+  display: block;
+  margin: 10px 0;
+  width: 100%;
+}

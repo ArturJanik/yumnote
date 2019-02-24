@@ -13,8 +13,10 @@ const input = (props) => {
   let inputClasses = [styles.inputElement];
   if(props.invalid && props.shouldValidate && props.touched) inputClasses.push(styles.invalid);
   if(props.customClasses && props.customClasses.length > 0) inputClasses.concat(styles[props.customClasses]);
-  
+
   switch (props.elementType){
+    case('spacing'):
+      return <div className={styles.spacing}></div>;
     case('input'):
       inputElement = (
         <div className={styles.inputWrapper}>
@@ -66,16 +68,18 @@ const input = (props) => {
       break;
     case('select'):
       inputElement = (
-        <select 
-          className={inputClasses.join(' ')} 
-          value={props.value}
-          name={props.elementConfig.name}
-          onChange={props.changed}
-          >
-          {props.elementConfig.options.map(option => (
-            <option key={option.value} value={option.value}>{option.displayValue}</option>
-          ))}
-        </select>
+        <div className={styles.inputWrapper}>
+          <select 
+            className={inputClasses.join(' ')} 
+            value={props.value}
+            name={props.elementConfig.name}
+            onChange={props.changed}
+            >
+            {props.elementConfig.options.map(option => (
+              <option key={option.value} value={option.value}>{option.displayValue}</option>
+            ))}
+          </select>
+        </div>
       );
       break;
     case('tinymce'):

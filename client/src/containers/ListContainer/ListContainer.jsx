@@ -98,7 +98,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: () => dispatch(actions.fetchCategories()),
+    fetchCategories: () => dispatch(actions.fetchCategories(false)),
   }
 }
 

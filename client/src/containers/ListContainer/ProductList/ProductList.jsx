@@ -126,7 +126,7 @@ const mapDispatchToProps = dispatch => {
     fetchCategoryProducts: (categoryId) => dispatch(actions.fetchCategoryProducts(categoryId)),
     fetchCurrentUserProducts: () => dispatch(actions.fetchCurrentUserProducts()),
     fetchLatestProducts: () => dispatch(actions.fetchLatestProducts()),
-    fetchCategories: () => dispatch(actions.fetchCategories()),
+    fetchCategories: () => dispatch(actions.fetchCategories(false)),
   }
 }
 

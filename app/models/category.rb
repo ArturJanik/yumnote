@@ -9,6 +9,7 @@ class Category < ApplicationRecord
   validates :slug, uniqueness: true
 
   scope :all_with_basic_data, -> { where(active: true).select("categories.id, categories.name, categories.slug, categories.parent_id").order(parent_id: :desc, name: :asc) }
+  scope :all_with_select_data, -> { where(active: true).select("categories.id, categories.name").order(name: :asc) }
 
   private
   def generate_slug
