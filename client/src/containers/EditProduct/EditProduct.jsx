@@ -123,7 +123,7 @@ class EditProduct extends Component {
         touched: false
       },
       spacing3: { elementType: 'spacing' },
-      category: {
+      category_id: {
         elementType: 'select',
         elementConfig: {
           name: 'product[category_id]',
