@@ -87,7 +87,7 @@ class ProductsController < ApiController
       if current_user.id != product.user_id
         render json: { errors: 'User not permited to modify this product' }, status: 400
       else
-        product.visible = !product.visible
+        product.toggle(:visible)
     
         if product.save
           render json: {

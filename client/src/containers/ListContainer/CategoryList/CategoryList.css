@@ -26,7 +26,7 @@
 .category-list-item--special:hover {
   background: #3f4d00;
 }
-.category-list-item a{
+.category-list-item a {
   align-items: center;
   color: #11191b;
   display: flex;

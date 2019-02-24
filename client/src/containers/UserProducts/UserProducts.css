@@ -23,6 +23,7 @@
   display: flex;
   font-weight: 600;
 }
+.product-list div,
 .product-list p {
   padding: 5px 10px;
 }

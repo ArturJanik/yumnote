@@ -15,14 +15,29 @@
 .visible {
   color: #7a9118;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 800;
 }
 .hidden {
   color: #b33802;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 800;
 }
 .visible:hover,
 .hidden:hover {
+  text-decoration: underline;
+}
+
+.link-edit {
+  border-right: 1px solid #999;
+  font-weight: 800;
+  margin-right: 5px;
+  padding-right: 5px;
+}
+.link-delete {
+  cursor: pointer;
+  font-weight: 800;
+}
+.link-edit:hover,
+.link-delete:hover {
   text-decoration: underline;
 }
