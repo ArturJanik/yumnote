@@ -13,7 +13,8 @@ import DatePicker from '../DatePicker/DatePicker';
 class ProductList extends Component {
   state = {
     otherDaySelected: false,
-    day: moment().format("YYYYMMDD")
+    day: moment().format("YYYYMMDD"),
+    searchQuery: ''
   }
 
   today = moment().format("YYYYMMDD");
@@ -26,6 +27,7 @@ class ProductList extends Component {
   componentDidUpdate(prevProps) {
     if(this.props.type !== prevProps.type || this.props.categoryId !== prevProps.categoryId){
       this.fetchProducts();
+      this.setState({searchQuery: ''})
     }
   }
 
@@ -75,7 +77,11 @@ class ProductList extends Component {
   }
 
   renderProducts() {
-    return this.props.products.map((product, index) => <ProductListItem key={product.id} product={product} day={this.state.day} />)
+    return this.props.products.map((product, index) => {
+      if(this.state.searchQuery === '' || (product.name.toLowerCase()).indexOf(this.state.searchQuery) !== -1){
+        return <ProductListItem key={product.id} product={product} day={this.state.day} />
+      } else { return null }
+    })
   }
 
   setDay = (day) => {
@@ -99,6 +105,12 @@ class ProductList extends Component {
       <article className={styles['product-list']}>
         <div className={styles['list-header']}>
           <h1>{this.props.title}</h1>
+          <input type="text" 
+            placeholder="Filter list..." 
+            className={styles['search-field']} 
+            onChange={(event) => this.setState({searchQuery: event.target.value})} 
+            value={this.state.searchQuery}
+          />
           <div className={styles['product-day']}>
             <div className={this.state.day === this.today ? styles['day-btn--active'] : styles['day-btn']} onClick={() => this.setDay(this.today)}>Today</div>
             <div className={this.state.day === this.yesterday ? styles['day-btn--active'] : styles['day-btn']} onClick={() => this.setDay(this.yesterday)}>Yesterday</div>

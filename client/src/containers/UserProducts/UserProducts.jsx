@@ -25,10 +25,6 @@ class UserProducts extends Component {
     )
   }
 
-  filterProducts = (query) => {
-    this.setState({searchQuery: query})
-  }
-
   render(){
     return (
       <section className={styles['list-container']}>
