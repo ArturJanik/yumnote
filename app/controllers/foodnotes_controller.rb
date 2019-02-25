@@ -18,8 +18,7 @@ class FoodnotesController < ApiController
   end
 
   def create
-    foodnote = Foodnote.new(foodnote_params)
-    foodnote.user = current_user
+    foodnote = current_user.foodnotes.new(foodnote_params)
     foodnote.product = Product.find(params['product_id'])
     
     if foodnote.save
@@ -33,34 +32,25 @@ class FoodnotesController < ApiController
   end
 
   def update
-    foodnote = Foodnote.find(params['id'])
-
-    if current_user.id != foodnote.user_id
-      render json: { errors: 'User not permited to update this foodnote' }, status: 400
+    foodnote = current_user.foodnotes.find(params['id'])
+    
+    if foodnote.update(foodnote_params)
+      render json: {
+        message: 'ok'
+      }
     else
-      if foodnote.update(foodnote_params)
-        render json: {
-          message: 'ok'
-        }
-      else
-        render json: { errors: foodnote.errors }, status: 400
-      end
+      render json: { errors: foodnote.errors }, status: 400
     end
   end
 
   def destroy
-    foodnote = Foodnote.find(params['id'])
+    foodnote = current_user.foodnotes.find(params['id'])
 
-    if current_user.id != foodnote.user_id
-      render json: { errors: 'User not permited to update this foodnote' }, status: 400
+    if foodnote.destroy
+      render json: {}, status: 200
     else
-      if foodnote
-        foodnote.destroy
-        render json: {}, status: 200
-      else
-        errors = { errors: { foodnote: ['Not found']}}
-        render json: errors, status: 404
-      end
+      errors = { errors: { foodnote: ['Not found']}}
+      render json: errors, status: 404
     end
   end
 

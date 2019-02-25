@@ -26,14 +26,10 @@ class ProductsController < ApiController
   end
 
   def show
-    product = Product.form_data_only.find(params['id'])
+    product = current_user.products.form_data_only.find(params['id'])
 
     if product
-      if current_user.id != product.user_id
-        render json: { errors: 'User not permited to modify this product' }, status: 400
-      else
-        render json: { product: product }
-      end
+      render json: { product: product }
     else
       errors = { errors: { product: ['Not found']}}
       render json: errors, status: 404
@@ -66,45 +62,27 @@ class ProductsController < ApiController
   end
 
   def destroy
-    product = Product.find(params['id'])
+    product = current_user.products.find(params['id'])
 
-    if product
-      if current_user.id != product.user_id
-        render json: { errors: 'User not permited to modify this product' }, status: 400
-      else
-        product.user = nil
-        if product.save
-          render json: {}, status: 200
-        else
-          render json: { errors: product.errors }, status: 400
-        end
-      end
+    product.user = nil
+    if product.save
+      render json: {}, status: 200
     else
-      errors = { errors: { product: ['Not found']}}
-      render json: errors, status: 404
+      render json: { errors: product.errors }, status: 400
     end
   end
 
   def toggle_visibility
-    product = Product.find(params['id'])
+    product = current_user.products.find(params['id'])
 
-    if product
-      if current_user.id != product.user_id
-        render json: { errors: 'User not permited to modify this product' }, status: 400
-      else
-        product.toggle(:visible)
+    product.toggle(:visible)
     
-        if product.save
-          render json: {
-            message: 'ok'
-          }
-        else
-          render json: { errors: product.errors }, status: 400
-        end
-      end
+    if product.save
+      render json: {
+        message: 'ok'
+      }
     else
-      errors = { errors: { product: ['Not found']}}
-      render json: errors, status: 404
+      render json: { errors: product.errors }, status: 400
     end
   end
 
