@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
     get '/foodnotes/today' => 'foodnotes#index'
     get '/foodnotes/yesterday' => 'foodnotes#yesterday'
+    get '/foodnotes/statistics' => 'foodnotes#statistics'
     get '/foodnotes/:day' => 'foodnotes#show'
     resources :foodnotes, only: [:create,:update,:destroy]
 

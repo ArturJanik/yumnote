@@ -1,5 +1,5 @@
 class FoodnotesController < ApiController
-  before_action :require_login
+  before_action :require_login, except: [:statistics]
   
   def index
     foodnotes = current_user.foodnotes.from_today.select([:id, :product_id, :amount]).with_products
@@ -52,6 +52,13 @@ class FoodnotesController < ApiController
       errors = { errors: { foodnote: ['Not found']}}
       render json: errors, status: 404
     end
+  end
+
+  def statistics
+    # foodnotes = Foodnote.all.between(Time.zone.yesterday - 365.days, Time.zone.yesterday).with_products
+    foodnotes = Foodnote.from_last_year
+    # render json: 'ok'
+    render json: foodnotes, each_serializer: FoodnoteStatisticsSerializer
   end
 
   private

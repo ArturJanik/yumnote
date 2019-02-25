@@ -86,6 +86,8 @@ GEM
       warden (~> 1.2.3)
     erubi (1.7.1)
     execjs (2.7.0)
+    faker (1.9.3)
+      i18n (>= 0.7)
     ffi (1.9.25)
     formtastic (3.1.5)
       actionpack (>= 3.2.13)
@@ -211,6 +213,7 @@ DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   devise
+  faker
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.1)
