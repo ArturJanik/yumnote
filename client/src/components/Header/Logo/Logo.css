@@ -1,7 +1,7 @@
 .logo {
   display: block;
-  flex: 0 0 160px;
-  max-width: 160px;
+  flex: 0 0 200px;
+  max-width: 200px;
   transition: all 0.3s ease;
 }
 .logo:hover {

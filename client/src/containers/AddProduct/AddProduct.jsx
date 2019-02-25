@@ -10,6 +10,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class AddProduct extends Component {
 
   componentDidMount() {
+    document.title = 'Create new product - calories.today'
     this.props.fetchCategories()
   }
 

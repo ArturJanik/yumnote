@@ -9,6 +9,7 @@ import NoMatch from '../../components/Error/NoMatch';
 class MyProfile extends Component {
   
   componentDidMount() {
+    document.title = 'My user profile - calories.today'
     this.props.fetchProfile();
   }
 

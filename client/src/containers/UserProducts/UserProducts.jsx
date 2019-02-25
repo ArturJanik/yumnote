@@ -15,6 +15,7 @@ class UserProducts extends Component {
   }
   
   componentDidMount() {
+    document.title = 'User products administration - calories.today'
     this.props.fetchCurrentUserProducts();
   }
 

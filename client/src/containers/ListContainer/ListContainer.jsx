@@ -22,21 +22,24 @@ class ListContainer extends Component {
     if(this.props.listType === 'products') {
       switch (this.props.subType) {
         case 'currentuser':
+          document.title = 'My foods - calories.today'
           opts = { 
             title: "My foods",
             type: "user_foods"
           }
           break;
         case 'latest':
+          document.title = 'Lately yummed - calories.today'
           opts = { 
             title: "Lately yummed",
             type: "latest_foods"
           }
           break;
         default:
-          const { id } = this.props.location.state;
+          const { id, category } = this.props.location.state;
+          document.title = `${category} products - calories.today`
           opts = { 
-            title: this.props.location.state.category || null,
+            title: category || null,
             type: "category_foods",
             categoryId: id
           }
@@ -46,6 +49,7 @@ class ListContainer extends Component {
     } else {
       switch (this.props.subType) {
         case 'yesterday':
+          document.title = 'Yesterday logs - calories.today'
           opts = { 
             title: "Yesterday",
             day: "yesterday"
@@ -54,12 +58,14 @@ class ListContainer extends Component {
         case 'otherday':
           const { day } = this.props.computedMatch.params;
           const title = moment(day, 'YYYYMMDD').format("DD MMM YYYY");
+          document.title = `${title} logs - calories.today`
           opts = { 
             title,
             day
           }
           break;
         default:
+          document.title = 'Today logs - calories.today'
           opts = { 
             title: "Today"
           }

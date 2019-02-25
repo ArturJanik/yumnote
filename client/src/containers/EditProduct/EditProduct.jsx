@@ -15,6 +15,7 @@ class EditProduct extends Component {
   }
 
   componentDidMount() {
+    document.title = 'Edit existing product - calories.today'
     const { productId } = this.props.match.params;
     this.props.onPageLoaded(productId);
   }
