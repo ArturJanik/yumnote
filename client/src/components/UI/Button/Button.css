@@ -99,6 +99,15 @@
   padding: 10px 20px;
 }
 
+.btn--stats {
+  composes: btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  border-bottom: 3px solid #3f4d00;
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s ease;
+}
+
 @keyframes pulse {
   from {
     opacity: 1;

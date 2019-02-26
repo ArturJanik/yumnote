@@ -27,7 +27,9 @@ export {
   fetchCategories
 } from './category';
 export {
-  fetchProfile
+  fetchProfile,
+  fetchStatistics,
+  clearStatistics
 } from './user';
 export {
   fetchDocument,

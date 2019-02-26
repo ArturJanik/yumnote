@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from './MyProfile.css';
+import { Link } from 'react-router-dom';
+import styles from './UserProfile.css';
 
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Button from '../../components/UI/Button/Button';
 import NoMatch from '../../components/Error/NoMatch';
 
-class MyProfile extends Component {
+class UserProfile extends Component {
   
   componentDidMount() {
     document.title = 'My user profile - calories.today'
@@ -16,9 +18,14 @@ class MyProfile extends Component {
   renderProfile = () => {
     return (
       <React.Fragment>
-        <p><strong>Username:</strong> {this.props.profile.username}</p>
-        <p><strong>E-mail:</strong> {this.props.profile.email}</p>
-        <p><strong>Timezone:</strong> {this.props.profile.time_zone}</p>
+        <div className={styles['userdata-container']}>
+          <p><strong>Username:</strong> {this.props.profile.username}</p>
+          <p><strong>E-mail:</strong> {this.props.profile.email}</p>
+          <p><strong>Timezone:</strong> {this.props.profile.time_zone}</p>
+        </div>
+        <div className={styles.buttons}>
+          <Link to="/profile/statistics"><Button btnType="stats">Statistics</Button></Link>
+        </div>
       </React.Fragment>
     )
   }
@@ -59,4 +66,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

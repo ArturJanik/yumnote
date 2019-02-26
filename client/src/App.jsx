@@ -22,7 +22,8 @@ import Spinner from './components/UI/Spinner/Spinner';
 import Home from './containers/Home/Home';
 import Logout from './containers/Home/Logout/Logout';
 import ListContainer from './containers/ListContainer/ListContainer';
-import MyProfile from './containers/MyProfile/MyProfile';
+import UserProfile from './containers/UserProfile/UserProfile';
+import UserStatistics from './containers/UserStatistics/UserStatistics';
 import Document from './containers/Document/Document';
 import UserProducts from './containers/UserProducts/UserProducts';
 import AddProduct from './containers/AddProduct/AddProduct';
@@ -68,7 +69,8 @@ class App extends Component {
           <ProtectedRoute path="/myfoods" exact component={ListContainer} listType="products" subType="currentuser" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/latest" exact component={ListContainer} listType="products" subType="latest" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/category/:categorySlug" exact component={ListContainer} listType="products" auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/profile" exact component={MyProfile} auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/profile" exact component={UserProfile} auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/profile/statistics" exact component={UserStatistics} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products" exact component={UserProducts} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/new" exact component={AddProduct} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/:productId(\d+)/edit" exact component={EditProduct} auth={this.props.isAuthenticated} />
