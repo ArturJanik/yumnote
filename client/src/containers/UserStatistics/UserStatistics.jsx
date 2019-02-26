@@ -7,6 +7,7 @@ import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
 import NoMatch from '../../components/Error/NoMatch';
+import Chart from './Chart/Chart';
 
 class UserStatistics extends Component {
   
@@ -17,15 +18,11 @@ class UserStatistics extends Component {
     }
   }
 
-  generateYearlyStats = () => {
-    console.log(this.props.statisticalData)
-  }
-
   renderStatistics = () => {
     return (
       <React.Fragment>
         <div className={styles['stats-container']}>
-          {this.props.statisticalData !== null ? this.generateYearlyStats() : 'No data available. Be sure to add some foodnotes!'}
+          {this.props.statisticalData !== null ? <Chart data={this.props.statisticalData} /> : 'No data available. Be sure to add some foodnotes!'}
         </div>
         <div className={styles.buttons}>
           <Link to="/profile"><Button btnType="stats">Back to profile</Button></Link>
