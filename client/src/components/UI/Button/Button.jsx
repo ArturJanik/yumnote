@@ -7,11 +7,11 @@ const button = (props) => {
   if(btnType.split(' ').length > 1){
     btnType = btnType.split(' ').join('--');
   }
-  
+
   return (
     <button
       onClick={props.clicked}
-      className={styles['btn--' + btnType]}
+      className={`${styles['btn--' + btnType]} ${props.selected ? styles.selected : ''}`}
       disabled={props.disabled}
     >{props.children}</button>
   )

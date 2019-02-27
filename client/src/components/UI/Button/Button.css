@@ -108,6 +108,11 @@
   transition: background 0.3s ease;
 }
 
+.selected {
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  color: #fff;
+}
+
 @keyframes pulse {
   from {
     opacity: 1;
