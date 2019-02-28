@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Input.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import countryCodes from './country-codes-en';
+import timezones from './timezones-en';
 
 import DatePicker from './DatePicker/DatePicker';
 import TinyMce from './TinyMce/TinyMce';
@@ -64,6 +65,22 @@ const input = (props) => {
           }}
           onChange={props.changed}
         />
+      );
+      break;
+    case('timezone'):
+      inputElement = (
+        <div className={styles.inputWrapper}>
+          <select 
+            className={inputClasses.join(' ')} 
+            value={props.value}
+            name={props.elementConfig.name}
+            onChange={props.changed}
+            >
+            {timezones.map(option => (
+              <option key={option.value} value={option.value}>{option.displayValue}</option>
+            ))}
+          </select>
+        </div>
       );
       break;
     case('select'):
