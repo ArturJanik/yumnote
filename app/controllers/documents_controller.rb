@@ -1,6 +1,4 @@
 class DocumentsController < ApiController
-  before_action :require_login
-
   def show
     document = Document.find_by slug: params[:slug]
     if document
