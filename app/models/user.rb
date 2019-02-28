@@ -10,10 +10,10 @@ class User < ApplicationRecord
   validates :email, presence: true, 
                     format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
                     uniqueness: { case_sensitive: false }
-  has_secure_password validations: false
   validates :password, length: { minimum: 6 }, allow_nil: true
+  validates :time_zone, inclusion: { in: TZInfo::Timezone.all.map(&:name), on: :create }
+  has_secure_password validations: false
   has_secure_token :auth_token
-  validates :time_zone, inclusion: { in: TZInfo::Timezone.all.map(&:name) }
   
   def invalidate_token
     self.update_columns(auth_token: nil)
