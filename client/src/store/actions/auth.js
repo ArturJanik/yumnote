@@ -44,7 +44,8 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('currentUserName');
-    localStorage.removeItem('statisticsDate');
+    localStorage.removeItem('yearlyStatistics');
+    localStorage.removeItem('statisticsFetchDate');
     axios.defaults.headers['Authorization'] = `Token ${localStorage.getItem('token')}`;
     axios.defaults.headers['token'] = localStorage.getItem('token');
   })
@@ -109,7 +110,8 @@ export const authCheckState = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('expirationDate');
       localStorage.removeItem('currentUserName');
-      localStorage.removeItem('statisticsDate');
+      localStorage.removeItem('yearlyStatistics');
+      localStorage.removeItem('statisticsFetchDate');
     } else {
       const expirationDate = new Date(localStorage.getItem('expirationDate'));
       if(expirationDate > new Date()){
