@@ -7,8 +7,12 @@ import {
   FETCH_STATISTICS_SUCCESS,
   FETCH_STATISTICS_FAIL,
   CLEAR_STATISTICS,
+  UPDATE_PROFILE_START,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
+import history from '../../utilities/history';
 
 const fetchProfileStart = () => {
   return {
@@ -99,5 +103,43 @@ export const fetchStatistics = () => {
 export const clearStatistics = () => {
   return {
     type: CLEAR_STATISTICS
+  }
+}
+
+const updateProfileStart = () => {
+  return {
+    type: UPDATE_PROFILE_START
+  }
+}
+
+const updateProfileSuccess = () => {
+  return {
+    type: UPDATE_PROFILE_SUCCESS
+  }
+}
+
+const updateProfileFail = (error) => {
+  return {
+    type: UPDATE_PROFILE_FAIL,
+    error
+  }
+}
+
+export const updateProfile = (formdata, id) => {
+  return dispatch => {
+    dispatch(updateProfileStart());
+    axios.put('/api/users/'+id, formdata)
+    .then(response => {
+      dispatch(updateProfileSuccess());
+      history.push('/profile');
+    })
+    .catch(err => {
+      console.error('Update profile error:', err.response.data.errors);
+      if(err.response.status === 500){
+        dispatch(updateProfileFail('Unable to update profile. Please check your connection or try again later.'));
+      } else {
+        dispatch(updateProfileFail(err.response.data.errors));
+      }
+    })
   }
 }

@@ -23,6 +23,7 @@ import Home from './containers/Home/Home';
 import Logout from './containers/Home/Logout/Logout';
 import ListContainer from './containers/ListContainer/ListContainer';
 import UserProfile from './containers/UserProfile/UserProfile';
+import EditProfile from './containers/EditProfile/EditProfile';
 import UserStatistics from './containers/UserStatistics/UserStatistics';
 import Document from './containers/Document/Document';
 import UserProducts from './containers/UserProducts/UserProducts';
@@ -70,6 +71,7 @@ class App extends Component {
           <ProtectedRoute path="/latest" exact component={ListContainer} listType="products" subType="latest" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/category/:categorySlug" exact component={ListContainer} listType="products" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/profile" exact component={UserProfile} auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/profile/edit" exact component={EditProfile} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/profile/statistics" exact component={UserStatistics} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products" exact component={UserProducts} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/new" exact component={AddProduct} auth={this.props.isAuthenticated} />

@@ -6,6 +6,9 @@ import {
   FETCH_STATISTICS_SUCCESS,
   FETCH_STATISTICS_FAIL,
   CLEAR_STATISTICS,
+  UPDATE_PROFILE_START,
+  UPDATE_PROFILE_SUCCESS,
+  UPDATE_PROFILE_FAIL
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
 
@@ -67,6 +70,27 @@ const clearStatistics = (state, action) => {
 }
 
 
+const updateProfileStart = (state, action) => {
+  return updateObject(state, {
+    error: null,
+    loading: true
+  })
+}
+
+const updateProfileSuccess = (state, action) => {
+  return updateObject(state, {
+    loading: false
+  })
+}
+
+const updateProfileFail = (state, action) => {
+  return updateObject(state, {
+    error: action.error,
+    loading: false
+  })
+}
+
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PROFILE_START: return fetchProfileStart(state, action);
@@ -78,6 +102,10 @@ const reducer = (state = initialState, action) => {
     case FETCH_STATISTICS_FAIL: return fetchStatisticsFail(state, action);
 
     case CLEAR_STATISTICS: return clearStatistics(state, action);
+    
+    case UPDATE_PROFILE_START: return updateProfileStart(state, action);
+    case UPDATE_PROFILE_SUCCESS: return updateProfileSuccess(state, action);
+    case UPDATE_PROFILE_FAIL: return updateProfileFail(state, action);
 
     default: return state;
   }

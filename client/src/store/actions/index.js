@@ -29,7 +29,8 @@ export {
 export {
   fetchProfile,
   fetchStatistics,
-  clearStatistics
+  clearStatistics,
+  updateProfile
 } from './user';
 export {
   fetchDocument,

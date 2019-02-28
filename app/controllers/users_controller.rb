@@ -10,8 +10,19 @@ class UsersController < ApiController
     end
   end
 
+  def update
+    if current_user.update(user_params)
+      render json: {
+        message: 'ok'
+      }
+    else
+      render json: { errors: 'Error: you may not change this value.' }, status: 400
+    end
+  end
+
   def profile
     user = {
+      id: current_user.id,
       username: current_user.username,
       email: current_user.email,
       time_zone: current_user.time_zone,
