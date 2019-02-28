@@ -8,6 +8,10 @@ import AuthForm from './AuthForm/AuthForm';
 
 class Home extends Component {
 
+  componentDidMount() {
+    document.title = 'Keep track of your diet everyday - with calories.toda';
+  }
+
   render() {
     let authRedirect = null;
     if(this.props.isAuthenticated){
