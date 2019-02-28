@@ -14,6 +14,11 @@ class User < ApplicationRecord
   validates :time_zone, inclusion: { in: TZInfo::Timezone.all.map(&:name), on: :create }
   has_secure_password validations: false
   has_secure_token :auth_token
+
+  def reset_password(password)
+    self.password = password
+    save!
+  end
   
   def invalidate_token
     self.update_columns(auth_token: nil)

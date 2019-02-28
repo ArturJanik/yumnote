@@ -6,7 +6,6 @@ import * as actions from '../../store/actions/index';
 import Form from '../../components/Form/Form';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import Button from '../../components/UI/Button/Button';
-import NoMatch from '../../components/Error/NoMatch';
 
 class EditProfile extends Component {
   state = {
@@ -119,12 +118,12 @@ class EditProfile extends Component {
     return(
       <section className={styles['profile-container']}>
         <div className={styles.wrapper}>
-        <h1>Edit profile</h1>
-        <div className={styles.profile}>
-          <div className={styles['form-container']}>
-            {form}
+          <h1>Edit profile</h1>
+          <div>
+            <div className={styles['form-container']}>
+              {form}
+            </div>
           </div>
-        </div>
         </div>
       </section>
     )

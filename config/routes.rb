@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       # get 'statistics' => 'users#statistics'
     # end
     get '/profile' => "users#profile"
+    post '/changepassword' => "users#changepassword"
 
     get '/foodnotes/today' => 'foodnotes#index'
     get '/foodnotes/yesterday' => 'foodnotes#yesterday'

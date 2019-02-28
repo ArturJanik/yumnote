@@ -75,14 +75,24 @@ class Form extends Component {
 
   renderFormFields = () => {
     const formElementsArray = [];
+
+
+
     for(let field in this.state.fields){
       const fieldFormType = this.state.fields[field].formType;
       if(fieldFormType !== undefined && fieldFormType !== this.props.formType) continue;
       if(this.state.fields[field].elementType === undefined) continue;
 
+      let validity = this.state.fields[field].valid;
+      if(this.state.fields[field].confirms !== undefined){
+        const confirmed = this.state.fields[this.state.fields[field].confirms].value;
+        const confirmed_by = this.state.fields[field].value;
+        validity = (confirmed === confirmed_by && confirmed_by.length > 0);
+      }
+
       formElementsArray.push({
         id: field,
-        config: this.state.fields[field]
+        config: { ...this.state.fields[field], valid: validity }
       });
     }
 

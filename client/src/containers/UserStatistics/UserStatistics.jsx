@@ -44,7 +44,7 @@ class UserStatistics extends Component {
       <section className={styles['statistics-container']}>
         <div className={styles.wrapper}>
         <h1>Statistics</h1>
-        <div className={styles.profile}>
+        <div>
           {statisticsContainer}
         </div>
         </div>

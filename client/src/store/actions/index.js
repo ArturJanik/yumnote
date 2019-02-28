@@ -22,6 +22,8 @@ export {
   logout,
   authCheckState,
   setAuthRedirectPath,
+  changePassword,
+  resetChangePasswordStatus,
 } from './auth';
 export {
   fetchCategories

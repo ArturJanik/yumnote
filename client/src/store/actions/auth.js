@@ -6,6 +6,10 @@ import {
   SET_AUTH_CHECK_FINISHED,
   AUTH_RESET,
   SET_AUTH_REDIRECT_PATH,
+  PASSCHANGE_START,
+  PASSCHANGE_SUCCESS,
+  PASSCHANGE_FAIL,
+  PASSCHANGE_RESET_STATUS,
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
@@ -135,5 +139,48 @@ export const setAuthRedirectPath = (path) => {
   return {
     type: SET_AUTH_REDIRECT_PATH,
     path
+  }
+}
+
+const passchangeStart = () => {
+  return {
+    type: PASSCHANGE_START
+  }
+}
+
+const passchangeSuccess = () => {
+  return {
+    type: PASSCHANGE_SUCCESS,
+  }
+}
+
+const passchangeFail = (error) => {
+  return {
+    type: PASSCHANGE_FAIL,
+    error
+  }
+}
+
+export const changePassword = (formdata) => {
+  return dispatch => {
+    dispatch(passchangeStart());
+    axios.post('/api/changepassword', formdata)
+    .then(response => {
+      dispatch(passchangeSuccess());
+    })
+    .catch(err => {
+      console.log(err)
+      if(err.response.status === 500){
+        dispatch(passchangeFail('Error: unable to reach server. Please try again later'));
+      } else {
+        dispatch(passchangeFail(err.response.data.errors));
+      }
+    });
+  }
+}
+
+export const resetChangePasswordStatus = () => {
+  return {
+    type: PASSCHANGE_RESET_STATUS
   }
 }

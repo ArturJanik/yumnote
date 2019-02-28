@@ -23,9 +23,10 @@ class UserProfile extends Component {
           <p><strong>E-mail:</strong> {this.props.profile.email}</p>
           <p><strong>Timezone:</strong> {this.props.profile.time_zone}</p>
         </div>
-        <div className={styles.buttons}>
-          <Link to="/profile/edit"><Button btnType="stats">Edit account</Button></Link>
-          <Link to="/profile/statistics"><Button btnType="stats">Statistics</Button></Link>
+        <div className={styles['buttons-container']}>
+          <Link to="/profile/edit"><Button btnType="profile">Edit account</Button></Link>
+          <Link to="/profile/statistics"><Button btnType="profile">Show statistics</Button></Link>
+          <Link to="/profile/changepassword"><Button btnType="profile">Change password</Button></Link>
         </div>
       </React.Fragment>
     )
@@ -43,10 +44,10 @@ class UserProfile extends Component {
     return(
       <section className={styles['profile-container']}>
         <div className={styles.wrapper}>
-        <h1>Profile</h1>
-        <div className={styles.profile}>
-          {profile}
-        </div>
+          <h1>Profile</h1>
+          <div>
+            {profile}
+          </div>
         </div>
       </section>
     )

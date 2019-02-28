@@ -25,6 +25,7 @@ import ListContainer from './containers/ListContainer/ListContainer';
 import UserProfile from './containers/UserProfile/UserProfile';
 import EditProfile from './containers/EditProfile/EditProfile';
 import UserStatistics from './containers/UserStatistics/UserStatistics';
+import UserPasswordChange from './containers/UserPasswordChange/UserPasswordChange';
 import Document from './containers/Document/Document';
 import UserProducts from './containers/UserProducts/UserProducts';
 import AddProduct from './containers/AddProduct/AddProduct';
@@ -73,6 +74,7 @@ class App extends Component {
           <ProtectedRoute path="/profile" exact component={UserProfile} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/profile/edit" exact component={EditProfile} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/profile/statistics" exact component={UserStatistics} auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/profile/changepassword" exact component={UserPasswordChange} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products" exact component={UserProducts} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/new" exact component={AddProduct} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/:productId(\d+)/edit" exact component={EditProduct} auth={this.props.isAuthenticated} />

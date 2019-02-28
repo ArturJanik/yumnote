@@ -20,6 +20,20 @@ class UsersController < ApiController
     end
   end
 
+  def changepassword
+    if current_user.authenticate(user_params[:password])
+      if current_user.reset_password(user_params[:new_password])
+        render json: {
+          message: 'Password changed successfully.'
+        }
+      else
+        render json: { errors: { password: 'Error: you may not change this value.' }}, status: 400
+      end
+    else
+      render json: { errors: { password: 'Old password incorrect' }}, status: 400
+    end
+  end
+
   def profile
     user = {
       id: current_user.id,
@@ -33,6 +47,6 @@ class UsersController < ApiController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :time_zone)
+    params.require(:user).permit(:username, :email, :password, :new_password, :time_zone)
   end
 end
