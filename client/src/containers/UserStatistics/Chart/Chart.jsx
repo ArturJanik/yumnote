@@ -138,11 +138,18 @@ class Chart extends Component {
         }]
       },
       options: {
+        layout: {
+          padding: 10
+        },
+        legend: {
+          display: false
+        },
 				responsive: true,
         scales: {
           yAxes: [{
             ticks: {
-              beginAtZero:true
+              beginAtZero:true,
+              precision: 0
             }
           }]
         }
@@ -190,44 +197,46 @@ class Chart extends Component {
   render(){
     return(
       <React.Fragment>
-        <div className={styles.controls}>
-          <p><strong>Data type:</strong></p>
-          <Button selected={this.state.type === 'kcal'} clicked={() => this.changeType('kcal')}>Kcal</Button>
-          <Button selected={this.state.type === 'carb'} clicked={() => this.changeType('carb')}>Carbs</Button>
-          <Button selected={this.state.type === 'fat'} clicked={() => this.changeType('fat')}>Fats</Button>
-          <Button selected={this.state.type === 'prot'} clicked={() => this.changeType('prot')}>Proteins</Button>
+        <div className={styles['controls-group']}>
+          <div className={styles.controls}>
+            <p><strong>Data type:</strong></p>
+            <Button selected={this.state.type === 'kcal'} clicked={() => this.changeType('kcal')}>Kcal</Button>
+            <Button selected={this.state.type === 'carb'} clicked={() => this.changeType('carb')}>Carbs</Button>
+            <Button selected={this.state.type === 'fat'} clicked={() => this.changeType('fat')}>Fats</Button>
+            <Button selected={this.state.type === 'prot'} clicked={() => this.changeType('prot')}>Proteins</Button>
+          </div>
+          <div className={styles.controls}>
+            <p><strong>Data timespan:</strong></p>
+            <Button 
+              selected={this.state.timespan === 'week'} 
+              clicked={() => this.changeTimespan('week')}>Week</Button>
+            <Button 
+              selected={this.state.timespan === 'month'} 
+              clicked={() => this.changeTimespan('month')}>Month</Button>
+            <Button 
+              selected={this.state.timespan === 'quarter'} 
+              clicked={() => this.changeTimespan('quarter')}>Quarter</Button>
+            <Button 
+              selected={this.state.timespan === 'year'} 
+              clicked={() => this.changeTimespan('year')}>Year</Button>
+          </div>
+          <div className={styles.controls}>
+            <p><strong>Data scaling:</strong></p>
+            <Button 
+              disabled={['year','quarter'].includes(this.state.timespan)} 
+              selected={this.state.scale === 'day'} 
+              clicked={() => this.changeScale('day')}>Daily</Button>
+            <Button 
+              disabled={this.state.timespan === 'week'} 
+              selected={this.state.scale === 'week'} 
+              clicked={() => this.changeScale('week')}>Weekly</Button>
+            <Button 
+              disabled={['month','week'].includes(this.state.timespan)} 
+              selected={this.state.scale === 'month'} 
+              clicked={() => this.changeScale('month')}>Monthly</Button>
+          </div>
         </div>
-        <div className={styles.controls}>
-          <p><strong>Data timespan:</strong></p>
-          <Button 
-            selected={this.state.timespan === 'week'} 
-            clicked={() => this.changeTimespan('week')}>Week</Button>
-          <Button 
-            selected={this.state.timespan === 'month'} 
-            clicked={() => this.changeTimespan('month')}>Month</Button>
-          <Button 
-            selected={this.state.timespan === 'quarter'} 
-            clicked={() => this.changeTimespan('quarter')}>Quarter</Button>
-          <Button 
-            selected={this.state.timespan === 'year'} 
-            clicked={() => this.changeTimespan('year')}>Year</Button>
-        </div>
-        <div className={styles.controls}>
-          <p><strong>Data scaling:</strong></p>
-          <Button 
-            disabled={['year','quarter'].includes(this.state.timespan)} 
-            selected={this.state.scale === 'day'} 
-            clicked={() => this.changeScale('day')}>Daily</Button>
-          <Button 
-            disabled={this.state.timespan === 'week'} 
-            selected={this.state.scale === 'week'} 
-            clicked={() => this.changeScale('week')}>Weekly</Button>
-          <Button 
-            disabled={['month','week'].includes(this.state.timespan)} 
-            selected={this.state.scale === 'month'} 
-            clicked={() => this.changeScale('month')}>Monthly</Button>
-        </div>
-        <canvas ref={this.chartRef}/>
+        <canvas ref={this.chartRef} className={styles.chart}/>
       </React.Fragment>
     )
   }

@@ -22,7 +22,7 @@ class UserStatistics extends Component {
     return (
       <React.Fragment>
         <div className={styles['stats-container']}>
-          {this.props.statisticalData !== null ? <Chart data={this.props.statisticalData} /> : 'No data available. Be sure to add some foodnotes!'}
+          {(this.props.statisticalData !== null && this.props.statisticalData.length > 0) ? <Chart data={this.props.statisticalData} /> : 'No data available. Be sure to add some foodnotes!'}
         </div>
         <div className={styles.buttons}>
           <Link to="/profile"><Button btnType="stats">Back to profile</Button></Link>
