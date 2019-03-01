@@ -22,9 +22,12 @@ export {
   logout,
   authCheckState,
   setAuthRedirectPath,
+} from './auth';
+export {
   changePassword,
   resetChangePasswordStatus,
-} from './auth';
+  forgotPassword
+} from './password';
 export {
   fetchCategories
 } from './category';

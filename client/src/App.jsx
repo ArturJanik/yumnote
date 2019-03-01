@@ -22,14 +22,19 @@ import Spinner from './components/UI/Spinner/Spinner';
 import Home from './containers/Home/Home';
 import Logout from './containers/Home/Logout/Logout';
 import ListContainer from './containers/ListContainer/ListContainer';
+
 import UserProfile from './containers/UserProfile/UserProfile';
 import EditProfile from './containers/EditProfile/EditProfile';
 import UserStatistics from './containers/UserStatistics/UserStatistics';
-import UserPasswordChange from './containers/UserPasswordChange/UserPasswordChange';
+
 import Document from './containers/Document/Document';
+
 import UserProducts from './containers/UserProducts/UserProducts';
 import AddProduct from './containers/AddProduct/AddProduct';
 import EditProduct from './containers/EditProduct/EditProduct';
+
+import PasswordReset from './containers/Password/PasswordReset/PasswordReset';
+import PasswordChange from './containers/Password/PasswordChange/PasswordChange';
 
 // Actions
 import * as actions from './store/actions/index';
@@ -74,7 +79,7 @@ class App extends Component {
           <ProtectedRoute path="/profile" exact component={UserProfile} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/profile/edit" exact component={EditProfile} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/profile/statistics" exact component={UserStatistics} auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/profile/changepassword" exact component={UserPasswordChange} auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/profile/update-password" exact component={PasswordChange} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products" exact component={UserProducts} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/new" exact component={AddProduct} auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/products/:productId(\d+)/edit" exact component={EditProduct} auth={this.props.isAuthenticated} />
@@ -82,7 +87,8 @@ class App extends Component {
           <Route path="/doc/:documentSlug" exact component={Document} />
           <Route path="/login" exact render={() => <Home signUp={false} isAuthenticated={this.props.isAuthenticated} />} />
           <Route path="/register" exact render={() => <Home signUp={true} isAuthenticated={this.props.isAuthenticated} />} />
-          <Route path="/logout" exact component={Logout} isAuthenticated={this.props.isAuthenticated} />
+          <Route path="/logout" exact component={Logout} />
+          <Route path="/reset-password" exact component={PasswordReset} isAuthenticated={this.props.isAuthenticated} />
           <Route component={NoMatch} />
         </Switch>
       )

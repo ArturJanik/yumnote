@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import styles from './AuthForm.css';
 
 import Form from '../../../components/Form/Form';
@@ -162,6 +162,10 @@ class AuthForm extends Component {
       </Button>
     );
 
+    const forgotPassBtn = (
+      <Link to="/reset-password"><Button btnType="auth-link">Forgot password?</Button></Link>
+    )
+
     return (
       <React.Fragment>
         <p className={styles["auth-form-title"]}>
@@ -169,6 +173,7 @@ class AuthForm extends Component {
         </p>
         {form}
         {!this.props.loading ? authModeBtn : null}
+        {this.state.isSignup ? null : forgotPassBtn}
       </React.Fragment>
     );
   }

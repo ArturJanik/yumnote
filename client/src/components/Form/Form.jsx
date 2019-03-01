@@ -76,8 +76,6 @@ class Form extends Component {
   renderFormFields = () => {
     const formElementsArray = [];
 
-
-
     for(let field in this.state.fields){
       const fieldFormType = this.state.fields[field].formType;
       if(fieldFormType !== undefined && fieldFormType !== this.props.formType) continue;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import styles from './UserPasswordChange.css';
+import styles from './PasswordChange.css';
 
-import * as actions from '../../store/actions/index';
-import Form from '../../components/Form/Form';
-import Button from '../../components/UI/Button/Button';
+import * as actions from '../../../store/actions/index';
+import Form from '../../../components/Form/Form';
+import Button from '../../../components/UI/Button/Button';
 
-class UserPasswordChange extends Component {
+class PasswordChange extends Component {
 
   state = {
     fields: {
@@ -150,9 +150,9 @@ class UserPasswordChange extends Component {
 
 const mapStateToProps = state => {
   return {
-    loading: state.auth.loading,
-    error: state.auth.error,
-    finished: state.auth.passwordChangeSuccess
+    loading: state.password.loading,
+    error: state.password.error,
+    finished: state.password.passwordChangeSuccess
   }
 }
 
@@ -163,4 +163,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserPasswordChange);
+export default connect(mapStateToProps, mapDispatchToProps)(PasswordChange);

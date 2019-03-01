@@ -15,7 +15,7 @@
   border: 1px solid #666;
   color: #666;
 }
-.btn:hover {
+.btn:not(:disabled):hover {
   opacity: 0.75;
 }
 .btn:disabled {
@@ -73,6 +73,9 @@
 .btn--auth--submit--loading {
   composes: btn--auth--submit;
   animation: pulse 1s linear infinite alternate;
+}
+.btn--auth--submit:disabled {
+  opacity: 0.6;
 }
 .btn--auth-link {
   composes: btn;

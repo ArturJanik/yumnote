@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_secure_token :auth_token
 
   def reset_password(password)
+    self.reset_password_token = nil
     self.password = password
     save!
   end
@@ -29,5 +30,20 @@ class User < ApplicationRecord
     if user && user.authenticate(password)
       user
     end
+  end
+
+  def generate_password_token
+    self.reset_password_token = generate_token
+    self.reset_password_sent_at = Time.zone.now.utc
+    save!
+  end
+
+  def password_token_valid?
+    (self.reset_password_sent_at + 4.hours)  > Time.zone.now.utc
+  end
+
+  private
+  def generate_token
+    SecureRandom.hex(10)
   end
 end

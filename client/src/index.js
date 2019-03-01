@@ -21,6 +21,7 @@ import categoryReducer from './store/reducers/category';
 import foodnoteReducer from './store/reducers/foodnote';
 import userReducer from './store/reducers/user';
 import documentReducer from './store/reducers/document';
+import passwordReducer from './store/reducers/password';
 
 import * as serviceWorker from './serviceWorker';
 import history from './utilities/history';
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   foodnote: foodnoteReducer,
   user: userReducer,
   document: documentReducer,
+  password: passwordReducer,
 });
 
 const composeEnhancers = (process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION__ !== undefined) ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;

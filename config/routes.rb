@@ -10,8 +10,10 @@ Rails.application.routes.draw do
     # resources :users, except: [:index,:destroy] do
       # get 'statistics' => 'users#statistics'
     # end
-    get '/profile' => "users#profile"
-    post '/changepassword' => "users#changepassword"
+    get  '/profile' => 'users#profile'
+    post '/changepassword' => 'users#changepassword'
+    post '/password/forgot', to: 'passwords#forgot'
+    post '/password/reset', to: 'passwords#reset'
 
     get '/foodnotes/today' => 'foodnotes#index'
     get '/foodnotes/yesterday' => 'foodnotes#yesterday'

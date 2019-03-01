@@ -26,7 +26,7 @@ class UserProfile extends Component {
         <div className={styles['buttons-container']}>
           <Link to="/profile/edit"><Button btnType="profile">Edit account</Button></Link>
           <Link to="/profile/statistics"><Button btnType="profile">Show statistics</Button></Link>
-          <Link to="/profile/changepassword"><Button btnType="profile">Change password</Button></Link>
+          <Link to="/profile/update-password"><Button btnType="profile">Change password</Button></Link>
         </div>
       </React.Fragment>
     )
