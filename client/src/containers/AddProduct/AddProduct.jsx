@@ -181,7 +181,6 @@ class AddProduct extends Component {
     let button = this.generateButton();
     let errorMessage = null;
     if(this.props.error) {
-      console.log(this.props.error);
       errorMessage = this.generateErrorMsg();
     }
 

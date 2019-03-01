@@ -56,10 +56,10 @@ class EditProfile extends Component {
 
   generateButton = () => {
     let button = (
-      <Button btnType="auth--submit">Save changes</Button>
+      <Button btnType="profile">Save changes</Button>
     );
     if (this.props.loading) {
-      button = <Button btnType="auth--submit loading">Connecting...</Button>;
+      button = <Button btnType="profile loading">Connecting...</Button>;
     }
     return button;
   };

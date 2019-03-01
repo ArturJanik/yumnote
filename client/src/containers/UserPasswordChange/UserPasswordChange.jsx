@@ -84,7 +84,6 @@ class UserPasswordChange extends Component {
     if (!this.props.error) return errorMessage;
     if (this.props.error instanceof Object) {
       let errorFields = Object.keys(this.props.error);
-      console.log(errorFields)
 
       errorMessage = (
         <div className={styles["error-container"]}>

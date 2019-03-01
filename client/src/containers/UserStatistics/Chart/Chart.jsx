@@ -59,7 +59,7 @@ class Chart extends Component {
       case 'week':
         data = _.map(data, (dailyData) => ({ ...dailyData, dat: dailyData.created_at, created_at: 'week ' + moment(dailyData.created_at).isoWeek() + '/' + moment(dailyData.created_at).isoWeekYear() }));
         data = _.groupBy(data, 'created_at');
-        console.log(data)
+
         data = _.reduce(data, (weeklyData, dailyValues, key) => {
           weeklyData[key] = _.reduce(dailyValues, (weeklySum, value, key) => {
             weeklySum['kcal'] = weeklySum['kcal'] + value.kcal;
