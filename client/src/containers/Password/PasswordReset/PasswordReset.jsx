@@ -19,6 +19,10 @@ class PasswordReset extends Component {
   componentDidMount() {
     document.title = 'Reset password - with calories.today';
   }
+  
+  componentWillUnmount() {
+    this.props.resetPasswordChangeSuccess();
+  }
 
   generateButton = () => {
     let { emailValid, emailTouched } = this.state;
@@ -127,7 +131,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    forgotPassword: (email) => dispatch(actions.forgotPassword(email))
+    forgotPassword: (email) => dispatch(actions.forgotPassword(email)),
+    resetPasswordChangeSuccess: () => dispatch(actions.resetChangePasswordStatus())
   }
 }
 

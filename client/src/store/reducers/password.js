@@ -40,9 +40,7 @@ const changePasswordFail = (state, action) => {
 }
 
 const resetChangePasswordStatus = (state, action) => {
-  return updateObject(state, {
-    passwordChangeSuccess: false
-  })
+  return updateObject(state, initialState)
 }
 
 const forgotPasswordStart = (state, action) => {
