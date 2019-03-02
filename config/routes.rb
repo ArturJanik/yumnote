@@ -7,9 +7,6 @@ Rails.application.routes.draw do
     delete '/logout' => "sessions#destroy"
     
     resources :users, only: [:create, :update]
-    # resources :users, except: [:index,:destroy] do
-      # get 'statistics' => 'users#statistics'
-    # end
     get  '/profile' => 'users#profile'
     post '/changepassword' => 'users#changepassword'
     post '/password/forgot', to: 'passwords#forgot'
