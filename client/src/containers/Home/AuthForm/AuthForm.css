@@ -1,4 +1,4 @@
-.auth-form-title {
+.auth__title {
   flex: 0 0 100%;
   font-family: 'Raleway', sans-serif;
   font-size: 32px;
@@ -16,4 +16,19 @@
   color: #a80f0f;
   font-weight: 600;
   text-transform: capitalize;
+}
+
+.auth__link {
+  color: #3f4d00;
+  cursor: pointer;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 10px auto 0;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}
+.auth__link:hover {
+  text-decoration: underline;
 }

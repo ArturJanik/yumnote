@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import styles from './AuthForm.css';
@@ -8,7 +8,7 @@ import Button from '../../../components/UI/Button/Button';
 
 import * as actions from '../../../store/actions/index';
 
-class AuthForm extends Component {
+class AuthForm extends PureComponent {
   state = {
     fields: {
       username: {
@@ -87,6 +87,8 @@ class AuthForm extends Component {
     return state;
   }
 
+  // shouldComponentUpdate(nextProps, nextState){}
+
   switchAuthModeHandler = () => {
     this.props.onAuthModeChange();
     this.setState(prevState => {
@@ -98,12 +100,12 @@ class AuthForm extends Component {
 
   generateButton = () => {
     let button = (
-      <Button btnType="auth--submit">
+      <Button btnType="auth">
         {this.state.isSignup ? "Register" : "Login"}
       </Button>
     );
     if (this.props.loading) {
-      button = <Button btnType="auth--submit loading">Connecting...</Button>;
+      button = <Button btnType="auth loading">Connecting...</Button>;
     }
     return button;
   };
@@ -155,20 +157,20 @@ class AuthForm extends Component {
     );
 
     const authModeBtn = (
-      <Button btnType="auth-link" clicked={this.switchAuthModeHandler}>
+      <div className={styles["auth__link"]} onClick={this.switchAuthModeHandler}>
         {this.state.isSignup
           ? "Already have an account? Login!"
-          : "No account yet? Create a new account!"}
-      </Button>
+          : "No account yet? Signup here!"}
+      </div>
     );
 
     const forgotPassBtn = (
-      <Link to="/reset-password"><Button btnType="auth-link">Forgot password?</Button></Link>
+      <Link to="/reset-password" className={styles['auth__link']}>Forgot password?</Link>
     )
 
     return (
       <React.Fragment>
-        <p className={styles["auth-form-title"]}>
+        <p className={styles["auth__title"]}>
           {this.state.isSignup ? "Signup" : "Login"}
         </p>
         {form}

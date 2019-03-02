@@ -1,0 +1,131 @@
+.btn {
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  padding: 6px 10px;
+  text-align: center;
+}
+.btn--regular {
+  composes: btn;
+  border: 1px solid #666;
+  color: #666;
+}
+.btn:not(:disabled):hover {
+  opacity: 0.75;
+}
+.btn:disabled {
+  color: #ccc;
+  cursor: default;
+}
+.btn--follow {
+  composes: btn;
+  background: #7a9118;
+  display: block;
+  padding: 10px 60px;
+}
+.btn--follow svg {
+  margin-right: 10px;
+}
+.btn--refresh {
+  composes: btn;
+  background: #333;
+  display: block;
+  margin: auto;
+}
+.btn--refresh--loading {
+  composes: btn--refresh;
+  animation: pulse 1s linear infinite alternate;
+}
+.btn--success {
+  composes: btn;
+  background: #7a9118;
+}
+.btn--success--loading {
+  composes: btn--success;
+  animation: pulse 1s linear infinite alternate;
+}
+.btn--save {
+  composes: btn;
+  background: #7a9118;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.btn--save--loading {
+  composes: btn--save;
+  animation: pulse 1s linear infinite alternate;
+}
+.btn--auth--submit {
+  composes: btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  border-bottom: 3px solid #3f4d00;
+  display: block;
+  font-size: 18px;
+  margin: 10px auto;
+  padding: 20px;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+.btn--auth--submit--loading {
+  composes: btn--auth--submit;
+  animation: pulse 1s linear infinite alternate;
+}
+.btn--auth--submit:disabled {
+  opacity: 0.6;
+}
+.btn--auth-link {
+  composes: btn;
+  background: #fff;
+  color: #3f4d00;
+  display: block;
+  font-size: 14px;
+  margin: 10px auto 0;
+  padding: 10px;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.btn--delete {
+  composes: btn;
+  /* border: 1px solid #d2331e; */
+  /* color: #d2331e; */
+}
+
+.btn--product--create {
+  composes: btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  border-bottom: 3px solid #3f4d00;
+  padding: 10px 20px;
+}
+
+.btn--profile {
+  composes: btn;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  border-bottom: 3px solid #3f4d00;
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s ease;
+}
+.btn--profile--loading {
+  composes: btn--profile;
+  animation: pulse 1s linear infinite alternate;
+}
+
+.selected {
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  color: #fff;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.5;
+  }
+}

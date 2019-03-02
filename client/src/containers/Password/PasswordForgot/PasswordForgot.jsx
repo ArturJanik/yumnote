@@ -31,10 +31,10 @@ class PasswordForgot extends Component {
   generateButton = () => {
     let { emailValid, emailTouched } = this.state;
     let button = (
-      <Button disabled={!emailValid || !emailTouched} btnType="auth--submit" clicked={this.onFormSubmit}>Reset password</Button>
+      <Button disabled={!emailValid || !emailTouched} btnType="auth" clicked={this.onFormSubmit}>Reset password</Button>
     );
     if (this.props.loading) {
-      button = <Button btnType="auth--submit loading">Validating request...</Button>;
+      button = <Button btnType="auth loading">Validating request...</Button>;
     }
     return button;
   };

@@ -35,10 +35,10 @@ class PasswordReset extends Component {
   generateButton = () => {
     let { passValid, passTouched } = this.state;
     let button = (
-      <Button disabled={!passValid || !passTouched} btnType="auth--submit" clicked={this.onFormSubmit}>Reset password</Button>
+      <Button disabled={!passValid || !passTouched} btnType="auth" clicked={this.onFormSubmit}>Reset password</Button>
     );
     if (this.props.loading) {
-      button = <Button btnType="auth--submit loading">Validating...</Button>;
+      button = <Button btnType="auth loading">Validating...</Button>;
     }
     return button;
   };
