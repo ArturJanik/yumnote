@@ -13,7 +13,9 @@ import FoodnoteList from './FoodnoteList/FoodnoteList';
 class ListContainer extends Component {
 
   componentDidMount() {
-    this.props.fetchCategories();
+    if(this.props.categories.length === 0){
+      this.props.fetchCategories();
+    }
   }
 
   renderList = () => {
@@ -105,6 +107,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actions.fetchCategories(false)),
+    onContainerUnmount: () => dispatch(actions.resetCategoryReducerState())
   }
 }
 

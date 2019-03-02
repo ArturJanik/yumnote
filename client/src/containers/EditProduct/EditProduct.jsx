@@ -241,7 +241,10 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.fetchCategories(true));
     },
     onUpdateProduct: (formdata, id) => dispatch(actions.updateProduct(formdata, id)),
-    onPageLeft: (formdata, id) => dispatch(actions.clearProduct()),
+    onPageLeft: (formdata, id) => {
+      dispatch(actions.clearProductData());
+      dispatch(actions.clearProductError());
+    },
   }
 }
 

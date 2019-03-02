@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { 
   Route, 
   Switch, 
-  withRouter
+  withRouter,
+  Redirect
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -66,7 +67,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact render={() => (
             this.props.isAuthenticated ? (
-              <ListContainer listType="foodnotes" /> 
+              <Redirect to="/foodnotes/today" />
             ) : (
               <Home signUp={true} />
             )

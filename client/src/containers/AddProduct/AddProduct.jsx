@@ -14,6 +14,10 @@ class AddProduct extends Component {
     this.props.fetchCategories()
   }
 
+  componentWillUnmount() {
+    this.props.onPageLeft()
+  }
+
   generateFields = () => {
     const categoriesOptions = this.props.categories.map(cat => ({
       value: cat.id, displayValue: cat.name
@@ -219,6 +223,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddProduct: formdata => dispatch(actions.addProduct(formdata)),
     fetchCategories: () => dispatch(actions.fetchCategories(true)),
+    onPageLeft: (formdata, id) => dispatch(actions.clearProductError()),
   }
 }
 

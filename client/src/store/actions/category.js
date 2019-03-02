@@ -1,7 +1,8 @@
 import {
   FETCH_CATEGORIES_START,
   FETCH_CATEGORIES_SUCCESS,
-  FETCH_CATEGORIES_FAIL
+  FETCH_CATEGORIES_FAIL,
+  RESET_CATEGORY_REDUCER_STATE
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
@@ -41,5 +42,11 @@ export const fetchCategories = (selectable) => {
         dispatch(fetchCategoriesFail(err.response.data.errors));
       }
     })
+  }
+}
+
+export const resetCategoryReducerState = () => {
+  return {
+    type: RESET_CATEGORY_REDUCER_STATE,
   }
 }

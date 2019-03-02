@@ -63,7 +63,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchDocument: (slug) => dispatch(actions.fetchDocument(slug)),
-    onDocumentLeft: () => dispatch(actions.clearDocument()),
+    onDocumentLeft: () => dispatch(actions.resetDocumentReducerState()),
   }
 }
 

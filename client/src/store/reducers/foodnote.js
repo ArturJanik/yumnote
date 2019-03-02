@@ -11,7 +11,8 @@ import {
   DELETE_FOODNOTE_START,
   DELETE_FOODNOTE_SUCCESS,
   DELETE_FOODNOTE_FAIL,
-  CLEAR_FOODNOTE_TOTALS
+  CLEAR_FOODNOTE_TOTALS,
+  RESET_FOODNOTE_REDUCER_STATE
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
 
@@ -179,6 +180,9 @@ const clearFoodnoteTotals = (state, action) => {
   return updateObject(state, { totals: initialState.totals })
 }
 
+const resetReducerState = (state, action) => {
+  return { ...initialState }
+}
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -199,6 +203,7 @@ const reducer = (state = initialState, action) => {
     case DELETE_FOODNOTE_FAIL: return deleteFoodnoteFail(state, action);
 
     case CLEAR_FOODNOTE_TOTALS: return clearFoodnoteTotals(state, action);
+    case RESET_FOODNOTE_REDUCER_STATE: return resetReducerState(state, action);
 
     default: return state;
   }

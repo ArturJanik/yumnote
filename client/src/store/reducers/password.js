@@ -42,10 +42,6 @@ const changePasswordFail = (state, action) => {
   })
 }
 
-const resetReducerState = (state, action) => {
-  return updateObject(state, initialState)
-}
-
 const forgotPasswordStart = (state, action) => {
   return updateObject(state, { 
     error: null, loading: true, message: null 
@@ -89,6 +85,10 @@ const resetPasswordFail = (state, action) => {
     loading: false,
     message: null
   })
+}
+
+const resetReducerState = (state, action) => {
+  return updateObject(state, initialState)
 }
 
 const reducer = (state = initialState, action) => {

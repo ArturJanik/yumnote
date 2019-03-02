@@ -77,6 +77,7 @@ class AuthForm extends PureComponent {
   };
 
   componentDidMount() {
+    this.props.resetAuthReducerState();
     this.setState({ isSignup: this.props.signUp });
   }
 
@@ -87,10 +88,8 @@ class AuthForm extends PureComponent {
     return state;
   }
 
-  // shouldComponentUpdate(nextProps, nextState){}
-
   switchAuthModeHandler = () => {
-    this.props.onAuthModeChange();
+    this.props.resetAuthReducerState();
     this.setState(prevState => {
       return { isSignup: !prevState.isSignup };
     });
@@ -151,7 +150,7 @@ class AuthForm extends PureComponent {
         loading={this.props.loading}
         submitBtn={button}
         errors={errorMessage}
-        submitHandler={data => this.props.onAuth(data, this.state.isSignup)}
+        submitHandler={data => this.props.onAuthSubmit(data, this.state.isSignup)}
         formType={this.state.isSignup ? "signup" : "login"}
       />
     );
@@ -174,8 +173,12 @@ class AuthForm extends PureComponent {
           {this.state.isSignup ? "Signup" : "Login"}
         </p>
         {form}
-        {!this.props.loading ? authModeLink : null}
-        {this.state.isSignup ? null : forgotPassLink}
+        {!this.props.loading ? (
+          <React.Fragment>
+            {authModeLink}
+            {this.state.isSignup ? null : forgotPassLink}
+          </React.Fragment>
+        ) : null}
       </React.Fragment>
     );
   }
@@ -190,8 +193,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onAuth: (formdata, isSignup) => dispatch(actions.auth(formdata, isSignup)),
-    onAuthModeChange: () => dispatch(actions.resetAuth()),
+    onAuthSubmit: (formdata, isSignup) => dispatch(actions.auth(formdata, isSignup)),
+    resetAuthReducerState: () => dispatch(actions.resetAuthReducerState()),
   }
 }
 

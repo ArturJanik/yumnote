@@ -14,10 +14,12 @@ import {
   DELETE_PRODUCT_START,
   DELETE_PRODUCT_SUCCESS,
   DELETE_PRODUCT_FAIL,
-  CLEAR_PRODUCT_SUCCESS,
+  CLEAR_PRODUCT_DATA,
+  CLEAR_PRODUCT_ERROR,
   TOGGLE_PRODUCT_VISIBILITY_START,
   TOGGLE_PRODUCT_VISIBILITY_SUCCESS,
-  TOGGLE_PRODUCT_VISIBILITY_FAIL
+  TOGGLE_PRODUCT_VISIBILITY_FAIL,
+  RESET_PRODUCT_REDUCER_STATE
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 import history from '../../utilities/history';
@@ -235,12 +237,6 @@ export const deleteProduct = (id) => {
   }
 }
 
-export const clearProduct = () => {
-  return {
-    type: CLEAR_PRODUCT_SUCCESS
-  }
-}
-
 const toggleVisibilityStart = () => {
   return {
     type: TOGGLE_PRODUCT_VISIBILITY_START
@@ -276,5 +272,23 @@ export const toggleProductVisibility = (id) => {
         dispatch(toggleVisibilityFail(err.response.data.errors));
       }
     })
+  }
+}
+
+export const clearProductData = () => {
+  return {
+    type: CLEAR_PRODUCT_DATA
+  }
+}
+
+export const clearProductError = () => {
+  return {
+    type: CLEAR_PRODUCT_ERROR,
+  }
+}
+
+export const resetProductReducerState = () => {
+  return {
+    type: RESET_PRODUCT_REDUCER_STATE,
   }
 }

@@ -11,7 +11,8 @@ import {
   DELETE_FOODNOTE_START,
   DELETE_FOODNOTE_SUCCESS,
   DELETE_FOODNOTE_FAIL,
-  CLEAR_FOODNOTE_TOTALS
+  CLEAR_FOODNOTE_TOTALS,
+  RESET_FOODNOTE_REDUCER_STATE
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
@@ -185,5 +186,11 @@ export const deleteFoodnote = (id) => {
 export const clearFoodnoteTotals = () => {
   return {
     type: CLEAR_FOODNOTE_TOTALS
+  }
+}
+
+export const resetFoodnoteReducerState = () => {
+  return {
+    type: RESET_FOODNOTE_REDUCER_STATE
   }
 }

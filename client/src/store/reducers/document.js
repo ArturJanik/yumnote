@@ -2,7 +2,7 @@ import {
   FETCH_DOCUMENT_START,
   FETCH_DOCUMENT_SUCCESS,
   FETCH_DOCUMENT_FAIL,
-  CLEAR_DOCUMENT
+  RESET_DOCUMENT_REDUCER_STATE
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
 
@@ -36,7 +36,7 @@ const fetchDocumentFail = (state, action) => {
   })
 }
 
-const clearDocument = (state, action) => {
+const resetReducerState = (state, action) => {
   return updateObject(state, initialState)
 }
 
@@ -47,7 +47,7 @@ const reducer = (state = initialState, action) => {
     case FETCH_DOCUMENT_SUCCESS: return fetchDocumentSuccess(state, action);
     case FETCH_DOCUMENT_FAIL: return fetchDocumentFail(state, action);
 
-    case CLEAR_DOCUMENT: return clearDocument(state, action);
+    case RESET_DOCUMENT_REDUCER_STATE: return resetReducerState(state, action);
 
     default: return state;
   }

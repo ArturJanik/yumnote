@@ -4,7 +4,7 @@ import {
   AUTH_FAIL,
   AUTH_LOGOUT,
   SET_AUTH_CHECK_FINISHED,
-  AUTH_RESET,
+  RESET_AUTH_REDUCER_STATE,
   SET_AUTH_REDIRECT_PATH,
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
@@ -46,11 +46,11 @@ const setAuthCheckFinished = (state, action) => {
 }
 
 const authLogout = (state, action) => {
-  return updateObject(state, { token: null, error: null, currentUser: null, authRedirectPath: '/' })
+  return updateObject(state, { token: null, error: null, loading: false, currentUser: null, authRedirectPath: '/' })
 }
 
-const authReset = (state, action) => {
-  return authLogout(state, action)
+const resetReducerState = (state, action) => {
+  return { ...initialState, authCheckFinished: state.authCheckFinished }
 }
 
 const setAuthRedirectPath = (state, action) => {
@@ -62,10 +62,13 @@ const reducer = (state = initialState, action) => {
     case AUTH_START: return authStart(state, action);
     case AUTH_SUCCESS: return authSuccess(state, action);
     case AUTH_FAIL: return authFail(state, action);
+    
     case AUTH_LOGOUT: return authLogout(state, action);
-    case AUTH_RESET: return authReset(state, action);
     case SET_AUTH_CHECK_FINISHED: return setAuthCheckFinished(state, action);
     case SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state, action);
+
+    case RESET_AUTH_REDUCER_STATE: return resetReducerState(state, action);
+
     default: return state;
   }
 }

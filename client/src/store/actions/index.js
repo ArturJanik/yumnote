@@ -6,31 +6,35 @@ export {
   addProduct,
   updateProduct,
   deleteProduct,
-  clearProduct,
+  clearProductData,
+  clearProductError,
   toggleProductVisibility,
+  resetProductReducerState
 } from './product';
 export {
   fetchFoodnotes,
   addFoodnote,
   updateFoodnote,
   deleteFoodnote,
-  clearFoodnoteTotals
+  clearFoodnoteTotals,
+  resetFoodnoteReducerState
 } from './foodnote';
 export {
   auth,
-  resetAuth,
   logout,
   authCheckState,
   setAuthRedirectPath,
+  resetAuthReducerState,
 } from './auth';
 export {
   changePassword,
-  resetPasswordReducerState,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  resetPasswordReducerState,
 } from './password';
 export {
-  fetchCategories
+  fetchCategories,
+  resetCategoryReducerState
 } from './category';
 export {
   fetchProfile,
@@ -40,5 +44,5 @@ export {
 } from './user';
 export {
   fetchDocument,
-  clearDocument,
+  resetDocumentReducerState,
 } from './document';

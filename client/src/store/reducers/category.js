@@ -2,7 +2,8 @@ import _ from 'lodash';
 import {
   FETCH_CATEGORIES_START,
   FETCH_CATEGORIES_SUCCESS,
-  FETCH_CATEGORIES_FAIL
+  FETCH_CATEGORIES_FAIL,
+  RESET_CATEGORY_REDUCER_STATE,
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
 
@@ -45,11 +46,17 @@ const fetchCategoriesFail = (state, action) => {
 }
 
 
+const resetReducerState = (state, action) => {
+  return { ...initialState }
+}
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_CATEGORIES_START: return fetchCategoriesStart(state, action);
     case FETCH_CATEGORIES_SUCCESS: return fetchCategoriesSuccess(state, action);
     case FETCH_CATEGORIES_FAIL: return fetchCategoriesFail(state, action);
+
+    case RESET_CATEGORY_REDUCER_STATE: return resetReducerState(state, action);
 
     default: return state;
   }

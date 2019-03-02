@@ -2,7 +2,7 @@ import {
   FETCH_DOCUMENT_START,
   FETCH_DOCUMENT_SUCCESS,
   FETCH_DOCUMENT_FAIL,
-  CLEAR_DOCUMENT
+  RESET_DOCUMENT_REDUCER_STATE
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
@@ -43,8 +43,8 @@ export const fetchDocument = (slug) => {
   }
 }
 
-export const clearDocument = () => {
+export const resetDocumentReducerState = () => {
   return {
-    type: CLEAR_DOCUMENT
+    type: RESET_DOCUMENT_REDUCER_STATE
   }
 }

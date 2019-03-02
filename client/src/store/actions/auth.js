@@ -4,7 +4,7 @@ import {
   AUTH_FAIL,
   AUTH_LOGOUT,
   SET_AUTH_CHECK_FINISHED,
-  AUTH_RESET,
+  RESET_AUTH_REDUCER_STATE,
   SET_AUTH_REDIRECT_PATH,
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
@@ -125,9 +125,9 @@ export const authCheckState = () => {
   }
 }
 
-export const resetAuth = () => {
+export const resetAuthReducerState = () => {
   return {
-    type: AUTH_RESET
+    type: RESET_AUTH_REDUCER_STATE
   }
 }
 
