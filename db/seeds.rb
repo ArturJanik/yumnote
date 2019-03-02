@@ -4,8 +4,8 @@ AdminUser.destroy_all
 Product.destroy_all
 
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
-u1 = User.create!(username: 'admin', email: 'admin@example.com', password: 'password', time_zone: 'Warsaw')
-u2 = User.create!(username: 'user', email: 'user@example.com', password: 'password', time_zone: 'Warsaw')
+u1 = User.create!(username: 'admin', email: 'admin@example.com', password: 'password', time_zone: 'Europe/Warsaw')
+u2 = User.create!(username: 'user', email: 'user@example.com', password: 'password', time_zone: 'Europe/Warsaw')
 
 puts "#{User.count} users created!"
 
