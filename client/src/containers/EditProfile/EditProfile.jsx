@@ -25,6 +25,7 @@ class EditProfile extends Component {
         touched: false
       }
     },
+    fieldsUpdatedWithProfileData: false
   };
 
   
@@ -51,15 +52,15 @@ class EditProfile extends Component {
         }
       }
     }
-    this.setState({fields});
+    this.setState({fields, fieldsUpdatedWithProfileData: true});
   }
 
   generateButton = () => {
     let button = (
-      <Button btnType="profile">Save changes</Button>
+      <Button>Save changes</Button>
     );
-    if (this.props.loading) {
-      button = <Button btnType="profile loading">Connecting...</Button>;
+    if(this.props.loading) {
+      button = <Button btnType="regular loading">Connecting...</Button>;
     }
     return button;
   };
@@ -100,7 +101,7 @@ class EditProfile extends Component {
     let errorMessage = null;
     let button = null;
 
-    if(!this.props.loading && this.props.profile !== null){
+    if(!this.props.loading && this.props.profile !== null && this.state.fieldsUpdatedWithProfileData){
       button = this.generateButton();
       errorMessage = this.generateErrorMsg();
       form = (
@@ -113,7 +114,6 @@ class EditProfile extends Component {
         />
       );
     }
-
     
     return(
       <section className={styles['profile-container']}>
