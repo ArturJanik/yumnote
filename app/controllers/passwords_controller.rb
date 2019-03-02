@@ -10,10 +10,9 @@ class PasswordsController < ApiController
 
     if user.present?
       user.generate_password_token
-      puts 'aaa'
+      PasswordMailer.send_password_reset(user).deliver_now
       render json: { message: 'Email with password reset instructions has been successfully sent.' }
     else
-      PasswordMailer.send_password_reset('aaa').deliver_now
       # blokujemy mozliwosc okreslenia czy dany email istnieje w bazie na podstawie zwrotek JSON z bledami z API
       render json: { message: 'Email with password reset instructions has been successfully sent.' }
     end
@@ -24,7 +23,7 @@ class PasswordsController < ApiController
     password = params[:password]
 
     if pass_token.blank? || password.blank?
-      return render json: {error: 'Token or password not received.'}, status: 404
+      return render json: { error: 'Token or password not received.' }, status: 404
     end
 
     user = User.find_by(reset_password_token: pass_token)

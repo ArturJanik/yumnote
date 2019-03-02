@@ -66,7 +66,7 @@ class PasswordChange extends Component {
   }
 
   componentWillUnmount() {
-    this.props.resetPasswordChangeSuccess();
+    this.props.resetPasswordReducerState();
   }
 
   generateButton = () => {
@@ -159,7 +159,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     changePassword: (formdata) => dispatch(actions.changePassword(formdata)),
-    resetPasswordChangeSuccess: () => dispatch(actions.resetChangePasswordStatus())
+    resetPasswordReducerState: () => dispatch(actions.resetPasswordReducerState())
   }
 }
 

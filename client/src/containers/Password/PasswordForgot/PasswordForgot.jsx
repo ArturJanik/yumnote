@@ -1,31 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import styles from './PasswordReset.css';
+import styles from './PasswordForgot.css';
 import * as actions from '../../../store/actions/index';
 
 import Input from '../../../components/UI/Input/Input';
 import Button from '../../../components/UI/Button/Button';
 import { validateField } from '../../../utilities/form-validation';
 
-class PasswordReset extends Component {
+class PasswordForgot extends Component {
   
   state = {
-    password: '',
-    passValid: false,
-    passTouched: false,
-    token: null,
+    email: '',
+    emailValid: false,
+    emailTouched: false,
     passValidator: {
       required: true,
-      minLength: 6
+      isEmail: true
     }
   }
 
   componentDidMount() {
     document.title = 'Reset password - with calories.today';
-
-    const { token } = this.props.match.params;
-    this.setState({token})
   }
   
   componentWillUnmount() {
@@ -33,12 +29,12 @@ class PasswordReset extends Component {
   }
 
   generateButton = () => {
-    let { passValid, passTouched } = this.state;
+    let { emailValid, emailTouched } = this.state;
     let button = (
-      <Button disabled={!passValid || !passTouched} btnType="auth--submit" clicked={this.onFormSubmit}>Reset password</Button>
+      <Button disabled={!emailValid || !emailTouched} btnType="auth--submit" clicked={this.onFormSubmit}>Reset password</Button>
     );
     if (this.props.loading) {
-      button = <Button btnType="auth--submit loading">Validating...</Button>;
+      button = <Button btnType="auth--submit loading">Validating request...</Button>;
     }
     return button;
   };
@@ -46,14 +42,14 @@ class PasswordReset extends Component {
   onChange = (event) => {
     const value = event.target.value;
     this.setState({
-      password: value,
-      passValid: validateField(value, this.state.passValidator),
-      passTouched: true
+      email: value,
+      emailValid: validateField(value, this.state.passValidator),
+      emailTouched: true
     })
   }
 
   onFormSubmit = () => {
-    this.props.resetPassword(this.state.password, this.state.token)
+    this.props.forgotPassword(this.state.email)
   }
 
   generateForm = () => {
@@ -62,13 +58,13 @@ class PasswordReset extends Component {
       <React.Fragment>
         <Input 
           elementType="input"
-          label="New password" 
-          value={this.state.password} 
+          label="Enter your e-mail to reset password" 
+          value={this.state.email} 
           changed={this.onChange} 
-          invalid={!this.state.passValid}
-          touched={this.state.passTouched}
+          invalid={!this.state.emailValid}
+          touched={this.state.emailTouched}
           shouldValidate={this.state.passValidator}
-          elementConfig={{type: 'password', placeholder: "Enter new password"}}
+          elementConfig={{placeholder: "E-mail address used to create your account"}}
         />
         {btn}
       </React.Fragment>
@@ -124,9 +120,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    resetPassword: (password, token) => dispatch(actions.resetPassword(password, token)),
+    forgotPassword: (email) => dispatch(actions.forgotPassword(email)),
     resetPasswordReducerState: () => dispatch(actions.resetPasswordReducerState())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PasswordReset));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PasswordForgot));

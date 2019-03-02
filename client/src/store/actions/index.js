@@ -25,8 +25,9 @@ export {
 } from './auth';
 export {
   changePassword,
-  resetChangePasswordStatus,
-  forgotPassword
+  resetPasswordReducerState,
+  forgotPassword,
+  resetPassword
 } from './password';
 export {
   fetchCategories

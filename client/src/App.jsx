@@ -34,6 +34,7 @@ import AddProduct from './containers/AddProduct/AddProduct';
 import EditProduct from './containers/EditProduct/EditProduct';
 
 import PasswordReset from './containers/Password/PasswordReset/PasswordReset';
+import PasswordForgot from './containers/Password/PasswordForgot/PasswordForgot';
 import PasswordChange from './containers/Password/PasswordChange/PasswordChange';
 
 // Actions
@@ -88,7 +89,8 @@ class App extends Component {
           <Route path="/login" exact render={() => <Home signUp={false} isAuthenticated={this.props.isAuthenticated} />} />
           <Route path="/register" exact render={() => <Home signUp={true} isAuthenticated={this.props.isAuthenticated} />} />
           <Route path="/logout" exact component={Logout} />
-          <Route path="/reset-password" exact component={PasswordReset} isAuthenticated={this.props.isAuthenticated} />
+          <Route path="/reset-password" exact component={PasswordForgot} isAuthenticated={this.props.isAuthenticated} />
+          <Route path="/reset-password/:token" exact component={PasswordReset} isAuthenticated={this.props.isAuthenticated} />
           <Route component={NoMatch} />
         </Switch>
       )

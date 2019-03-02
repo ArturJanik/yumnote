@@ -2,10 +2,13 @@ import {
   CHANGE_PASSWORD_START,
   CHANGE_PASSWORD_SUCCESS,
   CHANGE_PASSWORD_FAIL,
-  RESET_CHANGE_PASSWORD_STATUS,
+  RESET_PASSWORD_REDUCER_STATE,
   FORGOT_PASSWORD_START,
   FORGOT_PASSWORD_SUCCESS,
   FORGOT_PASSWORD_FAIL,
+  RESET_PASSWORD_START,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAIL
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 
@@ -28,9 +31,9 @@ const changePasswordFail = (error) => {
   }
 }
 
-export const resetChangePasswordStatus = () => {
+export const resetPasswordReducerState = () => {
   return {
-    type: RESET_CHANGE_PASSWORD_STATUS
+    type: RESET_PASSWORD_REDUCER_STATE
   }
 }
 
@@ -85,6 +88,44 @@ export const forgotPassword = (email) => {
         dispatch(forgotPasswordFail('Error: unable to reach server. Please try again later'));
       } else {
         dispatch(forgotPasswordFail(err.response.data.error));
+      }
+    });
+  }
+}
+
+const resetPasswordStart = () => {
+  return {
+    type: RESET_PASSWORD_START
+  }
+}
+
+const resetPasswordSuccess = (message) => {
+  return {
+    type: RESET_PASSWORD_SUCCESS,
+    message
+  }
+}
+
+const resetPasswordFail = (error) => {
+  return {
+    type: RESET_PASSWORD_FAIL,
+    error
+  }
+}
+
+export const resetPassword = (password, pass_token) => {
+  return dispatch => {
+    dispatch(resetPasswordStart());
+    axios.post('/api/password/reset', {password, pass_token})
+    .then(response => {
+      dispatch(resetPasswordSuccess(response.data.message));
+    })
+    .catch(err => {
+      console.log(err)
+      if(err.response.status === 500){
+        dispatch(resetPasswordFail('Error: unable to reach server. Please try again later'));
+      } else {
+        dispatch(resetPasswordFail(err.response.data.error));
       }
     });
   }
