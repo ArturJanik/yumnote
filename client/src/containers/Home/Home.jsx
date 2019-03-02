@@ -21,7 +21,7 @@ class Home extends Component {
     return(
       <section className={styles.home}>
         {authRedirect}
-        <div className={styles['home-teaser']}>
+        <div className={styles['home--teaser']}>
           <h1>Take control over your diet</h1>
           <h2>Don't let your diet control your life. Keep track of your diet with <span>calories.today</span> - simple diet tracking web application!</h2>
           <ul>
@@ -31,7 +31,7 @@ class Home extends Component {
             <li><FontAwesomeIcon icon={['far', 'check-square']} />fully responsive</li>
           </ul>
         </div>
-        <div className={styles['home-form']}>
+        <div className={styles['home--form']}>
           <AuthForm signUp={this.props.signUp} />
         </div>
       </section>
