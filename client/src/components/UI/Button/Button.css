@@ -21,6 +21,7 @@
 }
 .btn--regular--loading {
   composes: btn--regular;
+  cursor: default;
   animation: pulse 1s linear infinite alternate;
 }
 .btn--regular--selected {
@@ -51,6 +52,7 @@ button:disabled {
 }
 .btn--auth--loading {
   composes: btn--auth;
+  cursor: default;
   animation: pulse 1s linear infinite alternate;
 }
 
@@ -63,6 +65,7 @@ button:disabled {
 }
 .btn--save--loading {
   composes: btn--save;
+  cursor: default;
   animation: pulse 1s linear infinite alternate;
 }
 
@@ -75,6 +78,7 @@ button:disabled {
 }
 .btn--refresh--loading {
   composes: btn--refresh;
+  cursor: default;
   animation: pulse 1s linear infinite alternate;
 }
 

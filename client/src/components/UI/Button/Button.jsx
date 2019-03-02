@@ -10,7 +10,6 @@ const button = (props) => {
 
   const selected = (props.selected) ? '--selected' : '';
 
-  console.log('btn--' + btnType + selected)
   return (
     <button
       onClick={props.clicked}
