@@ -10,17 +10,32 @@
   padding: 6px 10px;
   text-align: center;
 }
+
 .btn--regular {
   composes: btn;
-  border: 1px solid #666;
-  color: #666;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  border-bottom: 3px solid #3f4d00;
+  display: block;
+  padding: 10px 20px;
+  transition: background 0.3s ease;
 }
+.btn--regular--loading {
+  composes: btn--regular;
+  animation: pulse 1s linear infinite alternate;
+}
+.btn--regular--selected {
+  composes: btn--regular;
+  background: #fff;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,.3);
+  color: #3f4d00;
+}
+
 button:not(:disabled):hover {
   opacity: 0.75;
 }
 button:disabled {
-  cursor: default;
-  color: #ccc;
+  cursor: default !important;
+  opacity: .5 !important;
 }
 
 .btn--auth {
@@ -37,4 +52,39 @@ button:disabled {
 .btn--auth--loading {
   composes: btn--auth;
   animation: pulse 1s linear infinite alternate;
+}
+
+
+.btn--save {
+  composes: btn--regular;
+  background: #7a9118;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.btn--save--loading {
+  composes: btn--save;
+  animation: pulse 1s linear infinite alternate;
+}
+
+
+.btn--refresh {
+  composes: btn;
+  background: #333;
+  display: block;
+  margin: auto;
+}
+.btn--refresh--loading {
+  composes: btn--refresh;
+  animation: pulse 1s linear infinite alternate;
+}
+
+
+@keyframes pulse {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.5;
+  }
 }

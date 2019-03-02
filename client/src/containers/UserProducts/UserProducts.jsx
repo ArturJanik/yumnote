@@ -38,7 +38,7 @@ class UserProducts extends Component {
                 className={styles['search-field']} 
                 onChange={(event) => this.setState({searchQuery: event.target.value})} 
               />
-              <Link to="/products/new"><Button btnType="product--create">Create product</Button></Link>
+              <Link to="/products/new"><Button>Create product</Button></Link>
             </div>
           </div>
           <ul className={styles['product-list']}>

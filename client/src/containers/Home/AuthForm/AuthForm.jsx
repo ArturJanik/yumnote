@@ -156,7 +156,7 @@ class AuthForm extends PureComponent {
       />
     );
 
-    const authModeBtn = (
+    const authModeLink = (
       <div className={styles["auth__link"]} onClick={this.switchAuthModeHandler}>
         {this.state.isSignup
           ? "Already have an account? Login!"
@@ -164,7 +164,7 @@ class AuthForm extends PureComponent {
       </div>
     );
 
-    const forgotPassBtn = (
+    const forgotPassLink = (
       <Link to="/reset-password" className={styles['auth__link']}>Forgot password?</Link>
     )
 
@@ -174,8 +174,8 @@ class AuthForm extends PureComponent {
           {this.state.isSignup ? "Signup" : "Login"}
         </p>
         {form}
-        {!this.props.loading ? authModeBtn : null}
-        {this.state.isSignup ? null : forgotPassBtn}
+        {!this.props.loading ? authModeLink : null}
+        {this.state.isSignup ? null : forgotPassLink}
       </React.Fragment>
     );
   }

@@ -71,10 +71,10 @@ class PasswordChange extends Component {
 
   generateButton = () => {
     let button = (
-      <Button btnType="profile">Change password</Button>
+      <Button btnType="regular">Save new password</Button>
     );
     if (this.props.loading) {
-      button = <Button btnType="profile loading">Connecting...</Button>;
+      button = <Button btnType="regular loading">Connecting...</Button>;
     }
     return button;
   };

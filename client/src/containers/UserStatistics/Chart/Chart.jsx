@@ -197,15 +197,15 @@ class Chart extends Component {
   render(){
     return(
       <React.Fragment>
-        <div className={styles['controls-group']}>
-          <div className={styles.controls}>
+        <div className={styles['controls']}>
+          <div className={styles['controls__group']}>
             <p><strong>Data type:</strong></p>
             <Button selected={this.state.type === 'kcal'} clicked={() => this.changeType('kcal')}>Kcal</Button>
             <Button selected={this.state.type === 'carb'} clicked={() => this.changeType('carb')}>Carbs</Button>
             <Button selected={this.state.type === 'fat'} clicked={() => this.changeType('fat')}>Fats</Button>
             <Button selected={this.state.type === 'prot'} clicked={() => this.changeType('prot')}>Proteins</Button>
           </div>
-          <div className={styles.controls}>
+          <div className={styles['controls__group']}>
             <p><strong>Data timespan:</strong></p>
             <Button 
               selected={this.state.timespan === 'week'} 
@@ -220,7 +220,7 @@ class Chart extends Component {
               selected={this.state.timespan === 'year'} 
               clicked={() => this.changeTimespan('year')}>Year</Button>
           </div>
-          <div className={styles.controls}>
+          <div className={styles['controls__group']}>
             <p><strong>Data scaling:</strong></p>
             <Button 
               disabled={['year','quarter'].includes(this.state.timespan)} 

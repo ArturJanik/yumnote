@@ -24,9 +24,9 @@ class UserProfile extends Component {
           <p><strong>Timezone:</strong> {this.props.profile.time_zone}</p>
         </div>
         <div className={styles['buttons-container']}>
-          <Link to="/profile/edit"><Button btnType="profile">Edit account</Button></Link>
-          <Link to="/profile/statistics"><Button btnType="profile">Show statistics</Button></Link>
-          <Link to="/profile/update-password"><Button btnType="profile">Change password</Button></Link>
+          <Link to="/profile/edit"><Button btnType="regular">Edit account</Button></Link>
+          <Link to="/profile/statistics"><Button btnType="regular">Show statistics</Button></Link>
+          <Link to="/profile/update-password"><Button btnType="regular">Change password</Button></Link>
         </div>
       </React.Fragment>
     )

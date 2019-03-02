@@ -178,19 +178,22 @@ class AddProduct extends Component {
   }
 
   render() {
-    let button = this.generateButton();
-    let errorMessage = null;
-    if(this.props.error) {
-      errorMessage = this.generateErrorMsg();
+    let form = <Spinner />;
+    if(!this.props.categoriesLoading && this.props.categories.length > 0){
+      let button = this.generateButton();
+      let errorMessage = null;
+      if(this.props.error) {
+        errorMessage = this.generateErrorMsg();
+      }
+  
+      form = <Form 
+        fields={this.generateFields()}
+        loading={this.props.loading} 
+        submitBtn={button}
+        errors={errorMessage}
+        submitHandler={this.props.onAddProduct} 
+      />;
     }
-
-    let form = (this.props.categoriesLoading && this.props.categories.length === 0) ? <Spinner /> : <Form 
-      fields={this.generateFields()}
-      loading={this.props.loading} 
-      submitBtn={button}
-      errors={errorMessage}
-      submitHandler={this.props.onAddProduct} 
-    />;
 
     return (
       <section className={styles['product-form']}>
