@@ -28,7 +28,7 @@ class Document extends Component {
     return (
       <React.Fragment>
         <h1>{title}</h1>
-        <div className={styles.document} dangerouslySetInnerHTML={{__html: content}}></div>
+        <div className={styles['document__content']} dangerouslySetInnerHTML={{__html: content}}></div>
       </React.Fragment>
     )
   }
@@ -43,8 +43,8 @@ class Document extends Component {
     }
 
     return(
-      <section className={styles['document-container']}>
-        <div className={styles.wrapper}>
+      <section className={styles['document']}>
+        <div className={styles['document__wrapper']}>
           {document}
         </div>
       </section>

@@ -64,7 +64,7 @@ class PasswordForgot extends Component {
           invalid={!this.state.emailValid}
           touched={this.state.emailTouched}
           shouldValidate={this.state.passValidator}
-          elementConfig={{placeholder: "E-mail address used to create your account"}}
+          elementConfig={{placeholder: "Your account e-mail address"}}
         />
         {btn}
       </React.Fragment>
@@ -75,7 +75,7 @@ class PasswordForgot extends Component {
     if (!this.props.error) return null;
     
     return (
-      <div className={styles["error-container"]}>
+      <div className={styles["error"]}>
         <p>{this.props.error}</p>
       </div>
     );
@@ -83,7 +83,7 @@ class PasswordForgot extends Component {
 
   generateMessage = () => {
     return (
-      <div className={styles["message-container"]}>
+      <div className={styles["message"]}>
         <p>{this.props.message}</p>
       </div>
     )
@@ -99,8 +99,8 @@ class PasswordForgot extends Component {
 
     return(
       <section className={styles.passform}>
-        <div className={styles['passform-container']}>
-          <p className={styles["passform-title"]}>Reset password</p>
+        <div className={styles['passform__container']}>
+          <p className={styles["passform__title"]}>Reset password</p>
           {form}
           {error}
         </div>

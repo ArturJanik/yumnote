@@ -1,8 +1,8 @@
-.document-container {
+.document {
   background: #F1F2F4;
   padding: 20px 0;
 }
-.wrapper {
+.document__wrapper {
   background: #fff;
   border-radius: 2px;
   box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 0.3);
@@ -10,4 +10,19 @@
   max-width: 1366px;
   padding: 20px;
   width: 100%;
+}
+.document__content {
+
+}
+
+@media all and (max-width: 1400px){
+  .document {
+    padding: 20px;
+  }
+}
+
+@media all and (max-width: 400px){
+  .document {
+    padding: 20px 10px;
+  }
 }
