@@ -39,7 +39,7 @@ class Document extends Component {
     if(!this.props.loading && this.props.document !== null){
       document = this.renderDocument(this.props.document);
     } else if(this.props.error !== null) {
-      return <NoMatch />;
+      document = <NoMatch />;
     }
 
     return(
