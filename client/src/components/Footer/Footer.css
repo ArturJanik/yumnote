@@ -1,7 +1,7 @@
 footer {
   background: #11191B;
 }
-.wrapper {
+.footer__wrapper {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -9,11 +9,20 @@ footer {
   max-width: 1366px;
   width: 100%;
 }
-.footer-top {
+.footer__top {
   padding: 40px 0;
 }
-.footer-bottom {
+.footer__bottom {
   background: #0D1215;
   color: #3d4143;
   padding: 20px 0;
+}
+
+@media all and (max-width: 1400px){
+  .footer__top {
+    padding: 40px 20px;
+  }
+  .footer__bottom {
+    padding: 20px;
+  }
 }

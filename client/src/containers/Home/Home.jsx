@@ -21,9 +21,9 @@ class Home extends Component {
     return(
       <section className={styles.home}>
         {authRedirect}
-        <div className={styles['home--teaser']}>
+        <div className={styles['home__teaser']}>
           <h1>Take control over your diet</h1>
-          <h2>Don't let your diet control your life. Keep track of your diet with <span>calories.today</span> - simple diet tracking web application!</h2>
+          <p className={styles['home__subtitle']}>Don't let your diet control your life. Keep track of your diet with <span>calories.today</span> - simple calories tracking web application!</p>
           <ul>
             <li><FontAwesomeIcon icon={['far', 'check-square']} />xxx foods available...</li>
             <li><FontAwesomeIcon icon={['far', 'check-square']} />...and why not add some of your favorites?</li>
@@ -31,7 +31,7 @@ class Home extends Component {
             <li><FontAwesomeIcon icon={['far', 'check-square']} />fully responsive</li>
           </ul>
         </div>
-        <div className={styles['home--form']}>
+        <div className={styles['home__form']}>
           <AuthForm signUp={this.props.signUp} />
         </div>
       </section>
@@ -40,7 +40,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
   return {
     authRedirectPath: state.auth.authRedirectPath,
   }

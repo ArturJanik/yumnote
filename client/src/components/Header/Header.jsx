@@ -20,7 +20,7 @@ class Header extends Component {
   render() {
     return (
       <header>
-        <div className={styles.wrapper}>
+        <div className={styles['header__wrapper']}>
           <Logo />
           <Menu
             isAuth={this.props.isAuthenticated}

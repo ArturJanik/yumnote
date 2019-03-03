@@ -4,7 +4,7 @@ header {
   position: relative;
   z-index: 5;
 }
-.wrapper {
+.header__wrapper {
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -12,6 +12,12 @@ header {
   max-width: 1366px;
   width: 100%;
 }
-.link--auth {
+.link__auth {
   margin-left: auto;
+}
+
+@media all and (max-width: 1400px){
+  header {
+    padding: 0 20px;
+  }
 }
