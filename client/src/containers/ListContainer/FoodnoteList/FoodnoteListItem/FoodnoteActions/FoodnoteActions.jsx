@@ -8,7 +8,7 @@ const foodnoteActions = (props) => {
   return (
     <div className={styles['foodnote__actions']}>
       {props.deleteInProgress ? (
-        <div className={styles['action--delete']}>
+        <div className={styles['action--delete--spinning']}>
           <MiniSpinner />deleting...
         </div>
       ) : (

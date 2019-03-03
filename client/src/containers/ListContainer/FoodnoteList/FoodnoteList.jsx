@@ -64,20 +64,24 @@ class FoodnoteList extends Component {
   renderListHeader() {
     return (
       <div className={styles['foodnote__list__header']}>
-        <div className={styles['foodnote__list__header__column1']}>Food</div>
-        <div className={styles['foodnote__list__header__column2']}>
-          <div className={styles.wide}>Totals</div>
-          <div className={styles.totals}>{(this.props.totals.kcal).toFixed(2)}</div>
-          <div className={styles.totals}>{(this.props.totals.carb).toFixed(2)}g</div>
-          <div className={styles.totals}>{(this.props.totals.fat).toFixed(2)}g</div>
-          <div className={styles.totals}>{(this.props.totals.prot).toFixed(2)}g</div>
-          <div className={styles.wide}>Amount</div>
-          <div>Kcal</div>
-          <div>Carb</div>
-          <div>Fat</div>
-          <div>Prot</div>
+        <div className={styles['header__column1']}>Food</div>
+        <div className={styles['header__column2']}>
+          <div className={styles['header__labels']}>
+            <div className={styles['label__totals']}>Totals</div>
+            <div className={styles['label__amount']}>Amount</div>
+          </div>
+          <div className={styles['totals']}>
+            <div className={styles['totals__value']}>{(this.props.totals.kcal).toFixed(2)}</div>
+            <div className={styles['totals__value']}>{(this.props.totals.carb).toFixed(2)}g</div>
+            <div className={styles['totals__value']}>{(this.props.totals.fat).toFixed(2)}g</div>
+            <div className={styles['totals__value']}>{(this.props.totals.prot).toFixed(2)}g</div>
+            <div className={styles['totals__type']}>Kcal</div>
+            <div className={styles['totals__type']}>Carb</div>
+            <div className={styles['totals__type']}>Fat</div>
+            <div className={styles['totals__type']}>Prot</div>
+          </div>
         </div>
-        <div className={styles['foodnote__list__header__column3']}>Action</div>
+        <div className={styles['header__column3']}>Action</div>
       </div>
     )
   }
@@ -108,6 +112,7 @@ class FoodnoteList extends Component {
     return(
       <article className={styles['foodnote__list']}>
         <div className={styles['foodnote__list__title']}>
+          {/* <div className={styles['btn--menu__category']}>Categories</div> */}
           <h1>{this.props.title}</h1>
           <div className={styles['foodnote__list__datebtns']}>
             <NavLink to="/foodnotes/today" className={styles['btn__day']} activeClassName={styles['btn__day--active']} isActive={this.isTodayActive}>Today</NavLink>

@@ -3,9 +3,11 @@
   background: #fff;
   border-bottom: 1px solid #eee;
   display: flex;
+  flex-wrap: wrap;
   flex: 0 0 100%;
   max-width: 100%;
   padding: 2px 10px;
+  position: relative;
 }
 .foodnote:hover {
   border-bottom: 1px solid #a3c220;
@@ -21,5 +23,20 @@
   .foodnote__name {
     flex: 0 0 30%;
     max-width: 30%;
+  }
+}
+@media all and (max-width: 1020px) {
+  .foodnote {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+  }
+  .foodnote__name {
+    border-bottom: 1px solid #eee;
+    flex: 0 0 100%;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.42em;
+    margin-bottom: 5px;
+    max-width: 100%;
   }
 }

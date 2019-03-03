@@ -14,10 +14,10 @@ const foodnoteData = (props) => {
         />
         <span>{foodnote.product.unit}</span>
       </div>
-      <div>{(foodnote.product.kcal * props.amount).toFixed(2)}</div>
-      <div>{(foodnote.product.carb * props.amount).toFixed(2)}</div>
-      <div>{(foodnote.product.fat * props.amount).toFixed(2)}</div>
-      <div>{(foodnote.product.prot * props.amount).toFixed(2)}</div>
+      <div className={styles.normal}><span>kcal</span>{(foodnote.product.kcal * props.amount).toFixed(2)}</div>
+      <div className={styles.normal}><span>carb</span>{(foodnote.product.carb * props.amount).toFixed(2)}</div>
+      <div className={styles.normal}><span>fat</span>{(foodnote.product.fat * props.amount).toFixed(2)}</div>
+      <div className={styles.normal}><span>prot</span>{(foodnote.product.prot * props.amount).toFixed(2)}</div>
     </div>
   )
 }

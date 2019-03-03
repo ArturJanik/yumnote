@@ -18,6 +18,15 @@
   }
 }
 
+@media all and (max-width: 1020px) {
+  .list__container {
+    padding: 40px 20px;
+  }
+  .list__wrapper {
+    display: block;
+  }
+}
+
 @media all and (max-width: 400px) {
   .list__container {
     padding: 20px 10px;

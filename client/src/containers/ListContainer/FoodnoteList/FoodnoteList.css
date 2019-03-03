@@ -44,31 +44,46 @@
   padding: 10px;
   width: 100%;
 }
-.foodnote__list__header__column1 {
+.header__column1 {
   align-items: flex-end;
   display: flex;
   flex: 0 0 40%;
   max-width: 40%;
 }
-.foodnote__list__header__column2 {
+.header__column2 {
   display: flex;
   flex: 0 0 50%;
   flex-wrap: wrap;
   max-width: 50%;
 }
-.foodnote__list__header__column2 div {
-  flex: 0 0 17.5%;
-  max-width: 17.5%;
-  padding: 2px;
-}
-.foodnote__list__header__column2 div.wide {
+.header__labels {
   flex: 0 0 30%;
   max-width: 30%;
 }
-.foodnote__list__header__column2 div.totals {
+.label__totals,
+.label__amount {
+  padding: 2px;
+}
+.totals {
+  display: flex;
+  flex: 0 0 70%;
+  flex-wrap: wrap;
+  max-width: 70%;
+}
+.totals__value,
+.totals__type {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding: 2px;
+}
+.totals__value {
   border-bottom: 1px solid #eee;
 }
-.foodnote__list__header__column3 {
+.totals__type {
+  color: #999;
+}
+
+.header__column3 {
   align-items: flex-end;
   display: flex;
   flex: 0 0 10%;
@@ -106,16 +121,57 @@
 }
 
 @media all and (max-width: 1120px) {
-  .foodnote__list__header__column1 {
+  .header__column1 {
     flex: 0 0 30%;
     max-width: 30%;
   }
-  .foodnote__list__header__column2 {
+  .header__column2 {
     flex: 0 0 60%;
     max-width: 60%;
   }
-  .foodnote__list__header__column3 {
+  .header__column3 {
     flex: 0 0 10%;
     max-width: 10%;
+  }
+}
+
+@media all and (max-width: 1020px) {
+  .header__column1 {
+    display: none;
+  }
+  .header__column2 {
+    flex: 0 0 90%;
+    max-width: 90%;
+  }
+  .label__amount {
+    display: none;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .foodnote__list__title h1 {
+    font-size: 28px;
+  }
+  .header__column2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .header__column3 {
+    display: none;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .foodnote__list__title {
+    flex-direction: column-reverse;
+  }
+  .foodnote__list__datebtns {
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  .btn__day {
+    flex: 1;
+    text-align: center;
   }
 }
