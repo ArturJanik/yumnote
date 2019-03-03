@@ -14,7 +14,7 @@ class CategoryList extends Component {
     const subCategories = categories[1];
     
     return mainCategories.map((category) => (
-      <li key={category.id} className={styles['category-list-item']}>
+      <li key={category.id} className={styles['category__item']}>
         { category.hasSubmenu ? <CategoryWithSubmenu category={category} subCategories={subCategories} /> : (
           <Link to={{
             pathname: `/category/${category.slug}`,
@@ -30,11 +30,11 @@ class CategoryList extends Component {
     if(!this.props.loading && this.props.categories.length > 0) sidemenu = this.renderSidemenu(this.props);
     
     return (
-      <aside className={styles['category-list']}>
+      <aside className={styles['category__list']}>
         <ul>
-          <li className={styles['category-list-item--special']}><Link to={`/foodnotes/today`}>Today</Link></li>
-          <li className={styles['category-list-item--special']}><Link to={`/myfoods`}>My Foods</Link></li>
-          <li className={styles['category-list-item--special']}><Link to={`/latest`}>Lately Yummed</Link></li>
+          <li className={styles['category__item--special']}><Link to={`/foodnotes/today`}>Today</Link></li>
+          <li className={styles['category__item--special']}><Link to={`/myfoods`}>My Foods</Link></li>
+          <li className={styles['category__item--special']}><Link to={`/latest`}>Lately Yummed</Link></li>
           {sidemenu}
         </ul>
       </aside>

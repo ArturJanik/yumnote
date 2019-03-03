@@ -10,9 +10,16 @@
 .foodnote:hover {
   border-bottom: 1px solid #a3c220;
 }
-.foodnote-product-name {
+.foodnote__name {
   align-items: center;
   display: flex;
   flex: 0 0 40%;
   max-width: 40%;
+}
+
+@media all and (max-width: 1120px) {
+  .foodnote__name {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
 }

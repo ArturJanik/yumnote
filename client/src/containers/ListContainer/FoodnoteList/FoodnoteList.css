@@ -1,39 +1,39 @@
-.foodnote-list {
+.foodnote__list {
   flex: 0 1 100%;
 }
-.foodnote-day {
-  display: flex;
-  font-weight: 800;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-.day-btn {
-  background: #fff;
-  border: 1px solid #eee;
-  display: block;
-  padding: 10px;
-}
-.day-btn:hover {
-  border: 1px solid #ccc;
-  color: #7a9118;
-  cursor: pointer;
-}
-.day-btn--active {
-  composes: day-btn;
-  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
-  color: #fff;
-}
-.day-btn--active:hover {
-  color: #fff;
-}
-.list-title {
+.foodnote__list__title {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
   width: 100%;
 }
-.list-header {
+.foodnote__list__datebtns {
+  display: flex;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.btn__day {
+  background: #fff;
+  border: 1px solid #eee;
+  display: block;
+  padding: 10px;
+}
+.btn__day:hover {
+  border: 1px solid #ccc;
+  color: #7a9118;
+  cursor: pointer;
+}
+.btn__day--active {
+  composes: btn__day;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  color: #fff;
+}
+.btn__day--active:hover {
+  color: #fff;
+}
+.foodnote__list__header {
   background: #fff;
   border-bottom: 2px solid #ccc;
   box-shadow: 0px 0px 5px -1px rgba(0,0,0,.2);
@@ -44,43 +44,43 @@
   padding: 10px;
   width: 100%;
 }
-.list-header-column1 {
+.foodnote__list__header__column1 {
   align-items: flex-end;
   display: flex;
   flex: 0 0 40%;
   max-width: 40%;
 }
-.list-header-column2 {
+.foodnote__list__header__column2 {
   display: flex;
   flex: 0 0 50%;
   flex-wrap: wrap;
   max-width: 50%;
 }
-.list-header-column2 div {
+.foodnote__list__header__column2 div {
   flex: 0 0 17.5%;
   max-width: 17.5%;
   padding: 2px;
 }
-.list-header-column2 div.wide {
+.foodnote__list__header__column2 div.wide {
   flex: 0 0 30%;
   max-width: 30%;
 }
-.list-header-column2 div.totals {
+.foodnote__list__header__column2 div.totals {
   border-bottom: 1px solid #eee;
 }
-.list-header-column3 {
+.foodnote__list__header__column3 {
   align-items: flex-end;
   display: flex;
   flex: 0 0 10%;
   max-width: 10%;
 }
-.list-body {
+.foodnote__list__body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.list-empty {
+.empty__message {
   background: #fff;
   border-bottom: 2px solid #ccc;
   font-weight: 600;
@@ -90,7 +90,7 @@
   width: 100%;
 }
 
-.error-container {
+.error {
   background: rgb(252, 236, 236);
   box-shadow: 0px 1px 3px 0px rgb(209, 144, 144);
   border-radius: 3px;
@@ -98,9 +98,24 @@
   padding: 10px;
   width: 100%;
 }
-.error-container__message {
+.error__message {
   font-weight: 600;
   margin-bottom: 10px;
   text-align: center;
   text-transform: capitalize;
+}
+
+@media all and (max-width: 1120px) {
+  .foodnote__list__header__column1 {
+    flex: 0 0 30%;
+    max-width: 30%;
+  }
+  .foodnote__list__header__column2 {
+    flex: 0 0 60%;
+    max-width: 60%;
+  }
+  .foodnote__list__header__column3 {
+    flex: 0 0 10%;
+    max-width: 10%;
+  }
 }

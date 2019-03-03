@@ -6,13 +6,13 @@ import MiniSpinner from '../../../../../components/UI/MiniSpinner/MiniSpinner';
 
 const foodnoteActions = (props) => {
   return (
-    <div className={styles['foodnote-product-actions']}>
+    <div className={styles['foodnote__actions']}>
       {props.deleteInProgress ? (
-        <div className={styles['action-delete']}>
+        <div className={styles['action--delete']}>
           <MiniSpinner />deleting...
         </div>
       ) : (
-        <div className={styles['action-delete']} onClick={props.onDeleteClicked}>
+        <div className={styles['action--delete']} onClick={props.onDeleteClicked}>
           <FontAwesomeIcon icon="trash" />delete
         </div>
       )

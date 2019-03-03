@@ -1,32 +1,32 @@
-.category-list {
+.category__list {
   background: #fff;
   flex: 0 0 200px;
   margin-right: 20px;
   max-width: 200px;
 }
-.category-list-item {
+.category__item {
   border-bottom: 1px solid #eee;
   overflow: hidden;
   position: relative;
   z-index: 1;
 }
-.category-list-item:hover {
+.category__item:hover {
   box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.3);
   cursor: pointer;
 }
-.category-list-item:hover > a,
-.category-list-item:hover > div {
+.category__item:hover > a,
+.category__item:hover > div {
   color: #7a9118;
 }
-.category-list-item--special {
-  composes: category-list-item;
+.category__item--special {
+  composes: category__item;
   background: url('../../../assets/images/btn-stripes-3.png') #3f4d00;
   border-bottom: 1px solid #3f4d00;
 }
-.category-list-item--special:hover {
+.category__item--special:hover {
   background: #3f4d00;
 }
-.category-list-item a {
+.category__item a {
   align-items: center;
   color: #11191b;
   display: flex;
@@ -39,14 +39,27 @@
   text-align: right;
   text-transform: uppercase;
 }
-.category-list-item--special a {
+.category__item--special a {
   color: #fff;
 }
-.category-list-item--special:hover a {
+.category__item--special:hover a {
   color: #fff;
 }
-.category-list-item ul a {
+.category__item ul a {
   font-size: 14px;
   letter-spacing: -.5px;
   padding: 15px 10px;
+}
+
+@media all and (max-width: 1120px) {
+  .category__list {
+    flex: 0 0 160px;
+    margin-right: 20px;
+    max-width: 160px;
+  }
+  .category__item a {
+    font-size: 14px;
+    letter-spacing: -0.5px;
+    padding: 15px 10px;
+  }
 }

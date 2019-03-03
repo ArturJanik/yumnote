@@ -88,8 +88,8 @@ class ListContainer extends Component {
     let listContainer = this.renderList();
 
     return(
-      <section className={styles['list-container']}>
-        <div className={styles.wrapper}>
+      <section className={styles['list__container']}>
+        <div className={styles['list__wrapper']}>
           {listContainer}
         </div>
       </section>

@@ -4,7 +4,7 @@ import styles from './FoodnoteData.css';
 const foodnoteData = (props) => {
   const foodnote = props.foodnote;
   return (
-    <div className={styles['foodnote-product-data']}>
+    <div className={styles['foodnote__data']}>
       <div className={styles.wide}>
         <input type="text" 
           value={props.amount} 
@@ -14,10 +14,10 @@ const foodnoteData = (props) => {
         />
         <span>{foodnote.product.unit}</span>
       </div>
-      <div>{foodnote.product.kcal * props.amount}</div>
-      <div>{foodnote.product.carb * props.amount}</div>
-      <div>{foodnote.product.fat * props.amount}</div>
-      <div>{foodnote.product.prot * props.amount}</div>
+      <div>{(foodnote.product.kcal * props.amount).toFixed(2)}</div>
+      <div>{(foodnote.product.carb * props.amount).toFixed(2)}</div>
+      <div>{(foodnote.product.fat * props.amount).toFixed(2)}</div>
+      <div>{(foodnote.product.prot * props.amount).toFixed(2)}</div>
     </div>
   )
 }

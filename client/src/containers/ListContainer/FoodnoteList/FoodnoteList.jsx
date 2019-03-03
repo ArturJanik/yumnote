@@ -46,8 +46,8 @@ class FoodnoteList extends Component {
     }
 
     return (
-      <div className={styles['error-container']}>
-        <p className={styles['error-container__message']}>{errorMessage}</p>
+      <div className={styles['error']}>
+        <p className={styles['error__message']}>{errorMessage}</p>
         {button}
       </div>
     )
@@ -55,7 +55,7 @@ class FoodnoteList extends Component {
 
   renderEmpty() {
     return (
-      <div className={styles['list-empty']}>
+      <div className={styles['empty__message']}>
         No foodnotes yet :(<br />Start adding them by selecting one of categories on the right side.
       </div>
     );
@@ -63,21 +63,21 @@ class FoodnoteList extends Component {
 
   renderListHeader() {
     return (
-      <div className={styles['list-header']}>
-        <div className={styles['list-header-column1']}>Food</div>
-        <div className={styles['list-header-column2']}>
+      <div className={styles['foodnote__list__header']}>
+        <div className={styles['foodnote__list__header__column1']}>Food</div>
+        <div className={styles['foodnote__list__header__column2']}>
           <div className={styles.wide}>Totals</div>
-          <div className={styles.totals}>{this.props.totals.kcal}</div>
-          <div className={styles.totals}>{this.props.totals.carb}g</div>
-          <div className={styles.totals}>{this.props.totals.fat}g</div>
-          <div className={styles.totals}>{this.props.totals.prot}g</div>
+          <div className={styles.totals}>{(this.props.totals.kcal).toFixed(2)}</div>
+          <div className={styles.totals}>{(this.props.totals.carb).toFixed(2)}g</div>
+          <div className={styles.totals}>{(this.props.totals.fat).toFixed(2)}g</div>
+          <div className={styles.totals}>{(this.props.totals.prot).toFixed(2)}g</div>
           <div className={styles.wide}>Amount</div>
           <div>Kcal</div>
           <div>Carb</div>
           <div>Fat</div>
           <div>Prot</div>
         </div>
-        <div className={styles['list-header-column3']}>Action</div>
+        <div className={styles['foodnote__list__header__column3']}>Action</div>
       </div>
     )
   }
@@ -106,17 +106,17 @@ class FoodnoteList extends Component {
     }
 
     return(
-      <article className={styles['foodnote-list']}>
-        <div className={styles['list-title']}>
+      <article className={styles['foodnote__list']}>
+        <div className={styles['foodnote__list__title']}>
           <h1>{this.props.title}</h1>
-          <div className={styles['foodnote-day']}>
-            <NavLink to="/foodnotes/today" className={styles['day-btn']} activeClassName={styles['day-btn--active']} isActive={this.isTodayActive}>Today</NavLink>
-            <NavLink to="/foodnotes/yesterday" className={styles['day-btn']} activeClassName={styles['day-btn--active']}>Yesterday</NavLink>
-            <DatePicker className={this.state.otherDaySelected ? styles['day-btn--active'] : styles['day-btn']} onDateSelected={this.dateSelected}>Other</DatePicker>
+          <div className={styles['foodnote__list__datebtns']}>
+            <NavLink to="/foodnotes/today" className={styles['btn__day']} activeClassName={styles['btn__day--active']} isActive={this.isTodayActive}>Today</NavLink>
+            <NavLink to="/foodnotes/yesterday" className={styles['btn__day']} activeClassName={styles['btn__day--active']}>Yesterday</NavLink>
+            <DatePicker className={this.state.otherDaySelected ? styles['btn__day--active'] : styles['btn__day']} onDateSelected={this.dateSelected}>Other</DatePicker>
           </div>
         </div>
         {this.renderListHeader()}
-        <div className={styles['list-body']}>
+        <div className={styles['foodnote__list__body']}>
           {list}
         </div>
       </article>
