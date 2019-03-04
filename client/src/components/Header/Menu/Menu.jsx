@@ -7,9 +7,9 @@ class Menu extends Component {
   showLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu-item']}><NavLink exact to="/products">Products</NavLink></li>
-        <li className={styles['menu-item']}><NavLink exact to="/profile">My Profile</NavLink></li>
-        <li className={styles['menu-item']}> <NavLink exact to="/logout" className={styles["link--auth"]}>Logout</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/products">Products</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/profile">My Profile</NavLink></li>
+        <li className={styles['menu__item']}> <NavLink exact to="/logout">Logout</NavLink></li>
       </React.Fragment>
     )
   }
@@ -17,8 +17,8 @@ class Menu extends Component {
   showNotLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu-item']}><NavLink exact to="/register" className={styles["link--auth"]}>Signup</NavLink></li>
-        <li className={styles['menu-item']}><NavLink exact to="/login" className={styles["link--auth"]}>Login</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/register">Signup</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/login">Login</NavLink></li>
       </React.Fragment>
     )
   }
@@ -26,8 +26,8 @@ class Menu extends Component {
   render(){
     const loggedIn = this.props.isAuth && this.props.currentUser !== null;
     return (
-      <nav className={styles['menu--main']}>
-        <ul className={styles['menu-items']}>
+      <nav className={styles['menu']}>
+        <ul className={styles['menu__items']}>
           { loggedIn ? this.showLoggedInMenu() : this.showNotLoggedInMenu() }
         </ul>
       </nav>

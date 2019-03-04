@@ -6,10 +6,13 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+  position: relative;
   width: 100%;
 }
 .foodnote__list__datebtns {
   display: flex;
+  flex: 0 0 220px;
+  max-width: 220px;
   font-weight: 800;
   font-size: 12px;
   text-transform: uppercase;
@@ -18,7 +21,9 @@
   background: #fff;
   border: 1px solid #eee;
   display: block;
+  flex: 1;
   padding: 10px;
+  text-align: center;
 }
 .btn__day:hover {
   border: 1px solid #ccc;
@@ -120,6 +125,10 @@
   text-transform: capitalize;
 }
 
+.btn--menu__category {
+  display: none;
+}
+
 @media all and (max-width: 1120px) {
   .header__column1 {
     flex: 0 0 30%;
@@ -146,11 +155,35 @@
   .label__amount {
     display: none;
   }
+  .btn--menu__category {
+    background: url('../../../assets/images/btn-stripes-4.png') #3f4d00;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    flex: 0 0 220px;
+    font-weight: 900;
+    max-width: 220px;
+    padding: 10px 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
 
 @media all and (max-width: 800px) {
+  .foodnote__list__title {
+    flex-wrap: wrap;
+  }
   .foodnote__list__title h1 {
     font-size: 28px;
+  }
+  .btn--menu__category {
+    flex: 0 0 160px;
+    max-width: 160px;
+  }
+  .foodnote__list__datebtns {
+    flex: 0 0 100%;
+    margin-top: 10px;
+    max-width: 100%;
   }
   .header__column2 {
     flex: 0 0 100%;
@@ -162,16 +195,8 @@
 }
 
 @media all and (max-width: 480px) {
-  .foodnote__list__title {
-    flex-direction: column-reverse;
-  }
-  .foodnote__list__datebtns {
-    justify-content: space-between;
-    margin-bottom: 10px;
-    width: 100%;
-  }
-  .btn__day {
-    flex: 1;
-    text-align: center;
+  .btn--menu__category {
+    flex: 0 0 140px;
+    max-width: 140px;
   }
 }

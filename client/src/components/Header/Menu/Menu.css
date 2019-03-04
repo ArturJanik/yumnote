@@ -1,16 +1,16 @@
-.menu--main {
+.menu {
   margin-left: 10px;
   position: relative;
 }
-.menu-items {
+.menu__items {
   display: flex;
   justify-content: center;
 }
-.menu-item,
-.menu-item a {
+.menu__item,
+.menu__item a {
   display: block;
 }
-.menu-item {
+.menu__item {
   border-bottom: 3px solid #fff;
   display: inline-block;
   font-family: 'Raleway', sans-serif;
@@ -23,10 +23,17 @@
   text-transform: uppercase;
   transition: all 0.25s cubic-bezier(0.31, -0.105, 0.43, 1.4);
 }
-.menu-item:hover {
+.menu__item:hover {
   border-bottom: 3px solid #7a9118;
   color: #777;
 }
-.menu-item a {
+.menu__item a {
   padding: 0 5px;
+}
+
+@media all and (max-width: 768px){
+  .menu__item {
+    line-height: 48px;
+    margin-left: 5px;
+  }
 }

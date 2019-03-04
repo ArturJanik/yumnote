@@ -112,7 +112,7 @@ class FoodnoteList extends Component {
     return(
       <article className={styles['foodnote__list']}>
         <div className={styles['foodnote__list__title']}>
-          {/* <div className={styles['btn--menu__category']}>Categories</div> */}
+          <div className={styles['btn--menu__category']} onClick={this.props.categoryMenuClicked}>Categories</div>
           <h1>{this.props.title}</h1>
           <div className={styles['foodnote__list__datebtns']}>
             <NavLink to="/foodnotes/today" className={styles['btn__day']} activeClassName={styles['btn__day--active']} isActive={this.isTodayActive}>Today</NavLink>

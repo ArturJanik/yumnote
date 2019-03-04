@@ -12,10 +12,18 @@ import FoodnoteList from './FoodnoteList/FoodnoteList';
 
 class ListContainer extends Component {
 
+  state = {
+    showCategoryMenu: false
+  }
+
   componentDidMount() {
     if(this.props.categories.length === 0){
       this.props.fetchCategories();
     }
+  }
+
+  toggleCategoryMenu = () => {
+    this.setState(prevState => ({showCategoryMenu: !prevState.showCategoryMenu}))
   }
 
   renderList = () => {
@@ -47,7 +55,7 @@ class ListContainer extends Component {
           }
           break;
       }
-      list = <ProductList {...opts} />
+      list = <ProductList categoryMenuClicked={this.toggleCategoryMenu} {...opts} />
     } else {
       switch (this.props.subType) {
         case 'yesterday':
@@ -73,12 +81,16 @@ class ListContainer extends Component {
           }
           break;
       }
-      list = <FoodnoteList {...opts} />
+      list = <FoodnoteList categoryMenuClicked={this.toggleCategoryMenu} {...opts} />
     }
 
     return (
       <React.Fragment>
-        <CategoryList categories={this.props.categories} loading={this.props.categoriesLoading} />
+        <CategoryList 
+          categories={this.props.categories} 
+          loading={this.props.categoriesLoading} 
+          showMenu={this.state.showCategoryMenu} 
+          hideMenuClicked={() => this.setState({showCategoryMenu: false})} />
         {list}
       </React.Fragment>
     )

@@ -1,5 +1,5 @@
 .list__container {
-  background: #F1F2F4;
+  background: url('../../assets/images/deco-stripes.png') #fafafa;
   display: flex;
   justify-content: center;
   padding: 80px 0;

@@ -12,3 +12,10 @@
   height: auto;
   width: 100%;
 }
+
+@media all and (max-width: 768px){
+  .logo {
+    flex: 0 0 160px;
+    max-width: 160px;
+  }
+}

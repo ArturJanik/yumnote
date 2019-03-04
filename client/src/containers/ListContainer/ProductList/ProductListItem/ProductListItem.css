@@ -12,11 +12,11 @@
   box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
-.name {
-  flex: 0 0 50%;
+.product__name {
+  flex: 0 0 40%;
   font-size: 18px;
   line-height: 1.2em;
-  max-width: 50%;
+  max-width: 40%;
 }
 
 .macros-container {
@@ -31,4 +31,47 @@
   height: 50px;
   margin-left: 75px;
   max-width: 100%;
+}
+
+@media all and (max-width: 920px){
+  .product {
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    padding: 0;
+  }
+  .product__name {
+    border-bottom: 1px solid #eee;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 10px;
+  }
+  .macros-container {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-left: 10px
+  }
+  .form {
+    flex: 0 0 50%;
+    margin-left: 0;
+    max-width: 50%;
+    padding-left: 50px;
+  }
+}
+@media all and (max-width: 600px){
+  .form {
+    padding-left: 30px;
+  }
+}
+@media all and (max-width: 480px){
+  .product {
+    display: block;
+  }
+  .macros-container {
+    max-width: 100%;
+    padding: 5px;
+  }
+  .form {
+    max-width: 100%;
+    padding-left: 5px;
+  }
 }

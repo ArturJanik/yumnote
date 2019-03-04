@@ -1,45 +1,50 @@
-.product-list {
+.product__list {
   flex: 0 1 100%;
 }
-.product-day {
-  display: flex;
-  font-weight: 800;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-.day-btn {
-  background: #fff;
-  border: 1px solid #eee;
-  display: block;
-  padding: 10px;
-}
-.day-btn:hover {
-  border: 1px solid #ccc;
-  color: #7a9118;
-  cursor: pointer;
-}
-.day-btn--active {
-  composes: day-btn;
-  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
-  color: #fff;
-}
-.day-btn--active:hover {
-  color: #fff;
-}
-.list-header {
+.product__list__title {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
+  position: relative;
   width: 100%;
 }
-.list-body {
+.product__list__datebtns {
+  display: flex;
+  flex: 0 0 220px;
+  max-width: 220px;
+  font-weight: 800;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.btn__day {
+  background: #fff;
+  border: 1px solid #eee;
+  display: block;
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+}
+.btn__day:hover {
+  border: 1px solid #ccc;
+  color: #7a9118;
+  cursor: pointer;
+}
+.btn__day--active {
+  composes: btn__day;
+  background: url('../../../assets/images/btn-stripes.png') #3f4d00;
+  color: #fff;
+}
+.btn__day--active:hover {
+  color: #fff;
+}
+.product__list__body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
-.list-empty {
+.empty__message {
   background: #fff;
   border-bottom: 2px solid #ccc;
   font-weight: 600;
@@ -49,7 +54,7 @@
   width: 100%;
 }
 
-.error-container {
+.error {
   background: rgb(252, 236, 236);
   box-shadow: 0px 1px 3px 0px rgb(209, 144, 144);
   border-radius: 3px;
@@ -57,7 +62,7 @@
   padding: 10px;
   width: 100%;
 }
-.error-container__message {
+.error__message {
   font-weight: 600;
   margin-bottom: 10px;
   text-align: center;
@@ -76,4 +81,53 @@
 }
 .search-field:focus {
   border-bottom: 3px solid #3f4d00;
+}
+
+.btn--menu__category {
+  display: none;
+}
+
+@media all and (max-width: 1020px) {
+  .product__list__title {
+    flex-wrap: wrap;
+  }
+  .btn--menu__category {
+    background: url('../../../assets/images/btn-stripes-4.png') #3f4d00;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    flex: 0 0 220px;
+    font-weight: 900;
+    max-width: 220px;
+    padding: 10px 20px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .search-field {
+    order: 1;
+    margin: 10px 0 0;
+    flex: 0 0 100%;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .product__list__title h1 {
+    font-size: 28px;
+  }
+  .btn--menu__category {
+    flex: 0 0 160px;
+    max-width: 160px;
+  }
+  .product__list__datebtns {
+    flex: 0 0 100%;
+    margin-top: 10px;
+    max-width: 100%;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .btn--menu__category {
+    flex: 0 0 140px;
+    max-width: 140px;
+  }
 }

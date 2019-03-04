@@ -40,7 +40,7 @@
     top: 4px;
   }
   .action--delete {
-    background: #b33802;
+    background: url('../../../../../assets/images/btn-stripes-2.png') #b33802;
     border-radius: 2px;
     color: #fff;
     padding: 5px 10px;

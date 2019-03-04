@@ -6,7 +6,6 @@ import styles from './CategoryList.css';
 import CategoryWithSubmenu from './CategoryWithSubmenu/CategoryWithSubmenu';
 
 class CategoryList extends Component {
-
   renderSidemenu = ({categories}) => {
     categories = _.partition(categories, (cat) => cat.parent_id === null);
 
@@ -30,14 +29,17 @@ class CategoryList extends Component {
     if(!this.props.loading && this.props.categories.length > 0) sidemenu = this.renderSidemenu(this.props);
     
     return (
-      <aside className={styles['category__list']}>
-        <ul>
-          <li className={styles['category__item--special']}><Link to={`/foodnotes/today`}>Today</Link></li>
-          <li className={styles['category__item--special']}><Link to={`/myfoods`}>My Foods</Link></li>
-          <li className={styles['category__item--special']}><Link to={`/latest`}>Lately Yummed</Link></li>
-          {sidemenu}
-        </ul>
-      </aside>
+      <React.Fragment>
+        <div className={styles['category__list__overlay' + (this.props.showMenu ? '' : '--hide')]} onClick={this.props.hideMenuClicked}></div>
+        <aside className={styles['category__list' + (this.props.showMenu ? '' : '--hide')]}>
+          <ul>
+            <li className={styles['category__item--special']}><Link to={`/foodnotes/today`} onClick={this.props.hideMenuClicked}>Today</Link></li>
+            <li className={styles['category__item--special']}><Link to={`/myfoods`} onClick={this.props.hideMenuClicked}>My Foods</Link></li>
+            <li className={styles['category__item--special']}><Link to={`/latest`} onClick={this.props.hideMenuClicked}>Lately Yummed</Link></li>
+            {sidemenu}
+          </ul>
+        </aside>
+      </React.Fragment>
     )
   }
 }

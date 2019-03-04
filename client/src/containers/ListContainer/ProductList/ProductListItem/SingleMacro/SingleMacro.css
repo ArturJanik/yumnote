@@ -3,6 +3,10 @@
   text-align: center;
   width: 25%;
 }
-.macro-header {
+.macro__header {
+  color: #999;
   font-weight: 600;
+}
+.macro__value {
+
 }

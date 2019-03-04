@@ -65,7 +65,7 @@ class ProductListItem extends Component {
     const product = this.props.product;
     return (
       <div className={styles.product}>
-        <p className={styles.name}>{product.name}</p>
+        <p className={styles['product__name']}>{product.name}</p>
         {this.generateMacros(product)}
         {this.generateForm(product)}
       </div>

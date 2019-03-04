@@ -1,18 +1,32 @@
-.amount-input {
+.amount__input {
   align-items: center;
   display: flex;
   flex: 0 0 120px;
   max-width: 120px;
 }
-.amount-input input {
+.amount__input input {
   border: 1px solid #ccc;
   border-radius: 2px;
   font-size: 18px;
+  line-height: 1em;
   padding: 10px;
   width: 80px;
 }
-.amount-unit {
+.amount__input input:focus {
+  border: 1px solid #7a9118;
+}
+.amount__unit {
   flex: 0 0 40px;
   max-width: 40px;
   padding-left: 5px;
+}
+
+@media all and (max-width: 480px){
+  .amount__input {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .amount__input input {
+    width: 120px;
+  }
 }

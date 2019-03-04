@@ -15,8 +15,7 @@ const foodnoteActions = (props) => {
         <div className={styles['action--delete']} onClick={props.onDeleteClicked}>
           <FontAwesomeIcon icon="trash" />delete
         </div>
-      )
-      }
+      )}
     </div>
   )
 }

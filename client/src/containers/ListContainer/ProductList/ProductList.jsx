@@ -61,8 +61,8 @@ class ProductList extends Component {
     }
 
     return (
-      <div className={styles['error-container']}>
-        <p className={styles['error-container__message']}>{errorMessage}</p>
+      <div className={styles['error']}>
+        <p className={styles['error__message']}>{errorMessage}</p>
         {button}
       </div>
     )
@@ -70,7 +70,7 @@ class ProductList extends Component {
 
   renderEmpty() {
     return (
-      <div className={styles['list-empty']}>
+      <div className={styles['empty__message']}>
         No products here (yet).
       </div>
     );
@@ -102,8 +102,9 @@ class ProductList extends Component {
     }
 
     return(
-      <article className={styles['product-list']}>
-        <div className={styles['list-header']}>
+      <article className={styles['product__list']}>
+        <div className={styles['product__list__title']}>
+          <div className={styles['btn--menu__category']} onClick={this.props.categoryMenuClicked}>Categories</div>
           <h1>{this.props.title}</h1>
           <input type="text" 
             placeholder="Filter list..." 
@@ -111,13 +112,13 @@ class ProductList extends Component {
             onChange={(event) => this.setState({searchQuery: event.target.value})} 
             value={this.state.searchQuery}
           />
-          <div className={styles['product-day']}>
-            <div className={this.state.day === this.today ? styles['day-btn--active'] : styles['day-btn']} onClick={() => this.setDay(this.today)}>Today</div>
-            <div className={this.state.day === this.yesterday ? styles['day-btn--active'] : styles['day-btn']} onClick={() => this.setDay(this.yesterday)}>Yesterday</div>
-            <DatePicker className={this.state.otherDaySelected ? styles['day-btn--active'] : styles['day-btn']} onDateSelected={this.setDay}>Other</DatePicker>
+          <div className={styles['product__list__datebtns']}>
+            <div className={this.state.day === this.today ? styles['btn__day--active'] : styles['btn__day']} onClick={() => this.setDay(this.today)}>Today</div>
+            <div className={this.state.day === this.yesterday ? styles['btn__day--active'] : styles['btn__day']} onClick={() => this.setDay(this.yesterday)}>Yesterday</div>
+            <DatePicker className={this.state.otherDaySelected ? styles['btn__day--active'] : styles['btn__day']} onDateSelected={this.setDay}>Other</DatePicker>
           </div>
         </div>
-        <div className={styles['list-body']}>
+        <div className={styles['product__list__body']}>
           {list}
         </div>
       </article>

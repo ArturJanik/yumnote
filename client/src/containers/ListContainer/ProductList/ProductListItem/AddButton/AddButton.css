@@ -1,4 +1,4 @@
-.amount-add {
+.amount__add {
   background: #a3c220;
   color: #fff;
   cursor: pointer;
@@ -14,20 +14,20 @@
   transform: rotateX(0deg);
   width: 100%;
 }
-.amount-add:hover {
+.amount__add:hover {
   background: #516110;
 }
-.amount-add svg {
+.amount__add svg {
   height: 50px;
   width: 20px !important;
 }
-.amount-add--finished {
-  composes: amount-add;
+.amount__add--finished {
+  composes: amount__add;
   background: #fff;
   -webkit-transform: rotateX(90deg) translateZ(25px);
   transform: rotateX(90deg) translateZ(25px);
 }
-.amount-add-success {
+.amount__add--success {
   color: #a3c220;
   position: absolute;
   -webkit-transform: rotateX(270deg);
