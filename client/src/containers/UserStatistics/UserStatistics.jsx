@@ -21,7 +21,7 @@ class UserStatistics extends Component {
   renderStatistics = () => {
     return (
       <React.Fragment>
-        <div className={styles['stats-container']}>
+        <div className={styles['chart__container']}>
           {(this.props.statisticalData !== null && this.props.statisticalData.length > 0) ? <Chart data={this.props.statisticalData} /> : 'No data available. Be sure to add some foodnotes!'}
         </div>
         <div className={styles.buttons}>
@@ -41,12 +41,12 @@ class UserStatistics extends Component {
     }
     
     return(
-      <section className={styles['statistics-container']}>
-        <div className={styles.wrapper}>
-        <h1>Statistics</h1>
-        <div>
-          {statisticsContainer}
-        </div>
+      <section className={styles['statistics__container']}>
+        <div className={styles['statistics__wrapper']}>
+          <h1>Statistics</h1>
+          <div>
+            {statisticsContainer}
+          </div>
         </div>
       </section>
     )
