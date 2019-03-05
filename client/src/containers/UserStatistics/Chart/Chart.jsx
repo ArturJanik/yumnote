@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import '!style-loader!css-loader!perfect-scrollbar/css/perfect-scrollbar.css';
+import PerfectScrollbar from 'perfect-scrollbar';
 import Chartjs from 'chart.js';
 import * as moment from 'moment';
 import styles from './Chart.css';
 
 import Button from '../../../components/UI/Button/Button';
-
 
 class Chart extends Component {
 
@@ -18,6 +20,7 @@ class Chart extends Component {
   }
 
   chartRef = React.createRef();
+  chartContainerRef = React.createRef();
   chart = null;
 
   componentDidMount = () => {
@@ -122,6 +125,12 @@ class Chart extends Component {
     data = this.getDataOfSelectedType(data);
     
     this.generateChart(data, labels);
+    new PerfectScrollbar(this.chartContainerRef.current, {
+      wheelSpeed: 2,
+      wheelPropagation: true,
+      minScrollbarLength: 20,
+      suppressScrollY: true
+    });
   }
 
   generateChart = (data, labels) => {
@@ -236,7 +245,11 @@ class Chart extends Component {
               clicked={() => this.changeScale('month')}>Monthly</Button>
           </div>
         </div>
-        <canvas ref={this.chartRef} className={styles.chart}/>
+        <div ref={this.chartContainerRef} className={styles['chart__scrollbar__wrapper']}>
+          <div className={styles['chart__wrapper']}>
+            <canvas ref={this.chartRef} className={styles.chart}/>
+          </div>
+        </div>
       </React.Fragment>
     )
   }
