@@ -86,7 +86,7 @@ class PasswordChange extends Component {
       let errorFields = Object.keys(this.props.error);
 
       errorMessage = (
-        <div className={styles["error-container"]}>
+        <div className={styles["error"]}>
           {errorFields.map((field, index) => {
             let errorMsgs = '';
             if(this.props.error[field] instanceof Object) {
@@ -98,7 +98,7 @@ class PasswordChange extends Component {
             }
             return (
               <React.Fragment key={index}>
-                <p className={styles["error-subject"]}>{field}</p>
+                <p className={styles["error__subject"]}>{field}</p>
                 <ul>{errorMsgs}</ul>
               </React.Fragment>
             );
@@ -107,7 +107,7 @@ class PasswordChange extends Component {
       );
     } else {
       errorMessage = (
-        <div className={styles["error-container"]}>
+        <div className={styles["error"]}>
           <p>{this.props.error}</p>
         </div>
       );
@@ -136,12 +136,10 @@ class PasswordChange extends Component {
     let form = this.props.finished ? this.showSuccessMsg() : this.renderForm();
     
     return(
-      <section className={styles['profile-container']}>
-        <div className={styles.wrapper}>
+      <section className={styles['profile__container']}>
+        <div className={styles['profile__wrapper']}>
           <h1>Change password</h1>
-          <div className={styles['form-container']}>
-            {form}
-          </div>
+          {form}
         </div>
       </section>
     )

@@ -1,8 +1,8 @@
-.profile-container {
+.profile__container {
   background: url('../../assets/images/deco-stripes.png') #fafafa;
   padding: 20px 0;
 }
-.wrapper {
+.profile__wrapper {
   background: #fff;
   border-radius: 2px;
   box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 0.3);
@@ -12,15 +12,51 @@
   width: 100%;
 }
 
-.userdata-container {
+.profile__data {
   box-shadow: 0px 0px 6px -1px rgba(0, 0, 0, 0.3);
   margin: 10px 0 20px;
   padding: 20px;
 }
 
-.buttons-container {
+.profile__buttons {
   display: flex;
 }
-.buttons-container a:not(:last-of-type) {
+.profile__buttons a:not(:last-of-type) {
   margin-right: 10px;
+}
+
+@media all and (max-width: 1400px) {
+  .profile__container {
+    padding: 20px;
+  }
+}
+
+@media all and (max-width: 640px) {
+  .profile__buttons {
+    display: block;
+  }
+  .profile__buttons a {
+    display: block;
+    margin-bottom: 10px;
+  }
+  .profile__buttons button {
+    width: 100%;
+  }
+  .profile__buttons a:not(:last-of-type) {
+    margin-right: 0;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .profile__container {
+    padding: 20px 10px;
+  }
+  .profile__wrapper {
+    padding: 20px 10px;
+  }
+  .profile__container form {
+    border-left: none;
+    border-right: none;
+    padding: 10px 0;
+  }
 }

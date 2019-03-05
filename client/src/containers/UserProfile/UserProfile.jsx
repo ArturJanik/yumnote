@@ -18,12 +18,12 @@ class UserProfile extends Component {
   renderProfile = () => {
     return (
       <React.Fragment>
-        <div className={styles['userdata-container']}>
+        <div className={styles['profile__data']}>
           <p><strong>Username:</strong> {this.props.profile.username}</p>
           <p><strong>E-mail:</strong> {this.props.profile.email}</p>
           <p><strong>Timezone:</strong> {this.props.profile.time_zone}</p>
         </div>
-        <div className={styles['buttons-container']}>
+        <div className={styles['profile__buttons']}>
           <Link to="/profile/edit"><Button btnType="regular">Edit account</Button></Link>
           <Link to="/profile/statistics"><Button btnType="regular">Show statistics</Button></Link>
           <Link to="/profile/update-password"><Button btnType="regular">Change password</Button></Link>
@@ -42,8 +42,8 @@ class UserProfile extends Component {
     }
     
     return(
-      <section className={styles['profile-container']}>
-        <div className={styles.wrapper}>
+      <section className={styles['profile__container']}>
+        <div className={styles['profile__wrapper']}>
           <h1>Profile</h1>
           <div>
             {profile}
