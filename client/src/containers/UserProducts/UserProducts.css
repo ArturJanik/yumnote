@@ -1,8 +1,8 @@
-.list-container {
+.list__container {
   background: url('../../assets/images/deco-stripes.png') #fafafa;
   padding: 20px 0;
 }
-.wrapper {
+.list__wrapper {
   background: #fff;
   border-radius: 2px;
   box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 0.3);
@@ -11,32 +11,39 @@
   padding: 20px;
   width: 100%;
 }
-.heading {
+.list__heading {
   align-items: center;
   display: flex;
   justify-content: space-between;
   padding-bottom: 20px;
 }
-.product-list {
-  
+.list__heading__right {
+  display: flex;
 }
-.list-header {
+.product__list__header {
   background: #fff;
   border-bottom: 1px solid #ccc;
   display: flex;
   font-weight: 600;
 }
-.product-list div,
-.product-list p {
+.product__list div,
+.product__list p {
   padding: 5px 10px;
 }
-.c20 {
-  flex: 0 0 20%;
-  max-width: 20%;
+.c1 {
+  flex: 0 0 70px;
+  max-width: 70px;
 }
-.c30 {
-  flex: 0 0 30%;
-  max-width: 30%;
+.c2 {
+  flex: 1;
+}
+.c3 {
+  flex: 0 0 80px;
+  max-width: 80px;
+}
+.c4 {
+  flex: 0 0 120px;
+  max-width: 120px;
 }
 
 .search-field {
@@ -51,4 +58,81 @@
 .search-field:focus {
   background: #fafafa;
   border-bottom: 3px solid #3f4d00;
+}
+
+@media all and (max-width: 1400px) {
+  .list__container {
+    padding: 20px;
+  }
+}
+@media all and (max-width: 800px) {
+  .list__heading h1 {
+    font-size: 28px;
+  }
+}
+@media all and (max-width: 768px) {
+  .list__heading {
+    flex-wrap: wrap;
+  }
+  .list__heading h1 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .list__heading__right {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .search-field {
+    flex: 1;
+  }
+  .list__heading__right a {
+    flex: 0 0 160px;
+    max-width: 160px;
+  }
+  .list__heading__right button {
+    width: 100%;
+  }
+  .product__list__header {
+    border-bottom: 1px solid #aaa;
+  }
+  .c4 {
+    flex: 0 0 130px;
+    max-width: 130px;
+  }
+}
+
+@media all and (max-width: 640px) {
+  .list__heading__right a {
+    flex: 0 0 140px;
+    max-width: 140px;
+  }
+  .c3,
+  .c4 {
+    display: none;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .list__container {
+    padding: 20px 10px;
+  }
+  .list__wrapper {
+    padding: 20px 10px;
+  }
+  .list__heading__right {
+    flex-direction: column;
+  }
+  .search-field {
+    flex: 1;
+    order: 2;
+    width: 100%;
+  }
+  .list__heading__right a {
+    flex: 1;
+    max-width: none;
+    margin-bottom: 10px;
+    order: 1;
+  }
 }

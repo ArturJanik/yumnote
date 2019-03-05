@@ -23,8 +23,8 @@ class UserProductsItem extends Component {
   generateActions = (id) => {
     return (
       <React.Fragment>
-        <Link className={styles['link-edit']} to={`/products/${id}/edit`}>edit</Link>
-        <span className={styles['link-delete']} onClick={() => this.deleteProduct(this.props.product)}>delete</span>
+        <Link className={styles['link--edit']} to={`/products/${id}/edit`}>edit</Link>
+        <span className={styles['link--delete']} onClick={() => this.deleteProduct(this.props.product)}>delete</span>
       </React.Fragment>
     )
   }
@@ -32,11 +32,11 @@ class UserProductsItem extends Component {
   render(){
     const {product} = this.props;
     return (
-      <li className={styles['list-item']} key={product.id}>
-        <div className={styles.c20}>{product.id}</div>
-        <div className={styles.c30}>{product.name}</div>
-        <div className={styles.c20}>{this.generateStatus(product.visible, product.id)}</div>
-        <div className={styles.c30}>{this.generateActions(product.id)}</div>
+      <li className={styles['list__item']} key={product.id}>
+        <div className={styles.c1}>{product.id}</div>
+        <div className={styles.c2}>{product.name}</div>
+        <div className={styles.c3}>{this.generateStatus(product.visible, product.id)}</div>
+        <div className={styles.c4}>{this.generateActions(product.id)}</div>
       </li>
     )
   }

@@ -156,12 +156,12 @@ class AddProduct extends Component {
       let errorFields = Object.keys(this.props.error);
 
       errorMessage = (
-        <div className={styles['error-container']}>
+        <div className={styles['error']}>
           { errorFields.map((field, index) => {
             let errorMsgs = this.props.error[field].map((err, key) => <li key={key}>- {err}</li>);
             return (
               <React.Fragment key={index}>
-                <p className={styles['error-subject']}>{field}</p>
+                <p className={styles['error__subject']}>{field}</p>
                 <ul>
                   {errorMsgs}
                 </ul>
@@ -173,7 +173,7 @@ class AddProduct extends Component {
       );
     } else {
       errorMessage = (
-        <div className={styles['error-container']}>
+        <div className={styles['error']}>
           <p>{this.props.error}</p>
         </div>
       );
@@ -200,8 +200,8 @@ class AddProduct extends Component {
     }
 
     return (
-      <section className={styles['product-form']}>
-        <div className={styles.wrapper}>
+      <section className={styles['form__container']}>
+        <div className={styles['form__wrapper']}>
           <h1>Create new product:</h1>
           {form}
         </div>

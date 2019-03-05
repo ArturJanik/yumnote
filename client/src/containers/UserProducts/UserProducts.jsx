@@ -28,11 +28,11 @@ class UserProducts extends Component {
 
   render(){
     return (
-      <section className={styles['list-container']}>
-        <div className={styles.wrapper}>
-          <div className={styles.heading}>
+      <section className={styles['list__container']}>
+        <div className={styles['list__wrapper']}>
+          <div className={styles['list__heading']}>
             <h1>Your products</h1>
-            <div style={{'display': 'flex'}}>
+            <div className={styles['list__heading__right']}>
               <input type="text" 
                 placeholder="Filter results..." 
                 className={styles['search-field']} 
@@ -41,12 +41,12 @@ class UserProducts extends Component {
               <Link to="/products/new"><Button>Create product</Button></Link>
             </div>
           </div>
-          <ul className={styles['product-list']}>
-            <li className={styles['list-header']}>
-              <p className={styles.c20}>Id</p>
-              <p className={styles.c30}>Name</p>
-              <p className={styles.c20}>Visible</p>
-              <p className={styles.c30}>Actions</p>
+          <ul className={styles['product__list']}>
+            <li className={styles['product__list__header']}>
+              <p className={styles.c1}>Id</p>
+              <p className={styles.c2}>Name</p>
+              <p className={styles.c3}>Visible</p>
+              <p className={styles.c4}>Actions</p>
             </li>
             { this.props.loading ? <Spinner /> : 
               this.props.products.map(product => {
