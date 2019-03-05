@@ -72,14 +72,14 @@ class EditProfile extends Component {
       let errorFields = Object.keys(this.props.error);
 
       errorMessage = (
-        <div className={styles["error-container"]}>
+        <div className={styles["error"]}>
           {errorFields.map((field, index) => {
             let errorMsgs = this.props.error[field].map((err, key) => (
               <li key={key}>- {err}</li>
             ));
             return (
               <React.Fragment key={index}>
-                <p className={styles["error-subject"]}>{field}</p>
+                <p className={styles["error__subject"]}>{field}</p>
                 <ul>{errorMsgs}</ul>
               </React.Fragment>
             );
@@ -88,7 +88,7 @@ class EditProfile extends Component {
       );
     } else {
       errorMessage = (
-        <div className={styles["error-container"]}>
+        <div className={styles["error"]}>
           <p>{this.props.error}</p>
         </div>
       );
@@ -116,14 +116,10 @@ class EditProfile extends Component {
     }
     
     return(
-      <section className={styles['profile-container']}>
-        <div className={styles.wrapper}>
+      <section className={styles['profile__container']}>
+        <div className={styles['profile__wrapper']}>
           <h1>Edit profile</h1>
-          <div>
-            <div className={styles['form-container']}>
-              {form}
-            </div>
-          </div>
+          {form}
         </div>
       </section>
     )
