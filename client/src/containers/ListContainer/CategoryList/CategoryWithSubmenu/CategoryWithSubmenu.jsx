@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './CategoryWithSubmenu.css';
 
 class CategoryWithSubmenu extends Component {
@@ -19,19 +19,25 @@ class CategoryWithSubmenu extends Component {
 
   generateSubmenu = ({category, subCategories}) => {
     return (
-      <ul className={styles['sub-category-list']}>
-        <li className={styles['sub-category-btn']}><Link to={{
-          pathname: `/category/${category.slug}`,
-          state: { category: category.name, id: category.id}
-        }}>{category.name}</Link></li>
+      <ul className={styles['subcategory__list']}>
+        <li className={styles['subcategory__btn']} onClick={this.props.onClick}>
+          <NavLink to={{
+            pathname: `/category/${category.slug}`,
+            state: { category: category.name, id: category.id}
+          }}
+          activeClassName={styles.active}>{category.name}</NavLink>
+        </li>
         { 
           subCategories.map(subcat => {
             return (
               (category.id === subcat.parent_id) ? (
-                <li className={styles['sub-category-btn']} key={subcat.id}><Link to={{
-                  pathname: `/category/${subcat.slug}`,
-                  state: { category: subcat.name, id: subcat.id}
-                }}>{subcat.name}</Link></li>
+                <li className={styles['subcategory__btn']} key={subcat.id} onClick={this.props.onClick}>
+                  <NavLink to={{
+                    pathname: `/category/${subcat.slug}`,
+                    state: { category: subcat.name, id: subcat.id}
+                  }}
+                  activeClassName={styles.active}>{subcat.name}</NavLink>
+                </li>
               ) : null
             )
           })
@@ -43,7 +49,7 @@ class CategoryWithSubmenu extends Component {
   render(){
     return(
       <React.Fragment>
-        <div className={styles['sub-category-reveal-btn']} onClick={this.toggleHandler}>{this.props.category.name}</div>
+        <div className={styles['subcategory__btn--reveal']} onClick={this.toggleHandler}>{this.props.category.name}</div>
         { this.state.expand ? this.generateSubmenu(this.props) : null }
       </React.Fragment>
     )

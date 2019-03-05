@@ -14,11 +14,11 @@ class CategoryList extends Component {
     
     return mainCategories.map((category) => (
       <li key={category.id} className={styles['category__item']}>
-        { category.hasSubmenu ? <CategoryWithSubmenu category={category} subCategories={subCategories} /> : (
+        { category.hasSubmenu ? <CategoryWithSubmenu category={category} subCategories={subCategories} onClick={this.props.hideMenuClicked} /> : (
           <Link to={{
             pathname: `/category/${category.slug}`,
             state: { category: category.name, id: category.id }
-          }}>{category.name}</Link>
+          }} onClick={this.props.hideMenuClicked}>{category.name}</Link>
         )}
       </li>
     ))

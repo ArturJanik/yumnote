@@ -1,4 +1,4 @@
-.sub-category-reveal-btn {
+.subcategory__btn--reveal {
   align-items: center;
   color: #11191b;
   display: flex;
@@ -12,20 +12,26 @@
   text-transform: uppercase;
 }
 
-.sub-category-list {
+.subcategory__list {
   display: flex;
   flex-wrap: wrap;
 }
-.sub-category-btn {
+.subcategory__btn {
   background: #f6f6f6;
   border: 1px solid #ddd;
   box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.3);
   flex: 0 0 100%;
   max-width: 100%;
 }
-.sub-category-btn:hover {
+.subcategory__btn:hover {
   background: #fff;
 }
-.sub-category-btn:hover a {
+.subcategory__btn:hover a {
   color: #7a9118;
+}
+
+.active {
+  background: #fff;
+  border-left: 4px solid #7a9118;
+  color: #7a9118 !important;
 }
