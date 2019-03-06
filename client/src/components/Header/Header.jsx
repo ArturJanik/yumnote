@@ -4,7 +4,6 @@ import styles from './Header.css';
 
 import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
-// import MobileMenu from './MobileMenu/MobileMenu';
 
 class Header extends Component {
   state = {
@@ -26,10 +25,6 @@ class Header extends Component {
             isAuth={this.props.isAuthenticated}
             currentUser={this.props.currentUserName}
           />
-          {/* <MobileMenu 
-            expand={this.state.expandMainMenu}
-            clicked={this.mainMenuToggleHandler}
-          /> */}
         </div>
       </header>
     );

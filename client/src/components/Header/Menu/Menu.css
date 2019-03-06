@@ -31,9 +31,58 @@
   padding: 0 5px;
 }
 
+.btn--menu {
+  display: none;
+}
+.btn--menu img {
+  display: block;
+  padding: 10px;
+}
+
 @media all and (max-width: 768px){
   .menu__item {
     line-height: 48px;
     margin-left: 5px;
+  }
+}
+
+@media all and (max-width: 640px){
+  .menu {
+    background: #fff;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    top: 52px;
+    transition: all 0.3s ease;
+    transform: translateX(0%);
+    width: 260px;
+    z-index: 100;
+  }
+  .menu--hide {
+    composes: menu;
+    transform: translateX(100%);
+  }
+  .menu__items {
+    display: block;
+  }
+  .menu__item {
+    display: block;
+  }
+  .btn--menu {
+    display: block;
+  }
+  .menu__overlay {
+    background: rgba(0,0,0,.5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 52px;
+    width: 100%;
+    z-index: 80;
+  }
+  .menu__overlay--hide {
+    composes: menu__overlay;
+    display: none;
   }
 }

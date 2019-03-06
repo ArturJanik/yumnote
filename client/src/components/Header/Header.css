@@ -21,3 +21,15 @@ header {
     padding: 0 20px;
   }
 }
+
+@media all and (max-width: 640px){
+  header {
+    padding: 0 10px 0 20px;
+  }
+}
+
+@media all and (max-width: 480px){
+  header {
+    padding: 0 0 0 10px;
+  }
+}
