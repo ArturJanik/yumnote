@@ -22,9 +22,3 @@ class Foodnote < ApplicationRecord
       self['amount'] = val
     end
 end
-
-# SELECT TO_CHAR(f.created_at::DATE, 'dd/mm/yyyy') AS date, SUM(f.amount * p.kcal) AS kcal, SUM(f.amount * p.carb) AS carb, SUM(f.amount * p.fat) AS fat, SUM(f.amount * p.prot) AS prot 
-# FROM foodnotes AS f 
-# JOIN products AS p ON f.product_id = p.id 
-# GROUP BY f.created_at::DATE 
-# ORDER BY f.created_at::DATE
