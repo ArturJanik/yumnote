@@ -37,13 +37,18 @@ class ProductListItem extends Component {
   }
 
   submitFoodnote = () => {
-    this.setState({ createSuccess: false });
-    const data = {
-      product_id: this.props.product.id,
-      amount: this.state.amount,
-      created_at: this.props.day
+    if(this.state.amount) {
+      if(this.state.amount === '0') {
+        this.setState({amount: '1.0'})
+      } else {
+        const data = {
+          product_id: this.props.product.id,
+          amount: this.state.amount,
+          created_at: this.props.day
+        }
+        this.props.addFoodnote(data);
+      }
     }
-    this.props.addFoodnote(data);
   }
 
   onAmountChange = (event) => {
