@@ -20,8 +20,12 @@ class FoodnoteListItem extends Component {
   }
 
   onAmountInputBlur = (event) => {
-    if(String(this.props.foodnote.amount) !== String(event.target.value))
-      this.props.updateFoodnote(this.props.foodnote.id, event.target.value);
+    if(this.state.amount > 0) {
+      if(String(this.props.foodnote.amount) !== String(event.target.value))
+        this.props.updateFoodnote(this.props.foodnote.id, event.target.value);
+    } else {
+      this.setState({amount: this.props.foodnote.amount})
+    }
   }
   
   render() {

@@ -52,7 +52,10 @@ class ProductListItem extends Component {
   }
 
   onAmountChange = (event) => {
-    this.setState({amount: event.target.value})
+    const amount = event.target.value;
+    if(amount >= 0) {
+      this.setState({amount})
+    }
   }
 
   generateMacros = (product) => {
