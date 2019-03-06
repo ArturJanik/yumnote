@@ -5,13 +5,17 @@ import styles from './AddButton.css';
 import MiniSpinner from '../../../../../components/UI/MiniSpinner/MiniSpinner';
 
 const addButton = (props) => {
+  const animateCompletion = props.createSuccess || props.createFailure
   return (
     (props.inProgress ?
       (<div className={styles['amount__add']}><MiniSpinner /></div>) :
       (
-        <div className={props.created ? styles['amount__add--finished'] : styles['amount__add']} onClick={props.clicked}>
+        <div className={ animateCompletion ? styles['amount__add--finished'] : styles['amount__add']} onClick={animateCompletion ? null : props.clicked}>
           <FontAwesomeIcon icon={['far', 'plus-square']} />
-          <div className={styles['amount__add--success']}><FontAwesomeIcon icon={['far', 'check-circle']} /></div>
+          { props.createSuccess ? 
+            <div className={styles['amount__add__icon--success']}><FontAwesomeIcon icon={['far', 'check-circle']} /></div>
+            : props.createFailure ? <div className={styles['amount__add__icon--failure']}><FontAwesomeIcon icon={['far', 'times-circle']} /></div> : null
+          }
         </div>
       )
     )

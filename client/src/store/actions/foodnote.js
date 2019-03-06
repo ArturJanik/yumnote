@@ -12,6 +12,7 @@ import {
   DELETE_FOODNOTE_SUCCESS,
   DELETE_FOODNOTE_FAIL,
   CLEAR_FOODNOTE_TOTALS,
+  CLEAR_FOODNOTE_ERRORS,
   RESET_FOODNOTE_REDUCER_STATE
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
@@ -73,15 +74,17 @@ const addFoodnoteStart = (productId) => {
   }
 }
 
-const addFoodnoteSuccess = () => {
+const addFoodnoteSuccess = (productId) => {
   return {
-    type: ADD_FOODNOTE_SUCCESS
+    type: ADD_FOODNOTE_SUCCESS,
+    productId
   }
 }
 
-const addFoodnoteFail = (error) => {
+const addFoodnoteFail = (productId, error) => {
   return {
     type: ADD_FOODNOTE_FAIL,
+    productId,
     error
   }
 }
@@ -91,14 +94,14 @@ export const addFoodnote = (data) => {
     dispatch(addFoodnoteStart(data.product_id));
     axios.post('/api/foodnotes', data)
     .then(response => {
-      dispatch(addFoodnoteSuccess());
+      dispatch(addFoodnoteSuccess(data.product_id));
     })
     .catch(err => {
       console.error('Create foodnote error:', err);
       if(err.response.status === 500){
-        dispatch(addFoodnoteFail('Unable to create new foodnote. Please check your connection or try again later.'));
+        dispatch(addFoodnoteFail(data.product_id, 'Unable to create new foodnote. Please check your connection or try again later.'));
       } else {
-        dispatch(addFoodnoteFail(err.response.data.errors));
+        dispatch(addFoodnoteFail(data.product_id, err.response.data.errors));
       }
     })
   }
@@ -186,6 +189,12 @@ export const deleteFoodnote = (id) => {
 export const clearFoodnoteTotals = () => {
   return {
     type: CLEAR_FOODNOTE_TOTALS
+  }
+}
+
+export const clearFoodnoteErrors = () => {
+  return {
+    type: CLEAR_FOODNOTE_ERRORS
   }
 }
 

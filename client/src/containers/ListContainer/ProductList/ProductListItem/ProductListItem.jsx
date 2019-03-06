@@ -10,24 +10,34 @@ import AddButton from './AddButton/AddButton';
 class ProductListItem extends Component {
   state = {
     amount: '1.0',
-    creationCompleted: false
+    createSuccess: false,
+    createFailure: false
   }
 
   componentDidUpdate(prevProps) {
-    if(prevProps.createdForProduct === this.props.product.id){
-      this.setState({ creationCompleted: true });
-      this.timer = setTimeout(() => {
-        this.setState({ creationCompleted: false });
-      }, 1000);
+    const inProgress = this.props.product.foodnoteCreationInProgress;
+    if(prevProps.product.foodnoteCreationInProgress !== inProgress && inProgress === false){
+      if(this.props.product.error !== null){
+        this.setState({ createFailure: true });
+        this.timer2 = setTimeout(() => {
+          this.setState({ createFailure: false });
+        }, 1000);
+      } else {
+        this.setState({ createSuccess: true });
+        this.timer = setTimeout(() => {
+          this.setState({ createSuccess: false });
+        }, 1000);
+      }
     }
   }
 
   componentWillUnmount() {
     if(this.timer) clearTimeout(this.timer);
+    if(this.timer2) clearTimeout(this.timer2);
   }
 
   submitFoodnote = () => {
-    this.setState({ creationCompleted: false });
+    this.setState({ createSuccess: false });
     const data = {
       product_id: this.props.product.id,
       amount: this.state.amount,
@@ -51,12 +61,11 @@ class ProductListItem extends Component {
     )
   }
 
-  generateForm = (product) => {
-    const creationInProgress = this.props.createInProgress && (this.props.createdForProduct === product.id);
+  generateForm = ({foodnoteCreationInProgress, unit}) => {
     return (
       <div className={styles.form}>
-        <AmountInput inProgress={creationInProgress} onChange={this.onAmountChange} amount={this.state.amount} unit={product.unit} />
-        <AddButton inProgress={creationInProgress} clicked={this.submitFoodnote} created={this.state.creationCompleted} />
+        <AmountInput inProgress={foodnoteCreationInProgress} onChange={this.onAmountChange} amount={this.state.amount} unit={unit} />
+        <AddButton inProgress={foodnoteCreationInProgress} clicked={this.submitFoodnote} createSuccess={this.state.createSuccess} createFailure={this.state.createFailure} />
       </div>
     )
   }
@@ -73,17 +82,10 @@ class ProductListItem extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    createInProgress: state.foodnote.createInProgress,
-    createdForProduct: state.foodnote.createdForProduct
-  }
-}
-
 const mapDispatchToProps = dispatch => {
   return {
     addFoodnote: (data) => dispatch(actions.addFoodnote(data)),
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductListItem);
+export default connect(null, mapDispatchToProps)(ProductListItem);

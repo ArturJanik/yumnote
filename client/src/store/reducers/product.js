@@ -19,7 +19,10 @@ import {
   TOGGLE_PRODUCT_VISIBILITY_START,
   TOGGLE_PRODUCT_VISIBILITY_SUCCESS,
   TOGGLE_PRODUCT_VISIBILITY_FAIL,
-  RESET_PRODUCT_REDUCER_STATE
+  ADD_FOODNOTE_START,
+  ADD_FOODNOTE_SUCCESS,
+  ADD_FOODNOTE_FAIL,
+  RESET_PRODUCT_REDUCER_STATE,
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
 
@@ -42,12 +45,13 @@ const fetchProductsSuccess = (state, action) => {
   const products = action.products.map(product => (
     {
       ...product,
-      deleteInProgress: false
+      deleteInProgress: false,
+      foodnoteCreationInProgress: false,
+      error: null
     }
   ));
   return updateObject(state, {
     products,
-    error: null,
     loading: false
   })
 }
@@ -71,7 +75,6 @@ const fetchProductStart = (state, action) => {
 const fetchProductSuccess = (state, action) => {
   return updateObject(state, {
     product: action.product,
-    error: null, 
     loading: false 
   })
 }
@@ -93,7 +96,6 @@ const addProductStart = (state, action) => {
 
 const addProductSuccess = (state, action) => {
   return updateObject(state, {
-    error: null, 
     loading: false 
   })
 }
@@ -115,7 +117,6 @@ const updateProductStart = (state, action) => {
 
 const updateProductSuccess = (state, action) => {
   return updateObject(state, {
-    error: null, 
     loading: false 
   })
 }
@@ -128,9 +129,29 @@ const updateProductFail = (state, action) => {
 }
 
 
+const addFoodnoteStart = (state, action) => {
+  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.productId ?
+    { ...prod, foodnoteCreationInProgress: true, error: null } : prod);
+  return updateObject(state, { products: updatedProducts })
+}
+
+const addFoodnoteSuccess = (state, action) => {
+  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.productId ?
+    { ...prod, foodnoteCreationInProgress: false } : prod);
+    
+  return updateObject(state, { products: updatedProducts })
+}
+
+const addFoodnoteFail = (state, action) => {
+  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.productId ?
+    { ...prod, foodnoteCreationInProgress: false, error: action.error } : prod);
+  return updateObject(state, { products: updatedProducts })
+}
+
+
 const deleteProductStart = (state, action) => {
-  let updatedProducts = [ ...state.products ].map(art => art.id === action.productId ?
-    { ...art, deleteInProgress: true } : art);
+  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.productId ?
+    { ...prod, deleteInProgress: true } : prod);
   return updateObject(state, { 
     error: null,
     products: updatedProducts
@@ -141,14 +162,13 @@ const deleteProductSuccess = (state, action) => {
   const filteredProducts = state.products.filter(product => product.id !== action.deletedId);
     
   return updateObject(state, {
-    error: null,
     products: filteredProducts
   })
 }
 
 const deleteProductFail = (state, action) => {
-  let updatedProducts = [ ...state.products ].map(art => art.id === action.productId ?
-    { ...art, deleteInProgress: false } : art);
+  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.productId ?
+    { ...prod, deleteInProgress: false } : prod);
   return updateObject(state, {
     error: action.error,
     products: updatedProducts
@@ -174,8 +194,8 @@ const toggleProductVisibilityStart = (state, action) => {
 }
 
 const toggleProductVisibilitySuccess = (state, action) => {
-  let updatedProducts = [ ...state.products ].map(art => art.id === action.id ?
-    { ...art, visible: !art.visible } : art);
+  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.id ?
+    { ...prod, visible: !prod.visible } : prod);
   return updateObject(state, {
     error: null,
     products: updatedProducts
@@ -206,6 +226,10 @@ const reducer = (state = initialState, action) => {
     case ADD_PRODUCT_START: return addProductStart(state, action);
     case ADD_PRODUCT_SUCCESS: return addProductSuccess(state, action);
     case ADD_PRODUCT_FAIL: return addProductFail(state, action);
+
+    case ADD_FOODNOTE_START: return addFoodnoteStart(state, action);
+    case ADD_FOODNOTE_SUCCESS: return addFoodnoteSuccess(state, action);
+    case ADD_FOODNOTE_FAIL: return addFoodnoteFail(state, action);
 
     case UPDATE_PRODUCT_START: return updateProductStart(state, action);
     case UPDATE_PRODUCT_SUCCESS: return updateProductSuccess(state, action);

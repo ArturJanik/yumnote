@@ -17,6 +17,7 @@ export {
   updateFoodnote,
   deleteFoodnote,
   clearFoodnoteTotals,
+  clearFoodnoteErrors,
   resetFoodnoteReducerState
 } from './foodnote';
 export {

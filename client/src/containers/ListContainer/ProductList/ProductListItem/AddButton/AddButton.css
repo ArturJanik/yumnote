@@ -27,11 +27,18 @@
   -webkit-transform: rotateX(90deg) translateZ(25px);
   transform: rotateX(90deg) translateZ(25px);
 }
-.amount__add--success {
-  color: #a3c220;
+.amount__add__icon {
   position: absolute;
   -webkit-transform: rotateX(270deg);
   transform: rotateX(270deg);
   -webkit-transform-origin: top center;
   transform-origin: top center;
+}
+.amount__add__icon--success {
+  composes: amount__add__icon;
+  color: #a3c220;
+}
+.amount__add__icon--failure {
+  composes: amount__add__icon;
+  color: #a80f0f;
 }

@@ -2,9 +2,6 @@ import {
   FETCH_FOODNOTES_START,
   FETCH_FOODNOTES_SUCCESS,
   FETCH_FOODNOTES_FAIL,
-  ADD_FOODNOTE_START,
-  ADD_FOODNOTE_SUCCESS,
-  ADD_FOODNOTE_FAIL,
   UPDATE_FOODNOTE_START,
   UPDATE_FOODNOTE_SUCCESS,
   UPDATE_FOODNOTE_FAIL,
@@ -12,6 +9,7 @@ import {
   DELETE_FOODNOTE_SUCCESS,
   DELETE_FOODNOTE_FAIL,
   CLEAR_FOODNOTE_TOTALS,
+  CLEAR_FOODNOTE_ERRORS,
   RESET_FOODNOTE_REDUCER_STATE
 } from '../actions/actionTypes';
 import { updateObject } from '../../utilities/utility';
@@ -20,8 +18,6 @@ const initialState = {
   error: null,
   loading: false,
   foodnotes: [],
-  createInProgress: false,
-  createdForProduct: null,
   totals: {
     kcal: 0,
     carb: 0,
@@ -85,31 +81,6 @@ const fetchFoodnotesFail = (state, action) => {
   return updateObject(state, {
     error: action.error,
     loading: false
-  })
-}
-
-
-const addFoodnoteStart = (state, action) => {
-  return updateObject(state, { 
-    error: null,
-    createInProgress: true,
-    createdForProduct: action.productId
-  })
-}
-
-const addFoodnoteSuccess = (state, action) => {
-  return updateObject(state, {
-    error: null,
-    createInProgress: false,
-    createdForProduct: null
-  })
-}
-
-const addFoodnoteFail = (state, action) => {
-  return updateObject(state, {
-    error: action.error,
-    creationInProgress: false,
-    createdForProduct: null
   })
 }
 
@@ -180,6 +151,10 @@ const clearFoodnoteTotals = (state, action) => {
   return updateObject(state, { totals: initialState.totals })
 }
 
+const clearFoodnoteErrors = (state, action) => {
+  return updateObject(state, { error: null })
+}
+
 const resetReducerState = (state, action) => {
   return { ...initialState }
 }
@@ -190,10 +165,6 @@ const reducer = (state = initialState, action) => {
     case FETCH_FOODNOTES_SUCCESS: return fetchFoodnotesSuccess(state, action);
     case FETCH_FOODNOTES_FAIL: return fetchFoodnotesFail(state, action);
 
-    case ADD_FOODNOTE_START: return addFoodnoteStart(state, action);
-    case ADD_FOODNOTE_SUCCESS: return addFoodnoteSuccess(state, action);
-    case ADD_FOODNOTE_FAIL: return addFoodnoteFail(state, action);
-
     case UPDATE_FOODNOTE_START: return updateFoodnoteStart(state, action);
     case UPDATE_FOODNOTE_SUCCESS: return updateFoodnoteSuccess(state, action);
     case UPDATE_FOODNOTE_FAIL: return updateFoodnoteFail(state, action);
@@ -203,6 +174,7 @@ const reducer = (state = initialState, action) => {
     case DELETE_FOODNOTE_FAIL: return deleteFoodnoteFail(state, action);
 
     case CLEAR_FOODNOTE_TOTALS: return clearFoodnoteTotals(state, action);
+    case CLEAR_FOODNOTE_ERRORS: return clearFoodnoteErrors(state, action);
     case RESET_FOODNOTE_REDUCER_STATE: return resetReducerState(state, action);
 
     default: return state;
