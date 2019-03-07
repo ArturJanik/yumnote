@@ -18,14 +18,6 @@
 .category__item:hover > div {
   color: #7a9118;
 }
-.category__item--special {
-  composes: category__item;
-  background: url('../../../assets/images/btn-stripes-3.png') #3f4d00;
-  border-bottom: 1px solid #3f4d00;
-}
-.category__item--special:hover {
-  background: #3f4d00;
-}
 .category__item a {
   align-items: center;
   color: #11191b;
@@ -38,12 +30,6 @@
   padding: 20px 15px;
   text-align: right;
   text-transform: uppercase;
-}
-.category__item--special a {
-  color: #fff;
-}
-.category__item--special:hover a {
-  color: #fff;
 }
 .category__item ul a {
   font-size: 14px;

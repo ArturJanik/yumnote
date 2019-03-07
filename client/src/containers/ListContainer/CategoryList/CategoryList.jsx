@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import styles from './CategoryList.css';
 
+import StaticLinks from './StaticLinks/StaticLinks';
 import CategoryWithSubmenu from './CategoryWithSubmenu/CategoryWithSubmenu';
 
 class CategoryList extends Component {
@@ -33,9 +34,7 @@ class CategoryList extends Component {
         <div className={styles['category__list__overlay' + (this.props.showMenu ? '' : '--hide')]} onClick={this.props.hideMenuClicked}></div>
         <aside className={styles['category__list' + (this.props.showMenu ? '' : '--hide')]}>
           <ul>
-            <li className={styles['category__item--special']}><Link to={`/foodnotes/today`} onClick={this.props.hideMenuClicked}>Today</Link></li>
-            <li className={styles['category__item--special']}><Link to={`/myfoods`} onClick={this.props.hideMenuClicked}>My Foods</Link></li>
-            <li className={styles['category__item--special']}><Link to={`/latest`} onClick={this.props.hideMenuClicked}>Lately Yummed</Link></li>
+            <StaticLinks clicked={this.props.hideMenuClicked} />
             {sidemenu}
           </ul>
         </aside>
