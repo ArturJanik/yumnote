@@ -1,0 +1,36 @@
+.link--edit {
+  border-right: 1px solid #999;
+  font-weight: 800;
+  margin-right: 5px;
+  padding-right: 5px;
+}
+.link--delete {
+  cursor: pointer;
+  font-weight: 800;
+}
+.link--edit:hover,
+.link--delete:hover {
+  text-decoration: underline;
+}
+
+@media all and (max-width: 768px) {
+  .link--edit,
+  .link--delete {
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    padding: 8px;
+  }
+  .link--edit {
+    margin-right: 10px;
+  }
+}
+
+@media all and (max-width: 640px) {
+  .link--edit,
+  .link--delete {
+    display: inline-block;
+    flex: 1;
+    padding: 7px;
+    text-align: center;
+  }
+}

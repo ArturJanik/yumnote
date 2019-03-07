@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import styles from './FoodnoteListItem.css';
 import * as actions from '../../../../store/actions/index';
@@ -6,7 +6,8 @@ import * as actions from '../../../../store/actions/index';
 import FoodnoteActions from './FoodnoteActions/FoodnoteActions';
 import FoodnoteData from './FoodnoteData/FoodnoteData';
 
-class FoodnoteListItem extends Component {
+class FoodnoteListItem extends PureComponent {
+  
   state = {
     amount: 0.0
   }

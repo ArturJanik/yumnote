@@ -26,6 +26,16 @@ Based on:
 * Fourth step - session optimization (keeping them in memory? redis? what if server dies/restarts?)
 * TODO...
 
+## Optimization
+
+### Done
+
+* Used 'why-did-you-update' tool to identify app elements with most redundant rerenders and refactored code to avoid most non-Router related ones.
+
+### TODO
+
+* Find out if it's possible to filter useless rerenders triggered by Router
+
 ## Installation
 
 ### Base setup

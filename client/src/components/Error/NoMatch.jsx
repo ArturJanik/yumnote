@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './NoMatch.css';
 import nomatch from './../../assets/images/error_404.jpg';
 
-const NoMatch = (props) => {
+const noMatch = (props) => {
   useEffect(() => {
     document.title = '404 - page not found - calories.today';
   })
@@ -16,4 +16,4 @@ const NoMatch = (props) => {
   )
 };
 
-export default NoMatch;
+export default noMatch;

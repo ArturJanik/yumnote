@@ -1,0 +1,102 @@
+.home__description {
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 750px;
+  max-width: 750px;
+  padding-right: 50px;
+}
+.home__description h1 {
+  color: #3f4d00;
+  -webkit-text-fill-color: transparent;
+  background: -webkit-linear-gradient(transparent, transparent), url('../../../assets/images/btn-stripes.png') repeat;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-size: 56px;
+}
+.home__subtitle {
+  font-family: 'Raleway', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.42em;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+.home__subtitle span {
+  color: #6A8100;
+}
+.home__description li {
+  align-items: center;
+  display: flex;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+  line-height: 40px;
+  padding-left: 10px;
+}
+.home__description li svg {
+  color: #7a9118;
+  font-size: 20px;
+  font-weight: bold;
+  font-variant: normal;
+  line-height: 2em;
+  margin-right: 10px;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media all and (max-width: 1200px){
+  .home__description {
+    flex: 0 0 500px;
+    max-width: 500px;
+  }
+  .home__description h1 {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 10px;
+  }
+  .home__subtitle {
+    font-size: 22px;
+  }
+}
+@media all and (max-width: 1020px){
+  .home__description {
+    flex: 0 0 50%;
+    max-width: 50%;
+    padding-right: 30px;
+  }
+  .home__teaser li {
+    font-size: 16px;
+    line-height: 28px;
+  }
+}
+@media all and (max-width: 800px){
+  .home__description {
+    display: block;
+    padding: 0 0 10px;
+    margin-bottom: 10px;
+    max-width: 100%;
+  }
+}
+@media all and (max-width: 520px){
+  .home__description h1 {
+    font-size: 28px;
+    line-height: 1em;
+  }
+  .home__subtitle {
+    font-size: 18px;
+  }
+}
+@media all and (max-width: 400px){
+  .home__description h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+  .home__subtitle {
+    font-size: 16px;
+    text-align: center;
+  }
+  .home__description li {
+    font-size: 14px;
+  }
+}

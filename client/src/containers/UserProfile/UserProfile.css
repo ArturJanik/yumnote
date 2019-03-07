@@ -18,32 +18,9 @@
   padding: 20px;
 }
 
-.profile__buttons {
-  display: flex;
-}
-.profile__buttons a:not(:last-of-type) {
-  margin-right: 10px;
-}
-
 @media all and (max-width: 1400px) {
   .profile__container {
     padding: 20px;
-  }
-}
-
-@media all and (max-width: 640px) {
-  .profile__buttons {
-    display: block;
-  }
-  .profile__buttons a {
-    display: block;
-    margin-bottom: 10px;
-  }
-  .profile__buttons button {
-    width: 100%;
-  }
-  .profile__buttons a:not(:last-of-type) {
-    margin-right: 0;
   }
 }
 

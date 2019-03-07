@@ -35,21 +35,6 @@
   text-decoration: underline;
 }
 
-.link--edit {
-  border-right: 1px solid #999;
-  font-weight: 800;
-  margin-right: 5px;
-  padding-right: 5px;
-}
-.link--delete {
-  cursor: pointer;
-  font-weight: 800;
-}
-.link--edit:hover,
-.link--delete:hover {
-  text-decoration: underline;
-}
-
 @media all and (max-width: 768px) {
   .list__item {
     border-bottom: 1px solid #ddd;
@@ -66,15 +51,6 @@
   }
   .hidden {
     background: #b33802;
-  }
-  .link--edit,
-  .link--delete {
-    border: 1px solid #aaa;
-    border-radius: 3px;
-    padding: 8px;
-  }
-  .link--edit {
-    margin-right: 10px;
   }
   .c4 {
     flex: 0 0 130px;
@@ -109,12 +85,5 @@
     flex: 0 0 190px;
     padding: 5px 10px 5px 0px;
     max-width: 190px;
-  }
-  .link--edit,
-  .link--delete {
-    display: inline-block;
-    flex: 1;
-    padding: 7px;
-    text-align: center;
   }
 }

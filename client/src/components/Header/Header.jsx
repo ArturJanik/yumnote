@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import styles from './Header.css';
 
 import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
 
-class Header extends Component {
+class Header extends PureComponent {
   state = {
     expandMainMenu: false,
   }

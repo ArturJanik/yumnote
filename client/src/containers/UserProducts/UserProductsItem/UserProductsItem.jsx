@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
 import styles from './UserProductsItem.css';
 import * as actions from '../../../store/actions/index';
+import ItemActions from './ItemActions/ItemActions';
 
-class UserProductsItem extends Component {
+class UserProductsItem extends PureComponent {
 
-  deleteProduct = ({id, name}) => {
+  deleteProduct = () => {
+    const {id, name} = this.props.product;
     if(window.confirm(`Are you sure you want to delete product "${name}"?`)) {
       this.props.onDeleteProduct(id);
     }
@@ -20,15 +21,6 @@ class UserProductsItem extends Component {
     )
   }
 
-  generateActions = (id) => {
-    return (
-      <React.Fragment>
-        <Link className={styles['link--edit']} to={`/products/${id}/edit`}>edit</Link>
-        <span className={styles['link--delete']} onClick={() => this.deleteProduct(this.props.product)}>delete</span>
-      </React.Fragment>
-    )
-  }
-
   render(){
     const {product} = this.props;
     return (
@@ -36,7 +28,7 @@ class UserProductsItem extends Component {
         <div className={styles.c1}>{product.id}</div>
         <div className={styles.c2}>{product.name}</div>
         <div className={styles.c3}>{this.generateStatus(product.visible, product.id)}</div>
-        <div className={styles.c4}>{this.generateActions(product.id)}</div>
+        <div className={styles.c4}> <ItemActions productId={product.id} onDelete={this.deleteProduct} /></div>
       </li>
     )
   }

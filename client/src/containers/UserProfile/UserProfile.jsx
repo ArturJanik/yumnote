@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import styles from './UserProfile.css';
 
 import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import Button from '../../components/UI/Button/Button';
 import NoMatch from '../../components/Error/NoMatch';
+import ProfileButtons from './ProfileButtons/ProfileButtons';
 
 class UserProfile extends Component {
   
@@ -23,11 +22,7 @@ class UserProfile extends Component {
           <p><strong>E-mail:</strong> {this.props.profile.email}</p>
           <p><strong>Timezone:</strong> {this.props.profile.time_zone}</p>
         </div>
-        <div className={styles['profile__buttons']}>
-          <Link to="/profile/edit"><Button btnType="regular">Edit account</Button></Link>
-          <Link to="/profile/statistics"><Button btnType="regular">Show statistics</Button></Link>
-          <Link to="/profile/update-password"><Button btnType="regular">Change password</Button></Link>
-        </div>
+        <ProfileButtons />
       </React.Fragment>
     )
   }

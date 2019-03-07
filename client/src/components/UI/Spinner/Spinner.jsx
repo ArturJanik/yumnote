@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import styles from './Spinner.css';
 
-const spinner = (props) => {
-  const classes = props.type ? styles["spinner--" + props.type] : styles.spinner
-  return <div className={classes}></div>
+class Spinner extends PureComponent {
+  render(){
+    const classes = this.props.type ? styles["spinner--" + this.props.type] : styles.spinner
+    return <div className={classes}></div>
+  }
 };
 
-export default spinner;
+export default Spinner;

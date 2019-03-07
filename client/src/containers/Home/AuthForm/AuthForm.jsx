@@ -95,7 +95,7 @@ class AuthForm extends PureComponent {
     });
     const path = this.state.isSignup ? "/login" : "/register";
     this.props.history.push(path);
-  };
+  }
 
   generateButton = () => {
     let button = (
@@ -107,7 +107,7 @@ class AuthForm extends PureComponent {
       button = <Button btnType="auth loading">Connecting...</Button>;
     }
     return button;
-  };
+  }
 
   generateErrorMsg = () => {
     let errorMessage = null;
@@ -138,7 +138,11 @@ class AuthForm extends PureComponent {
       );
     }
     return errorMessage;
-  };
+  }
+
+  submitHandler = (data) => {
+    this.props.onAuthSubmit(data, this.state.isSignup)
+  }
 
   render() {
     const button = this.generateButton();
@@ -150,7 +154,7 @@ class AuthForm extends PureComponent {
         loading={this.props.loading}
         submitBtn={button}
         errors={errorMessage}
-        submitHandler={data => this.props.onAuthSubmit(data, this.state.isSignup)}
+        submitHandler={this.submitHandler}
         formType={this.state.isSignup ? "signup" : "login"}
       />
     );
