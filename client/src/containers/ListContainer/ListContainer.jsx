@@ -26,6 +26,10 @@ class ListContainer extends Component {
     this.setState(prevState => ({showCategoryMenu: !prevState.showCategoryMenu}))
   }
 
+  hideCategoryMenu = () => {
+    this.setState({showCategoryMenu: false})
+  }
+
   renderList = () => {
     let list = null;
     let opts = null;
@@ -90,7 +94,7 @@ class ListContainer extends Component {
           categories={this.props.categories} 
           loading={this.props.categoriesLoading} 
           showMenu={this.state.showCategoryMenu} 
-          hideMenuClicked={() => this.setState({showCategoryMenu: false})} />
+          hideMenuClicked={this.hideCategoryMenu} />
         {list}
       </React.Fragment>
     )

@@ -14,6 +14,11 @@ class ProductListItem extends Component {
     createFailure: false
   }
 
+  shouldComponentUpdate(newProps){
+    if(this.props.day !== newProps.day) return false;
+    return true;
+  }
+
   componentDidUpdate(prevProps) {
     const inProgress = this.props.product.foodnoteCreationInProgress;
     if(prevProps.product.foodnoteCreationInProgress !== inProgress && inProgress === false){

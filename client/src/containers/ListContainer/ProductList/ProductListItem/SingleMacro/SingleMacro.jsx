@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import styles from './SingleMacro.css';
 
-const singleMacro = (props) => {
-  return (
-    <div className={styles.macro}>
-      <p className={styles['macro__header']}>{props.name}:</p>
-      <p className={styles['macro__value']}>{(props.val * props.amount).toFixed(2)}</p>
-    </div>
-  )
+class SingleMacro extends PureComponent {
+  render(){
+    return (
+      <div className={styles.macro}>
+        <p className={styles['macro__header']}>{this.props.name}:</p>
+        <p className={styles['macro__value']}>{(this.props.val * this.props.amount).toFixed(2)}</p>
+      </div>
+    )
+  }
 }
 
-export default singleMacro;
+export default SingleMacro;

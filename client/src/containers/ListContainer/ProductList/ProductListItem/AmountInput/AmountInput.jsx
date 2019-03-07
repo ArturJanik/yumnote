@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import styles from './AmountInput.css';
 
-const amountInput = (props) => {
-  return (
-    <div className={styles['amount__input']}>
-      <input type="text" onChange={props.onChange} placeholder="Amount" value={props.amount} disabled={props.inProgress} />
-      <p className={styles['amount__unit']}>{props.unit}</p>
-    </div>
-  )
+class AmountInput extends PureComponent {
+  render(){
+    return (
+      <div className={styles['amount__input']}>
+        <input type="text" onChange={this.props.onChange} placeholder="Amount" value={this.props.amount} disabled={this.props.inProgress} />
+        <p className={styles['amount__unit']}>{this.props.unit}</p>
+      </div>
+    )
+  }
 }
 
-export default amountInput;
+export default AmountInput;

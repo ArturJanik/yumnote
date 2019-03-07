@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import styles from './CategoryList.css';
@@ -6,8 +6,9 @@ import styles from './CategoryList.css';
 import StaticLinks from './StaticLinks/StaticLinks';
 import CategoryWithSubmenu from './CategoryWithSubmenu/CategoryWithSubmenu';
 
-class CategoryList extends Component {
-  renderSidemenu = ({categories}) => {
+class CategoryList extends PureComponent {
+  
+  renderSidemenu = (categories) => {
     categories = _.partition(categories, (cat) => cat.parent_id === null);
 
     const mainCategories = categories[0];
@@ -27,7 +28,7 @@ class CategoryList extends Component {
   
   render() {
     let sidemenu = null;
-    if(!this.props.loading && this.props.categories.length > 0) sidemenu = this.renderSidemenu(this.props);
+    if(!this.props.loading && this.props.categories.length > 0) sidemenu = this.renderSidemenu(this.props.categories);
     
     return (
       <React.Fragment>
