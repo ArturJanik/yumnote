@@ -27,6 +27,10 @@ class FoodnoteListItem extends Component {
       this.setState({amount: this.props.foodnote.amount})
     }
   }
+
+  onDeleteClicked = (id) => {
+    this.props.deleteFoodnote(id)
+  }
   
   render() {
     const foodnote = this.props.foodnote;
@@ -34,7 +38,7 @@ class FoodnoteListItem extends Component {
       <div className={styles.foodnote}>
         <div className={styles['foodnote__name']}>{foodnote.product.name}</div>
         <FoodnoteData foodnote={foodnote} amount={this.state.amount} onChange={this.onAmountChange} onBlur={this.onAmountInputBlur} />
-        <FoodnoteActions deleteInProgress={foodnote.deleteInProgress} onDeleteClicked={() => this.props.deleteFoodnote(foodnote.id)} />
+        <FoodnoteActions deleteInProgress={foodnote.deleteInProgress} onDeleteClicked={this.onDeleteClicked} foodnoteId={foodnote.id} />
       </div>
     )
   }

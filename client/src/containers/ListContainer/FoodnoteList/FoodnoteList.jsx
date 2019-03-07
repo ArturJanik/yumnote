@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withRouter, NavLink } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import styles from './FoodnoteList.css';
@@ -7,8 +7,9 @@ import * as actions from '../../../store/actions/index';
 
 import Button from '../../../components/UI/Button/Button';
 import Spinner from '../../../components/UI/Spinner/Spinner';
+import FoodnoteDateButtons from './FoodnoteDateButtons/FoodnoteDateButtons';
+import FoodnoteListHeader from './FoodnoteListHeader/FoodnoteListHeader';
 import FoodnoteListItem from './FoodnoteListItem/FoodnoteListItem';
-import DatePicker from '../DatePicker/DatePicker';
 
 class FoodnoteList extends Component {
   state = {
@@ -30,9 +31,14 @@ class FoodnoteList extends Component {
   componentWillUnmount() {
     this.props.onListLeft();
   }
+
+  refreshList = () => {
+    this.props.fetchFoodnotes(this.props.day);
+    this.props.fetchCategories();
+  }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={() => { this.props.fetchFoodnotes(this.props.day); this.props.fetchCategories()}}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={this.refreshList}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {
@@ -61,31 +67,6 @@ class FoodnoteList extends Component {
     );
   }
 
-  renderListHeader() {
-    return (
-      <div className={styles['foodnote__list__header']}>
-        <div className={styles['header__column1']}>Food</div>
-        <div className={styles['header__column2']}>
-          <div className={styles['header__labels']}>
-            <div className={styles['label__totals']}>Totals</div>
-            <div className={styles['label__amount']}>Amount</div>
-          </div>
-          <div className={styles['totals']}>
-            <div className={styles['totals__value']}>{(this.props.totals.kcal).toFixed(2)}</div>
-            <div className={styles['totals__value']}>{(this.props.totals.carb).toFixed(2)}g</div>
-            <div className={styles['totals__value']}>{(this.props.totals.fat).toFixed(2)}g</div>
-            <div className={styles['totals__value']}>{(this.props.totals.prot).toFixed(2)}g</div>
-            <div className={styles['totals__type']}>Kcal</div>
-            <div className={styles['totals__type']}>Carb</div>
-            <div className={styles['totals__type']}>Fat</div>
-            <div className={styles['totals__type']}>Prot</div>
-          </div>
-        </div>
-        <div className={styles['header__column3']}>Action</div>
-      </div>
-    )
-  }
-
   renderFoodnotes() {
     return this.props.foodnotes.map((foodnote, index) => <FoodnoteListItem key={foodnote.id} foodnote={foodnote} />)
   }
@@ -93,10 +74,6 @@ class FoodnoteList extends Component {
   dateSelected = (date) => {
     this.props.history.push(`/foodnotes/${date}`);
     this.setState({ otherDaySelected: true });
-  }
-
-  isTodayActive = (match, location) => {
-    return (match || location.pathname === '/')
   }
 
   render(){
@@ -109,18 +86,16 @@ class FoodnoteList extends Component {
       list = this.renderFoodnotes();
     }
 
+    const totals = { ...this.props.totals };
+
     return(
       <article className={styles['foodnote__list']}>
         <div className={styles['foodnote__list__title']}>
           <div className={styles['btn--menu__category']} onClick={this.props.categoryMenuClicked}>Categories</div>
           <h1>{this.props.title}</h1>
-          <div className={styles['foodnote__list__datebtns']}>
-            <NavLink to="/foodnotes/today" className={styles['btn__day']} activeClassName={styles['btn__day--active']} isActive={this.isTodayActive}>Today</NavLink>
-            <NavLink to="/foodnotes/yesterday" className={styles['btn__day']} activeClassName={styles['btn__day--active']}>Yesterday</NavLink>
-            <DatePicker className={this.state.otherDaySelected ? styles['btn__day--active'] : styles['btn__day']} onDateSelected={this.dateSelected}>Other</DatePicker>
-          </div>
+          <FoodnoteDateButtons onDateSelected={this.dateSelected} otherDaySelected={this.state.otherDaySelected} />
         </div>
-        {this.renderListHeader()}
+        <FoodnoteListHeader totals={totals} />
         <div className={styles['foodnote__list__body']}>
           {list}
         </div>
