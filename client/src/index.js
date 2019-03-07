@@ -41,6 +41,9 @@ const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
 
+const {whyDidYouUpdate} = require('why-did-you-update');
+whyDidYouUpdate(React);
+
 const app = (
   <Provider store={store}>
     <Router history={history}>
