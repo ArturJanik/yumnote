@@ -119,10 +119,10 @@ class AuthForm extends PureComponent {
         <div className={styles["error"]}>
           {errorFields.map((field, index) => {
             let errorMsgs = this.props.error[field].map((err, key) => (
-              <li key={key}>- {err}</li>
+              <li key={'msg' + Math.floor(Math.random() * 47589)}>- {err}</li>
             ));
             return (
-              <React.Fragment key={index}>
+              <React.Fragment key={'errormsg' + Math.floor(Math.random() * 122345)}>
                 <p className={styles["error__subject"]}>{field}</p>
                 <ul>{errorMsgs}</ul>
               </React.Fragment>
