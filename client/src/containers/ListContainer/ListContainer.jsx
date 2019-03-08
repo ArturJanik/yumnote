@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
 // import 'moment/locale/pl';
@@ -10,7 +10,7 @@ import CategoryList from './CategoryList/CategoryList';
 import ProductList from './ProductList/ProductList';
 import FoodnoteList from './FoodnoteList/FoodnoteList';
 
-class ListContainer extends Component {
+class ListContainer extends PureComponent {
 
   state = {
     showCategoryMenu: false

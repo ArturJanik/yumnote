@@ -32,7 +32,7 @@ class ProductList extends Component {
   }
 
   async componentWillUnmount() {
-    await this.props.clearFoodnoteErrors();
+    await this.props.onListLeft();
   }
 
   fetchProducts = () => {
@@ -153,7 +153,7 @@ const mapDispatchToProps = dispatch => {
     fetchLatestProducts: () => dispatch(actions.fetchLatestProducts()),
     fetchCategories: () => dispatch(actions.fetchCategories(false)),
     addFoodnote: (data) => dispatch(actions.addFoodnote(data)),
-    clearFoodnoteErrors: () => dispatch(actions.clearFoodnoteErrors()),
+    onListLeft: () => dispatch(actions.resetProductReducerState()),
   }
 }
 
