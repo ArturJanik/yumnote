@@ -168,7 +168,7 @@ class AuthForm extends PureComponent {
     );
 
     const forgotPassLink = (
-      <Link to="/reset-password" className={styles['auth__link']}>Forgot password?</Link>
+      <Link to="/reset-password" className={styles['auth__link']} title="In case you have forgot your password click here to visit reset form">Forgot password?</Link>
     )
 
     return (

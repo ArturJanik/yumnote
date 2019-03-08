@@ -25,6 +25,7 @@ class CategoryWithSubmenu extends Component {
             pathname: `/category/${category.slug}`,
             state: { category: category.name, id: category.id}
           }}
+          title={category.name}
           activeClassName={styles.active}>{category.name}</NavLink>
         </li>
         { 
@@ -36,6 +37,7 @@ class CategoryWithSubmenu extends Component {
                     pathname: `/category/${subcat.slug}`,
                     state: { category: subcat.name, id: subcat.id}
                   }}
+                  title={subcat.name}
                   activeClassName={styles.active}>{subcat.name}</NavLink>
                 </li>
               ) : null

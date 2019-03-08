@@ -7,9 +7,9 @@ class ProfileButtons extends PureComponent {
   render(){
     return(
       <div className={styles['profile__buttons']}>
-        <Link to="/profile/edit"><Button btnType="regular">Edit account</Button></Link>
-        <Link to="/profile/statistics"><Button btnType="regular">Show statistics</Button></Link>
-        <Link to="/profile/update-password"><Button btnType="regular">Change password</Button></Link>
+        <Link to="/profile/edit" title="Edit your profile"><Button btnType="regular">Edit account</Button></Link>
+        <Link to="/profile/statistics" title="Visit your profile statistics"><Button btnType="regular">Show statistics</Button></Link>
+        <Link to="/profile/update-password" title="Change your password"><Button btnType="regular">Change password</Button></Link>
       </div>
     )
   }

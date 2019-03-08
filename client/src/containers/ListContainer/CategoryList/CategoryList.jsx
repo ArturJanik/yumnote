@@ -20,7 +20,7 @@ class CategoryList extends PureComponent {
           <Link to={{
             pathname: `/category/${category.slug}`,
             state: { category: category.name, id: category.id }
-          }} onClick={this.props.hideMenuClicked}>{category.name}</Link>
+          }} onClick={this.props.hideMenuClicked} title={category.name}>{category.name}</Link>
         )}
       </li>
     ))

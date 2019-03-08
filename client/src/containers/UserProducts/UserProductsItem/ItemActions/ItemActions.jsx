@@ -7,7 +7,7 @@ class ItemActions extends PureComponent {
     const id = this.props.productId;
     return(
       <React.Fragment>
-        <Link className={styles['link--edit']} to={`/products/${id}/edit`}>edit</Link>
+        <Link className={styles['link--edit']} to={`/products/${id}/edit`} title="Edit this product">edit</Link>
         <span className={styles['link--delete']} onClick={this.props.onDelete}>delete</span>
       </React.Fragment>
     )

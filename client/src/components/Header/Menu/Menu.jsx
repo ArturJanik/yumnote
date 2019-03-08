@@ -12,9 +12,9 @@ class Menu extends Component {
   showLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu__item']}><NavLink exact to="/products">Products</NavLink></li>
-        <li className={styles['menu__item']}><NavLink exact to="/profile">My Profile</NavLink></li>
-        <li className={styles['menu__item']}> <NavLink exact to="/logout">Logout</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/products" title="Your products">Products</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/profile" title="Your profile">My Profile</NavLink></li>
+        <li className={styles['menu__item']}> <NavLink exact to="/logout" title="Logout">Logout</NavLink></li>
       </React.Fragment>
     )
   }
@@ -22,8 +22,8 @@ class Menu extends Component {
   showNotLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu__item']}><NavLink exact to="/register">Signup</NavLink></li>
-        <li className={styles['menu__item']}><NavLink exact to="/login">Login</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/register" title="Signup">Signup</NavLink></li>
+        <li className={styles['menu__item']}><NavLink exact to="/login" title="Login">Login</NavLink></li>
       </React.Fragment>
     )
   }

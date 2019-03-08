@@ -11,7 +11,7 @@ const noMatch = (props) => {
   return(
     <div className={styles.error404}>
       <img src={nomatch} alt="Error 404 - page not found" />
-      <Link to="/">Click to go back to home page</Link>
+      <Link to="/" title="Back to home page">Click to go back to home page</Link>
     </div>
   )
 };
