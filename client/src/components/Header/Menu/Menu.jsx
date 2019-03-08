@@ -12,9 +12,9 @@ class Menu extends Component {
   showLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu__item']}><Link exact to="/products" title="Your products">Products</Link></li>
-        <li className={styles['menu__item']}><Link exact to="/profile" title="Your profile">My Profile</Link></li>
-        <li className={styles['menu__item']}> <Link exact to="/logout" title="Logout">Logout</Link></li>
+        <li className={styles['menu__item']}><Link to="/products" title="Your products">Products</Link></li>
+        <li className={styles['menu__item']}><Link to="/profile" title="Your profile">My Profile</Link></li>
+        <li className={styles['menu__item']}> <Link to="/logout" title="Logout">Logout</Link></li>
       </React.Fragment>
     )
   }
