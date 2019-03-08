@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styles from './ProductListItem.css';
-import * as actions from '../../../../store/actions/index';
 
 import SingleMacro from './SingleMacro/SingleMacro';
 import AmountInput from './AmountInput/AmountInput';
@@ -95,10 +93,4 @@ class ProductListItem extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    addFoodnote: (data) => dispatch(actions.addFoodnote(data)),
-  }
-}
-
-export default connect(null, mapDispatchToProps)(ProductListItem);
+export default ProductListItem;

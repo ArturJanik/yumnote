@@ -88,7 +88,7 @@ class ProductList extends Component {
   renderProducts() {
     return this.props.products.map((product, index) => {
       if(this.state.searchQuery === '' || (product.name.toLowerCase()).indexOf(this.state.searchQuery) !== -1){
-        return <ProductListItem key={product.id} product={product} day={this.state.day} />
+        return <ProductListItem key={product.id} product={product} day={this.state.day} addFoodnote={this.props.addFoodnote} />
       } else { return null }
     })
   }
@@ -152,6 +152,7 @@ const mapDispatchToProps = dispatch => {
     fetchCurrentUserProducts: () => dispatch(actions.fetchCurrentUserProducts()),
     fetchLatestProducts: () => dispatch(actions.fetchLatestProducts()),
     fetchCategories: () => dispatch(actions.fetchCategories(false)),
+    addFoodnote: (data) => dispatch(actions.addFoodnote(data)),
     clearFoodnoteErrors: () => dispatch(actions.clearFoodnoteErrors()),
   }
 }

@@ -74,19 +74,19 @@ class App extends Component {
       routes = (
         <Switch>
           <Route path="/" exact render={renderHome}/>
-          <ProtectedRoute path="/foodnotes/today" exact component={ListContainer} listType="foodnotes" auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/foodnotes/yesterday" exact component={ListContainer} listType="foodnotes" subType="yesterday" auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/foodnotes/:day(\d+)" exact component={ListContainer} listType="foodnotes" subType="otherday" auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/myfoods" exact component={ListContainer} listType="products" subType="currentuser" auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/latest" exact component={ListContainer} listType="products" subType="latest" auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/category/:categorySlug" exact component={ListContainer} listType="products" auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/profile" exact component={UserProfile} auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/profile/edit" exact component={EditProfile} auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/profile/statistics" exact component={UserStatistics} auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/profile/update-password" exact component={PasswordChange} auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/products" exact component={UserProducts} auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/products/new" exact component={AddProduct} auth={this.props.isAuthenticated} />
-          <ProtectedRoute path="/products/:productId(\d+)/edit" exact component={EditProduct} auth={this.props.isAuthenticated} />
+          <ProtectedRoute path="/foodnotes/today" exact component={ListContainer} listType="foodnotes" />
+          <ProtectedRoute path="/foodnotes/yesterday" exact component={ListContainer} listType="foodnotes" subType="yesterday" />
+          <ProtectedRoute path="/foodnotes/:day(\d+)" exact component={ListContainer} listType="foodnotes" subType="otherday" />
+          <ProtectedRoute path="/myfoods" exact component={ListContainer} listType="products" subType="currentuser" />
+          <ProtectedRoute path="/latest" exact component={ListContainer} listType="products" subType="latest" />
+          <ProtectedRoute path="/category/:categorySlug" exact component={ListContainer} listType="products" />
+          <ProtectedRoute path="/profile" exact component={UserProfile} />
+          <ProtectedRoute path="/profile/edit" exact component={EditProfile} />
+          <ProtectedRoute path="/profile/statistics" exact component={UserStatistics} />
+          <ProtectedRoute path="/profile/update-password" exact component={PasswordChange} />
+          <ProtectedRoute path="/products" exact component={UserProducts} />
+          <ProtectedRoute path="/products/new" exact component={AddProduct} />
+          <ProtectedRoute path="/products/:productId(\d+)/edit" exact component={EditProduct} />
 
           <Route path="/doc/:documentSlug" exact component={Document} />
           <Route path="/login" exact render={() => <Home signUp={false} isAuthenticated={this.props.isAuthenticated} />} />
