@@ -64,15 +64,16 @@ class App extends Component {
     let routes = <Spinner />;
 
     if(this.props.authCheckFinished) {
+      const renderHome = () => (
+        this.props.isAuthenticated ? (
+          <Redirect to="/foodnotes/today" />
+        ) : (
+          <Home signUp={true} />
+        )
+      )
       routes = (
         <Switch>
-          <Route path="/" exact render={() => (
-            this.props.isAuthenticated ? (
-              <Redirect to="/foodnotes/today" />
-            ) : (
-              <Home signUp={true} />
-            )
-          )}/>
+          <Route path="/" exact render={renderHome}/>
           <ProtectedRoute path="/foodnotes/today" exact component={ListContainer} listType="foodnotes" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/foodnotes/yesterday" exact component={ListContainer} listType="foodnotes" subType="yesterday" auth={this.props.isAuthenticated} />
           <ProtectedRoute path="/foodnotes/:day(\d+)" exact component={ListContainer} listType="foodnotes" subType="otherday" auth={this.props.isAuthenticated} />
