@@ -94,6 +94,7 @@ export const fetchStatistics = () => {
         }
       })
     } else {
+      dispatch(fetchStatisticsStart());
       const statistics = localStorage.getItem('yearlyStatistics');
       dispatch(fetchStatisticsSuccess(JSON.parse(statistics)));
     }

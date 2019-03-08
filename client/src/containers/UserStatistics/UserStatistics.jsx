@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './UserStatistics.css';
@@ -9,7 +9,7 @@ import Button from '../../components/UI/Button/Button';
 import NoMatch from '../../components/Error/NoMatch';
 import Chart from './Chart/Chart';
 
-class UserStatistics extends Component {
+class UserStatistics extends PureComponent {
   
   componentDidMount() {
     document.title = 'My statistics - calories.today'
@@ -20,14 +20,9 @@ class UserStatistics extends Component {
 
   renderStatistics = () => {
     return (
-      <React.Fragment>
-        <div className={styles['chart__container']}>
-          {(this.props.statisticalData !== null && this.props.statisticalData.length > 0) ? <Chart data={this.props.statisticalData} /> : 'No data available. Be sure to add some foodnotes!'}
-        </div>
-        <div className={styles.buttons}>
-          <Link to="/profile" title="Back to your profile"><Button btnType="regular">Back to profile</Button></Link>
-        </div>
-      </React.Fragment>
+      <div className={styles['chart__container']}>
+        {(this.props.statisticalData !== null && this.props.statisticalData.length > 0) ? <Chart data={this.props.statisticalData} /> : 'No data available. Be sure to add some foodnotes!'}
+      </div>
     )
   }
 
@@ -46,6 +41,9 @@ class UserStatistics extends Component {
           <h1>Statistics</h1>
           <div>
             {statisticsContainer}
+            <div className={styles.buttons}>
+              <Link to="/profile" title="Back to your profile"><Button btnType="regular">Back to profile</Button></Link>
+            </div>
           </div>
         </div>
       </section>
