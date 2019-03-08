@@ -33,7 +33,7 @@ class DatePicker extends Component {
   
   render() {
     return (
-      <input type="text" name={this.props.name} onBlur={this.props.onChange} value={this.state.value} ref={this.ref} className={this.props.className} onChange={() => {}} />
+      <input type="text" name={this.props.name} onBlur={this.props.onChange} value={this.state.value} ref={this.ref} className={this.props.className} />
     );
   }
 }

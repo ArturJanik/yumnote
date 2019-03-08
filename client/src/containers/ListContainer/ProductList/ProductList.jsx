@@ -49,9 +49,14 @@ class ProductList extends Component {
         break;
     }
   }
+
+  refreshList = () => {
+    this.fetchProducts(); 
+    this.props.fetchCategories();
+  }
   
   renderError() {
-    let button = <Button btnType="refresh" clicked={() => { this.fetchProducts(); this.props.fetchCategories()}}>Refresh</Button>;
+    let button = <Button btnType="refresh" clicked={this.refreshList}>Refresh</Button>;
     let errorMessage = '';
 
     if(this.props.loading) {
@@ -95,6 +100,9 @@ class ProductList extends Component {
     });
   }
 
+  setToday = () => this.setDay(this.today);
+  setYesterday = () => this.setDay(this.yesterday);
+
   render(){
     let list = <Spinner />;
     if(this.props.error !== null) {
@@ -117,8 +125,8 @@ class ProductList extends Component {
             value={this.state.searchQuery}
           />
           <div className={styles['product__list__datebtns']}>
-            <div className={this.state.day === this.today ? styles['btn__day--active'] : styles['btn__day']} onClick={() => this.setDay(this.today)}>Today</div>
-            <div className={this.state.day === this.yesterday ? styles['btn__day--active'] : styles['btn__day']} onClick={() => this.setDay(this.yesterday)}>Yesterday</div>
+            <div className={this.state.day === this.today ? styles['btn__day--active'] : styles['btn__day']} onClick={this.setToday}>Today</div>
+            <div className={this.state.day === this.yesterday ? styles['btn__day--active'] : styles['btn__day']} onClick={this.setYesterday}>Yesterday</div>
             <DatePicker className={this.state.otherDaySelected ? styles['btn__day--active'] : styles['btn__day']} onDateSelected={this.setDay}>Other</DatePicker>
           </div>
         </div>

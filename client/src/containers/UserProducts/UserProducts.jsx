@@ -19,13 +19,6 @@ class UserProducts extends Component {
     this.props.fetchCurrentUserProducts();
   }
 
-  generateStatus = (visible, id) => {
-    return (
-      visible ? <span className={styles.visible} onClick={() => this.props.toggleProductVisibility(id)}>visible</span>
-      : <span className={styles.hidden} onClick={() => this.props.toggleProductVisibility(id)}>hidden</span>
-    )
-  }
-
   render(){
     return (
       <section className={styles['list__container']}>

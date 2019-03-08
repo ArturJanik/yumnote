@@ -14,10 +14,14 @@ class UserProductsItem extends PureComponent {
     }
   }
 
+  toggleVisibility = () => {
+    this.props.toggleVisibility(this.props.product.id)
+  }
+
   generateStatus = (visible, id) => {
     return (
-      visible ? <span className={styles.visible} onClick={() => this.props.toggleVisibility(id)}>visible</span>
-      : <span className={styles.hidden} onClick={() => this.props.toggleVisibility(id)}>hidden</span>
+      visible ? <span className={styles.visible} onClick={this.toggleVisibility}>visible</span>
+      : <span className={styles.hidden} onClick={this.toggleVisibility}>hidden</span>
     )
   }
 
