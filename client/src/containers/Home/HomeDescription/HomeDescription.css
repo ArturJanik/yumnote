@@ -15,7 +15,7 @@
   font-size: 56px;
 }
 .home__subtitle {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', 'Arial', sans-serif;
   font-size: 28px;
   font-weight: 600;
   line-height: 1.42em;
@@ -28,7 +28,7 @@
 .home__description li {
   align-items: center;
   display: flex;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', 'Arial', sans-serif;
   font-size: 18px;
   line-height: 40px;
   padding-left: 10px;

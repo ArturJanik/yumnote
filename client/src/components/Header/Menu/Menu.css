@@ -13,7 +13,7 @@
 .menu__item {
   border-bottom: 3px solid #fff;
   display: inline-block;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', 'Arial', sans-serif;
   font-size: 15px;
   font-weight: 600;
   line-height: 60px;
