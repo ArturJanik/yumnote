@@ -1,6 +1,16 @@
 require 'rails_helper'
 
-# RSpec.describe Foodnote, type: :model do
-#   pending "add some examples to (or delete) #{__FILE__}"
-# end
+describe Foodnote do
+  subject { create(:foodnote) }
+
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should belong_to(:product) }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of(:amount) }
+    it { should validate_presence_of(:created_at) }
+  end
+end
 

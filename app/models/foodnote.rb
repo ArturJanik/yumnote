@@ -2,7 +2,7 @@ class Foodnote < ApplicationRecord
   belongs_to :product
   belongs_to :user
   
-  validates :user_id, :product_id, :amount, presence: true
+  validates :user_id, :product_id, :amount, :created_at, presence: true
   validates_associated :user
   validates_associated :product
   validates :amount, numericality: { greater_than: 0 }
