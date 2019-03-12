@@ -47,7 +47,7 @@ class ProductListItem extends Component {
         const data = {
           product_id: this.props.product.id,
           amount: this.state.amount,
-          created_at: this.props.day
+          creation_date: this.props.day
         }
         this.props.addFoodnote(data);
       }

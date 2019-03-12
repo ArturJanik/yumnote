@@ -81,6 +81,9 @@
     composes: category__list;
     transform: translateX(-100%);
   }
+  .category__list ul {
+    background: #fff;
+  }
 }
 @media all and (max-width: 768px) {
   .category__list__overlay {

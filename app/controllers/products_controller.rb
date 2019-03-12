@@ -17,8 +17,9 @@ class ProductsController < ApiController
   end
 
   def latest
-    start_date = (Time.zone.now - 7.days).beginning_of_day
+    start_date = (Time.zone.today - 7.days).beginning_of_day
     end_date = Time.zone.yesterday.end_of_day
+
     foodnotes = current_user.foodnotes.created_between(start_date, end_date).with_products
     products = foodnotes.map {|note| note.product}.uniq
 

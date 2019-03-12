@@ -5,7 +5,7 @@ class Category < ApplicationRecord
   belongs_to :parent, class_name: "Category", optional: true
   has_many :products
   
-  validates :name, presence: true, length: { minimum: 3, maximum: 50 }, uniqueness: true
+  validates :name, presence: true, length: { minimum: 3, maximum: 50 }
   validates :slug, uniqueness: true
 
   scope :all_with_basic_data, -> { where(active: true).select("categories.id, categories.name, categories.slug, categories.parent_id").order(parent_id: :desc, name: :asc) }
@@ -18,7 +18,11 @@ class Category < ApplicationRecord
     i = 1
     loop do
       if Category.where(slug: slug).exists?
-        self.slug = self.name.parameterize + "-#{i}"
+        if self.parent
+          self.slug = self.parent.slug + '-' + self.name.parameterize
+        else
+          self.slug = self.name.parameterize + "-#{i}"
+        end
         i+=1
       else
         break

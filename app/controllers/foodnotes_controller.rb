@@ -1,5 +1,6 @@
 class FoodnotesController < ApiController
   before_action :require_login
+  around_action :use_current_user_timezone, only: [:index, :yesterday, :create], if: :current_user
   
   def index
     foodnotes = current_user.foodnotes.from_today.select([:id, :product_id, :amount]).with_products
@@ -62,5 +63,9 @@ class FoodnotesController < ApiController
   private
   def foodnote_params
     params.require(:foodnote).permit(:amount, :creation_date, :product, :user, :product_id)
+  end
+
+  def use_current_user_timezone &block
+    Time.use_zone(current_user.time_zone, &block)
   end
 end
