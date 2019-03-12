@@ -67,5 +67,6 @@ Shoulda::Matchers.configure do |config|
     with.test_framework :rspec
     with.library :active_record
     with.library :active_model
+    with.library :rails
   end
 end

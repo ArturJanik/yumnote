@@ -2,18 +2,18 @@ class Foodnote < ApplicationRecord
   belongs_to :product
   belongs_to :user
   
-  validates :user_id, :product_id, :amount, :created_at, presence: true
+  validates :user_id, :product_id, :amount, :creation_date, presence: true
   validates_associated :user
   validates_associated :product
   validates :amount, numericality: { greater_than: 0 }
   
-  scope :created_between, lambda {|start_date, end_date| where("foodnotes.created_at >= ? AND foodnotes.created_at <= ?", start_date, end_date)}
-  scope :from_today, -> { where('foodnotes.created_at BETWEEN ? AND ?', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)}
-  scope :from_yesterday, -> { where('foodnotes.created_at BETWEEN ? AND ?', Time.zone.yesterday.beginning_of_day, Time.zone.yesterday.end_of_day)}
-  scope :from_day, ->(date) { where('foodnotes.created_at BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)}
-  scope :between, ->(firstDate, lastDate) { where('foodnotes.created_at BETWEEN ? AND ?', firstDate, lastDate) }
+  scope :created_between, lambda {|start_date, end_date| where("foodnotes.creation_date >= ? AND foodnotes.creation_date <= ?", start_date, end_date)}
+  scope :from_today, -> { where('foodnotes.creation_date BETWEEN ? AND ?', Time.zone.now.beginning_of_day, Time.zone.now.end_of_day)}
+  scope :from_yesterday, -> { where('foodnotes.creation_date BETWEEN ? AND ?', Time.zone.yesterday.beginning_of_day, Time.zone.yesterday.end_of_day)}
+  scope :from_day, ->(date) { where('foodnotes.creation_date BETWEEN ? AND ?', date.beginning_of_day, date.end_of_day)}
+  scope :between, ->(firstDate, lastDate) { where('foodnotes.creation_date BETWEEN ? AND ?', firstDate, lastDate) }
   scope :with_products, -> { includes(:product) }
-  scope :from_last_year, -> { select(Arel.sql('DATE(foodnotes.created_at) AS created_at, SUM (foodnotes.amount * products.kcal) AS kcal, SUM (foodnotes.amount * products.carb) AS carb, SUM (foodnotes.amount * products.fat) AS fat, SUM (foodnotes.amount * products.prot) AS prot')).joins(:product).between(Time.zone.yesterday - 365.days, Time.zone.yesterday).group(Arel.sql('DATE(foodnotes.created_at)')).order(Arel.sql('DATE(foodnotes.created_at)')) }
+  scope :from_last_year, -> { select(Arel.sql('DATE(foodnotes.creation_date) AS creation_date, SUM (foodnotes.amount * products.kcal) AS kcal, SUM (foodnotes.amount * products.carb) AS carb, SUM (foodnotes.amount * products.fat) AS fat, SUM (foodnotes.amount * products.prot) AS prot')).joins(:product).between(Time.zone.yesterday - 365.days, Time.zone.yesterday).group(Arel.sql('DATE(foodnotes.creation_date)')).order(Arel.sql('DATE(foodnotes.creation_date)')) }
 
   #  Podczas przypisywania wartości do zmiennej amount trzeba sprawdzić czy wartość jest przesyłana z przecinkiem czy kropką i ją ujednolicić
     def amount=(val)

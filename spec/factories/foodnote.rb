@@ -1,8 +1,8 @@
 
 FactoryBot.define do
   factory :foodnote do
-    amount { 10 }
-    created_at { Time.zone.today.beginning_of_day }
+    amount { '10,2' }
+    creation_date { '20190311' }
     association(:user)
     association(:product)
   end

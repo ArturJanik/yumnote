@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_01_114115) do
+ActiveRecord::Schema.define(version: 2019_03_12_170851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,7 +74,9 @@ ActiveRecord::Schema.define(version: 2019_03_01_114115) do
     t.float "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "creation_date"
     t.index ["created_at"], name: "index_foodnotes_on_created_at"
+    t.index ["creation_date"], name: "index_foodnotes_on_creation_date"
     t.index ["product_id"], name: "index_foodnotes_on_product_id"
     t.index ["user_id"], name: "index_foodnotes_on_user_id"
   end
@@ -107,6 +109,7 @@ ActiveRecord::Schema.define(version: 2019_03_01_114115) do
     t.string "time_zone"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.index ["auth_token"], name: "index_users_on_auth_token", unique: true
     t.index ["username"], name: "index_users_on_username"
   end
 

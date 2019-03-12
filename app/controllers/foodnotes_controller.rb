@@ -61,6 +61,6 @@ class FoodnotesController < ApiController
 
   private
   def foodnote_params
-    params.require(:foodnote).permit(:amount, :created_at, :product, :user, :product_id)
+    params.require(:foodnote).permit(:amount, :creation_date, :product, :user, :product_id)
   end
 end

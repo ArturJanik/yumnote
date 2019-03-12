@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  before_save { self.email = email.downcase }
+  before_save { self.email = email.downcase if attribute_present? 'email' }
   
   has_many :products
   has_many :foodnotes
@@ -7,8 +7,7 @@ class User < ApplicationRecord
   validates_presence_of :password, :email, :username, :time_zone, on: :create
   validates_uniqueness_of :username, :email
   validates :username, length: { minimum: 4, maximum: 50 }
-  validates :email, presence: true, 
-                    format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }, allow_nil: true
   validates :time_zone, inclusion: { in: TZInfo::Timezone.all.map(&:name), on: :create }

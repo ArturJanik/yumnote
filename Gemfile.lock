@@ -69,6 +69,7 @@ GEM
     bullet (5.7.5)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11.0)
+    byebug (10.0.2)
     case_transform (0.2)
       activesupport
     coffee-rails (4.2.2)
@@ -240,6 +241,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   bullet
+  byebug
   devise
   factory_bot_rails
   faker
