@@ -18,7 +18,7 @@ class SessionsController < ApiController
   private
 
   def send_token_for_valid_login_of(user)
-    render json: { token: user.auth_token, username: user.username }
+    render json: { token: user.auth_token, username: user.username, timezone: user.time_zone }
   end
 
   def allow_token_to_be_used_only_once_for(user)

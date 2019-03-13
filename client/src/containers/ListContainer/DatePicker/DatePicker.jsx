@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Pikaday from 'pikaday';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import '!style-loader!css-loader!pikaday/css/pikaday.css';
-import * as moment from 'moment';
+import moment from 'moment-timezone';
 
 // import styles from './DatePicker.css';
 
@@ -17,9 +17,12 @@ class DatePicker extends PureComponent {
     const picker = new Pikaday({
       field: this.datePickerRef.current,
       format: 'DD/MM/YYYY',
-      maxDate: new Date(),
+      maxDate: moment().add(1, 'days').toDate(),
       onSelect: () => {
-        const date = moment(picker.toString(), 'DD/MM/YYYY').format("YYYYMMDD");
+        let date = moment(picker.toString(), 'DD/MM/YYYY').format("YYYYMMDD");
+        if(this.props.timezone !== undefined){
+          date = moment(picker.toString(), 'DD/MM/YYYY').tz(this.props.timezone).format("YYYYMMDD");
+        }
         this.props.onDateSelected(date);
       }
     });

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as moment from 'moment';
+import moment from 'moment-timezone';
 
 import styles from './ProductList.css';
 import * as actions from '../../../store/actions/index';
@@ -13,12 +13,12 @@ import DatePicker from '../DatePicker/DatePicker';
 class ProductList extends Component {
   state = {
     otherDaySelected: false,
-    day: moment().format("YYYYMMDD"),
+    day: moment.tz(this.props.timezone).format("YYYYMMDD"),
     searchQuery: ''
   }
 
-  today = moment().format("YYYYMMDD");
-  yesterday = moment().subtract(1, 'day').format("YYYYMMDD");
+  today = moment.tz(this.props.timezone).format("YYYYMMDD");
+  yesterday = moment.tz(this.props.timezone).subtract(1, 'day').format("YYYYMMDD");
 
   componentDidMount() {
     this.fetchProducts();
@@ -127,7 +127,7 @@ class ProductList extends Component {
           <div className={styles['product__list__datebtns']}>
             <div className={this.state.day === this.today ? styles['btn__day--active'] : styles['btn__day']} onClick={this.setToday}>Today</div>
             <div className={this.state.day === this.yesterday ? styles['btn__day--active'] : styles['btn__day']} onClick={this.setYesterday}>Yesterday</div>
-            <DatePicker className={this.state.otherDaySelected ? styles['btn__day--active'] : styles['btn__day']} onDateSelected={this.setDay}>Other</DatePicker>
+            <DatePicker className={this.state.otherDaySelected ? styles['btn__day--active'] : styles['btn__day']} onDateSelected={this.setDay} timezone={this.props.timezone}>Other</DatePicker>
           </div>
         </div>
         <div className={styles['product__list__body']}>
@@ -143,6 +143,7 @@ const mapStateToProps = state => {
     products: state.product.products,
     loading: state.product.loading,
     error: state.product.error,
+    timezone: state.auth.currentUserTimezone
   }
 }
 

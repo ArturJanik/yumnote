@@ -15,11 +15,12 @@ const authStart = () => {
   }
 }
 
-const authSuccess = (idToken, username) => {
+const authSuccess = (idToken, username, timezone) => {
   return {
     type: AUTH_SUCCESS,
     idToken,
-    username
+    username,
+    timezone
   }
 }
 
@@ -44,6 +45,7 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('currentUserName');
+    localStorage.removeItem('currentUserTimezone');
     localStorage.removeItem('yearlyStatistics');
     localStorage.removeItem('statisticsFetchDate');
     axios.defaults.headers['Authorization'] = `Token ${localStorage.getItem('token')}`;
@@ -75,12 +77,17 @@ export const auth = (formdata, isSignup) => {
       const expirationDate = new Date(new Date().getTime() + 86400000);
       const token = response.data.token;
       const username = response.data.username;
+      const timezone = response.data.timezone;
+
       localStorage.setItem('token', token);
       localStorage.setItem('expirationDate', expirationDate);
       localStorage.setItem('currentUserName', username);
+      localStorage.setItem('currentUserTimezone', timezone);
+
       axios.defaults.headers['Authorization'] = `Token ${token}`;
       axios.defaults.headers['token'] = token;
-      dispatch(authSuccess(token, username));
+
+      dispatch(authSuccess(token, username, timezone));
       dispatch(checkAuthTimeout(86400000));
     })
     .catch(err => {
@@ -105,17 +112,19 @@ export const authCheckState = () => {
     const token = localStorage.getItem('token');
     const expDate = localStorage.getItem('expirationDate');
     const username = localStorage.getItem('currentUserName');
+    const timezone = localStorage.getItem('currentUserTimezone');
 
-    if(!token || !expDate || !username || username === 'undefined') {
+    if(!token || !expDate || !username || username === 'undefined' || !timezone || timezone === 'undefined') {
       localStorage.removeItem('token');
       localStorage.removeItem('expirationDate');
       localStorage.removeItem('currentUserName');
+      localStorage.removeItem('currentUserTimezone');
       localStorage.removeItem('yearlyStatistics');
       localStorage.removeItem('statisticsFetchDate');
     } else {
       const expirationDate = new Date(localStorage.getItem('expirationDate'));
       if(expirationDate > new Date()){
-        dispatch(authSuccess(token, username));
+        dispatch(authSuccess(token, username, timezone));
         dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime())));
       } else {
         dispatch(logout());

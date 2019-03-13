@@ -14,18 +14,20 @@ const initialState = {
   error: null,
   loading: false,
   currentUser: null,
+  currentUserTimezone: 'Etc/UTC',
   authRedirectPath: '/',
   authCheckFinished: false,
 }
 
 const authStart = (state, action) => {
-  return updateObject(state, { error: null, loading: true, currentUser: null, token: null })
+  return updateObject(state, { error: null, loading: true, currentUser: null, token: null, currentUserTimezone: 'Etc/UTC' })
 }
 
 const authSuccess = (state, action) => {
   return updateObject(state, {
     token: action.idToken,
     currentUser: action.username,
+    currentUserTimezone: action.timezone,
     error: null,
     loading: false
   })
@@ -36,6 +38,7 @@ const authFail = (state, action) => {
     error: action.error,
     loading: false,
     currentUser: null,
+    currentUserTimezone: 'Etc/UTC',
     token: null
   })
 }
@@ -46,7 +49,7 @@ const setAuthCheckFinished = (state, action) => {
 }
 
 const authLogout = (state, action) => {
-  return updateObject(state, { token: null, error: null, loading: false, currentUser: null, authRedirectPath: '/' })
+  return updateObject(state, { ...initialState })
 }
 
 const resetReducerState = (state, action) => {
