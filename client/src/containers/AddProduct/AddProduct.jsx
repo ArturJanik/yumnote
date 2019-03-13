@@ -11,7 +11,9 @@ class AddProduct extends Component {
 
   componentDidMount() {
     document.title = 'Create new product - calories.today'
-    this.props.fetchCategories()
+    if(this.props.categories.length === 0){
+      this.props.fetchCategories()
+    }
   }
 
   componentWillUnmount() {
@@ -222,7 +224,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onAddProduct: formdata => dispatch(actions.addProduct(formdata)),
-    fetchCategories: () => dispatch(actions.fetchCategories(true)),
+    fetchCategories: () => dispatch(actions.fetchCategories()),
     onPageLeft: (formdata, id) => dispatch(actions.clearProductError()),
   }
 }

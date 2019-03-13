@@ -59,7 +59,7 @@ class ListContainer extends PureComponent {
           }
           break;
       }
-      list = <ProductList categoryMenuClicked={this.toggleCategoryMenu} {...opts} />
+      list = <ProductList categoryMenuClicked={this.toggleCategoryMenu} fetchCategories={this.props.fetchCategories} {...opts} />
     } else {
       switch (this.props.subType) {
         case 'yesterday':
@@ -85,7 +85,7 @@ class ListContainer extends PureComponent {
           }
           break;
       }
-      list = <FoodnoteList categoryMenuClicked={this.toggleCategoryMenu} {...opts} />
+      list = <FoodnoteList categoryMenuClicked={this.toggleCategoryMenu} fetchCategories={this.props.fetchCategories} {...opts} />
     }
 
     return (
@@ -122,7 +122,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchCategories: () => dispatch(actions.fetchCategories(false)),
+    fetchCategories: () => dispatch(actions.fetchCategories()),
     onContainerUnmount: () => dispatch(actions.resetCategoryReducerState())
   }
 }

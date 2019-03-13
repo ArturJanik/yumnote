@@ -21,9 +21,6 @@ class ProductList extends Component {
   yesterday = moment.tz(this.props.timezone).subtract(1, 'day').format("YYYYMMDD");
 
   componentDidMount() {
-    console.log(this.props.timezone)
-    console.log(this.today)
-    console.log(this.yesterday)
     this.fetchProducts();
   }
 
@@ -155,7 +152,6 @@ const mapDispatchToProps = dispatch => {
     fetchCategoryProducts: (categoryId) => dispatch(actions.fetchCategoryProducts(categoryId)),
     fetchCurrentUserProducts: () => dispatch(actions.fetchCurrentUserProducts()),
     fetchLatestProducts: () => dispatch(actions.fetchLatestProducts()),
-    fetchCategories: () => dispatch(actions.fetchCategories(false)),
     addFoodnote: (data) => dispatch(actions.addFoodnote(data)),
     onListLeft: () => dispatch(actions.resetProductReducerState()),
   }

@@ -116,7 +116,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchFoodnotes: (day) => dispatch(actions.fetchFoodnotes(day)),
-    fetchCategories: () => dispatch(actions.fetchCategories(false)),
     onListLeft: () => dispatch(actions.resetFoodnoteReducerState()),
   }
 }

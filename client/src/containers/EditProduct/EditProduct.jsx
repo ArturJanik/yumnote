@@ -18,6 +18,9 @@ class EditProduct extends Component {
     document.title = 'Edit existing product - calories.today'
     const { productId } = this.props.match.params;
     this.props.onPageLoaded(productId);
+    if(this.props.categories.length === 0){
+      this.props.fetchCategories()
+    }
   }
 
   componentDidUpdate(prevProps){
@@ -236,10 +239,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPageLoaded: (id) => {
-      dispatch(actions.fetchProduct(id));
-      dispatch(actions.fetchCategories(true));
-    },
+    onPageLoaded: (id) => dispatch(actions.fetchProduct(id)),
+    fetchCategories: () => dispatch(actions.fetchCategories()),
     onUpdateProduct: (formdata, id) => dispatch(actions.updateProduct(formdata, id)),
     onPageLeft: (formdata, id) => {
       dispatch(actions.clearProductData());

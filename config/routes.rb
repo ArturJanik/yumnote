@@ -29,7 +29,5 @@ Rails.application.routes.draw do
     end
 
     get '/documents/:slug', to: 'documents#show'
-
-    get '/categories/selectable', to: 'categories#selectable'
   end
 end

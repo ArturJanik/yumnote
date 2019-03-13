@@ -26,9 +26,8 @@ const fetchCategoriesFail = (error) => {
   }
 }
 
-export const fetchCategories = (selectable) => {
+export const fetchCategories = () => {
   let url = '/api/categories';
-  if(selectable) url = '/api/categories/selectable';
   return dispatch => {
     dispatch(fetchCategoriesStart());
     axios.get(url)
