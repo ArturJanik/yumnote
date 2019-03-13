@@ -16,7 +16,9 @@ class UserProducts extends Component {
   
   componentDidMount() {
     document.title = 'User products administration - calories.today'
-    this.props.fetchCurrentUserProducts();
+    if(this.props.products.length === 0){
+      this.props.fetchCurrentUserProducts();
+    }
   }
 
   render(){
@@ -57,7 +59,7 @@ class UserProducts extends Component {
 
 const mapStateToProps = state => {
   return {
-    products: state.product.products,
+    products: state.product.userProducts,
     loading: state.product.loading,
     error: state.product.error,
   }

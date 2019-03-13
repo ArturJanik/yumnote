@@ -4,6 +4,7 @@ import {
   FETCH_PRODUCTS_FAIL,
   FETCH_PRODUCT_START,
   FETCH_PRODUCT_SUCCESS,
+  FETCH_USER_PRODUCTS_SUCCESS,
   FETCH_PRODUCT_FAIL,
   ADD_PRODUCT_START,
   ADD_PRODUCT_SUCCESS,
@@ -37,6 +38,13 @@ const fetchProductsSuccess = (products) => {
   }
 }
 
+const fetchUserProductsSuccess = (products) => {
+  return {
+    type: FETCH_USER_PRODUCTS_SUCCESS,
+    products
+  }
+}
+
 const fetchProductsFail = (error) => {
   return {
     type: FETCH_PRODUCTS_FAIL,
@@ -49,7 +57,11 @@ const fetchProducts = (settings) => {
     dispatch(fetchProductsStart());
     axios.get(settings.url)
     .then(response => {
-      dispatch(fetchProductsSuccess(response.data.products))
+      if(settings.currentUser){
+        dispatch(fetchUserProductsSuccess(response.data.products))
+      } else {
+        dispatch(fetchProductsSuccess(response.data.products))
+      }
     })
     .catch(err => {
       if(err.response.status === 500){
@@ -69,8 +81,10 @@ export const fetchCategoryProducts = (category_id) => {
   }
 }
 export const fetchCurrentUserProducts = () => {
+  console.log('Fetching current user products...')
   return dispatch => {
     dispatch(fetchProducts({
+      currentUser: true,
       url: '/api/products/currentuser'
     }))
   }

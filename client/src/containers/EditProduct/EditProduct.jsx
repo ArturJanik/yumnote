@@ -11,7 +11,6 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class EditProduct extends Component {
   state = {
     productLoaded: false,
-    categoriesLoaded: false
   }
 
   componentDidMount() {
@@ -24,11 +23,8 @@ class EditProduct extends Component {
   }
 
   componentDidUpdate(prevProps){
-    if(prevProps.product !== this.props.product){
+    if(prevProps.product !== this.props.product && this.props.categories.length > 0){
       this.setState({productLoaded: true});
-    }
-    if(prevProps.categories !== this.props.categories){
-      this.setState({categoriesLoaded: true});
     }
   }
 
@@ -198,7 +194,7 @@ class EditProduct extends Component {
     let errorMessage = null;
     let button = null;
 
-    if(this.state.productLoaded && this.state.categoriesLoaded){
+    if(this.state.productLoaded){
       button = this.generateButton();
       if(this.props.error) {
         errorMessage = this.generateErrorMsg();

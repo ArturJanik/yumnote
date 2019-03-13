@@ -4,6 +4,7 @@ import {
   FETCH_PRODUCTS_FAIL,
   FETCH_PRODUCT_START,
   FETCH_PRODUCT_SUCCESS,
+  FETCH_USER_PRODUCTS_SUCCESS,
   FETCH_PRODUCT_FAIL,
   ADD_PRODUCT_START,
   ADD_PRODUCT_SUCCESS,
@@ -30,6 +31,7 @@ const initialState = {
   error: null,
   loading: false,
   products: [],
+  userProducts: [],
   product: null
 }
 
@@ -45,13 +47,26 @@ const fetchProductsSuccess = (state, action) => {
   const products = action.products.map(product => (
     {
       ...product,
-      deleteInProgress: false,
       foodnoteCreationInProgress: false,
       error: null
     }
   ));
   return updateObject(state, {
     products,
+    loading: false
+  })
+}
+
+const fetchUserProductsSuccess = (state, action) => {
+  const userProducts = action.products.map(product => (
+    {
+      ...product,
+      deleteInProgress: false,
+      error: null
+    }
+  ));
+  return updateObject(state, {
+    userProducts,
     loading: false
   })
 }
@@ -150,11 +165,11 @@ const addFoodnoteFail = (state, action) => {
 
 
 const deleteProductStart = (state, action) => {
-  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.productId ?
+  let updatedProducts = [ ...state.userProducts ].map(prod => prod.id === action.productId ?
     { ...prod, deleteInProgress: true } : prod);
   return updateObject(state, { 
     error: null,
-    products: updatedProducts
+    userProducts: updatedProducts
   })
 }
 
@@ -167,11 +182,11 @@ const deleteProductSuccess = (state, action) => {
 }
 
 const deleteProductFail = (state, action) => {
-  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.productId ?
+  let updatedProducts = [ ...state.userProducts ].map(prod => prod.id === action.productId ?
     { ...prod, deleteInProgress: false } : prod);
   return updateObject(state, {
     error: action.error,
-    products: updatedProducts
+    userProducts: updatedProducts
   })
 }
 
@@ -217,6 +232,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PRODUCTS_START: return fetchProductsStart(state, action);
     case FETCH_PRODUCTS_SUCCESS: return fetchProductsSuccess(state, action);
+    case FETCH_USER_PRODUCTS_SUCCESS: return fetchUserProductsSuccess(state, action);
     case FETCH_PRODUCTS_FAIL: return fetchProductsFail(state, action);
 
     case FETCH_PRODUCT_START: return fetchProductStart(state, action);

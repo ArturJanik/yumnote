@@ -31,10 +31,6 @@ class ProductList extends Component {
     }
   }
 
-  async componentWillUnmount() {
-    await this.props.onListLeft();
-  }
-
   fetchProducts = () => {
     switch (this.props.type) {
       case 'user_foods':
@@ -153,7 +149,6 @@ const mapDispatchToProps = dispatch => {
     fetchCurrentUserProducts: () => dispatch(actions.fetchCurrentUserProducts()),
     fetchLatestProducts: () => dispatch(actions.fetchLatestProducts()),
     addFoodnote: (data) => dispatch(actions.addFoodnote(data)),
-    onListLeft: () => dispatch(actions.resetProductReducerState()),
   }
 }
 

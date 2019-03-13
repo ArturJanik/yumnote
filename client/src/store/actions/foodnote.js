@@ -39,7 +39,6 @@ const fetchFoodnotesFail = (error) => {
 }
 
 export const fetchFoodnotes = (day) => {
-  console.log('Fetching foodnotes for: ', day)
   let url = '/api/foodnotes/today';
   switch (day) {
     case undefined:
