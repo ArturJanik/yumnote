@@ -23,10 +23,11 @@ const fetchFoodnotesStart = () => {
   }
 }
 
-const fetchFoodnotesSuccess = (foodnotes) => {
+const fetchFoodnotesSuccess = (foodnotes, day) => {
   return {
     type: FETCH_FOODNOTES_SUCCESS,
-    foodnotes
+    foodnotes,
+    day
   }
 }
 
@@ -38,6 +39,7 @@ const fetchFoodnotesFail = (error) => {
 }
 
 export const fetchFoodnotes = (day) => {
+  console.log('Fetching foodnotes for: ', day)
   let url = '/api/foodnotes/today';
   switch (day) {
     case undefined:
@@ -54,7 +56,7 @@ export const fetchFoodnotes = (day) => {
     dispatch(fetchFoodnotesStart());
     axios.get(url)
     .then(response => {
-      dispatch(fetchFoodnotesSuccess(response.data))
+      dispatch(fetchFoodnotesSuccess(response.data, day))
     })
     .catch(err => {
       if(err.response.status === 500){

@@ -23,7 +23,8 @@ const initialState = {
     carb: 0,
     fat: 0,
     prot: 0
-  }
+  },
+  currentDay: null
 }
 
 
@@ -73,7 +74,8 @@ const fetchFoodnotesSuccess = (state, action) => {
     foodnotes,
     error: null,
     loading: false,
-    totals
+    totals,
+    currentDay: action.day
   })
 }
 

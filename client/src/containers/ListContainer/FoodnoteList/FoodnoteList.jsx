@@ -17,19 +17,25 @@ class FoodnoteList extends Component {
   }
 
   componentDidMount() {
-    this.setState({otherDaySelected: (this.props.day !== undefined && this.props.day !== 'yesterday')});
-    this.props.fetchFoodnotes(this.props.day);
+    if(this.props.day !== undefined && this.props.day !== this.props.currentlyStoredDataDay){
+      this.verifyIfOtherDaySelected();
+      this.props.fetchFoodnotes(this.props.day);
+    }
   }
 
   componentDidUpdate(prevProps) {
     if(this.props.day !== prevProps.day) {
-      if(this.props.day === undefined || this.props.day === 'yesterday') this.setState({otherDaySelected: false});
+      this.verifyIfOtherDaySelected();
       this.props.fetchFoodnotes(this.props.day);
     }
   }
 
   componentWillUnmount() {
     this.props.onListLeft();
+  }
+
+  verifyIfOtherDaySelected = () => {
+    this.setState({otherDaySelected: (this.props.day !== 'today' && this.props.day !== 'yesterday')});
   }
 
   refreshList = () => {
@@ -110,13 +116,14 @@ const mapStateToProps = state => {
     totals: state.foodnote.totals,
     loading: state.foodnote.loading,
     error: state.foodnote.error,
+    currentlyStoredDataDay: state.foodnote.currentDay,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchFoodnotes: (day) => dispatch(actions.fetchFoodnotes(day)),
-    onListLeft: () => dispatch(actions.resetFoodnoteReducerState()),
+    onListLeft: () => dispatch(actions.clearFoodnoteErrors()),
   }
 }
 

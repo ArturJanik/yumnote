@@ -81,7 +81,8 @@ class ListContainer extends PureComponent {
         default:
           document.title = 'Today logs - calories.today'
           opts = { 
-            title: "Today"
+            title: "Today",
+            day: 'today'
           }
           break;
       }
