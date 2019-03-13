@@ -49,7 +49,7 @@ const setAuthCheckFinished = (state, action) => {
 }
 
 const authLogout = (state, action) => {
-  return updateObject(state, { ...initialState })
+  return updateObject(state, { token: null, error: null, loading: false, currentUser: null, authRedirectPath: '/', currentUserTimezone: 'Etc/UTC' })
 }
 
 const resetReducerState = (state, action) => {

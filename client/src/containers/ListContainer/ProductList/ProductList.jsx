@@ -21,6 +21,9 @@ class ProductList extends Component {
   yesterday = moment.tz(this.props.timezone).subtract(1, 'day').format("YYYYMMDD");
 
   componentDidMount() {
+    console.log(this.props.timezone)
+    console.log(this.today)
+    console.log(this.yesterday)
     this.fetchProducts();
   }
 

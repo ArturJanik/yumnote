@@ -13,7 +13,8 @@ class UsersController < ApiController
   def update
     if current_user.update(user_params)
       render json: {
-        message: 'ok'
+        message: 'ok',
+        timezone: user_params[:time_zone]
       }
     else
       render json: { errors: 'Error: you may not change this value.' }, status: 400
