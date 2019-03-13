@@ -9,7 +9,8 @@ import {
   CLEAR_STATISTICS,
   UPDATE_PROFILE_START,
   UPDATE_PROFILE_SUCCESS,
-  UPDATE_PROFILE_FAIL
+  UPDATE_PROFILE_FAIL,
+  UPDATE_TIMEZONE_SUCCESS
 } from './actionTypes';
 import axios from '../../utilities/axios-global';
 import history from '../../utilities/history';
@@ -119,6 +120,13 @@ const updateProfileSuccess = () => {
   }
 }
 
+const updateTimezoneSuccess = (timezone) => {
+  return {
+    type: UPDATE_TIMEZONE_SUCCESS,
+    timezone
+  }
+}
+
 const updateProfileFail = (error) => {
   return {
     type: UPDATE_PROFILE_FAIL,
@@ -132,6 +140,7 @@ export const updateProfile = (formdata, id) => {
     axios.put('/api/users/'+id, formdata)
     .then(response => {
       dispatch(updateProfileSuccess());
+      dispatch(updateTimezoneSuccess(response.data.timezone));
       history.push('/profile');
     })
     .catch(err => {
