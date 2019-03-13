@@ -123,7 +123,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCategories: () => dispatch(actions.fetchCategories()),
-    onContainerUnmount: () => dispatch(actions.resetCategoryReducerState())
   }
 }
 
