@@ -91,7 +91,6 @@ export const auth = (formdata, isSignup) => {
       dispatch(checkAuthTimeout(86400000));
     })
     .catch(err => {
-      console.log(err)
       if(err.response.status === 500){
         dispatch(authFail('Error: unable to reach server. Please try again later'));
       } else {

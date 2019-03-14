@@ -45,7 +45,6 @@ export const changePassword = (formdata) => {
       dispatch(changePasswordSuccess());
     })
     .catch(err => {
-      console.log(err)
       if(err.response.status === 500){
         dispatch(changePasswordFail('Error: unable to reach server. Please try again later'));
       } else {
@@ -83,7 +82,6 @@ export const forgotPassword = (email) => {
       dispatch(forgotPasswordSuccess(response.data.message));
     })
     .catch(err => {
-      console.log(err)
       if(err.response.status === 500){
         dispatch(forgotPasswordFail('Error: unable to reach server. Please try again later'));
       } else {
@@ -121,7 +119,6 @@ export const resetPassword = (password, pass_token) => {
       dispatch(resetPasswordSuccess(response.data.message));
     })
     .catch(err => {
-      console.log(err)
       if(err.response.status === 500){
         dispatch(resetPasswordFail('Error: unable to reach server. Please try again later'));
       } else {

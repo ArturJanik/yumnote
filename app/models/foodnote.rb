@@ -22,7 +22,6 @@ class Foodnote < ApplicationRecord
   end
 
   def creation_date=(val)
-    puts self['created_at']
     str_val = val.to_s
     parsed_val = Time.zone.parse(str_val).to_date
     self['creation_date'] = parsed_val

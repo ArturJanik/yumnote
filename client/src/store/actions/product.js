@@ -81,7 +81,6 @@ export const fetchCategoryProducts = (category_id) => {
   }
 }
 export const fetchCurrentUserProducts = () => {
-  console.log('Fetching current user products...')
   return dispatch => {
     dispatch(fetchProducts({
       currentUser: true,
