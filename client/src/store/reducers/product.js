@@ -221,11 +221,11 @@ const toggleProductVisibilityStart = (state, action) => {
 }
 
 const toggleProductVisibilitySuccess = (state, action) => {
-  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.id ?
+  let updatedProducts = [ ...state.userProducts ].map(prod => prod.id === action.id ?
     { ...prod, visible: !prod.visible } : prod);
   return updateObject(state, {
     error: null,
-    products: updatedProducts
+    userProducts: updatedProducts
   })
 }
 
