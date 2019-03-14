@@ -58,7 +58,7 @@ const fetchProducts = (settings) => {
     axios.get(settings.url)
     .then(response => {
       if(settings.currentUser){
-        dispatch(fetchUserProductsSuccess(response.data.products))
+        dispatch(fetchUserProductsSuccess(response.data))
       } else {
         dispatch(fetchProductsSuccess(response.data.products))
       }
@@ -81,7 +81,6 @@ export const fetchCategoryProducts = (category_id) => {
   }
 }
 export const fetchCurrentUserProducts = () => {
-  console.log('Fetching current user products...')
   return dispatch => {
     dispatch(fetchProducts({
       currentUser: true,

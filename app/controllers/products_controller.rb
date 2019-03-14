@@ -13,7 +13,7 @@ class ProductsController < ApiController
 
   def userproducts
     products = current_user.products
-    render json: { products: products }
+    render json: products, each_serializer: UserProductSerializer
   end
 
   def latest
