@@ -13,7 +13,7 @@ class ProductsController < ApiController
 
   def userproducts
     products = current_user.products
-    render json: { products: products }
+    render json: products, each_serializer: UserProductSerializer
   end
 
   def latest
@@ -55,7 +55,8 @@ class ProductsController < ApiController
 
     if product.update(product_params)
       render json: {
-        message: 'ok'
+        message: 'ok',
+        product: product
       }
     else
       render json: { errors: product.errors }, status: 400

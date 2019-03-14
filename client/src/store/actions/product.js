@@ -58,7 +58,7 @@ const fetchProducts = (settings) => {
     axios.get(settings.url)
     .then(response => {
       if(settings.currentUser){
-        dispatch(fetchUserProductsSuccess(response.data.products))
+        dispatch(fetchUserProductsSuccess(response.data))
       } else {
         dispatch(fetchProductsSuccess(response.data.products))
       }
@@ -140,9 +140,10 @@ const addProductStart = () => {
   }
 }
 
-const addProductSuccess = () => {
+const addProductSuccess = (product) => {
   return {
-    type: ADD_PRODUCT_SUCCESS
+    type: ADD_PRODUCT_SUCCESS,
+    product
   }
 }
 
@@ -158,7 +159,7 @@ export const addProduct = (formdata) => {
     dispatch(addProductStart());
     axios.post('/api/products', formdata)
     .then(response => {
-      dispatch(addProductSuccess());
+      dispatch(addProductSuccess(response.data.product));
       history.push('/products');
     })
     .catch(err => {
@@ -178,9 +179,10 @@ const updateProductStart = () => {
   }
 }
 
-const updateProductSuccess = () => {
+const updateProductSuccess = (product) => {
   return {
-    type: UPDATE_PRODUCT_SUCCESS
+    type: UPDATE_PRODUCT_SUCCESS,
+    product
   }
 }
 
@@ -196,7 +198,7 @@ export const updateProduct = (formdata, id) => {
     dispatch(updateProductStart());
     axios.put('/api/products/'+id, formdata)
     .then(response => {
-      dispatch(updateProductSuccess());
+      dispatch(updateProductSuccess(response.data.product));
       history.push('/products');
     })
     .catch(err => {

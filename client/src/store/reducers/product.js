@@ -110,8 +110,16 @@ const addProductStart = (state, action) => {
 }
 
 const addProductSuccess = (state, action) => {
+  const newProduct = { ...action.product, deleteInProgress: false, error: null };
+  
+  const updatedUserProducts = [
+    ...state.userProducts,
+    newProduct
+  ]
+
   return updateObject(state, {
-    loading: false 
+    loading: false,
+    userProducts: updatedUserProducts
   })
 }
 
@@ -131,8 +139,12 @@ const updateProductStart = (state, action) => {
 }
 
 const updateProductSuccess = (state, action) => {
+  const updatedProductId = action.product.id;
+  const updatedProducts = [ ...state.userProducts ].map(prod => prod.id === updatedProductId ? action.product : prod);
+
   return updateObject(state, {
-    loading: false 
+    loading: false,
+    userProducts: updatedProducts
   })
 }
 
@@ -174,10 +186,10 @@ const deleteProductStart = (state, action) => {
 }
 
 const deleteProductSuccess = (state, action) => {
-  const filteredProducts = state.products.filter(product => product.id !== action.deletedId);
+  const filteredProducts = state.userProducts.filter(product => product.id !== action.deletedId);
     
   return updateObject(state, {
-    products: filteredProducts
+    userProducts: filteredProducts
   })
 }
 
@@ -209,11 +221,11 @@ const toggleProductVisibilityStart = (state, action) => {
 }
 
 const toggleProductVisibilitySuccess = (state, action) => {
-  let updatedProducts = [ ...state.products ].map(prod => prod.id === action.id ?
+  let updatedProducts = [ ...state.userProducts ].map(prod => prod.id === action.id ?
     { ...prod, visible: !prod.visible } : prod);
   return updateObject(state, {
     error: null,
-    products: updatedProducts
+    userProducts: updatedProducts
   })
 }
 

@@ -11,20 +11,24 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 class EditProduct extends Component {
   state = {
     productLoaded: false,
+    categoriesLoaded: false
   }
 
   componentDidMount() {
     document.title = 'Edit existing product - calories.today'
     const { productId } = this.props.match.params;
-    this.props.onPageLoaded(productId);
     if(this.props.categories.length === 0){
       this.props.fetchCategories()
     }
+    this.props.fetchProduct(productId);
   }
 
   componentDidUpdate(prevProps){
-    if(prevProps.product !== this.props.product && this.props.categories.length > 0){
+    if(prevProps.product !== this.props.product){
       this.setState({productLoaded: true});
+    }
+    if(this.props.categories.length > 0 && !this.state.categoriesLoaded){
+      this.setState({categoriesLoaded: true});
     }
   }
 
@@ -194,7 +198,7 @@ class EditProduct extends Component {
     let errorMessage = null;
     let button = null;
 
-    if(this.state.productLoaded){
+    if(this.state.productLoaded && this.state.categoriesLoaded){
       button = this.generateButton();
       if(this.props.error) {
         errorMessage = this.generateErrorMsg();
@@ -235,7 +239,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onPageLoaded: (id) => dispatch(actions.fetchProduct(id)),
+    fetchProduct: (id) => dispatch(actions.fetchProduct(id)),
     fetchCategories: () => dispatch(actions.fetchCategories()),
     onUpdateProduct: (formdata, id) => dispatch(actions.updateProduct(formdata, id)),
     onPageLeft: (formdata, id) => {
