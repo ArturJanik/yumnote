@@ -1,5 +1,3 @@
-class UserProductSerializer < ActiveModel::Serializer  
-  belongs_to :category
-  
-  attributes :id, :name, :kcal, :carb, :fat, :prot, :amount, :unit, :visible
+class UserProductSerializer < ActiveModel::Serializer    
+  attributes :id, :name, :kcal, :carb, :fat, :prot, :amount, :unit, :visible, :category_id
 end
