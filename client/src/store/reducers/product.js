@@ -110,8 +110,6 @@ const addProductStart = (state, action) => {
 }
 
 const addProductSuccess = (state, action) => {
-  console.log(action)
-  console.log(state.userProducts)
   const newProduct = { ...action.product, deleteInProgress: false, error: null };
   
   const updatedUserProducts = [
@@ -184,10 +182,10 @@ const deleteProductStart = (state, action) => {
 }
 
 const deleteProductSuccess = (state, action) => {
-  const filteredProducts = state.products.filter(product => product.id !== action.deletedId);
+  const filteredProducts = state.userProducts.filter(product => product.id !== action.deletedId);
     
   return updateObject(state, {
-    products: filteredProducts
+    userProducts: filteredProducts
   })
 }
 
