@@ -33,7 +33,7 @@ class Product < ApplicationRecord
 
   def product_name_unique_to_creator
     if self.user
-      unique = !(self.user.products.find_by name: self.name)
+      unique = !self.name_changed? || !(self.user.products.find_by name: self.name)
     else
       unique = !(Product.where('user = nil && name = ?', self.name))
     end

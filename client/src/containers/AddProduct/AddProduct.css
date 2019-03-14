@@ -26,6 +26,7 @@
 
 .error {
   border-left: 2px solid #a80f0f;
+  margin-top: 10px;
   padding-left: 10px;
 }
 .error__subject {
