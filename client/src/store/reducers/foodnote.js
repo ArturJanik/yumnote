@@ -8,6 +8,7 @@ import {
   DELETE_FOODNOTE_START,
   DELETE_FOODNOTE_SUCCESS,
   DELETE_FOODNOTE_FAIL,
+  ADD_FOODNOTE_SUCCESS,
   CLEAR_FOODNOTE_TOTALS,
   CLEAR_FOODNOTE_ERRORS,
   RESET_FOODNOTE_REDUCER_STATE
@@ -84,6 +85,30 @@ const fetchFoodnotesFail = (state, action) => {
     error: action.error,
     loading: false
   })
+}
+
+
+const addFoodnoteToList = (state, action) => {
+  if(
+    (state.foodnotes.length === 0 && (state.currentDay === null || state.currentDay === 'today')) || 
+    action.foodnote.creation_date === state.foodnotes[0].creation_date
+  ){
+    const foodnotes = [
+      ...state.foodnotes,
+      action.foodnote
+    ]
+
+    const totals = calculateTotals(foodnotes);
+
+    return updateObject(state, {
+      foodnotes,
+      error: null,
+      loading: false,
+      totals
+    })
+  } else {
+    return state;
+  }
 }
 
 
@@ -174,6 +199,8 @@ const reducer = (state = initialState, action) => {
     case DELETE_FOODNOTE_START: return deleteFoodnoteStart(state, action);
     case DELETE_FOODNOTE_SUCCESS: return deleteFoodnoteSuccess(state, action);
     case DELETE_FOODNOTE_FAIL: return deleteFoodnoteFail(state, action);
+
+    case ADD_FOODNOTE_SUCCESS: return addFoodnoteToList(state, action);
 
     case CLEAR_FOODNOTE_TOTALS: return clearFoodnoteTotals(state, action);
     case CLEAR_FOODNOTE_ERRORS: return clearFoodnoteErrors(state, action);

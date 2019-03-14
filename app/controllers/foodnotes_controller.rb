@@ -3,18 +3,18 @@ class FoodnotesController < ApiController
   around_action :use_current_user_timezone, only: [:index, :yesterday, :create], if: :current_user
   
   def index
-    foodnotes = current_user.foodnotes.from_today.select([:id, :product_id, :amount]).with_products
+    foodnotes = current_user.foodnotes.from_today.select([:id, :product_id, :amount, :creation_date]).with_products
     render json: foodnotes, each_serializer: FoodnoteSerializer
   end
   
   def yesterday
-    foodnotes = current_user.foodnotes.from_yesterday.select([:id, :product_id, :amount]).with_products
+    foodnotes = current_user.foodnotes.from_yesterday.select([:id, :product_id, :amount, :creation_date]).with_products
     render json: foodnotes, each_serializer: FoodnoteSerializer
   end
 
   def show
     date = Date.parse(params[:day])
-    foodnotes = current_user.foodnotes.from_day(date).select([:id, :product_id, :amount]).with_products
+    foodnotes = current_user.foodnotes.from_day(date).select([:id, :product_id, :amount, :creation_date]).with_products
     render json: foodnotes, each_serializer: FoodnoteSerializer
   end
 
@@ -23,10 +23,7 @@ class FoodnotesController < ApiController
     foodnote.product = Product.find(params['product_id'])
     
     if foodnote.save
-      render json: {
-        message: 'ok',
-        foodnote: foodnote
-      }
+      render json: foodnote, serializer: FoodnoteSerializer
     else
       render json: { errors: foodnote.errors }, status: 400
     end

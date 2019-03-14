@@ -1,5 +1,5 @@
 class FoodnoteSerializer < ActiveModel::Serializer
   belongs_to :product
   
-  attributes :id, :amount
+  attributes :id, :amount, :creation_date
 end

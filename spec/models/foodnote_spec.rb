@@ -22,7 +22,6 @@ describe Foodnote do
     describe 'validations' do
       subject { foodnote }
 
-      it { should validate_presence_of(:amount) }
       it { should validate_numericality_of(:amount) }
       it { should validate_presence_of(:creation_date) }
       it { should validate_presence_of(:user_id) }

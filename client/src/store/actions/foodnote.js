@@ -75,10 +75,11 @@ const addFoodnoteStart = (productId) => {
   }
 }
 
-const addFoodnoteSuccess = (productId) => {
+const addFoodnoteSuccess = (productId, foodnote) => {
   return {
     type: ADD_FOODNOTE_SUCCESS,
-    productId
+    productId,
+    foodnote
   }
 }
 
@@ -95,7 +96,7 @@ export const addFoodnote = (data) => {
     dispatch(addFoodnoteStart(data.product_id));
     axios.post('/api/foodnotes', data)
     .then(response => {
-      dispatch(addFoodnoteSuccess(data.product_id));
+      dispatch(addFoodnoteSuccess(data.product_id, response.data));
     })
     .catch(err => {
       console.error('Create foodnote error:', err);

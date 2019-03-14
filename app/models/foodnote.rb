@@ -2,7 +2,7 @@ class Foodnote < ApplicationRecord
   belongs_to :product
   belongs_to :user
   
-  validates :user_id, :product_id, :amount, :creation_date, presence: true
+  validates :user_id, :product_id, :creation_date, presence: true
   validates_associated :user
   validates_associated :product
   validates :amount, numericality: { greater_than: 0 }
@@ -18,7 +18,7 @@ class Foodnote < ApplicationRecord
   def amount=(val)
     str_val = val.to_s
     str_val.sub(',', '.')
-    self['amount'] = val
+    self['amount'] = val.to_f
   end
 
   def creation_date=(val)
