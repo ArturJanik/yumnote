@@ -180,9 +180,10 @@ const updateProductStart = () => {
   }
 }
 
-const updateProductSuccess = () => {
+const updateProductSuccess = (product) => {
   return {
-    type: UPDATE_PRODUCT_SUCCESS
+    type: UPDATE_PRODUCT_SUCCESS,
+    product
   }
 }
 
@@ -198,7 +199,7 @@ export const updateProduct = (formdata, id) => {
     dispatch(updateProductStart());
     axios.put('/api/products/'+id, formdata)
     .then(response => {
-      dispatch(updateProductSuccess());
+      dispatch(updateProductSuccess(response.data.product));
       history.push('/products');
     })
     .catch(err => {

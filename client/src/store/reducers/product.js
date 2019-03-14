@@ -139,8 +139,12 @@ const updateProductStart = (state, action) => {
 }
 
 const updateProductSuccess = (state, action) => {
+  const updatedProductId = action.product.id;
+  const updatedProducts = [ ...state.userProducts ].map(prod => prod.id === updatedProductId ? action.product : prod);
+
   return updateObject(state, {
-    loading: false 
+    loading: false,
+    userProducts: updatedProducts
   })
 }
 

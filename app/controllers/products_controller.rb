@@ -55,7 +55,8 @@ class ProductsController < ApiController
 
     if product.update(product_params)
       render json: {
-        message: 'ok'
+        message: 'ok',
+        product: product
       }
     else
       render json: { errors: product.errors }, status: 400
