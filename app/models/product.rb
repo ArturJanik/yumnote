@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-  before_create :validate_privacy
   before_save :convert_values
+  before_create :validate_privacy
 
   validates :name, :kcal, :category_id, presence: true
 
@@ -21,14 +21,35 @@ class Product < ApplicationRecord
   scope :public_products, -> { where(private: false) }
   scope :form_data_only, -> { select("id, name, kcal, carb, fat, prot, amount, unit, category_id, user_id") }
 
+  def kcal=(val)
+    str_val = val.to_s.sub(',', '.')
+    self['kcal'] = str_val
+  end
+  def carb=(val)
+    str_val = val.to_s.sub(',', '.')
+    self['carb'] = str_val
+  end
+  def fat=(val)
+    str_val = val.to_s.sub(',', '.')
+    self['fat'] = str_val
+  end
+  def prot=(val)
+    str_val = val.to_s.sub(',', '.')
+    self['prot'] = str_val
+  end
+  def amount=(val)
+    str_val = val.to_s.sub(',', '.')
+    self['amount'] = str_val
+  end
+
   private
   def convert_values
-    divider = self.amount
-    self.kcal = self.kcal / divider
-    self.carb = self.carb / divider
-    self.fat = self.fat / divider
-    self.prot = self.prot / divider
-    self.amount = self.amount / divider
+    divider = amount
+    self.kcal = (kcal / divider).round(2)
+    self.carb = (carb / divider).round(2)
+    self.fat = (fat / divider).round(2)
+    self.prot = (prot / divider).round(2)
+    self.amount = 1
   end
 
   def product_name_unique_to_creator

@@ -17,7 +17,7 @@ class Foodnote < ApplicationRecord
   #  Podczas przypisywania wartości do zmiennej amount trzeba sprawdzić czy wartość jest przesyłana z przecinkiem czy kropką i ją ujednolicić
   def amount=(val)
     str_val = val.to_s
-    str_val.sub!(',', '.')
+    str_val.sub(',', '.')
     self['amount'] = val
   end
 
