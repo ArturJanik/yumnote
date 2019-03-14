@@ -110,8 +110,18 @@ const addProductStart = (state, action) => {
 }
 
 const addProductSuccess = (state, action) => {
+  console.log(action)
+  console.log(state.userProducts)
+  const newProduct = { ...action.product, deleteInProgress: false, error: null };
+  
+  const updatedUserProducts = [
+    ...state.userProducts,
+    newProduct
+  ]
+
   return updateObject(state, {
-    loading: false 
+    loading: false,
+    userProducts: updatedUserProducts
   })
 }
 

@@ -141,9 +141,10 @@ const addProductStart = () => {
   }
 }
 
-const addProductSuccess = () => {
+const addProductSuccess = (product) => {
   return {
-    type: ADD_PRODUCT_SUCCESS
+    type: ADD_PRODUCT_SUCCESS,
+    product
   }
 }
 
@@ -159,7 +160,7 @@ export const addProduct = (formdata) => {
     dispatch(addProductStart());
     axios.post('/api/products', formdata)
     .then(response => {
-      dispatch(addProductSuccess());
+      dispatch(addProductSuccess(response.data.product));
       history.push('/products');
     })
     .catch(err => {
