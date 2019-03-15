@@ -26,6 +26,7 @@ describe User do
       it { should allow_value("abcdef@email.com").for(:email).on(:create) }
       it { should_not allow_value("abcdef@email").for(:email).on(:create) }
       it { should have_secure_token(:auth_token) }
+      it { should have_secure_password }
     end
   end
 

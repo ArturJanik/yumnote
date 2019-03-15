@@ -16,14 +16,21 @@ class Foodnote < ApplicationRecord
 
   #  Podczas przypisywania wartości do zmiennej amount trzeba sprawdzić czy wartość jest przesyłana z przecinkiem czy kropką i ją ujednolicić
   def amount=(val)
-    str_val = val.to_s
-    str_val.sub(',', '.')
-    self['amount'] = val.to_f
+    if val =~ /\A\d*[\d,.]\d*\z/
+      str_val = val.to_s
+      str_val = str_val.sub(',', '.')
+      self['amount'] = str_val.to_f
+    else
+      self['amount'] = val
+    end
   end
 
   def creation_date=(val)
-    str_val = val.to_s
-    parsed_val = Time.zone.parse(str_val).to_date
-    self['creation_date'] = parsed_val
+    if val
+      parsed_val = Time.zone.parse(val).to_date
+      self['creation_date'] = parsed_val
+    else
+      self['creation_date'] = val
+    end
   end
 end

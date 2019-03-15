@@ -14,15 +14,12 @@ describe FoodnotesController do
       let(:user) { create(:user) }
       let(:token) { user.auth_token }
 
-      before {
+      it "shows user foodnotes" do
         headers = {
           'ACCEPT': 'application/json',
           'Authorization': "Token #{token}",
           'token': token
         }
-      }
-
-      it "shows user foodnotes" do
         get '/api/foodnotes/today', params: {}, headers: headers
         expect(response.content_type).to eq("application/json")
         expect(response.status).to eq(200)
