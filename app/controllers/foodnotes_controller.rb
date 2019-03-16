@@ -33,18 +33,17 @@ class FoodnotesController < ApiController
     foodnote = current_user.foodnotes.find(params['id'])
     
     if foodnote.update(foodnote_params)
-      render json: {
-        message: 'ok'
-      }
+      render json: { message: 'ok' }
     else
       render json: { errors: foodnote.errors }, status: 400
     end
   end
 
   def destroy
-    foodnote = current_user.foodnotes.find(params['id'])
+    foodnote = Foodnote.find(params['id'])
 
-    if foodnote.destroy
+    if foodnote.user === current_user
+      foodnote.destroy
       render json: {}, status: 200
     else
       errors = { errors: { foodnote: ['Not found']}}
@@ -59,7 +58,7 @@ class FoodnotesController < ApiController
 
   private
   def foodnote_params
-    params.require(:foodnote).permit(:amount, :creation_date, :product, :user, :product_id)
+    params.require(:foodnote).permit(:amount, :creation_date, :product, :user)
   end
 
   def use_current_user_timezone &block

@@ -4,8 +4,7 @@ class Product < ApplicationRecord
 
   validates :name, :kcal, :category_id, presence: true
 
-  validates_uniqueness_of :name, unless: :product_name_unique_to_creator
-  validates_presence_of :name
+  validates_uniqueness_of :name, unless: :product_name_unique_to_creator, case_sensitive: false
 
   validates :name, length: { minimum: 2 }
   validates :kcal, numericality: { greater_than_or_equal_to: 0 }
@@ -54,9 +53,9 @@ class Product < ApplicationRecord
 
   def product_name_unique_to_creator
     if self.user
-      unique = !self.name_changed? || !(self.user.products.find_by name: self.name)
+      unique = (!self.id_changed? && !self.name_changed?) || !(self.user.products.find_by name: self.name)
     else
-      unique = !(Product.where('user = nil && name = ?', self.name))
+      unique = (!self.id_changed? && !self.name_changed?) || !(Product.where('user = nil && name = ?', self.name))
     end
     unique
   end

@@ -15,23 +15,23 @@ describe Foodnote do
     describe 'associations' do
       subject { foodnote }
 
-      it { should belong_to(:user) }
-      it { should belong_to(:product) }
+      it { is_expected.to belong_to(:user) }
+      it { is_expected.to belong_to(:product) }
     end
 
     describe 'validations' do
       subject { foodnote }
 
-      it { should validate_numericality_of(:amount) }
-      it { should validate_presence_of(:creation_date) }
-      it { should validate_presence_of(:user_id) }
-      it { should validate_presence_of(:product_id) }
+      it { is_expected.to validate_numericality_of(:amount) }
+      it { is_expected.to validate_presence_of(:creation_date) }
+      it { is_expected.to validate_presence_of(:user_id) }
+      it { is_expected.to validate_presence_of(:product_id) }
     end
 
     describe '.amount' do
       subject { foodnote.amount.to_s }
 
-      it { should eq('10.2') }
+      it { is_expected.to eq('10.2') }
     end
   end
 end

@@ -6,7 +6,7 @@ FactoryBot.define do
     
     trait :for_valid do
       username { Faker::Internet.username(8) }
-      email { 'email@example.com' }
+      email { Faker::Internet.email }
       password { 'password' }
       time_zone { 'Europe/Warsaw' }
     end

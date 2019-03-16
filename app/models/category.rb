@@ -18,7 +18,7 @@ class Category < ApplicationRecord
     loop do
       if Category.where(slug: slug).exists?
         if self.parent
-          self.slug = self.parent.slug + '-' + self.name.parameterize
+          self.slug = self.parent.slug + '_' + self.name.parameterize
         else
           self.slug = self.name.parameterize + "-#{i}"
         end

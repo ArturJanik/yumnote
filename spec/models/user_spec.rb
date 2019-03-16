@@ -14,19 +14,19 @@ describe User do
     describe 'associations' do
       subject { user }
   
-      it { should have_many(:products) }
-      it { should have_many(:foodnotes) }
+      it { is_expected.to have_many(:products) }
+      it { is_expected.to have_many(:foodnotes) }
     end
 
     describe 'fields' do
       subject { user }
     
-      it { should validate_uniqueness_of(:username) }
-      it { should validate_length_of(:username).is_at_least(4).is_at_most(50) }
-      it { should allow_value("abcdef@email.com").for(:email).on(:create) }
-      it { should_not allow_value("abcdef@email").for(:email).on(:create) }
-      it { should have_secure_token(:auth_token) }
-      it { should have_secure_password }
+      it { is_expected.to validate_uniqueness_of(:username) }
+      it { is_expected.to validate_length_of(:username).is_at_least(4).is_at_most(50) }
+      it { is_expected.to allow_value("abcdef@email.com").for(:email).on(:create) }
+      it { is_expected.to_not allow_value("abcdef@email").for(:email).on(:create) }
+      it { is_expected.to have_secure_token(:auth_token) }
+      it { is_expected.to have_secure_password }
     end
   end
 
@@ -34,13 +34,13 @@ describe User do
     let(:user) { build(:user) }
 
     describe 'fields' do
-      it { should validate_presence_of(:email).on(:create) }
-      it { should validate_presence_of(:username).on(:create) }
-      it { should validate_presence_of(:password).on(:create) }
-      it { should validate_presence_of(:time_zone).on(:create) }
-      it { should validate_length_of(:password).is_at_least(6).on(:create) }
-      it { should validate_uniqueness_of(:email).case_insensitive.on(:create) }
-      it { should validate_inclusion_of(:time_zone).in_array(TZInfo::Timezone.all.map(&:name)).on(:create) }
+      it { is_expected.to validate_presence_of(:email).on(:create) }
+      it { is_expected.to validate_presence_of(:username).on(:create) }
+      it { is_expected.to validate_presence_of(:password).on(:create) }
+      it { is_expected.to validate_presence_of(:time_zone).on(:create) }
+      it { is_expected.to validate_length_of(:password).is_at_least(6).on(:create) }
+      it { is_expected.to validate_uniqueness_of(:email).case_insensitive.on(:create) }
+      it { is_expected.to validate_inclusion_of(:time_zone).in_array(TZInfo::Timezone.all.map(&:name)).on(:create) }
     end
   end
 end
