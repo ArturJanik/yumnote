@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, on: :create },
                     uniqueness: { case_sensitive: false }
   validates :password, length: { minimum: 6 }, allow_nil: true
-  validates :time_zone, inclusion: { in: TZInfo::Timezone.all.map(&:name), on: :create }
+  validates :time_zone, inclusion: { in: TZInfo::Timezone.all.map(&:name), on: [:create, :update]}
   has_secure_password validations: false
   has_secure_token :auth_token
 
@@ -38,7 +38,7 @@ class User < ApplicationRecord
   end
 
   def password_token_valid?
-    (self.reset_password_sent_at + 4.hours)  > Time.zone.now.utc
+    (self.reset_password_sent_at + 4.hours) > Time.zone.now.utc
   end
 
   private

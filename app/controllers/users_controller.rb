@@ -27,8 +27,6 @@ class UsersController < ApiController
         render json: {
           message: 'Password changed successfully.'
         }
-      else
-        render json: { errors: { password: 'Error: you may not change this value.' }}, status: 400
       end
     else
       render json: { errors: { password: 'Old password incorrect' }}, status: 400
