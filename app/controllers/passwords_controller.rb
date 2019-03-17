@@ -31,8 +31,6 @@ class PasswordsController < ApiController
     if user.present? && user.password_token_valid?
       if user.reset_password(password)
         render json: { message: 'Password has been reset.' }
-      else
-        render json: { error: user.errors.full_messages }, status: 400
       end
     else
       render json: { error: 'Link not valid or expired. Try generating a new link.' }, status: 404
