@@ -26,6 +26,10 @@ class SessionsController < ApiController
   end
 
   def logout
-    current_user.invalidate_token
+    if current_user
+      current_user.invalidate_token
+    else
+      render json: {}, status: 200
+    end
   end
 end
