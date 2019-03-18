@@ -1,13 +1,24 @@
 # README
 
-Based on:
+## Stack:
 
+__backend__
 * Ruby 2.3.6-p384
 * Rails 5.2.2
 * Postgresql
 * Puma server
+
+__frontend__
 * React 16.8.3
 * Redux 4.0.1
+
+## Test suite
+
+__backend__
+* RSpec - 100% coverage based on [simplecov](https://github.com/colszowka/simplecov) plugin, but realistically around 60%.
+
+__frontend__
+* TODO
 
 ## Used plugins
 
@@ -16,7 +27,7 @@ Based on:
 * lodash - general toolset,
 * Pikaday - date selection on product & foodnote list,
 * Moment.js - date parsing,
-* perfect-scrollbar.
+* perfect-scrollbar
 
 ## Potential scaling strategies
 
@@ -28,13 +39,18 @@ Based on:
 
 ## Optimization
 
-### Done
+### Frontend - Done
 
 * Used 'why-did-you-update' tool to identify app elements with most redundant rerenders and refactored code to avoid most non-Router related ones.
 
-### TODO
+### Frontend - TODO
 
 * Find out if it's possible to filter useless rerenders triggered by Router
+
+### Backend - TODO
+
+* Narrow down queried fields to those required in response
+* TODO...
 
 ## Installation
 
