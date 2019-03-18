@@ -1,3 +1,5 @@
+require 'faker'
+
 FactoryBot.define do
   factory :category do
     name { 'Dairy, Cheese & Eggs' }
@@ -10,5 +12,9 @@ FactoryBot.define do
 
   factory :parent, class: Category do
     name { 'Parent category' }
+  end
+
+  factory :product_category, class: Category do
+    name { Faker::Alphanumeric.alpha(10) }
   end
 end

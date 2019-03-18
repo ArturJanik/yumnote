@@ -116,7 +116,6 @@ describe FoodnotesController do
         end
       end
 
-
       describe 'fails on creation' do
         before(:example) do
           headers = {

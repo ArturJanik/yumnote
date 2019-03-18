@@ -1,4 +1,3 @@
-
 FactoryBot.define do
   factory :foodnote do
     amount { '10,2' }

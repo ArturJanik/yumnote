@@ -2,11 +2,12 @@ class ProductsController < ApiController
   before_action :require_login
   
   def index
-    products = Category.find(params[:category_id]).products.where(user: current_user).or(Category.find(params[:category_id]).products.public_products)
-    if products
+    category = Category.find_by_id(params[:category_id])
+    if category
+      products = category.products.where(user: current_user).or(category.products.public_products)
       render json: { products: products }
     else
-      errors = { errors: { products: ['Not found']}}
+      errors = { errors: { category: ['Not found']}}
       render json: errors, status: 404
     end
   end
@@ -27,7 +28,7 @@ class ProductsController < ApiController
   end
 
   def show
-    product = current_user.products.form_data_only.find(params['id'])
+    product = current_user.products.form_data_only.find_by_id(params['id'])
 
     if product
       render json: { product: product }
@@ -51,40 +52,49 @@ class ProductsController < ApiController
   end
 
   def update
-    product = current_user.products.find(params['id'])
+    product = current_user.products.find_by_id(params['id'])
 
-    if product.update(product_params)
-      render json: {
-        message: 'ok',
-        product: product
-      }
+    if product
+      if product.update(product_params)
+        render json: {
+          message: 'ok',
+          product: product
+        }
+      else
+        render json: { errors: product.errors }, status: 400
+      end
     else
-      render json: { errors: product.errors }, status: 400
+      errors = { errors: { product: ['Not found']}}
+      render json: errors, status: 404
     end
   end
 
   def destroy
-    product = current_user.products.find(params['id'])
+    product = current_user.products.find_by_id(params['id'])
 
-    product.user = nil
-    if product.save
-      render json: {}, status: 200
+    if product
+      product.user = nil
+      if product.save
+        render json: {}, status: 200
+      end
     else
-      render json: { errors: product.errors }, status: 400
+      errors = { errors: { product: ['Not found']}}
+      render json: errors, status: 404
     end
   end
 
   def toggle_visibility
-    product = current_user.products.find(params['id'])
+    product = current_user.products.find_by_id(params['id'])
 
-    product.toggle(:visible)
-    
-    if product.save
-      render json: {
-        message: 'ok'
-      }
+    if product
+      product.toggle(:visible)
+      
+      if product.save
+        render json: { message: 'ok' }, status: 200
+      end
     else
-      render json: { errors: product.errors }, status: 400
+      errors = { errors: { product: ['Not found']}}
+      render json: errors, status: 404
     end
   end
 
