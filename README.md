@@ -2,22 +2,26 @@
 
 ## Stack:
 
-__backend__
+### backend
+
 * Ruby 2.3.6-p384
 * Rails 5.2.2
 * Postgresql
 * Puma server
 
-__frontend__
+### frontend
+
 * React 16.8.3
 * Redux 4.0.1
 
 ## Test suite
 
-__backend__
+### backend
+
 * RSpec - 100% coverage based on [simplecov](https://github.com/colszowka/simplecov) plugin, but realistically around 60%.
 
-__frontend__
+### frontend
+
 * TODO
 
 ## Used plugins
