@@ -47,6 +47,7 @@ group :test do
   gem 'byebug'
   gem "factory_bot_rails"
   gem 'shoulda-matchers'
+  gem 'capybara'
   gem 'simplecov', require: false
 end
 

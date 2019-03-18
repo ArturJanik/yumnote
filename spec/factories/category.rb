@@ -17,4 +17,8 @@ FactoryBot.define do
   factory :product_category, class: Category do
     name { Faker::Alphanumeric.alpha(10) }
   end
+
+  factory :admin_category, class: Category do
+    name { Faker::Alphanumeric.alpha(10) }
+  end
 end

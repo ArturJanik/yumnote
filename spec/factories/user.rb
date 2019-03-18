@@ -18,4 +18,10 @@ FactoryBot.define do
       time_zone { nil }
     end
   end
+
+  factory :admin, class: AdminUser do
+    email { 'admin@example.com' }
+    password { 'password' }
+    password_confirmation { 'password' }
+  end
 end

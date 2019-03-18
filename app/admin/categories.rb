@@ -17,7 +17,7 @@ ActiveAdmin.register Category do
     i = 1
     loop do
       if Category.where(slug: slug).exists?
-        slug = category.title.parameterize + "-#{i}"
+        slug = category.name.parameterize + "-#{i}"
         i+=1
       else
         category.slug = slug
@@ -25,5 +25,4 @@ ActiveAdmin.register Category do
       end
     end
   end
-
 end
