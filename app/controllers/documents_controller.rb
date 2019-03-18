@@ -1,4 +1,6 @@
 class DocumentsController < ApiController
+  before_action :document_params
+
   def show
     document = Document.find_by slug: params[:slug]
     if document
@@ -11,6 +13,6 @@ class DocumentsController < ApiController
 
   private
   def document_params
-    params.require(:document).permit(:title, :content, :short_content, :visible)
+    params.permit(:slug)
   end
 end
