@@ -73,10 +73,13 @@ class ProductsController < ApiController
     product = current_user.products.find_by_id(params['id'])
 
     if product
-      product.user = nil
-      if product.save
-        render json: {}, status: 200
+      if product.foodnotes.size > 0
+        product.user = nil
+        product.save
+      else
+        product.destroy
       end
+      render json: {}, status: 200
     else
       errors = { errors: { product: ['Not found']}}
       render json: errors, status: 404

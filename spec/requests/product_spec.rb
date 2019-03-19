@@ -285,32 +285,52 @@ describe ProductsController do
     context 'as auth user' do
       let(:user) { create :user }
       let(:token) { user.auth_token }
-      let!(:product) { create :product, user: user }
-      let!(:product2) { create :product }
-      let(:id) { product.id }
-      let(:id2) { product2.id }
 
       context 'when product owned by user' do
-        it "returns status 200" do
-          headers = {
-            'ACCEPT': 'application/json',
-            'Authorization': "Token #{token}",
-            'token': token
-          }
-          delete "/api/products/#{id}", headers: headers
-          expect(response.content_type).to eq("application/json")
-          expect(response.status).to eq(200)
+        context 'and product has no related foodnotes' do
+          let!(:product) { create :product, user: user }
+          let(:id) { product.id }
+          it "returns status 200" do
+            headers = {
+              'ACCEPT': 'application/json',
+              'Authorization': "Token #{token}",
+              'token': token
+            }
+            delete "/api/products/#{id}", headers: headers
+            expect(response.content_type).to eq("application/json")
+            expect(response.status).to eq(200)
+            expect(Product.find_by_id(id)).to be nil
+          end
+        end
+        
+        context 'and product has related foodnotes' do
+          let!(:product) { create :product, user: user }
+          let!(:foodnote) { create :foodnote, user: user, product: product }
+          let(:id) { product.id }
+          it "returns status 200" do
+            headers = {
+              'ACCEPT': 'application/json',
+              'Authorization': "Token #{token}",
+              'token': token
+            }
+            delete "/api/products/#{id}", headers: headers
+            expect(response.content_type).to eq("application/json")
+            expect(response.status).to eq(200)
+            expect(Product.find_by_id(id)).not_to be nil
+          end
         end
       end
 
       context 'when product not owned by user' do
+        let!(:product) { create :product }
+        let(:id) { product.id }
         it "fails with status 404" do
           headers = {
             'ACCEPT': 'application/json',
             'Authorization': "Token #{token}",
             'token': token
           }
-          delete "/api/products/#{id2}", headers: headers
+          delete "/api/products/#{id}", headers: headers
           expect(response.content_type).to eq("application/json")
           expect(response.status).to eq(404)
         end
