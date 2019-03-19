@@ -1,5 +1,5 @@
 class Foodnote < ApplicationRecord
-  belongs_to :product
+  belongs_to :product, counter_cache: true
   belongs_to :user
   
   validates :user_id, :product_id, :creation_date, presence: true
@@ -26,11 +26,12 @@ class Foodnote < ApplicationRecord
   end
 
   def creation_date=(val)
-    if val
-      parsed_val = Time.zone.parse(val).to_date
-      self['creation_date'] = parsed_val
-    else
+    str_val = val.to_s
+    if str_val.nil? || str_val.blank?
       self['creation_date'] = val
+    else
+      parsed_val = Time.zone.parse(str_val).to_date
+      self['creation_date'] = parsed_val
     end
   end
 end
