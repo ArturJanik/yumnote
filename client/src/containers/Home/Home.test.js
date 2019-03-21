@@ -24,12 +24,12 @@ describe('<Home />', () => {
   });
 
   it('should render <Redirect /> if authenticated', () => {
-    wrapper.setProps({isAuthenticated: true});
+    wrapper.setProps({isAuthenticated: true, authRedirectPath: '/'});
     expect(wrapper.find(Redirect)).toHaveLength(1);
   });
   
   it('should not render <AuthForm /> if authenticated', () => {
-    wrapper.setProps({isAuthenticated: true});
+    wrapper.setProps({isAuthenticated: true, authRedirectPath: '/'});
     expect(wrapper.find(AuthForm)).toHaveLength(0);
   });
 });
