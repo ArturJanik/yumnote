@@ -14,7 +14,7 @@ class Menu extends Component {
       <React.Fragment>
         <li className={styles['menu__item']}><Link to="/products" title="Your products">Products</Link></li>
         <li className={styles['menu__item']}><Link to="/profile" title="Your profile">My Profile</Link></li>
-        <li className={styles['menu__item']}> <Link to="/logout" title="Logout">Logout</Link></li>
+        <li className={styles['menu__item']}><Link to="/logout" title="Logout">Logout</Link></li>
       </React.Fragment>
     )
   }
@@ -37,13 +37,12 @@ class Menu extends Component {
   }
 
   render(){
-    const loggedIn = this.props.isAuth && this.props.currentUser !== null;
     return (
       <React.Fragment>
         <div className={styles['menu__overlay' + (this.state.showMenu ? '' : '--hide')]} onClick={this.hideMenu}></div>
         <nav className={styles['menu' + (this.state.showMenu ? '' : '--hide')]}>
           <ul className={styles['menu__items']}>
-            { loggedIn ? this.showLoggedInMenu() : this.showNotLoggedInMenu() }
+            { this.props.loggedIn ? this.showLoggedInMenu() : this.showNotLoggedInMenu() }
           </ul>
         </nav>
         <div className={styles['btn--menu']} onClick={this.toggleMenu}><img src={burgerIcon} alt="Toggle menu" /></div>

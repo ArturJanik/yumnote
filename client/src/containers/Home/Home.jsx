@@ -6,21 +6,19 @@ import styles from './Home.css';
 import HomeDescription from './HomeDescription/HomeDescription';
 import AuthForm from './AuthForm/AuthForm';
 
-class Home extends Component {
+export class Home extends Component {
 
   componentDidMount() {
     document.title = 'Keep track of your diet everyday - with calories.today';
   }
 
   render() {
-    let authRedirect = null;
     if(this.props.isAuthenticated){
-      authRedirect = <Redirect to={this.props.authRedirectPath} />
+      return <Redirect to={this.props.authRedirectPath} />
     }
 
     return(
       <section className={styles.home}>
-        {authRedirect}
         <HomeDescription />
         <div className={styles['home__form']}>
           <AuthForm signUp={this.props.signUp} />

@@ -22,8 +22,7 @@ class Header extends PureComponent {
         <div className={styles['header__wrapper']}>
           <Logo />
           <Menu
-            isAuth={this.props.isAuthenticated}
-            currentUser={this.props.currentUserName}
+            loggedIn={this.props.isAuthenticated}
           />
         </div>
       </header>
@@ -33,8 +32,7 @@ class Header extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null,
-    currentUserName: state.auth.currentUser
+    isAuthenticated: (state.auth.token !== null && this.props.currentUser !== null),
   }
 }
 
