@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../store/actions/index';
 
-class ProtectedRoute extends PureComponent {
+export class ProtectedRoute extends PureComponent {
   
   componentDidMount () {
     if(!this.props.isAuthenticated && this.props.location.pathname.toLowerCase() !== '/logout') this.props.onSetAuthRedirectPath(this.props.location.pathname);
