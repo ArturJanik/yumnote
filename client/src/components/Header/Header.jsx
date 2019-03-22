@@ -6,16 +6,6 @@ import Logo from './Logo/Logo';
 import Menu from './Menu/Menu';
 
 class Header extends PureComponent {
-  state = {
-    expandMainMenu: false,
-  }
-
-  mainMenuToggleHandler = () => {
-    this.setState((prevState) => {
-      return { expandMainMenu: !prevState.expandMainMenu }
-    })
-  }
-  
   render() {
     return (
       <header>
