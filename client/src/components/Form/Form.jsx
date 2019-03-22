@@ -10,7 +10,9 @@ class Form extends Component {
   }
   
   componentDidMount = () => {
-    this.setState({fields: this.props.fields})
+    if(this.props.fields !== undefined) {
+      this.setState({fields: this.props.fields})
+    }
   }
 
   inputChangedHandler = (event, fieldName, fieldType) => {
@@ -114,6 +116,7 @@ class Form extends Component {
   }
   
   render() {
+    if(this.props.fields === undefined) return null;
     const formFields = this.renderFormFields();
     return (
       <form onSubmit={this.submitHandler}>

@@ -27,4 +27,26 @@ describe('<Menu />', () => {
     wrapper.setProps({loggedIn: true});
     expect(wrapper.contains(<Link to="/logout" title="Logout">Logout</Link>)).toEqual(true);
   });
+
+  it('should have hidden mobile menu by default', () => {
+    expect(wrapper.state('showMenu')).toEqual(false);
+    expect(wrapper.find('.menu__overlay--hide')).toHaveLength(1);
+    expect(wrapper.find('.menu--hide')).toHaveLength(1);
+  });
+  
+  it('can toggle menu visibility', () => {
+    wrapper.find(".btn--menu").first().simulate("click");
+    expect(wrapper.state('showMenu')).toEqual(true);
+    expect(wrapper.find('.menu__overlay')).toHaveLength(1);
+    expect(wrapper.find('.menu')).toHaveLength(1);
+    wrapper.find(".btn--menu").first().simulate("click");
+    expect(wrapper.state('showMenu')).toEqual(false);
+  });
+  
+  it('can hide menu with overlay clicked', () => {
+    wrapper.find(".btn--menu").first().simulate("click");
+    expect(wrapper.state('showMenu')).toEqual(true);
+    wrapper.find(".menu__overlay").first().simulate("click");
+    expect(wrapper.state('showMenu')).toEqual(false);
+  });
 });

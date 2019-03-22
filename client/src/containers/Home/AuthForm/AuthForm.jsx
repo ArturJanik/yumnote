@@ -8,7 +8,7 @@ import Button from '../../../components/UI/Button/Button';
 
 import * as actions from '../../../store/actions/index';
 
-class AuthForm extends PureComponent {
+export class AuthForm extends PureComponent {
   state = {
     fields: {
       username: {
