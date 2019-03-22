@@ -9,7 +9,7 @@ import { ProtectedRoute } from './ProtectedRoute';
 
 const simpleComponent = () => <div>Simple component</div>;
 
-describe('<Home />', () => {
+describe('<ProtectedRoute />', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<ProtectedRoute path="/test-path" location={{pathname: '/test-path'}} exact onSetAuthRedirectPath={()=> {}} />);

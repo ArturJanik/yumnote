@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styles from './Button.css';
 
-class Button extends PureComponent {
+export class Button extends PureComponent {
   render(){
     let btnType = this.props.btnType || 'regular';
 
