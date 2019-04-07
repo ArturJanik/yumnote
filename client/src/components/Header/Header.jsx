@@ -22,7 +22,7 @@ class Header extends PureComponent {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: (state.auth.token !== null && this.props.currentUser !== null),
+    isAuthenticated: (state.auth.token !== null && state.auth.currentUser !== null),
   }
 }
 
