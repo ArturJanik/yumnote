@@ -3,8 +3,14 @@ class ProductsController < ApiController
   
   def index
     category = Category.find_by_id(params[:category_id])
+    subcategories = category.subcategories
+    
     if category
-      products = category.products.where(user: current_user).or(category.products.public_products)
+      if subcategories.count === 0
+        products = category.products.where(user: current_user).or(category.products.public_products)
+      else
+        products = subcategories.joins(:products).where('products.user_id = ? OR products.private IS FALSE', current_user.id).collect(&:products).flatten.uniq!
+      end
       render json: { products: products }
     else
       errors = { errors: { category: ['Not found']}}
