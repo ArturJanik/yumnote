@@ -82,7 +82,12 @@ class ProductList extends Component {
   }
 
   renderProducts() {
-    return this.props.products.map((product, index) => {
+    let products = this.props.products;
+    if(this.props.type === 'user_foods') {
+      products = this.props.userProducts;
+    }
+    
+    return products.map((product, index) => {
       if(this.state.searchQuery === '' || (product.name.toLowerCase()).indexOf(this.state.searchQuery) !== -1){
         return <ProductListItem key={product.id} product={product} day={this.state.day} addFoodnote={this.props.addFoodnote} />
       } else { return null }
@@ -103,7 +108,9 @@ class ProductList extends Component {
     let list = <Spinner />;
     if(this.props.error !== null) {
       list = this.renderError();
-    } else if(!this.props.loading && this.props.products.length === 0) {
+    } else if(!this.props.loading && this.props.type !== 'user_foods' && this.props.products.length === 0) {
+      list = this.renderEmpty();
+    } else if(!this.props.loading && this.props.type === 'user_foods' && this.props.userProducts.length === 0) {
       list = this.renderEmpty();
     } else if(!this.props.loading && this.props.error === null) {
       list = this.renderProducts();
@@ -136,6 +143,7 @@ class ProductList extends Component {
 
 const mapStateToProps = state => {
   return {
+    userProducts: state.product.userProducts,
     products: state.product.products,
     loading: state.product.loading,
     error: state.product.error,

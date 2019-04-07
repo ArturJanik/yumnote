@@ -48,6 +48,7 @@ const fetchProductsSuccess = (state, action) => {
     {
       ...product,
       foodnoteCreationInProgress: false,
+      deleteInProgress: false,
       error: null
     }
   ));
@@ -61,6 +62,7 @@ const fetchUserProductsSuccess = (state, action) => {
   const userProducts = action.products.map(product => (
     {
       ...product,
+      foodnoteCreationInProgress: false,
       deleteInProgress: false,
       error: null
     }
