@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_19_160537) do
+ActiveRecord::Schema.define(version: 2019_04_07_182912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,8 +92,8 @@ ActiveRecord::Schema.define(version: 2019_03_19_160537) do
     t.bigint "category_id"
     t.bigint "user_id"
     t.boolean "visible", default: true
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at"
     t.boolean "private", default: false
     t.integer "foodnotes_count", default: 0, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
