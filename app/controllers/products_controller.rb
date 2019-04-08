@@ -3,9 +3,9 @@ class ProductsController < ApiController
   
   def index
     category = Category.find_by_id(params[:category_id])
-    subcategories = category.subcategories
     
     if category
+      subcategories = category.subcategories
       if subcategories.count === 0
         products = category.products.where(user: current_user).or(category.products.public_products)
       else
