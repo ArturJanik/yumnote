@@ -52,6 +52,12 @@ export const logout = () => {
     axios.defaults.headers['token'] = localStorage.getItem('token');
   })
   .catch(err => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationDate');
+    localStorage.removeItem('currentUserName');
+    localStorage.removeItem('currentUserTimezone');
+    localStorage.removeItem('yearlyStatistics');
+    localStorage.removeItem('statisticsFetchDate');
     console.error('Logout error: ', err);
   });
   return {

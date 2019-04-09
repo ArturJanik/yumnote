@@ -44,10 +44,10 @@ class Product < ApplicationRecord
   private
   def convert_values
     divider = amount
-    self.kcal = (kcal / divider).round(2)
-    self.carb = (carb / divider).round(2)
-    self.fat = (fat / divider).round(2)
-    self.prot = (prot / divider).round(2)
+    self.kcal = (kcal / divider).round(3)
+    self.carb = (carb / divider).round(3)
+    self.fat = (fat / divider).round(3)
+    self.prot = (prot / divider).round(3)
     self.amount = 1
   end
 
