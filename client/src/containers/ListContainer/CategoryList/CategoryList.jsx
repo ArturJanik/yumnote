@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import styles from './CategoryList.css';
@@ -6,7 +6,7 @@ import styles from './CategoryList.css';
 import StaticLinks from './StaticLinks/StaticLinks';
 import CategoryWithSubmenu from './CategoryWithSubmenu/CategoryWithSubmenu';
 
-class CategoryList extends PureComponent {
+class CategoryList extends Component {
   
   renderSidemenu = (categories) => {
     categories = _.partition(categories, (cat) => cat.parent_id === null);
@@ -16,7 +16,7 @@ class CategoryList extends PureComponent {
     
     return mainCategories.map((category) => (
       <li key={category.id} className={styles['category__item']}>
-        { category.hasSubmenu ? <CategoryWithSubmenu category={category} subCategories={subCategories} onClick={this.props.hideMenuClicked} /> : (
+        { category.hasSubmenu ? <CategoryWithSubmenu category={category} subCategories={subCategories} clicked={this.props.hideMenuClicked} /> : (
           <Link to={{
             pathname: `/category/${category.slug}`,
             state: { category: category.name, id: category.id }

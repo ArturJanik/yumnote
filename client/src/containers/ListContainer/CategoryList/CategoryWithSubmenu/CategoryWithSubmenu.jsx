@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import styles from './CategoryWithSubmenu.css';
 
 class CategoryWithSubmenu extends Component {
@@ -20,7 +20,7 @@ class CategoryWithSubmenu extends Component {
   generateSubmenu = ({category, subCategories}) => {
     return (
       <ul className={styles['subcategory__list']}>
-        <li className={styles['subcategory__btn']} onClick={this.props.onClick}>
+        <li className={styles['subcategory__btn']} onClick={this.props.clicked}>
           <NavLink to={{
             pathname: `/category/${category.slug}`,
             state: { category: category.name, id: category.id}
@@ -32,7 +32,7 @@ class CategoryWithSubmenu extends Component {
           subCategories.map(subcat => {
             return (
               (category.id === subcat.parent_id) ? (
-                <li className={styles['subcategory__btn']} key={subcat.id} onClick={this.props.onClick}>
+                <li className={styles['subcategory__btn']} key={subcat.id}>
                   <NavLink to={{
                     pathname: `/category/${subcat.slug}`,
                     state: { category: subcat.name, id: subcat.id}
@@ -58,4 +58,4 @@ class CategoryWithSubmenu extends Component {
   }
 }
 
-export default CategoryWithSubmenu;
+export default withRouter(CategoryWithSubmenu);
