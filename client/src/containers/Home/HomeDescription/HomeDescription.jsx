@@ -9,7 +9,7 @@ class HomeDescription extends PureComponent {
         <h1>Take control over your diet</h1>
         <p className={styles['home__subtitle']}>Don't let your diet control your life. Keep track of your diet with <span>calories.today</span> - simple calories tracking web application!</p>
         <ul>
-          <li><FontAwesomeIcon icon={['far', 'check-square']} />xxx foods available...</li>
+          <li><FontAwesomeIcon icon={['far', 'check-square']} />over 1500 foods available...</li>
           <li><FontAwesomeIcon icon={['far', 'check-square']} />...and why not add some of your favorites?</li>
           <li><FontAwesomeIcon icon={['far', 'check-square']} />focus on most important macros</li>
           <li><FontAwesomeIcon icon={['far', 'check-square']} />fully responsive</li>

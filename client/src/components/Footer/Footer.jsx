@@ -17,7 +17,7 @@ class Footer extends PureComponent {
         <div className={styles['footer__bottom']}>
           <div className={styles['footer__wrapper']}>
             <Copyright></Copyright>
-            <SocialMedia></SocialMedia>
+            {/* <SocialMedia></SocialMedia> */}
           </div>
         </div>
       </footer>
