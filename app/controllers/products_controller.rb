@@ -9,7 +9,7 @@ class ProductsController < ApiController
       if subcategories.count === 0
         products = category.products.where(user: current_user).or(category.products.public_products)
       else
-        products = subcategories.joins(:products).where('products.user_id = ? OR products.private IS FALSE', current_user.id).collect(&:products).flatten.uniq!
+        products = subcategories.includes(:products).where(products: { private: false }).or(subcategories.includes(:products).where(products: { user_id: current_user.id })).collect{|cat| cat.products}.flatten.uniq{|prod| prod.id}
       end
       render json: { products: products }
     else
