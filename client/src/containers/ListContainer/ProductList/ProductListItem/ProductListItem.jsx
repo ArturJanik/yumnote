@@ -54,6 +54,12 @@ class ProductListItem extends Component {
     }
   }
 
+  onKeyPressed = (event) => {
+    if (event.key === 'Enter') {
+      this.submitFoodnote();
+    }
+  }
+
   onAmountChange = (event) => {
     const amount = event.target.value;
     if(amount >= 0) {
@@ -75,7 +81,7 @@ class ProductListItem extends Component {
   generateForm = ({foodnoteCreationInProgress, unit}) => {
     return (
       <div className={styles.form}>
-        <AmountInput inProgress={foodnoteCreationInProgress} onChange={this.onAmountChange} amount={this.state.amount} unit={unit} />
+        <AmountInput inProgress={foodnoteCreationInProgress} onChange={this.onAmountChange} amount={this.state.amount} unit={unit} onKeyUp={this.onKeyPressed} />
         <AddButton inProgress={foodnoteCreationInProgress} clicked={this.submitFoodnote} createSuccess={this.state.createSuccess} createFailure={this.state.createFailure} />
       </div>
     )
