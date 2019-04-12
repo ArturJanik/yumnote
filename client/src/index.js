@@ -26,6 +26,14 @@ import passwordReducer from './store/reducers/password';
 import * as serviceWorker from './serviceWorker';
 import history from './utilities/history';
 
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-138260571-1');
+
+history.listen((location, action) => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
+
 const rootReducer = combineReducers({
   category: categoryReducer,
   product: productReducer,

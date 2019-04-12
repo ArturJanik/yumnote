@@ -4,7 +4,7 @@ let instance,
     config;
 if(process.env.NODE_ENV === 'production'){
   config = {
-    baseURL: 'http://calories.today:3001/',
+    baseURL: 'https://calories.today/',
     'Content-Type': 'application/json',
     headers: {
       'Authorization': `Token ${localStorage.getItem('token')}`,
