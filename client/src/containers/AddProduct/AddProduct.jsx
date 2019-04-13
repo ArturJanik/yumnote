@@ -21,9 +21,19 @@ class AddProduct extends Component {
   }
 
   generateFields = () => {
-    const categoriesOptions = this.props.categories.map(cat => ({
-      value: cat.id, displayValue: cat.name
-    }))
+    const categories = this.props.categories.filter(cat => {
+      if(cat.parent_id === null) return false;
+      return true;
+    });
+    const parentCategories = this.props.categories.filter(cat => {
+      if(cat.parent_id === null) return true;
+      return false;
+    });
+    const categoriesOptions = categories.map(cat => {
+      let category = cat,
+          parentName = parentCategories.find(c => c.id === category.parent_id)['name'];
+      return { value: cat.id, displayValue: parentName +' --> '+ cat.name };
+    });
     return {
       name: {
         elementType: 'input',
