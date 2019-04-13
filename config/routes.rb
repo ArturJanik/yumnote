@@ -31,5 +31,5 @@ Rails.application.routes.draw do
     get '/documents/:slug', to: 'documents#show'
   end
 
-  get '/*path' => 'react#index'
+  get '*path' => 'react#index'
 end
