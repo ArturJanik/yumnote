@@ -13,6 +13,7 @@
 
 * React 16.8.3
 * Redux 4.0.1
+* Jest 23.6.0
 
 ## Test suite
 
@@ -22,7 +23,7 @@
 
 ### frontend
 
-* TODO
+* Jest - only few tests to check how Jest works, I'm not convinced which parts of frontend should be tested - pretty sure there is no need for 100% coverage, and I should focus only on validations and API requests...
 
 ## Used plugins
 
@@ -53,33 +54,8 @@
 
 ### Backend - TODO
 
-* Narrow down queried fields to those required in response
+* Narrow down queried fields to those required in response - partially Done
 * TODO...
-
-## Installation
-
-### Base setup
-1. Clone repo
-2. Run command: _bundle install_
-- __optionally__: _gem install nokogiri -- --use-system-libraries_ and then _bundle install_ if required
-3. Go to client directory
-4. Run command: _npm install_
-5. Uncomment line __config.secret_key__ in __config/initializers/devise.rb__ file
-6. Delete file __config/credentials.yml.enc__
-7. In __/config/environments/development.rb__ comment out lines 57 and 58...
-⋅⋅⋅...or create free account on mailtrap.io. You will pass your demo inbox credentials into new credentials file (see: step 9). This is required to test functioning of mailers (password reset).
-8. Go back to base directory
-9. Run command: _EDITOR=VIM rails credentials:edit_
-⋅⋅⋅If you have followed second option in step 7, add your mailtrap demo inbox smtp credentials.
-10. Inside VIM: press ESC and enter :wq to save changes and exit. 
-
-### Database
-11. You will need a postgresql db installed on your machine
-12. Change __config/database.yml__ to your postgresql database settings/credentials
-13. Run command: _rake db:migrate_
-
-### Run app
-14. Run command: _foreman start -p 3000_ to test app
 
 ## Notes during development
 

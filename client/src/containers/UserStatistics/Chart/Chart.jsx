@@ -38,7 +38,7 @@ class Chart extends Component {
     const end = this.state.endDate;
 
     return _.filter(this.props.data, (dailyData) => {
-      const date = moment(dailyData.created_at);
+      const date = moment(dailyData.creation_date);
       if(date >= start && date <= end) return dailyData;
     })
   }
@@ -46,8 +46,8 @@ class Chart extends Component {
   scaleData = (data) => {
     switch (this.state.scale) {
       case 'month':
-        data = _.map(data, (dailyData) => ({ ...dailyData, created_at: moment(dailyData.created_at).format('MM/YYYY') }));
-        data = _.groupBy(data, 'created_at');
+        data = _.map(data, (dailyData) => ({ ...dailyData, creation_date: moment(dailyData.creation_date).format('MM/YYYY') }));
+        data = _.groupBy(data, 'creation_date');
         data = _.reduce(data, (monthlyData, dailyValues, key) => {
           monthlyData[key] = _.reduce(dailyValues, (monthlySum, value, key) => {
             monthlySum['kcal'] = monthlySum['kcal'] + value.kcal;
@@ -60,8 +60,8 @@ class Chart extends Component {
         }, {});
         break;
       case 'week':
-        data = _.map(data, (dailyData) => ({ ...dailyData, dat: dailyData.created_at, created_at: 'week ' + moment(dailyData.created_at).isoWeek() + '/' + moment(dailyData.created_at).isoWeekYear() }));
-        data = _.groupBy(data, 'created_at');
+        data = _.map(data, (dailyData) => ({ ...dailyData, dat: dailyData.creation_date, creation_date: 'week ' + moment(dailyData.creation_date).isoWeek() + '/' + moment(dailyData.creation_date).isoWeekYear() }));
+        data = _.groupBy(data, 'creation_date');
 
         data = _.reduce(data, (weeklyData, dailyValues, key) => {
           weeklyData[key] = _.reduce(dailyValues, (weeklySum, value, key) => {
@@ -83,7 +83,7 @@ class Chart extends Component {
   generateLabels = (data) => {
     if(this.state.scale === 'day') {
       return _.map(data, function(item) {
-        return moment(item.created_at).format('DD/MM/YYYY');
+        return moment(item.creation_date).format('DD/MM/YYYY');
       });
     } else {
       return _.keys(data);

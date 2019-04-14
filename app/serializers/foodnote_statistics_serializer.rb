@@ -1,3 +1,3 @@
 class FoodnoteStatisticsSerializer < ActiveModel::Serializer
-  attributes :created_at, :kcal, :carb, :fat, :prot
+  attributes :creation_date, :kcal, :carb, :fat, :prot
 end
