@@ -80,6 +80,21 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :user_name => ENV['SMTP_USERNAME'],
+    :password => ENV['SMTP_PASSWORD'],
+    :address => 'mail10.mydevil.net',
+    :domain => 'calories.today',
+    :port => '465',
+    :authentication => :login,
+    :tls => true
+  }
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'no-reply@calories.today'}
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
