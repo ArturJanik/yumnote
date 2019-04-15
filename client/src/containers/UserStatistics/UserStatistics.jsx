@@ -21,7 +21,7 @@ class UserStatistics extends PureComponent {
   renderStatistics = () => {
     return (
       <div className={styles['chart__container']}>
-        {(this.props.statisticalData !== null && this.props.statisticalData.length > 0) ? <Chart data={this.props.statisticalData} /> : 'No data available. Be sure to add some foodnotes!'}
+        {(this.props.statisticalData !== null && this.props.statisticalData.length > 0) ? <Chart data={this.props.statisticalData} /> : 'Not enough data available. Be sure to add some foodnotes for few days!'}
       </div>
     )
   }
