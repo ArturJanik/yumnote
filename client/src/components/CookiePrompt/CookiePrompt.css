@@ -1,0 +1,61 @@
+.cookies__wrapper {
+  background: #fff;
+  bottom: 20px;
+  box-shadow: 0px 1px 6px -1px rgba(0, 0, 0, 0.3);
+  left: 20px;
+  padding: 20px;
+  position: fixed;
+  right: 20px;
+  z-index: 999;
+}
+
+.cookies__header,
+.cookies__text {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.cookies__header {
+  font-family: 'Raleway', 'Arial', sans-serif;
+  font-size: 18px;
+}
+.cookies__link {
+  color: #6A8100;
+}
+.cookies__link:hover {
+  text-decoration: underline;
+}
+
+.cookies__btn {
+  border-radius: 2px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.cookies__btn:hover {
+  opacity: 0.75;
+}
+.cookies__btn--accept {
+  composes: cookies__btn;
+  color: #fff;
+  background: url('../../assets/images/btn-stripes.png') #3f4d00;
+  margin-bottom: 10px;
+  padding: 10px;
+  text-align: center;
+}
+.cookies__btn--decline {
+  color: #b33802;
+  composes: cookies__btn;
+}
+
+@media all and (max-width: 800px){
+  .cookies__wrapper {
+    border: 3px solid #6A8100;
+  }
+}
+@media all and (max-width: 480px){
+  .cookies__wrapper {
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}

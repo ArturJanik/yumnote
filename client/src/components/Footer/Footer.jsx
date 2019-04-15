@@ -3,7 +3,7 @@ import styles from './Footer.css';
 
 import Copyright from './Copyright/Copyright';
 import FooterMenu from './FooterMenu/FooterMenu';
-import SocialMedia from './SocialMedia/SocialMedia';
+// import SocialMedia from './SocialMedia/SocialMedia';
 
 class Footer extends PureComponent {
   render(){
