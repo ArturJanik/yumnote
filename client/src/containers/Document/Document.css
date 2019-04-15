@@ -11,8 +11,33 @@
   padding: 20px;
   width: 100%;
 }
+.document__wrapper h1 {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
 .document__content {
-
+  border-bottom: 1px solid #eee;
+  padding: 10px 20px;
+}
+.document__content h2 {
+  font-size: 24px;
+}
+.document__content p,
+.document__content ul,
+.document__content ol {
+  margin-bottom: 10px;
+}
+.document__content p,
+.document__content li {
+  line-height: 1.42em;
+}
+.document__content a {
+  color: #7a9118;
+}
+.document__content a:hover {
+  color: #3f4d00;
+  text-decoration: underline;
 }
 
 @media all and (max-width: 1400px){
@@ -24,5 +49,8 @@
 @media all and (max-width: 400px){
   .document {
     padding: 20px 10px;
+  }
+  .document__content {
+    padding: 10px 0;
   }
 }
