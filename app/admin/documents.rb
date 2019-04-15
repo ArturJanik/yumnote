@@ -26,4 +26,27 @@ ActiveAdmin.register Document do
       end
     end
   end
+
+  index do
+    id_column
+    column :title
+    column :slug
+    column :visible
+    column :created_at
+    column :updated_at
+    actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :title
+      row :short_content
+      row :content do |document|
+        strip_tags(document.content)
+      end
+      row :slug
+      row :visible
+    end
+  end
 end
