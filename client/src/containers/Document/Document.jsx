@@ -18,6 +18,9 @@ class Document extends Component {
     if(documentSlug !== prevProps.match.params.documentSlug){
       this.props.fetchDocument(documentSlug);
     }
+    if(this.props.document !== null && prevProps.document !== this.props.document){
+      document.title = this.props.document.title + ' - calories.today';
+    }
   }
 
   componentWillUnmount() {
