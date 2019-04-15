@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Pikaday from 'pikaday';
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import '!style-loader!css-loader!pikaday/css/pikaday.css';
-import moment from 'moment-timezone';
+import moment from 'moment-timezone/builds/moment-timezone-with-data-2012-2022.min';
 
 // import styles from './DatePicker.css';
 

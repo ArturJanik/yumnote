@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import moment from 'moment-timezone';
+import moment from 'moment-timezone/builds/moment-timezone-with-data-2012-2022.min';
 
 import styles from './ProductList.css';
 import * as actions from '../../../store/actions/index';

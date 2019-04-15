@@ -62,6 +62,7 @@
     "redux-thunk": "^2.3.0",
     "resolve": "1.8.1",
     "sass-loader": "7.1.0",
+    "source-map-explorer": "^1.8.0",
     "style-loader": "0.23.0",
     "terser-webpack-plugin": "1.1.0",
     "tinymce": "^4.9.3",
@@ -79,6 +80,7 @@
     "why-did-you-update": "^1.0.6"
   },
   "scripts": {
+    "analyze": "source-map-explorer build/static/js/*.js",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
