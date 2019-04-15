@@ -47,6 +47,7 @@
 ### Frontend - Done
 
 * Used 'why-did-you-update' tool to identify app elements with most redundant rerenders and refactored code to avoid most non-Router related ones.
+* Used 'source-map-explorer' tool to identify final build package bloats - went from 2.4MB to 1.6MB on home page for logged in user (foodnote list)
 
 ### Frontend - TODO
 
