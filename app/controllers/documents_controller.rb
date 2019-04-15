@@ -2,7 +2,7 @@ class DocumentsController < ApiController
   before_action :document_params
 
   def show
-    document = Document.find_by slug: params[:slug]
+    document = Document.find_by slug: params[:slug], visible: true
     if document
       render json: { document: document }
     else
@@ -13,6 +13,6 @@ class DocumentsController < ApiController
 
   private
   def document_params
-    params.permit(:slug)
+    params.permit(:slug, :visible)
   end
 end
