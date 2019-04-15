@@ -66,6 +66,7 @@
     display: block;
   }
   .menu__item {
+    border-bottom: 1px solid #ddd;
     display: block;
   }
   .btn--menu {

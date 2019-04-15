@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import burgerIcon from './burger-icon.svg';
 import styles from './Menu.css';
 
@@ -12,9 +12,9 @@ class Menu extends Component {
   showLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu__item']}><Link to="/products" title="Your products">Products</Link></li>
-        <li className={styles['menu__item']}><Link to="/profile" title="Your profile">My Profile</Link></li>
-        <li className={styles['menu__item']}><Link to="/logout" title="Logout">Logout</Link></li>
+        <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink to="/products" title="Your products">Products</NavLink></li>
+        <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink to="/profile" title="Your profile">My Profile</NavLink></li>
+        <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink to="/logout" title="Logout">Logout</NavLink></li>
       </React.Fragment>
     )
   }
@@ -22,8 +22,8 @@ class Menu extends Component {
   showNotLoggedInMenu = () => {
     return (
       <React.Fragment>
-        <li className={styles['menu__item']}><NavLink exact to="/register" title="Signup">Signup</NavLink></li>
-        <li className={styles['menu__item']}><NavLink exact to="/login" title="Login">Login</NavLink></li>
+        <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink exact to="/register" title="Signup">Signup</NavLink></li>
+        <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink exact to="/login" title="Login">Login</NavLink></li>
       </React.Fragment>
     )
   }
