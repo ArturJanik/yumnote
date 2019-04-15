@@ -66,6 +66,9 @@
   .product {
     display: block;
   }
+  .product__name {
+    font-size: 16px;
+  }
   .macros-container {
     max-width: 100%;
     padding: 5px;
@@ -73,5 +76,10 @@
   .form {
     max-width: 100%;
     padding-left: 5px;
+  }
+}
+@media all and (max-width: 360px){
+  .product__name {
+    font-size: 14px;
   }
 }

@@ -93,3 +93,21 @@
     display: none;
   }
 }
+
+@media all and (max-width: 480px) {
+  .header__column2 {
+    display: block;
+  }
+  .header__labels {
+    max-width: 100%;
+    text-align: center;
+  }
+  .label__totals {
+    background: #eee;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .totals {
+    max-width: 100%;
+  }
+}
