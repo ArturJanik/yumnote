@@ -1,5 +1,7 @@
 # README
 
+Live beta (finally): [calories.today](https://calories.today/)
+
 ## Stack:
 
 ### backend
@@ -34,13 +36,20 @@
 * Moment.js - date parsing,
 * perfect-scrollbar
 
-## Potential scaling strategies
-
-* First step - host app on at least two servers and direct traffic through load balancer
-* Second step - move all statistical queries to separate server and update statistical db every 1 hour (to accomodate different timezones that users may use)
-* Third step - cache most common db requests - list of categories, documents
-* Fourth step - session optimization (keeping them in memory? redis? what if server dies/restarts?)
-* TODO...
+## ToDo
+### Critical
+* More sensible multi-device auth management (possibly whole auth refactor)
+### Important
+* Confirmation mail on register
+* Complete Privacy Policy and Functions pages
+* Deeper tests of timezone handling
+* Tests on anything iOS based
+### Of moderate concern
+* I18n
+* Add functionality to create personal dishes/meals for fast reuse
+* Add personal weight log
+### Of least concern
+* Cover more frontend with tests
 
 ## Optimization
 
@@ -56,6 +65,14 @@
 ### Backend - TODO
 
 * Narrow down queried fields to those required in response - partially Done
+* TODO...
+
+## Potential scaling strategies
+
+* First step - host app on at least two servers and direct traffic through load balancer
+* Second step - move all statistical queries to separate server and update statistical db every 1 hour (to accomodate different timezones that users may use)
+* Third step - cache most common db requests - list of categories, documents
+* Fourth step - session optimization (keeping them in memory? redis? what if server dies/restarts?)
 * TODO...
 
 ## Notes during development
