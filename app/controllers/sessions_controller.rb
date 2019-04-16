@@ -3,7 +3,10 @@ class SessionsController < ApiController
 
   def create
     if user = User.validate_login(params[:user][:email], params[:user][:password])
-      allow_token_to_be_used_only_once_for(user)
+      if user.auth_token === nil
+        generate_new_token_for(user)
+      end
+      # allow_token_to_be_used_only_once_for(user)
       send_token_for_valid_login_of(user)
     else
       render_unauthorized(["Incorrect login or password"])
@@ -22,6 +25,10 @@ class SessionsController < ApiController
   end
 
   def allow_token_to_be_used_only_once_for(user)
+    user.regenerate_auth_token
+  end
+
+  def generate_new_token_for(user)
     user.regenerate_auth_token
   end
 

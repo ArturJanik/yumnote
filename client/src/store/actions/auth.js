@@ -80,7 +80,7 @@ export const auth = (formdata, isSignup) => {
 
     axios.post(url, formdata, headers)
     .then(response => {
-      const expirationDate = new Date(new Date().getTime() + 86400000);
+      const expirationDate = new Date(new Date().getTime() + 2592000000);
       const token = response.data.token;
       const username = response.data.username;
       const timezone = response.data.timezone;
@@ -94,7 +94,7 @@ export const auth = (formdata, isSignup) => {
       axios.defaults.headers['token'] = token;
 
       dispatch(authSuccess(token, username, timezone));
-      dispatch(checkAuthTimeout(86400000));
+      dispatch(checkAuthTimeout(2592000000));
     })
     .catch(err => {
       if(err.response.status === 500){
