@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Logo.css';
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/logo-beta.png';
 
 class Logo extends PureComponent {
   render() {
