@@ -24,7 +24,7 @@ export const validateField = (value, rules) => {
   }
 
   if(rules.isNumeric){
-    const pattern = /^[^0|\D]\d{0,9}((\.|,)\d{1,})?$/;
+    const pattern = /^[^\D]\d{0,9}((\.|,)\d{1,})?$/;
     isValid = (notRequiredAndEmpty) ? isValid : (pattern.test(value) && isValid);
   }
 

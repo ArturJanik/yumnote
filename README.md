@@ -38,10 +38,10 @@ Live beta (finally): [calories.today](https://calories.today/)
 
 ## ToDo
 ### Critical
-* More sensible multi-device auth management (possibly whole auth refactor)
-### Important
-* Confirmation mail on register
 * Complete Privacy Policy and Functions pages
+### Important
+* More sensible multi-device auth management (possibly whole auth refactor)
+* Confirmation mail on register
 * Deeper tests of timezone handling
 * Tests on anything iOS based
 ### Of moderate concern
