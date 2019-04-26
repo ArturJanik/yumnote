@@ -25,7 +25,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 # gem 'capistrano-rails', group: :development
 
 # ActiveAdmin dependencies
-gem 'devise'
+gem "devise", ">= 4.6.0"
 gem 'activeadmin'
 gem 'ransack', '~> 2.1.1'
 
