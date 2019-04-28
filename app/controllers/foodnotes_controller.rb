@@ -40,10 +40,9 @@ class FoodnotesController < ApiController
   end
 
   def destroy
-    foodnote = Foodnote.find(params['id'])
+    foodnote = current_user.foodnotes.find(params['id'])
 
-    if foodnote.user === current_user
-      foodnote.destroy
+    if foodnote.destroy
       render json: {}, status: 200
     else
       errors = { errors: { foodnote: ['Not found']}}
