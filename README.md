@@ -38,9 +38,9 @@ Live beta (finally): [calories.today](https://calories.today/)
 
 ## ToDo
 ### Critical
+* Remove counter cache - it's bottlenecking db; waste of resources when 99% of calls to cc are write calls, not reading
 * Complete Privacy Policy and Functions pages
 ### Important
-* More sensible multi-device auth management (possibly whole auth refactor)
 * Confirmation mail on register
 * Deeper tests of timezone handling
 * Tests on anything iOS based
@@ -48,6 +48,7 @@ Live beta (finally): [calories.today](https://calories.today/)
 * I18n
 * Add functionality to create personal dishes/meals for fast reuse
 * Add personal weight log
+* More sensible multi-device auth management (possibly whole auth refactor) - moved to moderate concern because it seems that other auth solutions like jwt have similar cons
 ### Of least concern
 * Cover more frontend with tests
 
