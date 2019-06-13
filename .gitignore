@@ -24,6 +24,9 @@
 
 .byebug_history
 .env
+.env.production
+.env.test
+.env.development
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

@@ -1,0 +1,1 @@
+Dotenv.require_keys("DB_PASS", "DB_HOST", "DB_USER", "SMTP_USER", "SMTP_PASS")
