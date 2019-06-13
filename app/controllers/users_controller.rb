@@ -4,6 +4,8 @@ class UsersController < ApiController
   def create
     user = User.new(user_params)
     if user.save
+      user.generate_signup_token
+      UserMailer.send_signup_confirmation(user).deliver_now
       render json: { token: user.auth_token, username: user.username }
     else
       render json: { errors: user.errors }, status: 422
@@ -46,6 +48,6 @@ class UsersController < ApiController
 
   private
   def user_params
-    params.require(:user).permit(:username, :email, :password, :new_password, :time_zone)
+    params.require(:user).permit(:username, :email, :password, :new_password, :time_zone, :signup_confirmed)
   end
 end

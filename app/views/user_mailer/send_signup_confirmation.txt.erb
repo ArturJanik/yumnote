@@ -1,0 +1,18 @@
+Signup confirmation
+===============================================
+You receive this e-mail because you or someone else 
+have signed up account on calories.today.
+
+To complete registration click this link: 
+https://calories.today/confirm-account/<%= @user.signup_confimation_token %>
+
+
+
+If you didn't make this request, click here:
+https://calories.today/report-fraudulent-account/<%= @user.signup_confimation_token %>
+It will result in automatic account disabling
+and will remove your e-mail from our database 
+so you will be able to register in future if you decide to.
+
+===============================================
+calories.today (c) 2019

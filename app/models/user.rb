@@ -37,6 +37,11 @@ class User < ApplicationRecord
     save!
   end
 
+  def generate_signup_token
+    self.signup_confimation_token = generate_token
+    save!
+  end
+
   def password_token_valid?
     (self.reset_password_sent_at + 4.hours) > Time.zone.now.utc
   end
