@@ -33,8 +33,7 @@ Live beta (finally): [calories.today](https://calories.today/)
 * Chart.js - visual presentation of user statistics, 
 * lodash - general toolset,
 * Pikaday - date selection on product & foodnote list,
-* Moment.js - date parsing,
-* perfect-scrollbar
+* Moment.js - date parsing
 
 ## ToDo
 ### Critical
