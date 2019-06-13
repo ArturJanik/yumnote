@@ -37,7 +37,6 @@ Live beta (finally): [calories.today](https://calories.today/)
 
 ## ToDo
 ### Critical
-* Remove counter cache - it's bottlenecking db; waste of resources when 99% of calls to cc are write calls, not reading
 * Complete Privacy Policy and Functions pages
 ### Important
 * Confirmation mail on register

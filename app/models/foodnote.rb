@@ -1,5 +1,5 @@
 class Foodnote < ApplicationRecord
-  belongs_to :product, counter_cache: true
+  belongs_to :product
   belongs_to :user
   
   validates :user_id, :product_id, :creation_date, presence: true
