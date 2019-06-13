@@ -8,6 +8,11 @@
   height: 32px;
   width: 32px;
 }
+.spinner--center {
+  composes: spinner;
+  display: block;
+  margin: 20px auto;
+}
 .spinner:after {
   content: " ";
   display: block;

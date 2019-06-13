@@ -23,6 +23,7 @@ import Spinner from './components/UI/Spinner/Spinner';
 import Home from './containers/Home/Home';
 import Logout from './containers/Home/Logout/Logout';
 import ListContainer from './containers/ListContainer/ListContainer';
+import AccountConfirmation from './containers/AccountConfirmation/AccountConfirmation';
 
 import UserProfile from './containers/UserProfile/UserProfile';
 import EditProfile from './containers/EditProfile/EditProfile';
@@ -94,6 +95,8 @@ class App extends Component {
           <Route path="/logout" exact component={Logout} />
           <Route path="/reset-password" exact component={PasswordForgot} isAuthenticated={this.props.isAuthenticated} />
           <Route path="/reset-password/:token" exact component={PasswordReset} isAuthenticated={this.props.isAuthenticated} />
+          <Route path="/confirm-account/:token" exact component={AccountConfirmation} type="confirmation" />
+          <Route path="/report-fraudulent-account/:token" exact component={AccountConfirmation} type="report" />
           <Route component={NoMatch} />
         </Switch>
       )

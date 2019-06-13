@@ -21,7 +21,7 @@ class PasswordForgot extends Component {
   }
 
   componentDidMount() {
-    document.title = 'Reset password - with calories.today';
+    document.title = 'Reset password - calories.today';
   }
   
   componentWillUnmount() {
