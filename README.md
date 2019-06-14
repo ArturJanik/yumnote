@@ -39,14 +39,12 @@ Live beta (finally): [calories.today](https://calories.today/)
 ### Critical
 * Complete Privacy Policy and Functions pages
 ### Important
-* Confirmation mail on register
 * Deeper tests of timezone handling
 * Tests on anything iOS based
 ### Of moderate concern
 * I18n
 * Add functionality to create personal dishes/meals for fast reuse
 * Add personal weight log
-* More sensible multi-device auth management (possibly whole auth refactor) - moved to moderate concern because it seems that other auth solutions like jwt have similar cons
 ### Of least concern
 * Cover more frontend with tests
 
