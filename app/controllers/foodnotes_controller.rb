@@ -44,10 +44,10 @@ class FoodnotesController < ApiController
 
     if foodnote.destroy
       render json: {}, status: 200
-    else
-      errors = { errors: { foodnote: ['Not found']}}
-      render json: errors, status: 404
     end
+  rescue ActiveRecord::RecordNotFound
+    errors = { errors: { foodnote: ['Not found']}}
+    render json: errors, status: 404
   end
 
   def statistics

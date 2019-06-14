@@ -42,7 +42,7 @@ class AccountConfirmation extends Component {
   }
 
   checkTokenValidity = (token) => {
-    switch (this.props.type) {
+    switch (this.props.confType) {
       case 'confirmation':
       default:
         document.title = 'Account signup confirmation - calories.today';

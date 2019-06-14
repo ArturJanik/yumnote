@@ -95,8 +95,8 @@ class App extends Component {
           <Route path="/logout" exact component={Logout} />
           <Route path="/reset-password" exact component={PasswordForgot} isAuthenticated={this.props.isAuthenticated} />
           <Route path="/reset-password/:token" exact component={PasswordReset} isAuthenticated={this.props.isAuthenticated} />
-          <Route path="/confirm-account/:token" exact component={AccountConfirmation} type="confirmation" />
-          <Route path="/report-fraudulent-account/:token" exact component={AccountConfirmation} type="report" />
+          <Route path="/confirm-account/:token" exact render={(routeProps) => <AccountConfirmation {...routeProps} confType="confirmation"/>} />
+          <Route path="/report-fraudulent-account/:token" exact render={(routeProps) => <AccountConfirmation {...routeProps} confType="report"/>} />
           <Route component={NoMatch} />
         </Switch>
       )

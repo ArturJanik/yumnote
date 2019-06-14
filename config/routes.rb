@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     
     resources :users, only: [:create, :update]
     get  '/profile' => 'users#profile'
+    post '/user/confirm' => 'users#confirm'
+    post '/user/fraud' => 'users#fraud'
     post '/changepassword' => 'users#changepassword'
     post '/password/forgot', to: 'passwords#forgot'
     post '/password/reset', to: 'passwords#reset'
