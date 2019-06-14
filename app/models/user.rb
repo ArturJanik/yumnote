@@ -19,6 +19,19 @@ class User < ApplicationRecord
     self.password = password
     save!
   end
+
+  def block_account
+    self.auth_token = nil
+    self.signup_confirmation_token = nil
+    self.email = "fraud@fraud.fraud"
+    save!
+  end
+
+  def confirm_account
+    self.signup_confirmation_token = nil
+    self.signup_confirmed = true
+    save!
+  end
   
   def invalidate_token
     self.update_columns(auth_token: nil)
@@ -34,6 +47,11 @@ class User < ApplicationRecord
   def generate_password_token
     self.reset_password_token = generate_token
     self.reset_password_sent_at = Time.zone.now.utc
+    save!
+  end
+
+  def generate_signup_token
+    self.signup_confirmation_token = generate_token
     save!
   end
 

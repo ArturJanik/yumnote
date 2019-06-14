@@ -1,0 +1,13 @@
+<div style="padding:10px;border:1px solid #ddd;font-family:Lato,Arial,sans-serif;">
+  <p style="font-size:24px;font-weight:600;color:#3f4d00;margin-bottom:10px;text-align:center;">Signup confirmation email</p>
+  <div style="font-size:14px;line-height:1.42em;margin-bottom:10px;box-shadow:0px 1px 3px rgba(0,0,0,0.1);padding:10px">
+    <p>You receive this e-mail because you have signed up account on calories.today.</p>
+    <a href="https://calories.today/confirm-account/<%= @user.signup_confirmation_token %>" target="_blank">Click here to confirm registration</a>
+    <br/>
+    <br/>
+    <p>If you didn't make this request, <a href="https://calories.today/report-fraudulent-account/<%= @user.signup_confirmation_token %>" target="_blank">click here to report it</a>. It will result in automatic account disabling and will remove your e-mail from our database so you will be able to register in future if you decide to.</p>
+  </div>
+  <div style="text-align:center;font-size:11px;color:#3f4d00;">
+    <p>calories.today &copy; 2019</p>
+  </div>
+</div>

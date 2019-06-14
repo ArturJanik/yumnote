@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import burgerIcon from './burger-icon.svg';
 import styles from './Menu.css';
 
@@ -14,7 +14,7 @@ class Menu extends Component {
       <React.Fragment>
         <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink to="/products" title="Your products">Products</NavLink></li>
         <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink to="/profile" title="Your profile">My Profile</NavLink></li>
-        <li className={styles['menu__item']} onClick={this.toggleMenu}><NavLink to="/logout" title="Logout">Logout</NavLink></li>
+        <li className={styles['menu__item']} onClick={this.toggleMenu}><Link to="/logout" title="Logout">Logout</Link></li>
       </React.Fragment>
     )
   }
