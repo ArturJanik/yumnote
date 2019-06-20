@@ -6,7 +6,7 @@ class UsersController < ApiController
     if user.save
       user.generate_signup_token
       UserMailer.send_signup_confirmation(user).deliver_now
-      render json: { token: user.auth_token, username: user.username }
+      render json: { token: user.auth_token, username: user.username, timezone: user.time_zone }
     else
       render json: { errors: user.errors }, status: 422
     end
