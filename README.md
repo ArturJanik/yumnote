@@ -1,6 +1,6 @@
 # README
 
-Live beta (finally): [calories.today](https://calories.today/)
+Live beta: [calories.today](https://calories.today/)
 
 ## Stack:
 
@@ -15,7 +15,6 @@ Live beta (finally): [calories.today](https://calories.today/)
 
 * React 16.8.3
 * Redux 4.0.1
-* Jest 23.6.0
 
 ## Test suite
 
@@ -37,7 +36,7 @@ Live beta (finally): [calories.today](https://calories.today/)
 
 ## ToDo
 ### Critical
-* Complete Privacy Policy and Functions pages
+* Complete Privacy Policy
 ### Important
 * Deeper tests of timezone handling
 * Tests on anything iOS based
@@ -55,10 +54,6 @@ Live beta (finally): [calories.today](https://calories.today/)
 * Used 'why-did-you-update' tool to identify app elements with most redundant rerenders and refactored code to avoid most non-Router related ones.
 * Used 'source-map-explorer' tool to identify final build package bloats - went from 2.4MB to 1.6MB on home page for logged in user (foodnote list)
 
-### Frontend - TODO
-
-* Find out if it's possible to filter useless rerenders triggered by Router
-
 ### Backend - TODO
 
 * Narrow down queried fields to those required in response - partially Done
@@ -71,7 +66,3 @@ Live beta (finally): [calories.today](https://calories.today/)
 * Third step - cache most common db requests - list of categories, documents
 * Fourth step - session optimization (keeping them in memory? redis? what if server dies/restarts?)
 * TODO...
-
-## Notes during development
-
-1. (dependencies error) webpack-dev-server version from 3.1.11 to 3.1.13 prevents automatic reload during code changes
