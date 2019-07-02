@@ -36,7 +36,7 @@ Live beta: [calories.today](https://calories.today/)
 
 ## ToDo
 ### Critical
-* Complete Privacy Policy
+* none
 ### Important
 * Deeper tests of timezone handling
 * Tests on anything iOS based
